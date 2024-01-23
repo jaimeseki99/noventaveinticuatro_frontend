@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule} from '@angular/material/input';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,14 +18,18 @@ import { SesionAjaxService } from './service/sesion.ajax.service.service';
 import { CryptoService } from './service/crypto.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './interceptor/auth.interceptor';
+import { LoginRoutedComponent } from './components/shared/login-routed/login-routed.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginRoutedComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    MatInputModule
   ],
   providers: [
     UsuarioAjaxService,

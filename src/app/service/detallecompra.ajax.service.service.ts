@@ -7,7 +7,7 @@ import { IDetalleCompra } from "../model/model.interfaces";
 @Injectable({
     providedIn: 'root'
 })
-export class detalleCompraAjaxService {
+export class DetalleCompraAjaxService {
 
     private url = API_URL + '/detalleCompra';
 
@@ -21,10 +21,6 @@ export class detalleCompraAjaxService {
 
     getDetalleCompraPage(page: number, size: number, sort: string, direction: string, compraId: number, camisetaId: number): Observable<IDetalleCompra> {
         return this.http.get<IDetalleCompra>(this.url + '?page=' + page + '&size=' + size + '&sort=' + sort + ',' + direction + '&compraId=' + compraId + '&camisetaId=' + camisetaId);
-    }
-
-    generateDetallesCompra(amount: number): Observable<number> { 
-        return this.http.post<number>(this.url + '/populate/' + amount, {});
     }
 
     updateDetalleCompra(detalleCompra: IDetalleCompra): Observable<IDetalleCompra> {

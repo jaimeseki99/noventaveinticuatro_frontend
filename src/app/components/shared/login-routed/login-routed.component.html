@@ -29,3 +29,38 @@
         </form>
     </div>
 </div>
+
+<div class="flex items-center justify-center h-screen">
+  <div class="bg-white rounded-md p-8 shadow-md w-full max-w-md text-center">
+    <h1 class="text-3x1 font-bold mb-6">LOGIN</h1>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="mb-4">
+        <label for="username" class="block text-sm font-medium">Username</label>
+        <input type="text" id="username" placeholder="Nombre de usuario" formControlName="username" required
+        class="w-full h-10 rounded-md border border-gray-300 px-3 py-2 text-sm placeholder-gray-500 focus:outline-none focus:ring focus:border-blue-300">
+        <mat-error *ngIf="loginForm.controls['username'].hasError('required')">
+          El nombre de usuario es requerido</mat-error>
+      </div>
+      <div class="mb-4">
+        <label for="password" class="block text-sm font-medium">Contraseña</label>
+        <input type="password" id="password" placeholder="Contraseña" formControlName="password" required
+        class="w-full h-10 rounded-md border border-gray-300 px-3 py-2 text-sm placeholder-gray-500 focus:outline-none focus:ring focus:border-blue-300">
+        <mat-error *ngIf="loginForm.controls['password'].hasError('required')">
+          La contraseña es requerida</mat-error>
+      </div>
+      <div class="mb-4">
+        <img [src]="'data:image/png;base64,' + prelogin?.captchaImage" alt="captcha">
+        <input type="text" placeholder="Captcha" formControlName="captcha" required
+        class="w-full h-10 rounded-md border border-gray-300 px-3 py-2 text-sm placeholder-gray-500 focus:outline-none focus:ring focus:border-blue-300">
+      </div>
+      <div class="mb-4 flex justify-between">
+        <button class="admin-button bg-purple-600 text-white hover:bg-black" (click)="loginAdmin()">Soy admin</button>
+        <button class="user-button bg-purple-600 text-white hover:bg-black" (click)="loginUser()">Soy usuario</button>
+      </div>
+      <div class="mb-4 flex justify-between">
+        <button class="loggin-button bg-purple-600 text-white hover:bg-black" type="submit">Login</button>
+        <button class="reset-button bg-purple-600 text-white hover:bg-black" type="reset" (click)="onReset()">Reset</button>
+      </div>
+    </form>
+  </div>
+</div>

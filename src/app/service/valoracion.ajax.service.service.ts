@@ -1,4 +1,4 @@
-import { detalleCompraAjaxService } from './detallecompra.ajax.service.service';
+import { DetalleCompraAjaxService } from './detallecompra.ajax.service.service';
 import { Injectable } from "@angular/core";
 import { API_URL } from "src/environment/environment";
 import { IValoracion, IValoracionPage } from "../model/model.interfaces";

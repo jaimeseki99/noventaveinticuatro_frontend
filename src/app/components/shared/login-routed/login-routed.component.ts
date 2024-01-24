@@ -57,7 +57,7 @@ export class LoginRoutedComponent implements OnInit {
         const hashedPassword = this.cryptoService.getSHA256(this.loginForm.value.password);
         const token = this.prelogin.token;
 
-        this.sesionService.login(username, hashedPassword, captchaAnswer, token).subscribe({
+        this.sesionService.login(username, hashedPassword, token, captchaAnswer).subscribe({
           next: (data: string) => {
             this.sesionService.setToken(data);
             this.sesionService.emit({ type: 'login' });

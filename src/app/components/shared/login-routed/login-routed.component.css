@@ -45,7 +45,8 @@ input {
 .admin-button,
 .user-button,
 .reset-button,
-.login-button {
+.login-button
+ {
     background-color: #8a2be2;
     color: #ffffff;
     border: none;
@@ -54,6 +55,8 @@ input {
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
+
+
 
 .admin-button:hover,
 .user-button:hover,

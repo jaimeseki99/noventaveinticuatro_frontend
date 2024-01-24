@@ -6,3 +6,5 @@
 /* importar primeng y primeicons */
 @import '~primeicons/primeicons.css';
 @import '~primeng/resources/themes/saga-blue/theme.css';
+
+@import '~bulma/css/bulma.css';

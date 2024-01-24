@@ -33,8 +33,8 @@ export class SesionAjaxService {
         return this.http.get<IPrelogin>(this.url + '/prelogin');
     }
 
-    login(username: string, password: string, token: string, answer: string): Observable<string> {
-        return this.http.post<string>(this.url + '/login', {username: username, password: password, token: token, answer: answer});
+    login(username: string, contrasenya: string, token: string, answer: string): Observable<string> {
+        return this.http.post<string>(this.url + '/login', {username: username, contrasenya: contrasenya, token: token, answer: answer});
     }
 
     setToken(token: string): void {

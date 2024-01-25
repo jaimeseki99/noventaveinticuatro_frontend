@@ -2,7 +2,7 @@
   <div class="section login-container">
   <div class="container login-form">
     <h1 class="title is-4">LOGIN</h1>
-    <form [formGroup]="loginForm">
+    <form [formGroup]="loginForm" (submit)="onSubmit()">
       <div class="field">
         <label for="username" class="label">Username</label>
         <div class="control">
@@ -18,18 +18,27 @@
         <p class="help is-danger" *ngIf="loginForm.controls['contrasenya'].hasError('required')">La contraseña es requerida</p>
       </div>
       <div class="field">
+        <!-- Espacio para la imagen del captcha -->
+        <label class="label">Captcha</label>
+        <div class="control">
+          <input type="text" placeholder="Captcha" class="input" formControlName="captcha" required>
+        </div>
+        <!-- Placeholder para la imagen del captcha, puedes implementar un servicio real aquí -->
+        <img [src]="'data:image/png;base64,' + prelogin?.captchaImage" alt="Captcha Image" class="captcha-image">
+      </div>
+      <div class="field">
         <!-- Añadir más espacio entre los botones -->
         <div class="control has-text-centered">
-          <button class="button is-primary">Soy admin</button>
+          <button class="button is-primary" (click)="loginAdmin()">Soy admin</button>
           <!-- Agregado un espacio de separación -->
           <span class="mx-2"></span>
-          <button class="button is-primary">Soy usuario</button>
+          <button class="button is-primary" (click)="loginUser()">Soy usuario</button>
         </div>
       </div>
       <div class="field is-grouped is-grouped-right">
         <!-- Hacer el contenedor del login más estrecho -->
         <div class="control">
-          <button class="button is-link" (click)="onSubmit()">Login</button>
+          <button class="button is-link">Login</button>
         </div>
         <span class="mx-6"></span>
         <div class="control">

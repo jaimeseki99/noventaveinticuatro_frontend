@@ -31,12 +31,12 @@ export class SesionAjaxService {
         return this.http.get<IPrelogin>(this.url + '/prelogin');
     }
 
-    loginCaptcha(username: string, contrasenya: string, token: string, answer: string): Observable<string> {
-        return this.http.post<string>(this.url + '/loginCaptcha', {username: username, contrasenya: contrasenya, token: token, answer: answer});
+    loginCaptcha(username: string, contrasenya: string, token: string, answer: string): Observable<any> {
+        return this.http.post(this.url + '/loginCaptcha', {username: username, contrasenya: contrasenya, token: token, answer: answer}, {responseType: 'text'});
     }
 
-    login(username: string, contrasenya: string): Observable<string> {
-        return this.http.post<string>(this.url + '/login', {username: username, contrasenya: contrasenya});
+    login(username: string, contrasenya: string): Observable<any> {
+        return this.http.post(this.url + '/login', {username: username, contrasenya: contrasenya}, {responseType: 'text'});
     }
 
     setToken(token: string): void {

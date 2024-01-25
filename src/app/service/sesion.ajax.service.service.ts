@@ -5,9 +5,7 @@ import { UsuarioAjaxService } from "./usuario.ajax.service.service";
 import { IPrelogin, IToken, IUsuario, SessionEvent } from "../model/model.interfaces";
 import { Observable, Subject } from "rxjs";
 
-@Injectable({
-    providedIn: 'root'
-})
+@Injectable()
 
 export class SesionAjaxService {
 
@@ -33,8 +31,12 @@ export class SesionAjaxService {
         return this.http.get<IPrelogin>(this.url + '/prelogin');
     }
 
-    login(username: string, contrasenya: string, token: string, answer: string): Observable<string> {
-        return this.http.post<string>(this.url + '/login', {username: username, contrasenya: contrasenya, token: token, answer: answer});
+    loginCaptcha(username: string, contrasenya: string, token: string, answer: string): Observable<string> {
+        return this.http.post<string>(this.url + '/loginCaptcha', {username: username, contrasenya: contrasenya, token: token, answer: answer});
+    }
+
+    login(username: string, contrasenya: string): Observable<string> {
+        return this.http.post<string>(this.url + '/login', {username: username, contrasenya: contrasenya});
     }
 
     setToken(token: string): void {

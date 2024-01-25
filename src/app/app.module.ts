@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule} from '@angular/material/input';
-import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -21,11 +21,18 @@ import { SesionAjaxService } from './service/sesion.ajax.service.service';
 import { CryptoService } from './service/crypto.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './interceptor/auth.interceptor';
+
+import { MenuUnroutedComponent } from './components/shared/menu-unrouted/menu-unrouted.component';
+import { FooterUnroutedComponent } from './components/shared/footer-unrouted/footer-unrouted.component';
+import { HomeRoutedComponent } from './components/shared/home-routed/home-routed.component';
 import { LoginRoutedComponent } from './components/shared/login-routed/login-routed.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    MenuUnroutedComponent,
+    FooterUnroutedComponent,
+    HomeRoutedComponent,
     LoginRoutedComponent
   ],
   imports: [

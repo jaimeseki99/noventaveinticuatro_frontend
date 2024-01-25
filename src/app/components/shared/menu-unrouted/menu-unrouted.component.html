@@ -1,0 +1,58 @@
+<nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" routerLink="/home">
+      <img src="" alt="Logo">
+    </a>
+  </div>
+
+  <div id="navbar" class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item" href="#">
+        Usuarios
+      </a>
+      <a class="navbar-item" href="#">
+        Camisetas
+      </a>
+      <a class="navbar-item" href="#">
+        Valoraciones
+      </a>
+      <!-- Puedes agregar más opciones según tus necesidades -->
+    </div>
+
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <!-- Aquí puedes gestionar la visibilidad del botón de inicio de sesión y del carrito -->
+        <!-- Dependiendo del estado de inicio de sesión -->
+        <div class="buttons">
+          <a class="button is-light" routerLink="/login">
+            Iniciar sesión
+          </a>
+          <div class="navbar-item has-dropdown">
+            <a class="navbar-link">
+              Bienvenido, nombre_de_usuario
+            </a>
+            <div class="navbar-dropdown">
+              <!-- Agrega más opciones de usuario si es necesario -->
+              <a class="navbar-item" href="#">
+                Perfil
+              </a>
+              <a class="navbar-item" href="#">
+                Configuración
+              </a>
+              <hr class="navbar-divider">
+              <a class="navbar-item" href="#">
+                Cerrar sesión
+              </a>
+            </div>
+          </div>
+          <a class="button is-light" href="#">
+            <span class="icon">
+              <i class="pi pi-shopping-cart"></i> <!-- Asegúrate de tener la fuente de PrimeNG cargada -->
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+

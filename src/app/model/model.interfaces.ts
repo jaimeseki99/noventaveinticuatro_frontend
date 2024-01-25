@@ -72,6 +72,7 @@ export interface ICamiseta extends IEntity {
     stock: number,
     equipo: IEquipo,
     modalidad: IModalidad,
+    liga: ILiga,
     valoraciones: number,
     carritos: number,
     detalleCompras: number
@@ -153,7 +154,8 @@ export interface ILiga extends IEntity {
     nombre: string,
     pais: string,
     deporte: string,
-    equipos: number
+    equipos: number,
+    camisetas: number
 }
 
 export interface ILigaPage extends IPage<ILiga> {

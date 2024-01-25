@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="columns is-centered">
+    <div class="column is-half">
+      <div class="card">
+        <div class="card-image">
+          <figure class="image is-4by3">
+            <img [src]="camiseta.imagen" alt="Imagen de la camiseta">
+          </figure>
+        </div>
+        <div class="card-content">
+          <div class="content">
+            <h5 class="title is-5"> {{camiseta.titulo}}</h5>
+            <p>Talla: {{camiseta.talla}}</p>
+            <p>Manga: {{camiseta.manga}}</p>
+            <p>Temporada: {{camiseta.temporada}}</p>
+            <p>Precio: {{camiseta.precio}}</p>
+            <p>IVA: {{camiseta.iva}}</p>
+            <p>Stock: {{camiseta.stock}}</p>
+            <p>Equipo: {{camiseta.equipo.nombre}}</p>
+            <p>Modalidad: {{camiseta.modalidad.nombre}}</p>
+            <p>Liga: {{camiseta.liga.nombre}}</p>
+            <p>Valoraciones: {{camiseta.valoraciones}}</p>
+            <p>Camisetas en carritos: {{camiseta.carritos}}</p>
+            <p>Número de compras: {{camiseta.detalleCompras}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

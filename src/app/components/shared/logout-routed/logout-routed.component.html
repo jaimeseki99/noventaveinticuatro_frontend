@@ -1,3 +1,17 @@
-<p>
-  logout-routed works!
-</p>
+<section class="hero is-fullheight is-primary is-bold">
+  <div class="hero-body">
+    <div class="container has-text-centerd">
+      <div class="card">
+        <div class="card-content">
+          <div class="content">
+            <p class="title has-text-primary">¿Estás seguro de que quieres cerrar sesión?</p>
+            <div class="buttons is-centered">
+              <a class="button is-danger" (click)="logout()">Sí</a>
+              <a class="button is-primary" (click)="cancel()">No</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -26,6 +26,8 @@ import { MenuUnroutedComponent } from './components/shared/menu-unrouted/menu-un
 import { FooterUnroutedComponent } from './components/shared/footer-unrouted/footer-unrouted.component';
 import { HomeRoutedComponent } from './components/shared/home-routed/home-routed.component';
 import { LoginRoutedComponent } from './components/shared/login-routed/login-routed.component';
+import { LogoutRoutedComponent } from './components/shared/logout-routed/logout-routed.component';
+import { DialogService } from 'primeng/dynamicdialog';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,8 @@ import { LoginRoutedComponent } from './components/shared/login-routed/login-rou
     MenuUnroutedComponent,
     FooterUnroutedComponent,
     HomeRoutedComponent,
-    LoginRoutedComponent
+    LoginRoutedComponent,
+    LogoutRoutedComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +59,8 @@ import { LoginRoutedComponent } from './components/shared/login-routed/login-rou
     ModalidadAjaxService,
     SesionAjaxService,
     CryptoService,
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
+    DialogService
   ],
   bootstrap: [AppComponent]
 })

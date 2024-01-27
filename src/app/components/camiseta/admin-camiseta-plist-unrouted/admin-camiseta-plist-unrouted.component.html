@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="notification" *ngIf="id_equipo>0">
+    Filtrando por equipo: {{ equipo?.nombre}}
+    <button class="delete" *ngIf="id_equipo>0" routerLink="['/admin', 'camiseta', 'plist']">Quitar filtro</button>
+  </div>
+  <div class="notification" *ngIf="id_modalidad>0">
+    Filtrando por modalidad: {{ modalidad?.nombre}}
+    <button class="delete" *ngIf="modalidad>0" routerLink="['/admin', 'camiseta', 'plist']">Quitar filtro</button>
+  </div>
+  <div class="notification" *ngIf="id_liga>0">
+    Filtrando por liga: {{ liga?.nombre}}
+    <button class="delete" *ngIf="id_liga>0" routerLink="['/admin', 'camiseta', 'plist']">Quitar filtro</button>
+  </div>
+
+  <div class="columns is-multiline">
+    <ng-container *ngIf="page?.content">
+      <div class="column is-one-third" *ngFor="let camiseta of page.content">
+        <div class="card">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <img src="{{ camiseta.imagen }}" alt="Imagen de la camiseta">
+            </figure>
+          </div>
+          <div class="card-content">
+            <p class="title is-4"> {{camiseta.titulo}} </p>
+            <p><strong>Equipo:</strong> {{camiseta.equipo.nombre}}</p>
+            <p><strong>Modalidad:</strong> {{camiseta.modalidad.nombre}}</p>
+            <p><strong>Liga:</strong> {{camiseta.liga.nombre}}</p>
+            <p><strong>Precio:</strong> {{camiseta.precio}} €</p>
+            <p><strong>Stock:</strong> {{camiseta.stock}}</p>
+            <p><strong>En carritos: {{camiseta.carritos}}</strong></p>
+            <p><strong>Valoraciones: {{camiseta.valoraciones}}</strong></p>
+            <p><strong>Compras: {{camiseta.detalleCompras}}</strong></p>
+          </div>
+          <footer class="card-footer">
+            <!-- Botón para ver detalles -->
+            <a href="#" class="card-footer-item" (click)="doView(camiseta)">Detalles</a>
+            <!-- Botón para eliminar -->
+            <a href="#" class="card-footer-item" (click)="doRemove(camiseta)">Eliminar</a>
+          </footer>
+        </div>
+      </div>
+    </ng-container>
+    <div class="column" *ngIf="!page?.content || page.content.length === 0">
+      <div class="notification is-warning">
+        No se encontraron camisetas.
+      </div>
+    </div>
+  </div>
+
+</div>

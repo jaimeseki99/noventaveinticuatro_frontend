@@ -47,7 +47,7 @@ export interface IUsuario extends IEntity {
     email: string,
     direccion: string,
     telefono: string,
-    rol: boolean,
+    tipo: boolean,
     carritos: number,
     valoraciones: number,
     compras: number

@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="columns is-centered">
+    <div class="column is-half">
+      <div class="card">
+        <div class="card-content">
+          <div class="content">
+            <h5 class="title is-5">Detalle de la compra</h5>
+            <p>ID: {{compra.id}}</p>
+            <p>Usuario: {{compra.usuario.nombre}} {{compra.usuario.apellido}}</p>
+            <p>Fecha: {{compra.fecha}}</p>
+            <p>Código pedido: {{compra.codigo_pedido}}</p>
+            <p *ngIf="compra.factura"> Factura: {{compra.factura_id}}</p>
+            <p *ngIf="compra.factura"> Fecha de factura: {{compra.fecha_factura}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

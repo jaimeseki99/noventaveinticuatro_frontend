@@ -34,6 +34,10 @@ export class CamisetaAjaxService {
         return this.http.get<ICamisetaPage>(this.url + '/modalidad/' + modalidadId + '?page=' + page + '&size=' + size + '&sort=' + sort + ',' + direction);
     }
 
+    getCamisetasByLiga(ligaId: number, page: number, size: number, sort: string, direction: string): Observable<ICamisetaPage> {
+        return this.http.get<ICamisetaPage>(this.url + '/liga/' + ligaId + '?page=' + page + '&size=' + size + '&sort=' + sort + ',' + direction);
+    }
+
     getCamisetasMasVendidas(page: number, size: number): Observable<ICamisetaPage> {
         return this.http.get<ICamisetaPage>(this.url + '/mas-vendidas?page=' + page + '&size=' + size);
     }

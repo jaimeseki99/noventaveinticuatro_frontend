@@ -1,3 +1,19 @@
-<p>
-  admin-detalle_compra-detail-unrouted works!
-</p>
+<div class="container">
+  <div class="columns is-centered">
+    <div class="column is-half">
+      <div class="card">
+        <div class="card-content">
+          <div class="content">
+            <h5 class="title is-5">Detalle de compra</h5>
+            <p>Camiseta: {{ detalleCompra.camiseta.titulo }}</p>
+            <p>Precio: {{ detalleCompra.precio }}</p>
+            <p>Cantidad: {{ detalleCompra.cantidad }}</p>
+            <p>IVA: {{ detalleCompra.iva }}</p>
+            <p *ngIf="detalleCompra.descuento">Descuento aplicado: {{ detalleCompra.porcentajeDescuento }}</p>
+            <p>Compra: {{ detalleCompra.compra.id }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

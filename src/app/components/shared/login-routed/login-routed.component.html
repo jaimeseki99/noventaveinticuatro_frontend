@@ -16,7 +16,14 @@
         <input type="password" class="w-full p-2 border border-gray-300 rounded-md placeholder:font-light placeholder:text-gray-500 md::placeholder-opacity-0 "
         name="contrasenya" id="contrasenya" formControlName="contrasenya" placeholder="Introduce tu contraseña">
       </div>
-     
+      <div class="py-4">
+        <span class="mb-2 text-md">Captcha</span>
+        <div class="flex items-center justify-center mb-2">
+          <img [src]="'data:image/png;base64,' + prelogin?.captchaImage" alt="captcha" class="mr-2">
+          <input type="text" id="captcha" name="captcha" formControlName="captcha" placeholder="Introduce el Captcha"
+          class="w-1/2 p-2 border border-gray-300 rounded-md">
+        </div>
+      </div>
       <div class="flex justify-between w-full py-4">
         <div class="mr-24">
           <input type="checkbox" name="checkbox" id="checkbox" class="mr-2">

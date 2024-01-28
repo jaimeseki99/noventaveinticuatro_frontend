@@ -1,0 +1,88 @@
+<div class="container">
+  <h1 class="title">Formulario de Camiseta</h1>
+  <form [formGroup]="camisetaForm" (ngSubmit)="onSubmit()">
+    <!-- Título -->
+    <div class="field">
+      <label class="label">Título</label>
+      <div class="control">
+        <input class="input" type="text" formControlName="titulo" placeholder="Ingrese el título">
+      </div>
+    </div>
+
+    <!-- Temporada -->
+    <div class="field">
+      <label class="label">Temporada</label>
+      <div class="control">
+        <div class="select">
+          <select formControlName="temporada">
+            <option value="">Seleccione la temporada</option>
+            <option *ngFor="let temporada of temporadas" [value]="temporada">{{ temporada }}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Manga -->
+    <div class="field">
+      <label class="label">Manga</label>
+      <div class="control">
+        <div class="select">
+          <select formControlName="manga">
+            <option value="">Seleccione el tipo de manga</option>
+            <option value="corta">Corta</option>
+            <option value="larga">Larga</option>
+            <option value="sin">Sin manga</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Talla -->
+    <div class="field">
+      <label class="label">Talla</label>
+      <div class="control">
+        <div class="select">
+          <select formControlName="talla">
+            <option value="">Seleccione la talla</option>
+            <option value="XS">XS</option>
+            <option value="S">S</option>
+            <option value="M">M</option>
+            <option value="L">L</option>
+            <option value="XL">XL</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Imagen -->
+    <div class="field">
+      <label class="label">Imagen</label>
+      <div class="control">
+        <input class="input" type="file" (change)="onFileSelected($event)">
+      </div>
+    </div>
+
+    <!-- Precio -->
+    <div class="field">
+      <label class="label">Precio</label>
+      <div class="control">
+        <input class="input" type="number" formControlName="precio" placeholder="Ingrese el precio">
+      </div>
+    </div>
+
+    <!-- Stock -->
+    <div class="field">
+      <label class="label">Stock</label>
+      <div class="control">
+        <input class="input" type="number" formControlName="stock" placeholder="Ingrese el stock">
+      </div>
+    </div>
+
+    <!-- Botones -->
+    <div class="field is-grouped">
+      <div class="control">
+        <button class="button is-primary" type="submit">Guardar</button>
+      </div>
+    </div>
+  </form>
+</div>

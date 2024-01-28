@@ -49,6 +49,8 @@ import { AdminModalidadPlistUnroutedComponent } from './components/modalidad/adm
 import { AdminUsuarioPlistUnroutedComponent } from './components/usuario/admin-usuario-plist-unrouted/admin-usuario-plist-unrouted.component';
 import { AdminValoracionPlisUnroutedComponent } from './components/valoracion/admin-valoracion-plist-unrouted/admin-valoracion-plis-unrouted.component';
 import { AdminCarritoPlistUnroutedComponent } from './components/carrito/admin-carrito-plist-unrouted/admin-carrito-plist-unrouted.component';
+import { AdminUsuarioFormUnroutedComponent } from './components/usuario/admin-usuario-form-unrouted/admin-usuario-form-unrouted.component';
+import { AdminCamisetaFormUnroutedComponent } from './components/camiseta/admin-camiseta-form-unrouted/admin-camiseta-form-unrouted.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +62,7 @@ import { AdminCarritoPlistUnroutedComponent } from './components/carrito/admin-c
     LogoutRoutedComponent,
     AdminCamisetaDetailUnroutedComponent,
     AdminCamisetaPlistUnroutedComponent,
+    AdminCamisetaFormUnroutedComponent,
     AdminCarritoDetailUnroutedComponent,
     AdminCarritoPlistUnroutedComponent,
     AdminCompraDetailUnroutedComponent,
@@ -76,6 +79,7 @@ import { AdminCarritoPlistUnroutedComponent } from './components/carrito/admin-c
     AdminModalidadPlistUnroutedComponent,
     AdminUsuarioDetailUnroutedComponent,
     AdminUsuarioPlistUnroutedComponent,
+    AdminUsuarioFormUnroutedComponent,
     AdminValoracionDetailUnroutedComponent,
     AdminValoracionPlisUnroutedComponent
 

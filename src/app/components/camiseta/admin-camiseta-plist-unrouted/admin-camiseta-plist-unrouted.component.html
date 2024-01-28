@@ -5,16 +5,43 @@
   </div>
   <div class="notification" *ngIf="id_modalidad>0">
     Filtrando por modalidad: {{ modalidad?.nombre}}
-    <button class="delete" *ngIf="modalidad>0" routerLink="['/admin', 'camiseta', 'plist']">Quitar filtro</button>
+    <button class="delete" *ngIf="id_modalidad>0" routerLink="['/admin', 'camiseta', 'plist']">Quitar filtro</button>
   </div>
   <div class="notification" *ngIf="id_liga>0">
     Filtrando por liga: {{ liga?.nombre}}
     <button class="delete" *ngIf="id_liga>0" routerLink="['/admin', 'camiseta', 'plist']">Quitar filtro</button>
   </div>
 
+  <div class="field">
+    <label class="label">Ordenar por:</label>
+    <div class="control">
+      <div class="select">
+        <select #selectElement (change)="doOrder(selectElement.value)">
+          <option value="titulo">Título</option>
+          <option value="equipo.nombre">Equipo</option>
+          <option value="modalidad.nombre">Modalidad</option>
+          <option value="liga.nombre">Liga</option>
+          <option value="precio">Precio</option>
+          <option value="stock">Stock</option>
+          <option value="carritos">En carritos</option>
+          <option value="valoraciones">Valoraciones</option>
+          <option value="detalleCompras">Compras</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="label">Buscar por título:</label>
+    <div class="control">
+      <input class="input" type="text" placeholder="Ingrese el título" [(ngModel)]="searchText">
+    </div>
+    <button class="button is-primary" (click)="searchCamisetas(searchText)">Buscar</button>
+  </div>
+
   <div class="columns is-multiline">
     <ng-container *ngIf="page?.content">
-      <div class="column is-one-third" *ngFor="let camiseta of page.content">
+      <div class="column is-one-third" *ngFor="let camiseta of page?.content">
         <div class="card">
           <div class="card-image">
             <figure class="image is-4by3">
@@ -41,11 +68,15 @@
         </div>
       </div>
     </ng-container>
-    <div class="column" *ngIf="!page?.content || page.content.length === 0">
+    <div class="column" *ngIf="!page?.content || page?.content?.length === 0">
       <div class="notification is-warning">
         No se encontraron camisetas.
       </div>
     </div>
   </div>
 
+  <div class="level is-justify-content-center mb-3">
+    <p-paginator (onPageChange)="onPageChange($event)" [rows]="paginatorState.rows!" [totalRecords]="page?.totalElements || 0" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
+  </div>
+    
 </div>

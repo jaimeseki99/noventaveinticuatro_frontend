@@ -1,0 +1,53 @@
+<div class="container">
+  <!-- Menú desplegable para ordenar -->
+  <div class="field">
+    <label class="label">Ordenar por:</label>
+    <div class="control">
+      <div class="select">
+        <select #selectElement (change)="doOrder(selectElement.value)">
+          <option value="nombre">Nombre</option>
+          <option value="pais">País</option>
+          <option value="deporte">Deporte</option>
+          <option value="equipos">Número de Equipos</option>
+          <option value="camisetas">Número de Camisetas</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contenido de ligas -->
+  <div class="columns is-multiline">
+    <div class="column is-one-third" *ngFor="let liga of page?.content">
+      <div class="card">
+        <header class="card-header">
+          <p class="card-header-title" (click)="doView(liga)">Liga: {{ liga.nombre }}</p>
+          <a class="card-header-icon" aria-label="more options" (click)="doOrder('camisetas')">
+            <i class="fas fa-angle-down" aria-hidden="true"></i>
+          </a>
+        </header>
+        <div class="card-content">
+          <div class="content">
+            <p>País: {{ liga.pais }}</p>
+            <p>Deporte: {{ liga.deporte }}</p>
+            <p>Número de Equipos: {{ liga.equipos }}</p>
+            <p>Número de Camisetas: {{ liga.camisetas }}</p>
+          </div>
+        </div>
+        <footer class="card-footer">
+          <a href="#" class="card-footer-item" [routerLink]="['/admin', 'liga', 'edit', liga.id]">Actualizar</a>
+          <a href="#" class="card-footer-item" (click)="doRemove(liga)">Eliminar</a>
+        </footer>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mensaje si no hay ligas -->
+  <div class="notification is-info" *ngIf="!page?.content || page?.content?.length === 0">
+    No hay ligas para mostrar.
+  </div>
+
+  <!-- Paginación -->
+  <div class="level is-justify-content-center mb-3">
+    <p-paginator (onPageChange)="onPageChange($event)" [rows]="paginatorState.rows!" [totalRecords]="page?.totalElements || 0" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
+  </div>
+</div>

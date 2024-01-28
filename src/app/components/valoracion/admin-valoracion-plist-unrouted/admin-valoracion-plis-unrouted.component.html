@@ -1,0 +1,60 @@
+<div class="container">
+
+  <div class="notification" *ngIf="id_usuario>0">
+    Filtrando por usuario: {{ usuario?.nombre}}
+    <button class="delete" *ngIf="id_usuario>0" routerLink="['/admin', 'valoracion', 'plist']">Quitar filtro</button>
+  </div>
+  <div class="notification" *ngIf="id_camiseta>0">
+    Filtrando por modalidad: {{ camiseta?.titulo}}
+    <button class="delete" *ngIf="id_camiseta>0" routerLink="['/admin', 'valoracion, 'plist']">Quitar filtro</button>
+  </div>
+
+  <!-- Menú desplegable para ordenar -->
+  <div class="field">
+    <label class="label">Ordenar por:</label>
+    <div class="control">
+      <div class="select">
+        <select #selectEvent (change)="doOrder(selectEvent.value)">
+          <option value="fecha">Fecha</option>
+          <option value="usuario">Usuario</option>
+          <option value="camiseta">Camiseta</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contenido de valoraciones -->
+  <div class="columns is-multiline">
+    <div class="column is-one-third" *ngFor="let valoracion of page?.content">
+      <div class="card">
+        <header class="card-header">
+          <p class="card-header-title" (click)="doView(valoracion)">Valoración por {{ valoracion.usuario.nombre }}</p>
+          <a class="card-header-icon" aria-label="more options" (click)="doOrder('fecha')">
+            <i class="fas fa-angle-down" aria-hidden="true"></i>
+          </a>
+        </header>
+        <div class="card-content">
+          <div class="content">
+            <p>Fecha: {{ valoracion.fecha }}</p>
+            <p>Usuario: {{ valoracion.usuario.nombre }}</p>
+            <p>Camiseta: {{ valoracion.camiseta.titulo }}</p>
+          </div>
+        </div>
+        <footer class="card-footer">
+          <a href="#" class="card-footer-item" [routerLink]="['/admin', 'valoracion', 'edit', valoracion.id]">Editar</a>
+          <a href="#" class="card-footer-item" (click)="doRemove(valoracion)">Eliminar</a>
+        </footer>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mensaje si no hay valoraciones -->
+  <div class="notification is-info" *ngIf="!page?.content || page?.content?.length === 0">
+    No hay valoraciones para mostrar.
+  </div>
+
+  <!-- Paginación -->
+  <div class="level is-justify-content-center mb-3">
+    <p-paginator (onPageChange)="onPageChange($event)" [rows]="paginatorState.rows!" [totalRecords]="page?.totalElements || 0" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
+  </div>
+</div>

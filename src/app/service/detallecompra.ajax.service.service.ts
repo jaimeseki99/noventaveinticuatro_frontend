@@ -2,7 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { API_URL } from "src/environment/environment";
-import { IDetalleCompra } from "../model/model.interfaces";
+import { IDetalleCompra, IDetalleCompraPage } from "../model/model.interfaces";
 
 @Injectable({
     providedIn: 'root'
@@ -19,8 +19,8 @@ export class DetalleCompraAjaxService {
         return this.http.get<IDetalleCompra>(this.url + '/' + id);
     }
 
-    getDetalleCompraPage(page: number, size: number, sort: string, direction: string, compraId: number, camisetaId: number): Observable<IDetalleCompra> {
-        return this.http.get<IDetalleCompra>(this.url + '?page=' + page + '&size=' + size + '&sort=' + sort + ',' + direction + '&compraId=' + compraId + '&camisetaId=' + camisetaId);
+    getDetalleCompraPage(page: number, size: number, sort: string, direction: string, compraId: number, camisetaId: number): Observable<IDetalleCompraPage> {
+        return this.http.get<IDetalleCompraPage>(this.url + '?page=' + page + '&size=' + size + '&sort=' + sort + ',' + direction + '&compraId=' + compraId + '&camisetaId=' + camisetaId);
     }
 
     updateDetalleCompra(detalleCompra: IDetalleCompra): Observable<IDetalleCompra> {

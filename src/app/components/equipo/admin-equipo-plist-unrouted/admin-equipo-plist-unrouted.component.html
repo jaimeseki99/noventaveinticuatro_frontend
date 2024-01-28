@@ -1,0 +1,45 @@
+<div class="container">
+
+  <div class="filters">
+    <div class="notification" *ngIf="id_liga>0">
+      Filtrando por liga: {{ liga?.nombre}}
+      <button class="delete" *ngIf="id_liga>0" routerLink="['/admin', 'equipo', 'plist']">Quitar filtro</button>
+    </div>
+  </div>
+  
+  <div class="field">
+    <label class="label">Ordenar por:</label>
+    <div class="control">
+      <div class="select">
+        <select #selectElement (change)="doOrder(selectElement.value)">
+          <option value="nombre">Nombre</option>
+          <option value="liga.nombre">Liga</option>
+          <option value="camisetas">Número de Camisetas</option>
+        </select>
+      </div>
+    </div>
+  
+    <div class="columns is-multiline">
+      <div class="column is-one-third" *ngFor="let equipo of page?.content">
+        <div class="card">
+          <header class="card-header">
+            <p class="card-header-title" (click)="doView(equipo)">{{equipo.nombre}}</p>
+            <a class="card-header-icon" aria-label="more options" (click)="doOrder('camisetas')">
+              <i class="fas fa-angle-down" aria-hidden="true"></i>
+            </a>
+          </header>
+          <div class="card-content">
+            <div class="content">
+              <p>Liga: {{ equipo.liga.nombre }}</p>
+              <p>Número de camisetas: {{ equipo.camisetas }}</p>
+            </div>
+          </div>
+          <footer class="card-footer">
+            <a href="#" class="card-footer-item" [routerLink]="['/admin', 'equipo', 'edit', equipo.id]">Actualizar</a>
+            <a href="#" class="card-footer-item" (click)="doRemove(equipo)">Eliminar</a>
+          </footer>
+        </div>
+      </div>
+    </div>
+  
+  </div>

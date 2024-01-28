@@ -9,8 +9,8 @@
             <p>Usuario: {{compra.usuario.nombre}} {{compra.usuario.apellido}}</p>
             <p>Fecha: {{compra.fecha}}</p>
             <p>Código pedido: {{compra.codigo_pedido}}</p>
-            <p *ngIf="compra.factura"> Factura: {{compra.factura_id}}</p>
-            <p *ngIf="compra.factura"> Fecha de factura: {{compra.fecha_factura}}</p>
+            <p *ngIf="compra.factura_id"> Factura: {{compra.factura_id}}</p>
+            <p *ngIf="compra.factura_id"> Fecha de factura: {{compra.fecha_factura}}</p>
           </div>
         </div>
       </div>

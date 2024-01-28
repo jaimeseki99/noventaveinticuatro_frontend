@@ -26,6 +26,10 @@ export class EquipoAjaxService {
         return this.http.get<IEquipoPage>(this.url + '?page=' + page + '&size=' + size + '&sort=' + sort + ',' + direction);
     }
 
+    getEquiposByLiga(ligaId: number, page: number, size: number, sort: string, direction: string): Observable<IEquipoPage> {
+        return this.http.get<IEquipoPage>(this.url + '/liga/' + ligaId + '?page=' + page + '&size=' + size + '&sort=' + sort + ',' + direction);
+    }
+
     createEquipo(equipo: IEquipo): Observable<IEquipo> {
         return this.http.post<IEquipo>(this.url, equipo);
     }

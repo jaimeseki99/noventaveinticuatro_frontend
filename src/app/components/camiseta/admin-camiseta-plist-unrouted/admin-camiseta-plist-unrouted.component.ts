@@ -33,6 +33,7 @@ export class AdminCamisetaPlistUnroutedComponent implements OnInit {
   paginatorState: PaginatorState = { first: 0, rows: 10, page: 0, pageCount: 0};
   status: HttpErrorResponse | null = null;
   camisetaABorrar: ICamiseta | null = null;
+  searchText: any;
   
 
   constructor(
@@ -173,6 +174,7 @@ export class AdminCamisetaPlistUnroutedComponent implements OnInit {
       next: (data: ICamisetaPage) => {
         this.page = data;
         this.paginatorState.pageCount = data.totalPages;
+        this.getPage();
       },
       error: (err: HttpErrorResponse) => {
         this.status = err;
@@ -187,6 +189,7 @@ export class AdminCamisetaPlistUnroutedComponent implements OnInit {
       next: (data: ICamisetaPage) => {
         this.page = data;
         this.paginatorState.pageCount = data.totalPages;
+        this.getPage();
       },
       error: (err: HttpErrorResponse) => {
         this.status = err;
@@ -201,6 +204,22 @@ export class AdminCamisetaPlistUnroutedComponent implements OnInit {
       next: (data: ICamisetaPage) => {
         this.page = data;
         this.paginatorState.pageCount = data.totalPages;
+        this.getPage();
+      },
+      error: (err: HttpErrorResponse) => {
+        this.status = err;
+      }
+    })
+  }
+
+  searchCamisetas(searchText: string): void {
+    const psPage = this.paginatorState.page || 0;
+    const rows = this.paginatorState.rows || 0;
+    this.camisetaAjaxService.searchCamisetas(searchText, psPage, rows, this.orderField, this.orderDirection).subscribe({
+      next: (data: ICamisetaPage) => {
+        this.page = data;
+        this.paginatorState.pageCount = data.totalPages;
+        this.getPage();
       },
       error: (err: HttpErrorResponse) => {
         this.status = err;

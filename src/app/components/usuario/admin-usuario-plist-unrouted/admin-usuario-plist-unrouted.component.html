@@ -1,0 +1,58 @@
+<div class="container">
+  <!-- Menú desplegable para ordenar -->
+  <div class="field">
+    <label class="label">Ordenar por:</label>
+    <div class="control">
+      <div class="select">
+        <select #selectEvent (change)="doOrder(selectEvent.value)">
+          <option value="nombre">Nombre</option>
+          <option value="apellido">Apellido</option>
+          <option value="username">Usuario</option>
+          <option value="email">Email</option>
+          <option value="direccion">Dirección</option>
+          <option value="telefono">Teléfono</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contenido de usuarios -->
+  <div class="columns is-multiline">
+    <div class="column is-one-third" *ngFor="let usuario of page?.content">
+      <div class="card">
+        <header class="card-header">
+          <p class="card-header-title" (click)="doView(usuario)">Usuario: {{ usuario.nombre }} {{ usuario.apellido }}</p>
+          <a class="card-header-icon" aria-label="more options" (click)="doOrder('apellido')">
+            <i class="fas fa-angle-down" aria-hidden="true"></i>
+          </a>
+        </header>
+        <div class="card-content">
+          <div class="content">
+            <p>Nombre de Usuario: {{ usuario.username }}</p>
+            <p>Email: {{ usuario.email }}</p>
+            <p>Dirección: {{ usuario.direccion }}</p>
+            <p>Teléfono: {{ usuario.telefono }}</p>
+            <p>Tipo de Usuario: {{ usuario.tipo ? 'Administrador' : 'Usuario' }}</p>
+            <p>Número de Carritos: {{ usuario.carritos }}</p>
+            <p>Número de Valoraciones: {{ usuario.valoraciones }}</p>
+            <p>Número de Compras: {{ usuario.compras }}</p>
+          </div>
+        </div>
+        <footer class="card-footer">
+          <a href="#" class="card-footer-item" [routerLink]="['/admin', 'usuario', 'edit', usuario.id]">Actualizar</a>
+          <a href="#" class="card-footer-item" (click)="doRemove(usuario)">Eliminar</a>
+        </footer>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mensaje si no hay usuarios -->
+  <div class="notification is-info" *ngIf="!page?.content || page?.content?.length === 0">
+    No hay usuarios para mostrar.
+  </div>
+
+  <!-- Paginación -->
+  <div class="level is-justify-content-center mb-3">
+    <p-paginator (onPageChange)="onPageChange($event)" [rows]="paginatorState.rows!" [totalRecords]="page?.totalElements || 0" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
+  </div>
+</div>

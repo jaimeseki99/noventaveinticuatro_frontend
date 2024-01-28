@@ -1,0 +1,55 @@
+<div class="container">
+
+  <div class="filters" *ngIf="usuario">
+    <p>Filtrado por usuario: {{usuario.nombre}} {{usuario.apellido}}</p>
+    <button class="delete" *ngIf="id_usuario>0" [routerLink]="['/admin', 'compra', 'plist']">Quitar filtro</button>
+  </div>
+
+  <div class="field">
+    <label class="label">Ordenar por:</label>
+    <div class="control">
+      <div class="select">
+        <select #selectElement (change)="doOrder(selectElement.value)">
+          <option value="usuario">Usuario</option>
+          <option value="fecha_compra">Fecha de compra</option>
+          <option value="codigo_pedido">Código de pedido</option>
+          <option value="factura_id">ID de factura</option>
+          <option value="fecha_factura">Fecha de factura</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="columns is-multiline">
+    <div class="column is-one-third" *ngFor="let compra of page?.content">
+      <div class="card">
+        <header class="card-header">
+          <p class="card-header-title" (click)="doView(compra)">Compra #{{ compra.id }}</p>
+          <a class="card-header-icon" aria-label="more options" (click)="doOrder('fecha')">
+            <i class="fas fa-angle-down" aria-hidden="true"></i>
+          </a>
+        </header>
+        <div class="card-content">
+          <div class="content">
+            <p>Fecha: {{ compra.fecha }}</p>
+            <p>Código pedido: {{ compra.codigo_pedido }}</p>
+            <p *ngIf="compra.factura_id"> Factura: {{ compra.factura_id }}</p>
+            <p *ngIf="compra.factura_id"> Fecha de factura: {{ compra.fecha_factura }}</p>
+          </div>
+        </div>
+        <footer class="card-footer">
+          <a href="#" class="card-footer-item" [routerLink]="['/admin', 'compra', 'edit', compra.id]">Actualizar</a>
+          <a href="#" class="card-footer-item" (click)="doRemove(compra)">Eliminar</a>
+        </footer>
+      </div>
+    </div>
+  </div>
+
+  <div class="notification is-info" *ngIf="!page?.content || page?.content?.length === 0">
+    No hay compras para mostrar.
+  </div>
+
+  <p-paginator (onPageChange)="onPageChange($event)" [rows]="paginatorState.rows!" [totalRecords]="page?.totalElements || 0" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
+
+
+</div>

@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { API_URL } from "src/environment/environment";
 import { IUsuario, IUsuarioPage } from "../model/model.interfaces";
+import { SassMixin } from "sass";
 
 @Injectable({
     providedIn: 'root'
@@ -34,8 +35,8 @@ export class UsuarioAjaxService {
         return this.http.delete<number>(this.url + '/' + id);
     }
 
-    getUsuariosPage(page: number, size: number, sort: string, direction: string): Observable<IUsuarioPage> {
-        return this.http.get<IUsuarioPage>(this.url + '?page=' + page + '&size=' + size + '&sort=' + sort + ',' + direction);
+    getUsuariosPage(size: number, page: number, sort: string, direction: string): Observable<IUsuarioPage> {
+        return this.http.get<IUsuarioPage>(this.url + '?size=' + size + '&page=' + page + '&sort=' + sort + ',' + direction);
     }
 
     getUsuarioRandom(): Observable<IUsuario> {
@@ -51,11 +52,11 @@ export class UsuarioAjaxService {
     }
 
     getUsuariosMasCompras(page: number, size: number): Observable<IUsuarioPage> {
-        return this.http.get<IUsuarioPage>(this.url + '/mas-compras?page=' + page + '&size=' + size);
+        return this.http.get<IUsuarioPage>(this.url + '/mas-compras?size' + size + '&page=' + page);
     }
 
     getUsuariosMasValoraciones(page: number, size: number): Observable<IUsuarioPage> {
-        return this.http.get<IUsuarioPage>(this.url + '/mas-valoraciones?page=' + page + '&size=' + size);
+        return this.http.get<IUsuarioPage>(this.url + '/mas-valoraciones?size=' + size + '&page=' + page);
     }
 
 }

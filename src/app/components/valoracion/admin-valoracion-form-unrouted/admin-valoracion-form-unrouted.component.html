@@ -1,0 +1,43 @@
+<div class="container">
+  <h1 class="title">Formulario de Valoración</h1>
+  <form [formGroup]="valoracionForm" (ngSubmit)="onSubmit()">
+    <!-- Fecha -->
+    <div class="field">
+      <label class="label">Fecha</label>
+      <div class="control">
+        <input class="input" type="date" formControlName="fecha">
+      </div>
+    </div>
+
+    <!-- Comentario -->
+    <div class="field">
+      <label class="label">Comentario</label>
+      <div class="control">
+        <textarea class="textarea" formControlName="comentario" placeholder="Ingrese un comentario"></textarea>
+      </div>
+    </div>
+
+    <!-- Selector de Usuario -->
+    <div class="field">
+      <label class="label">Usuario</label>
+      <div class="control">
+        <button class="button is-link" type="button" (click)="onShowUsuariosSelection()">Seleccionar Usuario</button>
+      </div>
+    </div>
+
+    <!-- Selector de Camiseta -->
+    <div class="field">
+      <label class="label">Camiseta</label>
+      <div class="control">
+        <button class="button is-link" type="button" (click)="onShowCamisetasSelection()">Seleccionar Camiseta</button>
+      </div>
+    </div>
+
+    <!-- Botones -->
+    <div class="field is-grouped">
+      <div class="control">
+        <button class="button is-primary" type="submit">Guardar</button>
+      </div>
+    </div>
+  </form>
+</div>

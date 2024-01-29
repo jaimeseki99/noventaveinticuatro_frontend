@@ -23,7 +23,7 @@ export class ModalidadAjaxService {
     }
 
     getModalidadPage(page: number, size: number, sort: string, direction: string): Observable<IModalidadPage> {
-        return this.http.get<IModalidadPage>(this.url + '?page=' + page + '&size=' + size + '&sort=' + sort + ',' + direction);
+        return this.http.get<IModalidadPage>(this.url + '?size=' + size + '&page=' + page + '&sort=' + sort + ',' + direction);
     } 
 
     createModalidad(modalidad: IModalidad): Observable<IModalidad> {

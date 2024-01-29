@@ -61,18 +61,18 @@
           </div>
           <footer class="card-footer">
             <!-- Botón para ver detalles -->
-            <a href="#" class="card-footer-item" (click)="doView(camiseta)">Detalles</a>
+            <a class="card-footer-item" (click)="doView(camiseta)">Detalles</a>
             <!-- Botón para eliminar -->
-            <a href="#" class="card-footer-item" (click)="doRemove(camiseta)">Eliminar</a>
+            <a class="card-footer-item" (click)="doRemove(camiseta)">Eliminar</a>
           </footer>
         </div>
       </div>
     </ng-container>
-    <!-- <div class="column" *ngIf="!page?.content || page?.content?.length === 0">
+    <div class="column" *ngIf="!page?.content || page?.content?.length === 0">
       <div class="notification is-warning">
         No se encontraron camisetas.
-      </div> -->
-    <!-- </div> -->
+      </div>
+     </div>
   </div>
 
   <div class="level is-justify-content-center mb-3">

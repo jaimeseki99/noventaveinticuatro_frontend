@@ -27,7 +27,7 @@ export class CarritoAjaxService {
     }
 
     getPageCarritos(page: number, size: number, sort: string, direction: string): Observable<ICarritoPage> {
-        return this.http.get<ICarritoPage>(this.url + '?page=' + page + '&size=' + size + '&sort=' + sort + ',' + direction);
+        return this.http.get<ICarritoPage>(this.url + '?size=' + size + '&page=' + page + '&sort=' + sort + ',' + direction);
     }
 
     getCosteCarrito(id: number): Observable<number> {

@@ -20,7 +20,7 @@ export class DetalleCompraAjaxService {
     }
 
     getDetalleCompraPage(page: number, size: number, sort: string, direction: string, compraId: number, camisetaId: number): Observable<IDetalleCompraPage> {
-        return this.http.get<IDetalleCompraPage>(this.url + '?page=' + page + '&size=' + size + '&sort=' + sort + ',' + direction + '&compraId=' + compraId + '&camisetaId=' + camisetaId);
+        return this.http.get<IDetalleCompraPage>(this.url + '?size=' + size + '&page=' + page + '&sort=' + sort + ',' + direction + '&compraId=' + compraId + '&camisetaId=' + camisetaId);
     }
 
     updateDetalleCompra(detalleCompra: IDetalleCompra): Observable<IDetalleCompra> {

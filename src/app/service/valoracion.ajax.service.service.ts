@@ -25,15 +25,15 @@ export class ValoracionAjaxService {
     }
 
     getValoracionPage(page: number, size: number, sort: string, direction: string): Observable<IValoracionPage> {
-        return this.http.get<IValoracionPage>(this.url + '?page=' + page + '&size=' + size + '&sort=' + sort + ',' + direction);
+        return this.http.get<IValoracionPage>(this.url + '?size=' + size + '&page=' + page + '&sort=' + sort + ',' + direction);
     }
 
     getValoracionPageByUsuario(usuarioId: number, page: number, size: number, sort: string, direction: string): Observable<IValoracionPage> {
-        return this.http.get<IValoracionPage>(this.url + '/usuario/' + usuarioId + '?page=' + page + '&size=' + size + '&sort=' + sort + ',' + direction);
+        return this.http.get<IValoracionPage>(this.url + '/usuario/' + usuarioId + '?size=' + size + '&page=' + page + '&sort=' + sort + ',' + direction);
     }
 
     getValoracionPageByCamiseta(camisetaId: number, page: number, size: number, sort: string, direction: string): Observable<IValoracionPage> {
-        return this.http.get<IValoracionPage>(this.url + '/camiseta/' + camisetaId + '?page=' + page + '&size=' + size + '&sort=' + sort + ',' + direction);
+        return this.http.get<IValoracionPage>(this.url + '/camiseta/' + camisetaId + '?size=' + size + '&page=' + page + '&sort=' + sort + ',' + direction);
     }
 
     getValoracionByUsuarioAndCamiseta(usuarioId: number, camisetaId: number): Observable<IValoracion> {
@@ -41,20 +41,19 @@ export class ValoracionAjaxService {
     }
 
     getValoracionesMasAntiguasByCamiseta(camisetaId: number, page: number, size: number, sort: string, direction: string): Observable<IValoracionPage> {
-        return this.http.get<IValoracionPage>(this.url + '/camiseta/' + camisetaId + '/antiguas?page=' + page + '&size=' + size + '&sort=' + sort + ',' + direction);
+        return this.http.get<IValoracionPage>(this.url + '/camiseta/' + camisetaId + '/antiguas?size=' + size + '&page=' + page + '&sort=' + sort + ',' + direction);
     }
 
     getValoracionesMasRecientesByCamiseta(camisetaId: number, page: number, size: number, sort: string, direction: string): Observable<IValoracionPage> {
-        return this.http.get<IValoracionPage>(this.url + '/camiseta/' + camisetaId + '/recientes?page=' + page + '&size=' + size + '&sort=' + sort + ',' + direction);
+        return this.http.get<IValoracionPage>(this.url + '/camiseta/' + camisetaId + '/recientes?size=' + size + '&page=' + page + '&sort=' + sort + ',' + direction);
     }
 
-
     getValoracionesMasAntiguasByUsuario(usuarioId: number, page: number, size: number, sort: string, direction: string): Observable<IValoracionPage> {
-        return this.http.get<IValoracionPage>(this.url + '/usuario/' + usuarioId + '/antiguas?page=' + page + '&size=' + size + '&sort=' + sort + ',' + direction);
+        return this.http.get<IValoracionPage>(this.url + '/usuario/' + usuarioId + '/antiguas?size=' + size + '&page=' + page + '&sort=' + sort + ',' + direction);
     }
 
     getValoracionesMasRecientesByUsuario(usuarioId: number, page: number, size: number, sort: string, direction: string): Observable<IValoracionPage> {
-        return this.http.get<IValoracionPage>(this.url + '/usuario/' + usuarioId + '/recientes?page=' + page + '&size=' + size + '&sort=' + sort + ',' + direction);
+        return this.http.get<IValoracionPage>(this.url + '/usuario/' + usuarioId + '/recientes?size=' + size + '&page=' + page + '&sort=' + sort + ',' + direction);
     }
 
     createValoracion(valoracion: IValoracion): Observable<IValoracion> {

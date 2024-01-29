@@ -24,7 +24,7 @@ export class LigaAjaxService {
     }
 
     getLigaPage(page: number, size: number, sort: string, direction: string): Observable<ILigaPage> {
-        return this.http.get<ILigaPage>(this.url + '?page=' + page + '&size=' + size + '&sort=' + sort + ',' + direction);
+        return this.http.get<ILigaPage>(this.url + '?size=' + size + '&page=' + page + '&sort=' + sort + ',' + direction);
     }
 
     createLiga(liga: ILiga): Observable<ILiga> {

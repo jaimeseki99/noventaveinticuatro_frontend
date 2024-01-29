@@ -10,6 +10,9 @@ import { MediaService } from 'src/app/service/media.service';
 import { AdminEquipoPlistUnroutedComponent } from '../../equipo/admin-equipo-plist-unrouted/admin-equipo-plist-unrouted.component';
 import { AdminModalidadPlistUnroutedComponent } from '../../modalidad/admin-modalidad-plist-unrouted/admin-modalidad-plist-unrouted.component';
 import { AdminLigaPlistUnroutedComponent } from '../../liga/admin-liga-plist-unrouted/admin-liga-plist-unrouted.component';
+import { AdminEquipoSelectionUnroutedComponent } from '../../equipo/admin-equipo-selection-unrouted/admin-equipo-selection-unrouted.component';
+import { AdminModalidadSelectionUnroutedComponent } from '../../modalidad/admin-modalidad-selection-unrouted/admin-modalidad-selection-unrouted.component';
+import { AdminLigaSelectionUnroutedComponent } from '../../liga/admin-liga-selection-unrouted/admin-liga-selection-unrouted.component';
 
 @Component({
   selector: 'app-admin-camiseta-form-unrouted',
@@ -151,7 +154,7 @@ export class AdminCamisetaFormUnroutedComponent implements OnInit {
   }
 
   onShowEquiposSelection() {
-    this.dynamicDialogRef = this.dialogService.open(AdminEquipoPlistUnroutedComponent, {
+    this.dynamicDialogRef = this.dialogService.open(AdminEquipoSelectionUnroutedComponent, {
       header: 'Selección de Equipo',
       width: '70%',
       maximizable: true
@@ -168,7 +171,7 @@ export class AdminCamisetaFormUnroutedComponent implements OnInit {
     }
 
     onShowModalidadSelection() {
-      this.dynamicDialogRef = this.dialogService.open(AdminModalidadPlistUnroutedComponent, {
+      this.dynamicDialogRef = this.dialogService.open(AdminModalidadSelectionUnroutedComponent, {
         header: 'Selección de Modalidad',
         width: '70%',
         maximizable: true
@@ -185,7 +188,7 @@ export class AdminCamisetaFormUnroutedComponent implements OnInit {
       }
 
       onShowLigaSelection() {
-        this.dynamicDialogRef = this.dialogService.open(AdminLigaPlistUnroutedComponent, {
+        this.dynamicDialogRef = this.dialogService.open(AdminLigaSelectionUnroutedComponent, {
           header: 'Selección de Liga',
           width: '70%',
           maximizable: true

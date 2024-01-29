@@ -18,24 +18,26 @@ export class CamisetaAjaxService {
         return this.http.get<ICamiseta>(this.url + '/' + id);
     }
 
-    getPageCamisetas(page: number, size: number, sort: string, direction: string): Observable<ICamisetaPage> {
-        return this.http.get<ICamisetaPage>(this.url + '?page=' + page + '&size=' + size + '&sort=' + sort + ',' + direction);
+    getPageCamisetas(size: number, page: number,  sort: string, direction: string): Observable<ICamisetaPage> {
+        if (!size) size = 10;
+        if (!page) page = 0;
+        return this.http.get<ICamisetaPage>(this.url + '?size=' + size +'&page=' + page + '&sort=' + sort + ',' + direction);
     }
 
     getCamisetaRandom(): Observable<ICamiseta> {
         return this.http.get<ICamiseta>(this.url + '/random');
     }
 
-    getCamisetasByEquipo(equipoId: number, page: number, size: number, sort: string, direction: string): Observable<ICamisetaPage> {
-        return this.http.get<ICamisetaPage>(this.url + '/equipo/' + equipoId + '?page=' + page + '&size=' + size + '&sort=' + sort + ',' + direction);
+    getCamisetasByEquipo(equipoId: number, size: number, page: number, sort: string, direction: string): Observable<ICamisetaPage> {
+        return this.http.get<ICamisetaPage>(this.url + '/equipo/' + equipoId + '?size=' + page + '&page=' + size + '&sort=' + sort + ',' + direction);
     }
 
-    getCamisetasByModalidad(modalidadId: number, page: number, size: number, sort: string, direction: string): Observable<ICamisetaPage> {
-        return this.http.get<ICamisetaPage>(this.url + '/modalidad/' + modalidadId + '?page=' + page + '&size=' + size + '&sort=' + sort + ',' + direction);
+    getCamisetasByModalidad(modalidadId: number, size: number, page: number, sort: string, direction: string): Observable<ICamisetaPage> {
+        return this.http.get<ICamisetaPage>(this.url + '/modalidad/' + modalidadId + '?size=' + size + '&page=' + page + '&sort=' + sort + ',' + direction);
     }
 
     getCamisetasByLiga(ligaId: number, page: number, size: number, sort: string, direction: string): Observable<ICamisetaPage> {
-        return this.http.get<ICamisetaPage>(this.url + '/liga/' + ligaId + '?page=' + page + '&size=' + size + '&sort=' + sort + ',' + direction);
+        return this.http.get<ICamisetaPage>(this.url + '/liga/' + ligaId + '?size=' + size + '&page=' + page + '&sort=' + sort + ',' + direction);
     }
 
     getCamisetasMasVendidas(page: number, size: number): Observable<ICamisetaPage> {
@@ -47,7 +49,7 @@ export class CamisetaAjaxService {
     }
 
     getCamisetasDescuento(page: number, size: number, sort: string, direction: string): Observable<ICamisetaPage> {
-        return this.http.get<ICamisetaPage>(this.url + '/descuento?page=' + page + '&size=' + size + '&sort=' + sort + ',' + direction);
+        return this.http.get<ICamisetaPage>(this.url + '/descuento?size=' + size + '&page=' + page + '&sort=' + sort + ',' + direction);
     }
 
     getPrecioTotalCamiseta(id: number): Observable<number> {
@@ -67,6 +69,7 @@ export class CamisetaAjaxService {
     }
 
     deleteCamiseta(id: number | undefined): Observable<number> {
+        if (!id) return new Observable<number>();
         return this.http.delete<number>(this.url + '/' + id);
     }
 

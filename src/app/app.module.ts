@@ -54,6 +54,9 @@ import { AdminCarritoPlistUnroutedComponent } from './components/carrito/admin-c
 import { AdminUsuarioFormUnroutedComponent } from './components/usuario/admin-usuario-form-unrouted/admin-usuario-form-unrouted.component';
 import { AdminCamisetaFormUnroutedComponent } from './components/camiseta/admin-camiseta-form-unrouted/admin-camiseta-form-unrouted.component';
 import { AdminCamisetaPlistRoutedComponent } from './components/camiseta/admin-camiseta-plist-routed/admin-camiseta-plist-routed.component';
+import { AdminValoracionFormUnroutedComponent } from './components/valoracion/admin-valoracion-form-unrouted/admin-valoracion-form-unrouted.component';
+import { AdminCamisetaSelectionUnroutedComponent } from './components/camiseta/admin-camiseta-selection-unrouted/admin-camiseta-selection-unrouted.component';
+import { AdminUsuarioSelectionUnroutedComponent } from './components/usuario/admin-usuario-selection-unrouted/admin-usuario-selection-unrouted.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +70,7 @@ import { AdminCamisetaPlistRoutedComponent } from './components/camiseta/admin-c
     AdminCamisetaPlistUnroutedComponent,
     AdminCamisetaFormUnroutedComponent,
     AdminCamisetaPlistRoutedComponent,
+    AdminCamisetaSelectionUnroutedComponent,
     AdminCarritoDetailUnroutedComponent,
     AdminCarritoPlistUnroutedComponent,
     AdminCompraDetailUnroutedComponent,
@@ -74,6 +78,9 @@ import { AdminCamisetaPlistRoutedComponent } from './components/camiseta/admin-c
     AdminDetalle_compraDetailUnroutedComponent,
     AdminDetalle_compraPlistUnroutedComponent,
     AdminUsuarioDetailUnroutedComponent,
+    AdminUsuarioFormUnroutedComponent,
+    AdminUsuarioPlistUnroutedComponent,
+    AdminUsuarioSelectionUnroutedComponent,
     AdminValoracionDetailUnroutedComponent,
     AdminEquipoDetailUnroutedComponent,
     AdminEquipoPlistUnroutedComponent,
@@ -85,7 +92,8 @@ import { AdminCamisetaPlistRoutedComponent } from './components/camiseta/admin-c
     AdminUsuarioPlistUnroutedComponent,
     AdminUsuarioFormUnroutedComponent,
     AdminValoracionDetailUnroutedComponent,
-    AdminValoracionPlisUnroutedComponent
+    AdminValoracionPlisUnroutedComponent,
+    AdminValoracionFormUnroutedComponent
 
   ],
   imports: [

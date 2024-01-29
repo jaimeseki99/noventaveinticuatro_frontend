@@ -1,0 +1,32 @@
+<div class="table-container">
+  <table class="table is-bordered is-hoverable is-fullwidth">
+    <thead>
+      <tr>
+        <th (click)="doOrder('id')">ID</th>
+        <th (click)="doOrder('titulo')">Título</th>
+        <th (click)="doOrder('talla')">Talla</th>
+        <th (click)="doOrder('manga')">Manga</th>
+        <th>Modalidad</th>
+        <th>Equipo</th>
+        <th>Liga</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let camiseta of page?.content">
+        <td>{{camiseta.id}}</td>
+        <td>{{camiseta.titulo}}</td>
+        <td>{{camiseta.talla}}</td>
+        <td>{{camiseta.manga}}</td>
+        <td>{{camiseta.modalidad.nombre}}</td>
+        <td>{{camiseta.equipo.nombre}}</td>
+        <td>{{camiseta.liga.nombre}}</td>
+        <td>
+         <button class="button is-link" (click)="selectCamiseta(camiseta)">Seleccionar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="pagination-container">
+    <p-paginator (onPageChange)="onPageChange($event)" [rows]="paginatorState.rows!" [totalRecords]="page?.totalElements || 0" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
+  </div>
+</div>

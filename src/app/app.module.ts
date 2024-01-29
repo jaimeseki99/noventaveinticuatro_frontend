@@ -5,6 +5,8 @@ import { MatInputModule} from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -51,6 +53,7 @@ import { AdminValoracionPlisUnroutedComponent } from './components/valoracion/ad
 import { AdminCarritoPlistUnroutedComponent } from './components/carrito/admin-carrito-plist-unrouted/admin-carrito-plist-unrouted.component';
 import { AdminUsuarioFormUnroutedComponent } from './components/usuario/admin-usuario-form-unrouted/admin-usuario-form-unrouted.component';
 import { AdminCamisetaFormUnroutedComponent } from './components/camiseta/admin-camiseta-form-unrouted/admin-camiseta-form-unrouted.component';
+import { AdminCamisetaPlistRoutedComponent } from './components/camiseta/admin-camiseta-plist-routed/admin-camiseta-plist-routed.component';
 
 @NgModule({
   declarations: [
@@ -63,6 +66,7 @@ import { AdminCamisetaFormUnroutedComponent } from './components/camiseta/admin-
     AdminCamisetaDetailUnroutedComponent,
     AdminCamisetaPlistUnroutedComponent,
     AdminCamisetaFormUnroutedComponent,
+    AdminCamisetaPlistRoutedComponent,
     AdminCarritoDetailUnroutedComponent,
     AdminCarritoPlistUnroutedComponent,
     AdminCompraDetailUnroutedComponent,
@@ -94,7 +98,9 @@ import { AdminCamisetaFormUnroutedComponent } from './components/camiseta/admin-
     BrowserAnimationsModule,
     FormsModule,
     PaginatorModule,
-    RouterModule
+    RouterModule,
+    MatProgressSpinnerModule,
+    ConfirmPopupModule
   ],
   providers: [
     UsuarioAjaxService,

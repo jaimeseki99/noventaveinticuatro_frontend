@@ -30,6 +30,14 @@ export class CarritoAjaxService {
         return this.http.get<ICarritoPage>(this.url + '?page=' + page + '&size=' + size + '&sort=' + sort + ',' + direction);
     }
 
+    getCosteCarrito(id: number): Observable<number> {
+        return this.http.get<number>(this.url + '/coste/' + id);
+    }
+
+    getCosteCarritoByUsuario(usuarioId: number): Observable<number> {
+        return this.http.get<number>(this.url + '/costetotal/' + usuarioId);
+    }
+
     createCarrito(carrito: ICarrito): Observable<ICarrito> {
         return this.http.post<ICarrito>(this.url, carrito);
     }

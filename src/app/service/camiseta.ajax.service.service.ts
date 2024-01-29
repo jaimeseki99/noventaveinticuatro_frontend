@@ -50,6 +50,10 @@ export class CamisetaAjaxService {
         return this.http.get<ICamisetaPage>(this.url + '/descuento?page=' + page + '&size=' + size + '&sort=' + sort + ',' + direction);
     }
 
+    getPrecioTotalCamiseta(id: number): Observable<number> {
+        return this.http.get<number>(this.url + '/precio/' + id);
+    }
+
     createCamiseta(camiseta: ICamiseta): Observable<ICamiseta> {
         return this.http.post<ICamiseta>(this.url, camiseta);
     }

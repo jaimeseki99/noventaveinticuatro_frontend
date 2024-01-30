@@ -1,4 +1,9 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { PaginatorState } from 'primeng/paginator';
+import { IEquipo, IEquipoPage } from 'src/app/model/model.interfaces';
+import { EquipoAjaxService } from 'src/app/service/equipo.ajax.service.service';
 
 @Component({
   selector: 'app-admin-equipo-selection-unrouted',
@@ -7,9 +12,55 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminEquipoSelectionUnroutedComponent implements OnInit {
 
-  constructor() { }
+  page: IEquipoPage | undefined;
+  orderField: string = "id";
+  orderDirection: string = "asc";
+  paginatorState: PaginatorState = { first: 0, rows: 10, page: 0, pageCount: 0 };
+  status: HttpErrorResponse | null = null;
+
+
+  constructor(
+    private equipoAjaxService: EquipoAjaxService,
+    public dynamicDialogRef: DynamicDialogRef,
+    public dialogService: DialogService,
+  ) { }
 
   ngOnInit() {
+    this.getPage();
+  }
+
+  getPage(): void {
+    const page = this.paginatorState.page || 0;
+    const rows = this.paginatorState.rows || 0;
+    this.equipoAjaxService.getEquiposPage(page, rows, this.orderField, this.orderDirection).subscribe({
+      next: (data: IEquipoPage) => {
+        this.page = data;
+        this.paginatorState.pageCount = data.totalPages;
+      },
+      error: (err: HttpErrorResponse) => {
+        this.status = err;
+      }
+    })
+  }
+
+  onPageChange(event: PaginatorState) {
+    this.paginatorState.rows = event.rows;
+    this.paginatorState.page = event.page;
+    this.getPage();
+  }
+
+  doOrder(fieldorder: string) {
+    this.orderField = fieldorder;
+    if (this.orderDirection == "asc") {
+      this.orderDirection = "desc";
+    } else {
+      this.orderDirection = "asc";
+    }
+    this.getPage();
+  }
+
+  onSelectEquipo(equipo: IEquipo) {
+    this.dynamicDialogRef.close(equipo);
   }
 
 }

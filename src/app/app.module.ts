@@ -57,6 +57,9 @@ import { AdminCamisetaPlistRoutedComponent } from './components/camiseta/admin-c
 import { AdminValoracionFormUnroutedComponent } from './components/valoracion/admin-valoracion-form-unrouted/admin-valoracion-form-unrouted.component';
 import { AdminCamisetaSelectionUnroutedComponent } from './components/camiseta/admin-camiseta-selection-unrouted/admin-camiseta-selection-unrouted.component';
 import { AdminUsuarioSelectionUnroutedComponent } from './components/usuario/admin-usuario-selection-unrouted/admin-usuario-selection-unrouted.component';
+import { AdminEquipoSelectionUnroutedComponent } from './components/equipo/admin-equipo-selection-unrouted/admin-equipo-selection-unrouted.component';
+import { AdminLigaSelectionUnroutedComponent } from './components/liga/admin-liga-selection-unrouted/admin-liga-selection-unrouted.component';
+import { AdminModalidadSelectionUnroutedComponent } from './components/modalidad/admin-modalidad-selection-unrouted/admin-modalidad-selection-unrouted.component';
 
 @NgModule({
   declarations: [
@@ -66,34 +69,43 @@ import { AdminUsuarioSelectionUnroutedComponent } from './components/usuario/adm
     HomeRoutedComponent,
     LoginRoutedComponent,
     LogoutRoutedComponent,
+
     AdminCamisetaDetailUnroutedComponent,
     AdminCamisetaPlistUnroutedComponent,
     AdminCamisetaFormUnroutedComponent,
     AdminCamisetaPlistRoutedComponent,
     AdminCamisetaSelectionUnroutedComponent,
+
     AdminCarritoDetailUnroutedComponent,
     AdminCarritoPlistUnroutedComponent,
+
     AdminCompraDetailUnroutedComponent,
     AdminCompraPlistUnroutedComponent,
+
     AdminDetalle_compraDetailUnroutedComponent,
     AdminDetalle_compraPlistUnroutedComponent,
+
     AdminUsuarioDetailUnroutedComponent,
     AdminUsuarioFormUnroutedComponent,
     AdminUsuarioPlistUnroutedComponent,
     AdminUsuarioSelectionUnroutedComponent,
-    AdminValoracionDetailUnroutedComponent,
-    AdminEquipoDetailUnroutedComponent,
-    AdminEquipoPlistUnroutedComponent,
-    AdminLigaDetailUnroutedComponent,
-    AdminLigaPlistUnroutedComponent,
-    AdminModalidadDetailUnroutedComponent,
-    AdminModalidadPlistUnroutedComponent,
-    AdminUsuarioDetailUnroutedComponent,
-    AdminUsuarioPlistUnroutedComponent,
-    AdminUsuarioFormUnroutedComponent,
+
     AdminValoracionDetailUnroutedComponent,
     AdminValoracionPlisUnroutedComponent,
-    AdminValoracionFormUnroutedComponent
+    AdminValoracionFormUnroutedComponent,
+
+    AdminEquipoDetailUnroutedComponent,
+    AdminEquipoPlistUnroutedComponent,
+    AdminEquipoSelectionUnroutedComponent,
+
+    AdminLigaDetailUnroutedComponent,
+    AdminLigaPlistUnroutedComponent,
+    AdminLigaSelectionUnroutedComponent,
+    
+    AdminModalidadDetailUnroutedComponent,
+    AdminModalidadPlistUnroutedComponent,
+    AdminModalidadSelectionUnroutedComponent,
+    
 
   ],
   imports: [

@@ -29,7 +29,7 @@ export class CamisetaAjaxService {
     }
 
     getCamisetasByEquipo(equipoId: number, size: number, page: number, sort: string, direction: string): Observable<ICamisetaPage> {
-        return this.http.get<ICamisetaPage>(this.url + '/equipo/' + equipoId + '?size=' + page + '&page=' + size + '&sort=' + sort + ',' + direction);
+        return this.http.get<ICamisetaPage>(this.url + '/equipo/' + equipoId + '?size=' + size + '&page=' + page + '&sort=' + sort + ',' + direction);
     }
 
     getCamisetasByModalidad(modalidadId: number, size: number, page: number, sort: string, direction: string): Observable<ICamisetaPage> {

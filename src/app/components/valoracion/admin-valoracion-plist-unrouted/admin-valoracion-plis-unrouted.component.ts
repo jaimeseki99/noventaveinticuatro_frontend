@@ -86,7 +86,7 @@ export class AdminValoracionPlisUnroutedComponent implements OnInit {
     doView(valoracion: IValoracion) {
       let ref: DynamicDialogRef | undefined;
       ref = this.dialogService.open(AdminValoracionDetailUnroutedComponent, {
-        data: { id: valoracion.imagen },
+        data: { id: valoracion.id },
         header: "Detalle de la valoracion",
         width: "70%",
         maximizable: false

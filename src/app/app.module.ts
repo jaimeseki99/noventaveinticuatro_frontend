@@ -62,6 +62,10 @@ import { AdminLigaSelectionUnroutedComponent } from './components/liga/admin-lig
 import { AdminModalidadSelectionUnroutedComponent } from './components/modalidad/admin-modalidad-selection-unrouted/admin-modalidad-selection-unrouted.component';
 import { AdminUsuarioPlistRoutedComponent } from './components/usuario/admin-usuario-plist-routed/admin-usuario-plist-routed.component';
 import { AdminValoracionPlistRoutedComponent } from './components/valoracion/admin-valoracion-plist-routed/admin-valoracion-plist-routed.component';
+import { AdminCamisetaEditRoutedComponent } from './components/camiseta/admin-camiseta-edit-routed/admin-camiseta-edit-routed.component';
+import { AdminCamisetaNewRoutedComponent } from './components/camiseta/admin-camiseta-new-routed/admin-camiseta-new-routed.component';
+import { AdminUsuarioEditRoutedComponent } from './components/usuario/admin-usuario-edit-routed/admin-usuario-edit-routed.component';
+import { AdminUsuarioNewRoutedComponent } from './components/usuario/admin-usuario-new-routed/admin-usuario-new-routed.component';
 
 @NgModule({
   declarations: [
@@ -77,6 +81,8 @@ import { AdminValoracionPlistRoutedComponent } from './components/valoracion/adm
     AdminCamisetaFormUnroutedComponent,
     AdminCamisetaPlistRoutedComponent,
     AdminCamisetaSelectionUnroutedComponent,
+    AdminCamisetaEditRoutedComponent,
+    AdminCamisetaNewRoutedComponent,
 
     AdminCarritoDetailUnroutedComponent,
     AdminCarritoPlistUnroutedComponent,
@@ -92,6 +98,8 @@ import { AdminValoracionPlistRoutedComponent } from './components/valoracion/adm
     AdminUsuarioPlistUnroutedComponent,
     AdminUsuarioSelectionUnroutedComponent,
     AdminUsuarioPlistRoutedComponent,
+    AdminUsuarioEditRoutedComponent,
+    AdminUsuarioNewRoutedComponent,
 
     AdminValoracionDetailUnroutedComponent,
     AdminValoracionPlisUnroutedComponent,

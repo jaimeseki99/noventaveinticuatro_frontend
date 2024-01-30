@@ -96,6 +96,8 @@ export class AdminCamisetaFormUnroutedComponent implements OnInit {
       this.mediaService.uploadFile(formData).subscribe({
         next: (response) => {
           this.camiseta.imagen = response.url;
+          this.camisetaForm.controls['imagen'].patchValue(response.url);
+
         },
         error: (error) => {
           this.matSnackBar.open('Error al subir el fichero', 'Aceptar', {duration: 3000});

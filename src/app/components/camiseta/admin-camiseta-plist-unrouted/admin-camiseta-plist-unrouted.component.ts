@@ -134,7 +134,7 @@ export class AdminCamisetaPlistUnroutedComponent implements OnInit {
     this.equipoAjaxService.getEquipoById(this.id_equipo).subscribe({
       next: (data: IEquipo) => {
         this.equipo = data;
-        this.getPage();
+        this.getCamisetasPorEquipo();
       },
       error: (err: HttpErrorResponse) => {
         this.status = err;
@@ -146,7 +146,7 @@ export class AdminCamisetaPlistUnroutedComponent implements OnInit {
     this.modalidadAjaxService.getModalidadById(this.id_modalidad).subscribe({
       next: (data: IModalidad) => {
         this.modalidad = data;
-        this.getPage();
+        this.getCamisetasPorModalidad();
       },
       error: (err: HttpErrorResponse) => {
         this.status = err;
@@ -158,7 +158,7 @@ export class AdminCamisetaPlistUnroutedComponent implements OnInit {
     this.ligaAjaxService.getLigaById(this.id_liga).subscribe({
       next: (data: ILiga) => {
         this.liga = data;
-        this.getPage();
+        this.getCamisetasPorLiga();
       },
       error: (err: HttpErrorResponse) => {
         this.status = err;
@@ -169,11 +169,10 @@ export class AdminCamisetaPlistUnroutedComponent implements OnInit {
   getCamisetasPorEquipo(): void{
     const psPage = this.paginatorState.page || 0;
     const rows = this.paginatorState.rows || 0;
-    this.camisetaAjaxService.getCamisetasByEquipo(this.id_equipo, psPage, rows, this.orderField, this.orderDirection).subscribe({
+    this.camisetaAjaxService.getCamisetasByEquipo(this.id_equipo, rows, psPage, this.orderField, this.orderDirection).subscribe({
       next: (data: ICamisetaPage) => {
         this.page = data;
         this.paginatorState.pageCount = data.totalPages;
-        this.getPage();
       },
       error: (err: HttpErrorResponse) => {
         this.status = err;
@@ -184,11 +183,10 @@ export class AdminCamisetaPlistUnroutedComponent implements OnInit {
   getCamisetasPorModalidad(): void{
     const psPage = this.paginatorState.page || 0;
     const rows = this.paginatorState.rows || 0;
-    this.camisetaAjaxService.getCamisetasByModalidad(this.id_modalidad, psPage, rows, this.orderField, this.orderDirection).subscribe({
+    this.camisetaAjaxService.getCamisetasByModalidad(this.id_modalidad, rows, psPage, this.orderField, this.orderDirection).subscribe({
       next: (data: ICamisetaPage) => {
         this.page = data;
         this.paginatorState.pageCount = data.totalPages;
-        this.getPage();
       },
       error: (err: HttpErrorResponse) => {
         this.status = err;
@@ -199,11 +197,10 @@ export class AdminCamisetaPlistUnroutedComponent implements OnInit {
   getCamisetasPorLiga(): void{
     const psPage = this.paginatorState.page || 0;
     const rows = this.paginatorState.rows || 0;
-    this.camisetaAjaxService.getCamisetasByLiga(this.id_liga, psPage, rows, this.orderField, this.orderDirection).subscribe({
+    this.camisetaAjaxService.getCamisetasByLiga(this.id_liga, rows, psPage, this.orderField, this.orderDirection).subscribe({
       next: (data: ICamisetaPage) => {
         this.page = data;
         this.paginatorState.pageCount = data.totalPages;
-        this.getPage();
       },
       error: (err: HttpErrorResponse) => {
         this.status = err;
@@ -218,7 +215,6 @@ export class AdminCamisetaPlistUnroutedComponent implements OnInit {
       next: (data: ICamisetaPage) => {
         this.page = data;
         this.paginatorState.pageCount = data.totalPages;
-        this.getPage();
       },
       error: (err: HttpErrorResponse) => {
         this.status = err;

@@ -1,7 +1,7 @@
 <div class="container">
   <div class="notification" *ngIf="id_equipo>0">
     Filtrando por equipo: {{ equipo?.nombre}}
-    <button class="delete" *ngIf="id_equipo>0" routerLink="['/admin', 'camiseta', 'plist']">Quitar filtro</button>
+    <button class="delete" *ngIf="id_equipo>0" [routerLink]="['/admin', 'camiseta', 'plist']">Quitar filtro</button>
   </div>
   <div class="notification" *ngIf="id_modalidad>0">
     Filtrando por modalidad: {{ modalidad?.nombre}}
@@ -50,9 +50,9 @@
           </div>
           <div class="card-content">
             <p class="title is-4"> {{camiseta.titulo}} </p>
-            <p><strong>Equipo:</strong> {{camiseta.equipo.nombre}}</p>
-            <p><strong>Modalidad:</strong> {{camiseta.modalidad.nombre}}</p>
-            <p><strong>Liga:</strong> {{camiseta.liga.nombre}}</p>
+            <p><strong>Equipo:</strong> <a [routerLink]="['/admin', 'camiseta', 'plist', 'byequipo', camiseta.equipo.id]">{{camiseta.equipo.nombre}}</a></p>
+            <p><strong>Modalidad:</strong><a [routerLink]="['/admin', 'camiseta', 'plist', 'bymodalidad', camiseta.modalidad.id]"> {{camiseta.modalidad.nombre}}</a></p>
+            <p><strong>Liga:</strong><a [routerLink]="['/admin', 'camiseta', 'plist', 'byliga', camiseta.liga.id]"> {{camiseta.liga.nombre}}</a></p>
             <p><strong>Precio:</strong> {{camiseta.precio}} €</p>
             <p><strong>Stock:</strong> {{camiseta.stock}}</p>
             <p><strong>En carritos: {{camiseta.carritos}}</strong></p>

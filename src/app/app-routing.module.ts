@@ -7,6 +7,10 @@ import { LogoutRoutedComponent } from './components/shared/logout-routed/logout-
 import { AdminCamisetaPlistRoutedComponent } from './components/camiseta/admin-camiseta-plist-routed/admin-camiseta-plist-routed.component';
 import { AdminUsuarioPlistRoutedComponent } from './components/usuario/admin-usuario-plist-routed/admin-usuario-plist-routed.component';
 import { AdminValoracionPlistRoutedComponent } from './components/valoracion/admin-valoracion-plist-routed/admin-valoracion-plist-routed.component';
+import { AdminCamisetaEditRoutedComponent } from './components/camiseta/admin-camiseta-edit-routed/admin-camiseta-edit-routed.component';
+import { AdminCamisetaNewRoutedComponent } from './components/camiseta/admin-camiseta-new-routed/admin-camiseta-new-routed.component';
+import { AdminUsuarioEditRoutedComponent } from './components/usuario/admin-usuario-edit-routed/admin-usuario-edit-routed.component';
+import { AdminUsuarioNewRoutedComponent } from './components/usuario/admin-usuario-new-routed/admin-usuario-new-routed.component';
 
 const routes: Routes = [
   { path: '', component: HomeRoutedComponent},
@@ -15,8 +19,15 @@ const routes: Routes = [
   { path: 'logout', component: LogoutRoutedComponent},
 
   { path: 'admin/camiseta/plist', component: AdminCamisetaPlistRoutedComponent},
+  { path: 'admin/camiseta/plist/byequipo/:idequipo', component: AdminCamisetaPlistRoutedComponent},
+  { path: 'admin/camiseta/plist/bymodalidad/:idmodalidad', component: AdminCamisetaPlistRoutedComponent},
+  { path: 'admin/camiseta/plist/byliga/:idliga ', component: AdminCamisetaPlistRoutedComponent},
+  { path: 'admin/camiseta/edit/:id', component: AdminCamisetaEditRoutedComponent},
+  { path: 'admin/camiseta/new', component: AdminCamisetaNewRoutedComponent},
 
   { path: 'admin/usuario/plist', component: AdminUsuarioPlistRoutedComponent},
+  { path: 'admin/usuario/edit/:id', component: AdminUsuarioEditRoutedComponent},
+  { path: 'admin/usuario/new', component: AdminUsuarioNewRoutedComponent},
 
   { path: 'admin/valoracion/plist', component: AdminValoracionPlistRoutedComponent}
 ];

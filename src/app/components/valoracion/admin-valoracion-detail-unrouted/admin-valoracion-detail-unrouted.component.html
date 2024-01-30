@@ -7,11 +7,6 @@
             <h5 class="title is-5">Detalle de Valoración</h5>
             <p>Comentario: {{ valoracion.comentario }}</p>
             <p>Fecha: {{ valoracion.fecha }}</p>
-            <p>Usuario: {{ valoracion.usuario.id }}</p>
-            <p>Camiseta: {{ valoracion.camiseta.id }}</p>
-            <div class="image">
-              <img src="{{ valoracion.imagen }}" alt="Imagen de la valoración" *ngIf="valoracion.imagen">
-            </div>
           </div>
         </div>
       </div>

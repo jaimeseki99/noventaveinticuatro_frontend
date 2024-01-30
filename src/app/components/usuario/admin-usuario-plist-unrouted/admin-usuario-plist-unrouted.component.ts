@@ -10,6 +10,7 @@ import { UsuarioAjaxService } from 'src/app/service/usuario.ajax.service.service
 import { AdminUsuarioDetailUnroutedComponent } from '../admin-usuario-detail-unrouted/admin-usuario-detail-unrouted.component';
 
 @Component({
+  providers: [DialogService, ConfirmationService],
   selector: 'app-admin-usuario-plist-unrouted',
   templateUrl: './admin-usuario-plist-unrouted.component.html',
   styleUrls: ['./admin-usuario-plist-unrouted.component.css']
@@ -33,11 +34,19 @@ export class AdminUsuarioPlistUnroutedComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.getPage();
+    this.forceReload.subscribe({
+      next: (v) => {
+        if (v) {
+          this.getPage();
+        }
+      }
+    })
   }
 
   getPage(): void {
-    const page: number = this.paginatorState.page ?? 0;
-    const rows: number = this.paginatorState.rows ?? 0;
+    const page: number = this.paginatorState.page || 0;
+    const rows: number = this.paginatorState.rows || 0;
     this.usuarioAjaxService.getUsuariosPage(rows, page, this.orderField, this.orderDirection).subscribe({
       next: (page: IUsuarioPage) => {
         this.page = page;

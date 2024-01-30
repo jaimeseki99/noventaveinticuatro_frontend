@@ -36,6 +36,8 @@ export class UsuarioAjaxService {
     }
 
     getUsuariosPage(size: number, page: number, sort: string, direction: string): Observable<IUsuarioPage> {
+        if (!size) size = 10;
+        if (!page) page = 0;
         return this.http.get<IUsuarioPage>(this.url + '?size=' + size + '&page=' + page + '&sort=' + sort + ',' + direction);
     }
 

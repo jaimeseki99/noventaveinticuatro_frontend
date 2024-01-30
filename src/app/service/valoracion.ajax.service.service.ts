@@ -24,11 +24,11 @@ export class ValoracionAjaxService {
         return this.http.get<IValoracion>(this.url + '/random');
     }
 
-    getValoracionPage(page: number, size: number, sort: string, direction: string): Observable<IValoracionPage> {
+    getValoracionPage(size: number, page: number, sort: string, direction: string): Observable<IValoracionPage> {
         return this.http.get<IValoracionPage>(this.url + '?size=' + size + '&page=' + page + '&sort=' + sort + ',' + direction);
     }
 
-    getValoracionPageByUsuario(usuarioId: number, page: number, size: number, sort: string, direction: string): Observable<IValoracionPage> {
+    getValoracionPageByUsuario(usuarioId: number, size: number, page: number, sort: string, direction: string): Observable<IValoracionPage> {
         return this.http.get<IValoracionPage>(this.url + '/usuario/' + usuarioId + '?size=' + size + '&page=' + page + '&sort=' + sort + ',' + direction);
     }
 

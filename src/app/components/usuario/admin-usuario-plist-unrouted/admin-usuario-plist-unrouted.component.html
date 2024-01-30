@@ -5,6 +5,7 @@
     <div class="control">
       <div class="select">
         <select #selectEvent (change)="doOrder(selectEvent.value)">
+          <option value="id">ID</option>
           <option value="nombre">Nombre</option>
           <option value="apellido">Apellido</option>
           <option value="username">Usuario</option>
@@ -39,8 +40,8 @@
           </div>
         </div>
         <footer class="card-footer">
-          <a href="#" class="card-footer-item" [routerLink]="['/admin', 'usuario', 'edit', usuario.id]">Actualizar</a>
-          <a href="#" class="card-footer-item" (click)="doRemove(usuario)">Eliminar</a>
+          <a class="card-footer-item" [routerLink]="['/admin', 'usuario', 'edit', usuario.id]">Actualizar</a>
+          <a class="card-footer-item" (click)="doRemove(usuario)">Eliminar</a>
         </footer>
       </div>
     </div>

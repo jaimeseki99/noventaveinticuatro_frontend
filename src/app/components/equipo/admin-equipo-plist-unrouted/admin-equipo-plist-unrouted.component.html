@@ -20,6 +20,7 @@
     </div>
   
     <div class="columns is-multiline">
+      <ng-container *ngIf="page?.content">
       <div class="column is-one-third" *ngFor="let equipo of page?.content">
         <div class="card">
           <header class="card-header">
@@ -35,11 +36,21 @@
             </div>
           </div>
           <footer class="card-footer">
-            <a href="#" class="card-footer-item" [routerLink]="['/admin', 'equipo', 'edit', equipo.id]">Actualizar</a>
-            <a href="#" class="card-footer-item" (click)="doRemove(equipo)">Eliminar</a>
+            <a class="card-footer-item" [routerLink]="['/admin', 'equipo', 'edit', equipo.id]">Actualizar</a>
+            <a class="card-footer-item" (click)="doRemove(equipo)">Eliminar</a>
           </footer>
         </div>
       </div>
+      </ng-container>
+      <div class="column" *ngIf="!page?.content || page?.content?.length === 0">
+        <div class="notification is-warning">
+          No se encontraron equipos.
+        </div>
+       </div>
     </div>
-  
+
+    <div class="level is-justify-content-center mb-3">
+      <p-paginator (onPageChange)="onPageChange($event)" [rows]="paginatorState.rows!" [totalRecords]="page?.totalElements || 0" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
+    </div>
+
   </div>

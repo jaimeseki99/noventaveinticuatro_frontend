@@ -14,7 +14,6 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class AdminEquipoPlistRoutedComponent implements OnInit {
 
   forceReload: Subject<boolean> = new Subject<boolean>();
-  id_liga: number;
   bLoading: boolean = false;
 
   constructor(
@@ -23,7 +22,6 @@ export class AdminEquipoPlistRoutedComponent implements OnInit {
     private confirmationService: ConfirmationService,
     private matSnackBar: MatSnackBar
   ) {
-    this.id_liga = parseInt(this.activatedRoute.snapshot.paramMap.get('id') ?? '0');
    }
 
   ngOnInit() {

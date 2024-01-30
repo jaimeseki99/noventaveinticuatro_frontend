@@ -22,7 +22,7 @@ export class EquipoAjaxService {
         return this.http.get<IEquipo>(this.url + '/random');
     }
 
-    getEquiposPage(page: number, size: number, sort: string, direction: string): Observable<IEquipoPage> {
+    getEquiposPage(size: number, page: number, sort: string, direction: string): Observable<IEquipoPage> {
         return this.http.get<IEquipoPage>(this.url + '?size=' + size + '&page=' + page + '&sort=' + sort + ',' + direction);
     }
 

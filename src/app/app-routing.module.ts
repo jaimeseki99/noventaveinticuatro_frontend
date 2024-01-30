@@ -11,6 +11,7 @@ import { AdminCamisetaEditRoutedComponent } from './components/camiseta/admin-ca
 import { AdminCamisetaNewRoutedComponent } from './components/camiseta/admin-camiseta-new-routed/admin-camiseta-new-routed.component';
 import { AdminUsuarioEditRoutedComponent } from './components/usuario/admin-usuario-edit-routed/admin-usuario-edit-routed.component';
 import { AdminUsuarioNewRoutedComponent } from './components/usuario/admin-usuario-new-routed/admin-usuario-new-routed.component';
+import { AdminEquipoPlistRoutedComponent } from './components/equipo/admin-equipo-plist-routed/admin-equipo-plist-routed.component';
 
 const routes: Routes = [
   { path: '', component: HomeRoutedComponent},
@@ -29,7 +30,9 @@ const routes: Routes = [
   { path: 'admin/usuario/edit/:id', component: AdminUsuarioEditRoutedComponent},
   { path: 'admin/usuario/new', component: AdminUsuarioNewRoutedComponent},
 
-  { path: 'admin/valoracion/plist', component: AdminValoracionPlistRoutedComponent}
+  { path: 'admin/valoracion/plist', component: AdminValoracionPlistRoutedComponent},
+
+  { path: 'admin/equipo/plist', component: AdminEquipoPlistRoutedComponent}
 ];
 
 @NgModule({

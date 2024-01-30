@@ -39,6 +39,9 @@ export class AdminEquipoPlistUnroutedComponent implements OnInit {
 
   ngOnInit() {
     this.getPage();
+    if (this.id_liga > 0) {
+      this.getLiga();
+    }
     this.forceReload.subscribe({
       next: (v) => {
         if (v) {
@@ -127,7 +130,7 @@ export class AdminEquipoPlistUnroutedComponent implements OnInit {
   getEquiposByLiga(): void {
     const psPage = this.paginatorState.page ?? 0;
     const psRows = this.paginatorState.rows ?? 0;
-    this.equipoAjaxService.getEquiposByLiga(this.id_liga, psPage, psRows, this.orderField, this.orderDirection).subscribe({
+    this.equipoAjaxService.getEquiposByLiga(this.id_liga, psRows, psPage, this.orderField, this.orderDirection).subscribe({
       next: (data: IEquipoPage) => {
         this.page = data;
         this.paginatorState.pageCount = data.totalPages;

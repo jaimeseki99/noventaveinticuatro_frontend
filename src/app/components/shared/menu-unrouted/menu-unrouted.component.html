@@ -7,13 +7,13 @@
 
   <div id="navbar" class="navbar-menu">
     <div class="navbar-start">
-      <a class="navbar-item" href="#">
+      <a class="navbar-item" [routerLink]="['/admin', 'usuario', 'plist']">
         Usuarios
       </a>
-      <a class="navbar-item" href="#">
+      <a class="navbar-item" [routerLink]="['/admin', 'camiseta', 'plist']">
         Camisetas
       </a>
-      <a class="navbar-item" href="#">
+      <a class="navbar-item" [routerLink]="['/admin', 'valoracion', 'plist']">
         Valoraciones
       </a>
       <!-- Puedes agregar más opciones según tus necesidades -->
@@ -25,11 +25,11 @@
           <!-- Verificar si el usuario ha iniciado sesión -->
           <ng-container *ngIf="username">
             <!-- Mostrar opciones de usuario -->
-            <div class="navbar-item has-dropdown">
+            <div class="navbar-item has-dropdown" (click)="toggleDropdown()">
               <a class="navbar-link">
                 Bienvenido, {{ username }}
               </a>
-              <div class="navbar-dropdown">
+              <div class="navbar-dropdown" *ngIf="isDropdownOpen">
                 <a class="navbar-item" href="#">
                   Perfil
                 </a>

@@ -16,7 +16,8 @@ export class MenuUnroutedComponent implements OnInit {
   username: string = '';
   userSesion: IUsuario | null = null;
   url: string = '';
-
+  isDropdownOpen: boolean = false;
+  
   constructor(
     private sesionAjaxService: SesionAjaxService,
     private usuarioAjaxService: UsuarioAjaxService,
@@ -40,7 +41,6 @@ export class MenuUnroutedComponent implements OnInit {
   });
   }
 
-
   ngOnInit() {
     this.sesionAjaxService.on().subscribe({
       next: (data: SessionEvent) => {
@@ -59,6 +59,10 @@ export class MenuUnroutedComponent implements OnInit {
         }
       }
     });
+  }
+
+  toggleDropdown() {
+    this.isDropdownOpen = !this.isDropdownOpen;
   }
 
 }

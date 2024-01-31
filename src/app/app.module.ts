@@ -69,6 +69,7 @@ import { AdminUsuarioNewRoutedComponent } from './components/usuario/admin-usuar
 import { AdminEquipoPlistRoutedComponent } from './components/equipo/admin-equipo-plist-routed/admin-equipo-plist-routed.component';
 import { AdminLigaPlistRoutedComponent } from './components/liga/admin-liga-plist-routed/admin-liga-plist-routed.component';
 import { AdminModalidadPlistRoutedComponent } from './components/modalidad/admin-modalidad-plist-routed/admin-modalidad-plist-routed.component';
+import { AdminCamisetaViewRoutedComponent } from './components/camiseta/admin-camiseta-view-routed/admin-camiseta-view-routed.component';
 
 @NgModule({
   declarations: [
@@ -86,6 +87,7 @@ import { AdminModalidadPlistRoutedComponent } from './components/modalidad/admin
     AdminCamisetaSelectionUnroutedComponent,
     AdminCamisetaEditRoutedComponent,
     AdminCamisetaNewRoutedComponent,
+    AdminCamisetaViewRoutedComponent,
 
     AdminCarritoDetailUnroutedComponent,
     AdminCarritoPlistUnroutedComponent,

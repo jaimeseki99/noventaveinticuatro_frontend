@@ -128,7 +128,8 @@ export class AdminCamisetaFormUnroutedComponent implements OnInit {
       if (this.operation == 'NEW') {
         this.camisetaAjaxService.createCamiseta(this.camisetaForm.value).subscribe({
           next: (data: ICamiseta) => {
-            this.camiseta = { "imagen": '', "equipo": {}, "modalidad": {}, "liga": {} } as ICamiseta;
+            this.camiseta = { "imagen": '', "equipo": {}, "modalidad": {}, "liga": {} } as ICamiseta; 
+            this.camiseta.id = data.id;
             this.initializeForm(this.camiseta);
             this.matSnackBar.open('Registro creado correctamente', 'Aceptar', {duration: 3000});
             this.router.navigate(['/admin', 'camiseta', 'view', this.camiseta.id]);

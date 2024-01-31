@@ -13,6 +13,8 @@ import { AdminUsuarioEditRoutedComponent } from './components/usuario/admin-usua
 import { AdminUsuarioNewRoutedComponent } from './components/usuario/admin-usuario-new-routed/admin-usuario-new-routed.component';
 import { AdminEquipoPlistRoutedComponent } from './components/equipo/admin-equipo-plist-routed/admin-equipo-plist-routed.component';
 import { AdminLigaPlistRoutedComponent } from './components/liga/admin-liga-plist-routed/admin-liga-plist-routed.component';
+import { AdminModalidadPlistRoutedComponent } from './components/modalidad/admin-modalidad-plist-routed/admin-modalidad-plist-routed.component';
+import { AdminCamisetaViewRoutedComponent } from './components/camiseta/admin-camiseta-view-routed/admin-camiseta-view-routed.component';
 
 const routes: Routes = [
   { path: '', component: HomeRoutedComponent},
@@ -23,9 +25,10 @@ const routes: Routes = [
   { path: 'admin/camiseta/plist', component: AdminCamisetaPlistRoutedComponent},
   { path: 'admin/camiseta/plist/byequipo/:idequipo', component: AdminCamisetaPlistRoutedComponent},
   { path: 'admin/camiseta/plist/bymodalidad/:idmodalidad', component: AdminCamisetaPlistRoutedComponent},
-  { path: 'admin/camiseta/plist/byliga/:idliga ', component: AdminCamisetaPlistRoutedComponent},
+  { path: 'admin/camiseta/plist/byliga/:idliga', component: AdminCamisetaPlistRoutedComponent},
   { path: 'admin/camiseta/edit/:id', component: AdminCamisetaEditRoutedComponent},
   { path: 'admin/camiseta/new', component: AdminCamisetaNewRoutedComponent},
+  { path: 'admin/camiseta/view/:id', component: AdminCamisetaViewRoutedComponent},
 
   { path: 'admin/usuario/plist', component: AdminUsuarioPlistRoutedComponent},
   { path: 'admin/usuario/edit/:id', component: AdminUsuarioEditRoutedComponent},
@@ -35,7 +38,9 @@ const routes: Routes = [
 
   { path: 'admin/equipo/plist', component: AdminEquipoPlistRoutedComponent},
 
-  { path: 'admin/liga/plist', component: AdminLigaPlistRoutedComponent}
+  { path: 'admin/liga/plist', component: AdminLigaPlistRoutedComponent},
+
+  { path: 'admin/modalidad/plist', component: AdminModalidadPlistRoutedComponent},
 ];
 
 @NgModule({

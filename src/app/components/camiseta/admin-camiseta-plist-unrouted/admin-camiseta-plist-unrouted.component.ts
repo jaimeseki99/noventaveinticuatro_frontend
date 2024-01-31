@@ -134,7 +134,7 @@ export class AdminCamisetaPlistUnroutedComponent implements OnInit {
     this.equipoAjaxService.getEquipoById(this.id_equipo).subscribe({
       next: (data: IEquipo) => {
         this.equipo = data;
-        this.getCamisetasPorEquipo();
+        this.getPage();
       },
       error: (err: HttpErrorResponse) => {
         this.status = err;
@@ -146,7 +146,7 @@ export class AdminCamisetaPlistUnroutedComponent implements OnInit {
     this.modalidadAjaxService.getModalidadById(this.id_modalidad).subscribe({
       next: (data: IModalidad) => {
         this.modalidad = data;
-        this.getCamisetasPorModalidad();
+        this.getPage();
       },
       error: (err: HttpErrorResponse) => {
         this.status = err;
@@ -158,7 +158,7 @@ export class AdminCamisetaPlistUnroutedComponent implements OnInit {
     this.ligaAjaxService.getLigaById(this.id_liga).subscribe({
       next: (data: ILiga) => {
         this.liga = data;
-        this.getCamisetasPorLiga();
+        this.getPage();
       },
       error: (err: HttpErrorResponse) => {
         this.status = err;

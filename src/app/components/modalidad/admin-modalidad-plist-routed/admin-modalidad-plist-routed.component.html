@@ -1,3 +1,26 @@
-<p>
-  admin-modalidad-plist-routed works!
-</p>
+<div class="section">
+  <div class="container">
+    <div class="columns">
+      <div class="column">
+        <button class="button is-primary" (click)="doGenerateModalidades(10)" [disabled]="bLoading">
+          Generar modalidades
+        </button>
+      </div>
+      <div class="column">
+        <button class="button is-danger" (click)="doEmpty($event)" [disabled]="bLoading">
+          Eliminar modalidades
+        </button>
+      </div>
+    </div>
+    <div class="columns">
+      <div class="column">
+        <div class="has-text-centered" *ngIf="bLoading">
+          <mat-spinner diameter="30" color="accent"></mat-spinner>
+        </div>
+      </div>
+    </div>
+    <app-admin-liga-plist-unrouted [forceReload]="forceReload" *ngIf="!bLoading"></app-admin-liga-plist-unrouted>
+  </div>
+</div>
+
+<p-confirmPopup></p-confirmPopup>

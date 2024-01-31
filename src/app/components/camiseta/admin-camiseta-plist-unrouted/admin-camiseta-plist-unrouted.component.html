@@ -5,11 +5,11 @@
   </div>
   <div class="notification" *ngIf="id_modalidad>0">
     Filtrando por modalidad: {{ modalidad?.nombre}}
-    <button class="delete" *ngIf="id_modalidad>0" routerLink="['/admin', 'camiseta', 'plist']">Quitar filtro</button>
+    <button class="delete" *ngIf="id_modalidad>0" [routerLink]="['/admin', 'camiseta', 'plist']">Quitar filtro</button>
   </div>
   <div class="notification" *ngIf="id_liga>0">
     Filtrando por liga: {{ liga?.nombre}}
-    <button class="delete" *ngIf="id_liga>0" routerLink="['/admin', 'camiseta', 'plist']">Quitar filtro</button>
+    <button class="delete" *ngIf="id_liga>0" [routerLink]="['/admin', 'camiseta', 'plist']">Quitar filtro</button>
   </div>
 
   <div class="field">
@@ -49,7 +49,7 @@
             </figure>
           </div>
           <div class="card-content">
-            <p class="title is-4"> {{camiseta.titulo}} </p>
+            <p class="title is-4" (click)="doView(camiseta)"> {{camiseta.titulo}} </p>
             <p><strong>Equipo:</strong> <a [routerLink]="['/admin', 'camiseta', 'plist', 'byequipo', camiseta.equipo.id]">{{camiseta.equipo.nombre}}</a></p>
             <p><strong>Modalidad:</strong><a [routerLink]="['/admin', 'camiseta', 'plist', 'bymodalidad', camiseta.modalidad.id]"> {{camiseta.modalidad.nombre}}</a></p>
             <p><strong>Liga:</strong><a [routerLink]="['/admin', 'camiseta', 'plist', 'byliga', camiseta.liga.id]"> {{camiseta.liga.nombre}}</a></p>
@@ -61,7 +61,7 @@
           </div>
           <footer class="card-footer">
             <!-- Botón para ver detalles -->
-            <a class="card-footer-item" (click)="doView(camiseta)">Detalles</a>
+            <a class="card-footer-item" [routerLink]="['/admin', 'camiseta', 'edit', camiseta.id]">Actualizar</a>
             <!-- Botón para eliminar -->
             <a class="card-footer-item" (click)="doRemove(camiseta)">Eliminar</a>
           </footer>

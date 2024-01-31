@@ -34,6 +34,7 @@ export class AdminLigaPlistUnroutedComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.getPage();
   }
 
   getPage(): void {

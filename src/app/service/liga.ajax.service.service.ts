@@ -23,7 +23,7 @@ export class LigaAjaxService {
         return this.http.get<ILiga>(this.url + '/random');
     }
 
-    getLigaPage(page: number, size: number, sort: string, direction: string): Observable<ILigaPage> {
+    getLigaPage(size: number, page: number, sort: string, direction: string): Observable<ILigaPage> {
         return this.http.get<ILigaPage>(this.url + '?size=' + size + '&page=' + page + '&sort=' + sort + ',' + direction);
     }
 

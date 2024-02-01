@@ -6,6 +6,7 @@ import { IEquipo, ILiga, formOperation } from 'src/app/model/model.interfaces';
 import { EquipoAjaxService } from 'src/app/service/equipo.ajax.service.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { AdminLigaSelectionUnroutedComponent } from '../../liga/admin-liga-selection-unrouted/admin-liga-selection-unrouted.component';
 
 @Component({
   selector: 'app-admin-equipo-form-unrouted',
@@ -49,9 +50,72 @@ export class AdminEquipoFormUnroutedComponent implements OnInit {
         next: (data: IEquipo) => {
           this.equipo = data;
           this.initializeForm(this.equipo);
+        },
+        error: (err: HttpErrorResponse) => {
+          this.status = err;
+          this.matSnackBar.open('Error al obtener el registro', 'Aceptar', {duration: 3000});
         }
-      })
+      });
+    } else {
+      this.initializeForm(this.equipo);
     }
   }
 
-}
+  public hasError = (controlName: string, errorName: string) => {
+    return this.equipoForm.controls[controlName].hasError(errorName);
+  }
+
+  onSubmit() {
+    if (this.equipoForm.valid) {
+      if (this.operation == 'NEW') {
+        this.equipoAjaxService.createEquipo(this.equipoForm.value).subscribe({
+          next: (data: IEquipo) => {
+            this.equipo = { "liga": {} } as IEquipo;
+            this.initializeForm(this.equipo);
+            this.matSnackBar.open('Registro creado', 'Aceptar', {duration: 3000});
+            this.router.navigate(['/admin', 'equipo', 'view', this.equipo.id]);
+          },
+          error: (err: HttpErrorResponse) => {
+            this.status = err;
+            this.matSnackBar.open('Error al crear el registro', 'Aceptar', {duration: 3000});
+          }
+        });
+        } else {
+          this.equipoAjaxService.updateEquipo(this.equipoForm.value).subscribe({
+            next: (data: IEquipo) => {
+              this.equipo = data;
+              this.initializeForm(this.equipo);
+              this.matSnackBar.open('Registro actualizado', 'Aceptar', {duration: 3000});
+              this.router.navigate(['/admin', 'equipo', 'view', this.equipo.id]);
+            },
+            error: (err: HttpErrorResponse) => {
+              this.status = err;
+              this.matSnackBar.open('Error al actualizar el registro', 'Aceptar', {duration: 3000});
+            }
+          });
+        }
+      }
+    }
+
+    onShowLigaSelection() {
+      this.dynamicDialogRef = this.dialogService.open(AdminLigaSelectionUnroutedComponent, {
+        header: 'Seleccione una liga',
+        width: '70%',
+        contentStyle: {"max-height": "500px", "overflow": "auto"},
+        maximizable: true
+      });
+
+      if (this.dynamicDialogRef) {
+        this.dynamicDialogRef.onClose.subscribe((liga: ILiga) => {
+          if (liga) {
+            this.equipo.liga = liga;
+            this.equipoForm.controls['liga'].patchValue({id: liga.id});
+          }
+        });
+      }
+
+      }
+    }
+  
+
+

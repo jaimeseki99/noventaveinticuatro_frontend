@@ -57,5 +57,41 @@ export class AdminLigaFormUnroutedComponent implements OnInit {
     }
   }
 
+  public hasError = (controlName: string, errorName: string) => {
+    return this.ligaForm.controls[controlName].hasError(errorName);
+  }
+
+  onSubmit() {
+    if (this.ligaForm.valid) {
+      if (this.operation == 'NEW') {
+        this.ligaAjaxService.createLiga(this.ligaForm.value).subscribe({
+          next: (data: ILiga) => {
+            this.liga = data;
+            this.initializeForm(this.liga);
+            this.matSnackBar.open("Registro creado", 'Aceptar', { duration: 3000});
+            this.router.navigate(['/admin', 'liga', 'view', this.liga.id]);
+          },
+          error: (err: HttpErrorResponse) => {
+            this.status = err;
+            this.matSnackBar.open("Error al crear el registro", 'Aceptar', { duration: 3000});
+          }
+        })
+      } else {
+        this.ligaAjaxService.updateLiga(this.ligaForm.value).subscribe({
+          next: (data: ILiga) => {
+            this.liga = data;
+            this.initializeForm(this.liga);
+            this.matSnackBar.open("Registro actualizado", 'Aceptar', { duration: 3000});
+            this.router.navigate(['/admin', 'liga', 'view', this.liga.id]);
+          },
+          error: (err: HttpErrorResponse) => {
+            this.status = err;
+            this.matSnackBar.open("Error al actualizar el registro", 'Aceptar', { duration: 3000});
+          }
+        })
+      }
+    }
+  }
+
   
 }

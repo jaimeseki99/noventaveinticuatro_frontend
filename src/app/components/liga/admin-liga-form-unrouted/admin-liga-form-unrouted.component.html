@@ -1,3 +1,52 @@
-<p>
-  admin-liga-form-unrouted works!
-</p>
+<div class="container">
+  <h1 class="title is-4">Formulario de Liga</h1>
+  <form [formGroup]="ligaForm" (submit)="onSubmit()">
+    <div class="field">
+      <label class="label">Nombre</label>
+      <div class="control">
+        <input class="input" type="text" formControlName="nombre" placeholder="Nombre de la liga">
+        <div class="help is-danger" *ngIf="hasError('nombre', 'required')">No has introducido el nombre</div>
+        <div class="help is-danger" *ngIf="hasError('nombre', 'minlength')">El nombre es demasiado corto, debe tener al menos 3 carácteres</div>
+        <div class="help is-danger" *ngIf="hasError('nombre', 'maxlength')">El nombre es demasiado largo</div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="" class="label">País</label>
+      <div class="control">
+        <div class="select">
+          <select formControlName="pais">
+            <option value="">Selecciona un país</option>
+            <option value="espanya">España</option>
+            <option value="francia">Francia</option>
+            <option value="italia">Italia</option>
+            <option value="alemania">Alemania</option>
+            <option value="inglaterra">Inglaterra</option>
+            <option value="Portugal">Portugal</option>
+            <option value="Países Bajos">Holanda</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="label">Deporte</label>
+      <div class="control">
+        <div class="select">
+          <select formControlName="deporte">
+            <option value="">Selecciona un deporte</option>
+            <option value="futbol">Fútbol</option>
+            <option value="baloncesto">Baloncesto</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="field is-grouped">
+      <div class="control">
+        <button class="button is-primary" type="submit">Guardar</button>
+      </div>
+    </div>
+
+  </form>
+</div>

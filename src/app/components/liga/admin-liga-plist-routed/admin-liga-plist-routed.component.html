@@ -3,13 +3,16 @@
     <div class="columns">
       <div class="column">
         <button class="button is-primary" (click)="doGenerateLigas(10)" [disabled]="bLoading">
-          Generar equipos
+          Generar ligas
         </button>
       </div>
       <div class="column">
         <button class="button is-danger" (click)="doEmpty($event)" [disabled]="bLoading">
-          Eliminar equipos
+          Eliminar ligas
         </button>
+      </div>
+      <div class="column">
+        <button class="button is-link" [routerLink]="['/admin', 'liga', 'new']">Añadir nueva liga</button>
       </div>
     </div>
     <div class="columns">

@@ -22,7 +22,7 @@ export class ModalidadAjaxService {
         return this.http.get<IModalidad>(this.url + '/random');
     }
 
-    getModalidadPage(page: number, size: number, sort: string, direction: string): Observable<IModalidadPage> {
+    getModalidadPage(size: number, page: number, sort: string, direction: string): Observable<IModalidadPage> {
         return this.http.get<IModalidadPage>(this.url + '?size=' + size + '&page=' + page + '&sort=' + sort + ',' + direction);
     } 
 

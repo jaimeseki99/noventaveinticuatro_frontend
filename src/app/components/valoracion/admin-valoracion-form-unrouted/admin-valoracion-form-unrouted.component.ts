@@ -36,7 +36,7 @@ export class AdminValoracionFormUnroutedComponent implements OnInit {
   initializeForm(valoracion: IValoracion) {
     this.valoracionForm = this.formBuilder.group({
       id: [valoracion.id],
-      fecha: [new Date(valoracion.fecha), [Validators.required]],
+      fecha: [new Date(valoracion.fecha)],
       comentario: [valoracion.comentario, [Validators.required, Validators.minLength(2), Validators.maxLength(255)]],
       usuario: this.formBuilder.group({
         id: [valoracion.usuario.id, [Validators.required]],

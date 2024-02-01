@@ -11,6 +11,9 @@
           Eliminar modalidades
         </button>
       </div>
+      <div class="column">
+        <button class="button is-link" [routerLink]="['/admin', 'modalidad', 'new']">Crear nueva modalidad</button>
+      </div>
     </div>
     <div class="columns">
       <div class="column">
@@ -19,7 +22,7 @@
         </div>
       </div>
     </div>
-    <app-admin-liga-plist-unrouted [forceReload]="forceReload" *ngIf="!bLoading"></app-admin-liga-plist-unrouted>
+    <app-admin-modalidad-plist-unrouted [forceReload]="forceReload" *ngIf="!bLoading"></app-admin-modalidad-plist-unrouted>
   </div>
 </div>
 

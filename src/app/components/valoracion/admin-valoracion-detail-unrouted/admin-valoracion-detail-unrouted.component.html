@@ -6,7 +6,7 @@
           <div class="content">
             <h5 class="title is-5">Detalle de Valoración</h5>
             <p>Comentario: {{ valoracion.comentario }}</p>
-            <p>Fecha: {{ valoracion.fecha }}</p>
+            <p>Fecha: {{ valoracion.fecha | date: 'dd-MM-yyyy' }}</p>
           </div>
         </div>
       </div>

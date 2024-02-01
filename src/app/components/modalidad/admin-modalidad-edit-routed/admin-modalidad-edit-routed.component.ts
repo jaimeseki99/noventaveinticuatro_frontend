@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-admin-modalidad-edit-routed',
@@ -7,7 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminModalidadEditRoutedComponent implements OnInit {
 
-  constructor() { }
+  id: number = 1;
+
+  constructor(
+    private activatedRoute: ActivatedRoute
+  ) {
+    this.id = parseInt(this.activatedRoute.snapshot.paramMap.get('id') || '1');
+   }
 
   ngOnInit() {
   }

@@ -15,6 +15,18 @@ import { AdminEquipoPlistRoutedComponent } from './components/equipo/admin-equip
 import { AdminLigaPlistRoutedComponent } from './components/liga/admin-liga-plist-routed/admin-liga-plist-routed.component';
 import { AdminModalidadPlistRoutedComponent } from './components/modalidad/admin-modalidad-plist-routed/admin-modalidad-plist-routed.component';
 import { AdminCamisetaViewRoutedComponent } from './components/camiseta/admin-camiseta-view-routed/admin-camiseta-view-routed.component';
+import { AdminValoracionEditRoutedComponent } from './components/valoracion/admin-valoracion-edit-routed/admin-valoracion-edit-routed.component';
+import { AdminValoracionNewRoutedComponent } from './components/valoracion/admin-valoracion-new-routed/admin-valoracion-new-routed.component';
+import { AdminValoracionViewRoutedComponent } from './components/valoracion/admin-valoracion-view-routed/admin-valoracion-view-routed.component';
+import { AdminEquipoEditRoutedComponent } from './components/equipo/admin-equipo-edit-routed/admin-equipo-edit-routed.component';
+import { AdminEquipoNewRoutedComponent } from './components/equipo/admin-equipo-new-routed/admin-equipo-new-routed.component';
+import { AdminEquipoViewRoutedComponent } from './components/equipo/admin-equipo-view-routed/admin-equipo-view-routed.component';
+import { AdminLigaEditRoutedComponent } from './components/liga/admin-liga-edit-routed/admin-liga-edit-routed.component';
+import { AdminLigaNewRoutedComponent } from './components/liga/admin-liga-new-routed/admin-liga-new-routed.component';
+import { AdminLigaViewRoutedComponent } from './components/liga/admin-liga-view-routed/admin-liga-view-routed.component';
+import { AdminModalidadEditRoutedComponent } from './components/modalidad/admin-modalidad-edit-routed/admin-modalidad-edit-routed.component';
+import { AdminModalidadNewRoutedComponent } from './components/modalidad/admin-modalidad-new-routed/admin-modalidad-new-routed.component';
+import { AdminModalidadViewRoutedComponent } from './components/modalidad/admin-modalidad-view-routed/admin-modalidad-view-routed.component';
 
 const routes: Routes = [
   { path: '', component: HomeRoutedComponent},
@@ -33,14 +45,31 @@ const routes: Routes = [
   { path: 'admin/usuario/plist', component: AdminUsuarioPlistRoutedComponent},
   { path: 'admin/usuario/edit/:id', component: AdminUsuarioEditRoutedComponent},
   { path: 'admin/usuario/new', component: AdminUsuarioNewRoutedComponent},
+ 
 
   { path: 'admin/valoracion/plist', component: AdminValoracionPlistRoutedComponent},
+  { path: 'admin/valoracion/plist/bycamiseta/:idcamiseta', component: AdminValoracionPlistRoutedComponent},
+  { path: 'admin/valoracion/plist/byusuario/:idusuario', component: AdminValoracionPlistRoutedComponent},
+  { path: 'admin/valoracion/edit/:id', component: AdminValoracionEditRoutedComponent},
+  { path: 'admin/valoracion/new', component: AdminValoracionNewRoutedComponent},
+  { path: 'admin/valoracion/view/:id', component: AdminValoracionViewRoutedComponent},
+
 
   { path: 'admin/equipo/plist', component: AdminEquipoPlistRoutedComponent},
+  { path: 'admin/equipo/plist/byliga/:idliga', component: AdminEquipoPlistRoutedComponent},
+  { path: 'admin/equipo/edit/:id', component: AdminEquipoEditRoutedComponent},
+  { path: 'admin/equipo/new', component: AdminEquipoNewRoutedComponent},
+  { path: 'admin/equipo/view/:id', component: AdminEquipoViewRoutedComponent},
 
   { path: 'admin/liga/plist', component: AdminLigaPlistRoutedComponent},
+  { path: 'admin/liga/edit/:id', component: AdminLigaEditRoutedComponent},
+  { path: 'admin/liga/new', component: AdminLigaNewRoutedComponent},
+  { path: 'admin/liga/view/:id', component: AdminLigaViewRoutedComponent},
 
   { path: 'admin/modalidad/plist', component: AdminModalidadPlistRoutedComponent},
+  { path: 'admin/modalidad/edit/:id', component: AdminModalidadEditRoutedComponent},
+  { path: 'admin/modalidad/new', component: AdminModalidadNewRoutedComponent},
+  { path: 'admin/modalidad/view/:id', component: AdminModalidadViewRoutedComponent},
 ];
 
 @NgModule({

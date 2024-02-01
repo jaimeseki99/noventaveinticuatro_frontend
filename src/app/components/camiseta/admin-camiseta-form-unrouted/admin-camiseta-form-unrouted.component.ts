@@ -132,7 +132,7 @@ export class AdminCamisetaFormUnroutedComponent implements OnInit {
             this.camiseta.id = data.id;
             this.initializeForm(this.camiseta);
             this.matSnackBar.open('Registro creado correctamente', 'Aceptar', {duration: 3000});
-            this.router.navigate(['/admin', 'camiseta', 'view', this.camiseta.id]);
+            this.router.navigate(['/admin', 'camiseta', 'plist']);
           },
           error: (err: HttpErrorResponse) => {
             this.status = err;

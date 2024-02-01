@@ -16,6 +16,15 @@
       <a class="navbar-item" [routerLink]="['/admin', 'valoracion', 'plist']">
         Valoraciones
       </a>
+      <a class="navbar-item" [routerLink]="['/admin', 'equipo', 'plist']">
+        Equipos
+      </a>
+      <a class="navbar-item" [routerLink]="['/admin', 'modalidad', 'plist']">
+        Modalidades
+      </a>
+      <a class="navbar-item" [routerLink]="['/admin', 'liga', 'plist']">
+        Ligas
+      </a>
       <!-- Puedes agregar más opciones según tus necesidades -->
     </div>
 
@@ -25,23 +34,18 @@
           <!-- Verificar si el usuario ha iniciado sesión -->
           <ng-container *ngIf="username">
             <!-- Mostrar opciones de usuario -->
-            <div class="navbar-item has-dropdown" (click)="toggleDropdown()">
-              <a class="navbar-link">
-                Bienvenido, {{ username }}
-              </a>
-              <div class="navbar-dropdown" *ngIf="isDropdownOpen">
-                <a class="navbar-item" href="#">
-                  Perfil
-                </a>
-                <a class="navbar-item" href="#">
-                  Configuración
-                </a>
-                <hr class="navbar-divider">
-                <a class="navbar-item" routerLink="/logout">
-                  Cerrar sesión
-                </a>
-              </div>
-            </div>
+            <a class="navbar-item" href="#">
+              Bienvenido, {{ username }}
+            </a>
+            <a class="navbar-item" href="#">
+              Perfil
+            </a>
+            <a class="navbar-item" href="#">
+              Configuración
+            </a>
+            <a class="navbar-item" routerLink="/logout">
+              <i class="pi pi-power-off"></i>
+            </a>
             <!-- Mostrar carrito solo si el usuario ha iniciado sesión -->
             <a class="button is-light" href="#">
               <span class="icon">
@@ -58,4 +62,3 @@
     </div>
   </div>
 </nav>
-

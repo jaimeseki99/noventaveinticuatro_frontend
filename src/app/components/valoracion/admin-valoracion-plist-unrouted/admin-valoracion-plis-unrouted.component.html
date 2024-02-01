@@ -35,7 +35,7 @@
         </header>
         <div class="card-content">
           <div class="content">
-            <p>Fecha: {{ valoracion.fecha }}</p>
+            <p>Fecha: {{ valoracion.fecha | date: 'dd-MM-yyyy'}}</p>
             <p>Usuario: {{ valoracion.usuario.nombre }}</p>
             <p>Camiseta: {{ valoracion.camiseta.titulo }}</p>
           </div>

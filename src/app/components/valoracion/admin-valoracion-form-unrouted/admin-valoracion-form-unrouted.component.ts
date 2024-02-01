@@ -8,6 +8,7 @@ import { IValoracion, formOperation } from 'src/app/model/model.interfaces';
 import { ValoracionAjaxService } from 'src/app/service/valoracion.ajax.service.service';
 import { AdminUsuarioPlistUnroutedComponent } from '../../usuario/admin-usuario-plist-unrouted/admin-usuario-plist-unrouted.component';
 import { AdminUsuarioSelectionUnroutedComponent } from '../../usuario/admin-usuario-selection-unrouted/admin-usuario-selection-unrouted.component';
+import { AdminCamisetaSelectionUnroutedComponent } from '../../camiseta/admin-camiseta-selection-unrouted/admin-camiseta-selection-unrouted.component';
 
 @Component({
   selector: 'app-admin-valoracion-form-unrouted',
@@ -114,7 +115,7 @@ export class AdminValoracionFormUnroutedComponent implements OnInit {
   }
 
   onShowCamisetasSelection() {
-    this.dynamicDialogRef = this.dialogService.open(AdminUsuarioSelectionUnroutedComponent, {
+    this.dynamicDialogRef = this.dialogService.open(AdminCamisetaSelectionUnroutedComponent, {
       header: 'Selecciona una camiseta',
       width: '70%',
       contentStyle: {"max-height": "350px", "overflow": "auto"},

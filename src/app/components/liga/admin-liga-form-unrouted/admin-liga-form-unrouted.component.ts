@@ -1,4 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { ImageLoaderConfig } from '@angular/common';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
+import { ILiga, formOperation } from 'src/app/model/model.interfaces';
+import { LigaAjaxService } from 'src/app/service/liga.ajax.service.service';
 
 @Component({
   selector: 'app-admin-liga-form-unrouted',
@@ -7,9 +14,48 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminLigaFormUnroutedComponent implements OnInit {
 
-  constructor() { }
+  @Input() id: number = 1;
+  @Input() operation: formOperation = 'NEW';
 
-  ngOnInit() {
+  ligaForm!: FormGroup;
+  liga: ILiga = {} as ILiga;
+  status: HttpErrorResponse | null = null;
+  
+
+  constructor(
+    private ligaAjaxService: LigaAjaxService,
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private matSnackBar: MatSnackBar
+  ) { 
+    this.initializeForm(this.liga);
   }
 
+  initializeForm(liga: ILiga) {
+    this.ligaForm = this.formBuilder.group({
+      id: [liga.id],
+      nombre: [liga.nombre, [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
+      pais: [liga.pais, [Validators.required]],
+      deporte: [liga.deporte, [Validators.required]],
+    })
+  }
+
+  ngOnInit() {
+    if (this.operation == 'EDIT') {
+      this.ligaAjaxService.getLigaById(this.id).subscribe({
+        next: (data: ILiga) => {
+          this.liga = data;
+          this.initializeForm(this.liga);
+        },
+        error: (err: HttpErrorResponse) => {
+          this.status = err;
+          this.matSnackBar.open("Error al obtener el registro", 'Aceptar', { duration: 3000});
+        }
+      });
+    } else {
+      this.initializeForm(this.liga);
+    }
+  }
+
+  
 }

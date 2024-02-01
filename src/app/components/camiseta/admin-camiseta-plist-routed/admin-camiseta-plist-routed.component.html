@@ -11,6 +11,9 @@
           Eliminar camisetas
         </button>
       </div>
+      <div class="column">
+        <button class="button is-link" [routerLink]="['/admin', 'camiseta', 'new']" [disabled]="bLoading">Añadir nueva camiseta</button>
+      </div>
     </div>
     <div class="columns">
       <div class="column">

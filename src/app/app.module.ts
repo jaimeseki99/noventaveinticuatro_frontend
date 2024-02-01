@@ -70,6 +70,22 @@ import { AdminEquipoPlistRoutedComponent } from './components/equipo/admin-equip
 import { AdminLigaPlistRoutedComponent } from './components/liga/admin-liga-plist-routed/admin-liga-plist-routed.component';
 import { AdminModalidadPlistRoutedComponent } from './components/modalidad/admin-modalidad-plist-routed/admin-modalidad-plist-routed.component';
 import { AdminCamisetaViewRoutedComponent } from './components/camiseta/admin-camiseta-view-routed/admin-camiseta-view-routed.component';
+import { AdminValoracionNewRoutedComponent } from './components/valoracion/admin-valoracion-new-routed/admin-valoracion-new-routed.component';
+import { AdminValoracionEditRoutedComponent } from './components/valoracion/admin-valoracion-edit-routed/admin-valoracion-edit-routed.component';
+import { AdminValoracionViewRoutedComponent } from './components/valoracion/admin-valoracion-view-routed/admin-valoracion-view-routed.component';
+import { AdminEquipoEditRoutedComponent } from './components/equipo/admin-equipo-edit-routed/admin-equipo-edit-routed.component';
+import { AdminEquipoNewRoutedComponent } from './components/equipo/admin-equipo-new-routed/admin-equipo-new-routed.component';
+import { AdminEquipoViewRoutedComponent } from './components/equipo/admin-equipo-view-routed/admin-equipo-view-routed.component';
+import { AdminLigaNewRoutedComponent } from './components/liga/admin-liga-new-routed/admin-liga-new-routed.component';
+import { AdminLigaViewRoutedComponent } from './components/liga/admin-liga-view-routed/admin-liga-view-routed.component';
+import { AdminLigaEditRoutedComponent } from './components/liga/admin-liga-edit-routed/admin-liga-edit-routed.component';
+import { AdminLigaFormUnroutedComponent } from './components/liga/admin-liga-form-unrouted/admin-liga-form-unrouted.component';
+import { AdminEquipoFormUnroutedComponent } from './components/equipo/admin-equipo-form-unrouted/admin-equipo-form-unrouted.component';
+import { AdminModalidadFormUnroutedComponent } from './components/modalidad/admin-modalidad-form-unrouted/admin-modalidad-form-unrouted.component';
+import { AdminModalidadEditRoutedComponent } from './components/modalidad/admin-modalidad-edit-routed/admin-modalidad-edit-routed.component';
+import { AdminModalidadNewRoutedComponent } from './components/modalidad/admin-modalidad-new-routed/admin-modalidad-new-routed.component';
+import { AdminModalidadViewRoutedComponent } from './components/modalidad/admin-modalidad-view-routed/admin-modalidad-view-routed.component';
+import { AdminUsuarioViewRoutedComponent } from './components/usuario/admin-usuario-view-routed/admin-usuario-view-routed.component';
 
 @NgModule({
   declarations: [
@@ -105,27 +121,42 @@ import { AdminCamisetaViewRoutedComponent } from './components/camiseta/admin-ca
     AdminUsuarioPlistRoutedComponent,
     AdminUsuarioEditRoutedComponent,
     AdminUsuarioNewRoutedComponent,
+    AdminUsuarioViewRoutedComponent,
 
     AdminValoracionDetailUnroutedComponent,
     AdminValoracionPlisUnroutedComponent,
     AdminValoracionFormUnroutedComponent,
     AdminValoracionPlistRoutedComponent,
+    AdminValoracionNewRoutedComponent,
+    AdminValoracionEditRoutedComponent,
+    AdminValoracionViewRoutedComponent,
 
     AdminEquipoDetailUnroutedComponent,
     AdminEquipoPlistUnroutedComponent,
     AdminEquipoSelectionUnroutedComponent,
     AdminEquipoPlistRoutedComponent,
+    AdminEquipoFormUnroutedComponent,
+    AdminEquipoEditRoutedComponent,
+    AdminEquipoNewRoutedComponent,
+    AdminEquipoViewRoutedComponent,
 
     AdminLigaDetailUnroutedComponent,
     AdminLigaPlistUnroutedComponent,
     AdminLigaSelectionUnroutedComponent,
+    AdminLigaFormUnroutedComponent,
     AdminLigaPlistRoutedComponent,
-
-
+    AdminLigaNewRoutedComponent,
+    AdminLigaViewRoutedComponent,
+    AdminLigaEditRoutedComponent,
+    
     AdminModalidadDetailUnroutedComponent,
     AdminModalidadPlistUnroutedComponent,
     AdminModalidadSelectionUnroutedComponent,
-    AdminModalidadPlistRoutedComponent
+    AdminModalidadPlistRoutedComponent,
+    AdminModalidadFormUnroutedComponent,
+    AdminModalidadEditRoutedComponent,
+    AdminModalidadNewRoutedComponent,
+    AdminModalidadViewRoutedComponent
 
   ],
   imports: [

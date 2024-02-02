@@ -69,7 +69,7 @@ export class AdminCamisetaPlistUnroutedComponent implements OnInit {
   getPage(): void {
     const rows = this.paginatorState.rows || 0;
     const page = this.paginatorState.page || 0;
-    this.camisetaAjaxService.getPageCamisetas(rows, page ,this.orderField, this.orderDirection).subscribe({
+    this.camisetaAjaxService.getPageCamisetas(rows, page ,this.orderField, this.orderDirection, this.id_equipo, this.id_modalidad, this.id_liga).subscribe({
       next: (data: ICamisetaPage) => {
         this.page = data;
         this.paginatorState.pageCount = data.totalPages;

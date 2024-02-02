@@ -60,7 +60,7 @@ export class AdminValoracionPlisUnroutedComponent implements OnInit {
   getPage(): void {
     const page: number = this.paginatorState.page ?? 0;
     const rows: number = this.paginatorState.rows ?? 0;
-    this.valoracionAjaxService.getValoracionPage(rows, page, this.orderField, this.orderDirection).subscribe({
+    this.valoracionAjaxService.getValoracionPage(rows, page, this.orderField, this.orderDirection, this.id_usuario, this.id_camiseta).subscribe({
       next: (page: IValoracionPage) => {
         this.page = page;
         this.paginatorState.pageCount = page.totalPages;

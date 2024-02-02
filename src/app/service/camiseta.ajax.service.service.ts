@@ -18,10 +18,22 @@ export class CamisetaAjaxService {
         return this.http.get<ICamiseta>(this.url + '/' + id);
     }
 
-    getPageCamisetas(size: number, page: number,  sort: string, direction: string): Observable<ICamisetaPage> {
+    getPageCamisetas(size: number, page: number,  sort: string, direction: string, id_equipo: number, id_modalidad: number, id_liga: number): Observable<ICamisetaPage> {
         if (!size) size = 10;
         if (!page) page = 0;
-        return this.http.get<ICamisetaPage>(this.url + '?size=' + size +'&page=' + page + '&sort=' + sort + ',' + direction);
+        let equipo = "";
+        if (id_equipo > 0) {
+            equipo = "&equipo=" + id_equipo;
+        }
+        let modalidad = "";
+        if (id_modalidad > 0) {
+            modalidad = "&modalidad=" + id_modalidad;
+        }
+        let liga = "";
+        if (id_liga > 0) {
+            liga = "&liga=" + id_liga;
+        }
+        return this.http.get<ICamisetaPage>(this.url + '?size=' + size +'&page=' + page + '&sort=' + sort + ',' + direction + equipo + modalidad + liga);
     }
 
     getCamisetaRandom(): Observable<ICamiseta> {

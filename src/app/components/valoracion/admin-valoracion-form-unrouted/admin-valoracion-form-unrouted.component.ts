@@ -76,7 +76,7 @@ export class AdminValoracionFormUnroutedComponent implements OnInit {
             this.valoracion = { "usuario": {}, "camiseta": {} } as IValoracion;
             this.initializeForm(this.valoracion);
             this.matSnackBar.open('Valoración creada correctamente', 'Aceptar', { duration: 3000 });
-            this.router.navigate(['/admin', 'valoracion', 'view', data]);
+            this.router.navigate(['/admin', 'valoracion', 'plist']);
           }, 
           error: (err: HttpErrorResponse) => {
             this.status = err;
@@ -89,7 +89,7 @@ export class AdminValoracionFormUnroutedComponent implements OnInit {
             this.valoracion = data;
             this.initializeForm(this.valoracion);
             this.matSnackBar.open('Valoración actualizada correctamente', 'Aceptar', { duration: 3000 });
-            this.router.navigate(['/admin', 'valoracion', 'view', data]);
+            this.router.navigate(['/admin', 'valoracion', 'view', this.valoracion.id]);
           },
           error: (err: HttpErrorResponse) => {
             this.status = err;

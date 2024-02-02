@@ -22,8 +22,12 @@ export class EquipoAjaxService {
         return this.http.get<IEquipo>(this.url + '/random');
     }
 
-    getEquiposPage(size: number, page: number, sort: string, direction: string): Observable<IEquipoPage> {
-        return this.http.get<IEquipoPage>(this.url + '?size=' + size + '&page=' + page + '&sort=' + sort + ',' + direction);
+    getEquiposPage(size: number, page: number, sort: string, direction: string, id_liga: number): Observable<IEquipoPage> {
+        let liga = "";
+        if (id_liga > 0) {
+            liga = "&liga=" + id_liga;
+        }
+        return this.http.get<IEquipoPage>(this.url + '?size=' + size + '&page=' + page + '&sort=' + sort + ',' + direction + liga);
     }
 
     getEquiposByLiga(ligaId: number, page: number, size: number, sort: string, direction: string): Observable<IEquipoPage> {

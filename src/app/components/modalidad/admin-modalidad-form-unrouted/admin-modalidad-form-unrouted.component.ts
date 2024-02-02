@@ -84,7 +84,7 @@ export class AdminModalidadFormUnroutedComponent implements OnInit {
           next: (data: IModalidad) => {
             this.modalidad = data;
             this.initializeForm(this.modalidad);
-            this.router.navigate(['/admin', 'modalidad', 'view', this.modalidad.id]);
+            this.router.navigate(['/admin', 'modalidad', 'plist']);
             this.matSnackBar.open("Registro creado", 'Aceptar', { duration: 3000});
           },
           error: (err: HttpErrorResponse) => {

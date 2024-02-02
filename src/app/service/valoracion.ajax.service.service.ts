@@ -24,8 +24,16 @@ export class ValoracionAjaxService {
         return this.http.get<IValoracion>(this.url + '/random');
     }
 
-    getValoracionPage(size: number, page: number, sort: string, direction: string): Observable<IValoracionPage> {
-        return this.http.get<IValoracionPage>(this.url + '?size=' + size + '&page=' + page + '&sort=' + sort + ',' + direction);
+    getValoracionPage(size: number, page: number, sort: string, direction: string, id_usuario: number, id_camiseta: number): Observable<IValoracionPage> {
+        let usuario = "";
+        if (id_usuario > 0) {
+            usuario = "&usuario=" + id_usuario;
+        }
+        let camiseta = "";
+        if (id_camiseta > 0) {
+            camiseta = "&camiseta=" + id_camiseta;
+        }
+        return this.http.get<IValoracionPage>(this.url + '?size=' + size + '&page=' + page + '&sort=' + sort + ',' + direction + usuario + camiseta);
     }
 
     getValoracionPageByUsuario(usuarioId: number, size: number, page: number, sort: string, direction: string): Observable<IValoracionPage> {

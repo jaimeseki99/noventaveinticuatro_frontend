@@ -94,7 +94,7 @@ export class AdminEquipoFormUnroutedComponent implements OnInit {
             this.equipo = { "liga": {} } as IEquipo;
             this.initializeForm(this.equipo);
             this.matSnackBar.open('Registro creado', 'Aceptar', {duration: 3000});
-            this.router.navigate(['/admin', 'equipo', 'view', this.equipo.id]);
+            this.router.navigate(['/admin', 'equipo', 'plist']);
           },
           error: (err: HttpErrorResponse) => {
             this.status = err;

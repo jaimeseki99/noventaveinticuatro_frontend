@@ -47,6 +47,10 @@ export class CompraAjaxService {
         return this.http.get<ICompraPage>(this.url + '/compras-mas-baratas-usuario/' + usuarioId + '?size=' + size + '&page=' + page + '&sort=' + sort + ',' + direction);
     }
 
+    createCompraCamiseta(usuarioId: number, camisetaId: number): Observable<ICompra> {
+        return this.http.post<ICompra>(this.url + '/realizar-compra-camiseta/' + usuarioId + '/' + camisetaId, {});
+    }
+
     createCompraUnicoCarrito(usuarioId: number, carritoId: number): Observable<ICompra> {
         return this.http.post<ICompra>(this.url + '/realizar-compra-unico-carrito/' + usuarioId + '/' + carritoId, {});
     }

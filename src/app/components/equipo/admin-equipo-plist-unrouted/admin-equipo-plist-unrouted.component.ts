@@ -54,7 +54,7 @@ export class AdminEquipoPlistUnroutedComponent implements OnInit {
   getPage(): void {
     const rows = this.paginatorState.rows ?? 0;
     const page = this.paginatorState.page ?? 0;
-    this.equipoAjaxService.getEquiposPage(rows, page, this.orderField, this.orderDirection).subscribe({
+    this.equipoAjaxService.getEquiposPage(rows, page, this.orderField, this.orderDirection, this.id_liga).subscribe({
       next: (data: IEquipoPage) => {
         this.page = data;
         this.paginatorState.pageCount = data.totalPages;

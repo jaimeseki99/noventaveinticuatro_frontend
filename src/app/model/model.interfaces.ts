@@ -133,6 +133,7 @@ export interface IDetalleCompraPage extends IPage<IDetalleCompra> {
 
 export interface IModalidad extends IEntity {
     nombre: string,
+    imagen?: string,
     camisetas: number
 }
 
@@ -142,6 +143,7 @@ export interface IModalidadPage extends IPage<IModalidad> {
 
 export interface IEquipo extends IEntity {
     nombre: string,
+    imagen?: string,
     liga: ILiga,
     camisetas: number
 }
@@ -154,6 +156,7 @@ export interface ILiga extends IEntity {
     nombre: string,
     pais: string,
     deporte: string,
+    imagen?: string,
     equipos: number,
     camisetas: number
 }

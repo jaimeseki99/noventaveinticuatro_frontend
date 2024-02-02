@@ -9,6 +9,13 @@
     </div>
 
     <div class="field">
+      <label class="label">Escudo</label>
+      <div class="control">
+        <input class="input" type="file" (change)="onFileSelected($event)">
+      </div>
+    </div>
+
+    <div class="field">
       <label class="label">Liga</label>
       <div class="control">
         <button class="button is-link" (click)="onShowLigaSelection()">Seleccionar liga</button>

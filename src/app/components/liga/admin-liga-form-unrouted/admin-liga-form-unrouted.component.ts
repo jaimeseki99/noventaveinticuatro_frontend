@@ -6,6 +6,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { ILiga, formOperation } from 'src/app/model/model.interfaces';
 import { LigaAjaxService } from 'src/app/service/liga.ajax.service.service';
+import { MediaService } from 'src/app/service/media.service';
 
 @Component({
   selector: 'app-admin-liga-form-unrouted',
@@ -18,12 +19,13 @@ export class AdminLigaFormUnroutedComponent implements OnInit {
   @Input() operation: formOperation = 'NEW';
 
   ligaForm!: FormGroup;
-  liga: ILiga = {} as ILiga;
+  liga: ILiga = {imagen: ''} as ILiga;
   status: HttpErrorResponse | null = null;
   
 
   constructor(
     private ligaAjaxService: LigaAjaxService,
+    private mediaService: MediaService,
     private formBuilder: FormBuilder,
     private router: Router,
     private matSnackBar: MatSnackBar
@@ -37,6 +39,7 @@ export class AdminLigaFormUnroutedComponent implements OnInit {
       nombre: [liga.nombre, [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
       pais: [liga.pais, [Validators.required]],
       deporte: [liga.deporte, [Validators.required]],
+      imagen: [liga.imagen]
     })
   }
 
@@ -56,6 +59,25 @@ export class AdminLigaFormUnroutedComponent implements OnInit {
       this.initializeForm(this.liga);
     }
   }
+
+  onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+    if (file) {
+      const formData = new FormData();
+      formData.append("file", file);
+
+      this.mediaService.uploadFile(formData).subscribe({
+        next: (response) => {
+          this.liga.imagen = response.url;
+          this.ligaForm.patchValue({imagen: response.url});
+        },
+        error: (error) => {
+          this.matSnackBar.open("Error al subir el fichero", 'Aceptar', { duration: 3000});
+        }
+      });
+    }
+    }
+  
 
   public hasError = (controlName: string, errorName: string) => {
     return this.ligaForm.controls[controlName].hasError(errorName);

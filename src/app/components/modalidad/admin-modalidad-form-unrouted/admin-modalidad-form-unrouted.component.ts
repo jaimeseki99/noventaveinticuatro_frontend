@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { IModalidad, formOperation } from 'src/app/model/model.interfaces';
+import { MediaService } from 'src/app/service/media.service';
 import { ModalidadAjaxService } from 'src/app/service/modalidad.ajax.service.service';
 
 @Component({
@@ -22,6 +23,7 @@ export class AdminModalidadFormUnroutedComponent implements OnInit {
 
   constructor(
     private modalidadAjaxService: ModalidadAjaxService,
+    private mediaService: MediaService,
     private formBuilder: FormBuilder,
     private router: Router,
     private matSnackBar: MatSnackBar
@@ -33,6 +35,7 @@ export class AdminModalidadFormUnroutedComponent implements OnInit {
     this.modalidadForm = this.formBuilder.group({
       id: [modalidad.id],
       nombre: [modalidad.nombre, [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
+      imagen: [modalidad.imagen]
     });
   }
 
@@ -52,6 +55,24 @@ export class AdminModalidadFormUnroutedComponent implements OnInit {
         this.initializeForm(this.modalidad);
       }
     }
+
+    onFileSelected(event: any) {
+      const file: File = event.target.files[0];
+      if (file) {
+        const formData = new FormData();
+        formData.append('file', file);
+
+        this.mediaService.uploadFile(formData).subscribe({
+          next: (response) => {
+            this.modalidad.imagen = response.url;
+            this.modalidadForm.controls['imagen'].patchValue(response.url);
+          },
+          error: (error) => {
+            this.matSnackBar.open('Error al subir el archivo', 'Aceptar', { duration: 3000})
+          }
+        });
+    }
+  }
 
     public hasError = (controlName: string, errorName: string) => {
       return this.modalidadForm.controls[controlName].hasError(errorName);

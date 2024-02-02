@@ -7,6 +7,7 @@ import { EquipoAjaxService } from 'src/app/service/equipo.ajax.service.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AdminLigaSelectionUnroutedComponent } from '../../liga/admin-liga-selection-unrouted/admin-liga-selection-unrouted.component';
+import { MediaService } from 'src/app/service/media.service';
 
 @Component({
   selector: 'app-admin-equipo-form-unrouted',
@@ -19,7 +20,7 @@ export class AdminEquipoFormUnroutedComponent implements OnInit {
   @Input() operation: formOperation = 'NEW';
 
   equipoForm!: FormGroup;
-  equipo: IEquipo = { liga: {} } as IEquipo;
+  equipo: IEquipo = { imagen: '', liga: {} } as IEquipo;
   status: HttpErrorResponse | null = null;
   dynamicDialogRef: DynamicDialogRef | undefined;
 
@@ -27,6 +28,7 @@ export class AdminEquipoFormUnroutedComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private equipoAjaxService: EquipoAjaxService,
+    private mediaService: MediaService,
     private router: Router,
     private matSnackBar: MatSnackBar,
     private dialogService: DialogService
@@ -38,6 +40,7 @@ export class AdminEquipoFormUnroutedComponent implements OnInit {
     this.equipoForm = this.formBuilder.group({
       id: [equipo.id],
       nombre: [equipo.nombre, [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
+      imagen: [equipo.imagen],
       liga: this.formBuilder.group({
         id: [equipo.liga.id, [Validators.required]],
       }),
@@ -58,6 +61,24 @@ export class AdminEquipoFormUnroutedComponent implements OnInit {
       });
     } else {
       this.initializeForm(this.equipo);
+    }
+  }
+
+  onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+    if (file) {
+      const formData = new FormData();
+      formData.append("file", file);
+
+      this.mediaService.uploadFile(formData).subscribe({
+        next: (response) => {
+          this.equipo.imagen = response.url;
+          this.equipoForm.controls['imagen'].patchValue(response.url);
+        },
+        error: (error) => {
+          this.matSnackBar.open('Error al subir el fichero', 'Aceptar', {duration: 3000});
+        }
+      });
     }
   }
 

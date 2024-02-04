@@ -28,7 +28,7 @@
           </figure>
         <div class="card-content">
           <div class="content">
-            <p>Número de Camisetas: {{ modalidad.camisetas }}</p>
+            <p>Número de Camisetas: <a [routerLink]="['/admin', 'camiseta', 'plist', 'bymodalidad', modalidad.id]">{{ modalidad.camisetas }}</a></p>
           </div>
         </div>
         <footer class="card-footer">

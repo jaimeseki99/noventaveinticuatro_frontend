@@ -11,6 +11,9 @@
           Eliminar valoraciones
         </button>
       </div>
+      <div class="column">
+        <button class="button is-link" [routerLink]="['/admin', 'valoracion', 'new']" [disabled]="bLoading">Añadir valoración</button>
+      </div>
     </div>
     <div class="columns">
       <div class="column">

@@ -36,8 +36,8 @@
           </div>
           <div class="card-content">
             <div class="content">
-              <p>Liga: {{ equipo.liga.nombre }}</p>
-              <p>Número de camisetas: {{ equipo.camisetas }}</p>
+              <p>Liga: <a [routerLink]="['/admin', 'equipo', 'plist', 'byliga', equipo.liga.id]">{{ equipo.liga.nombre }}</a></p>
+              <p>Número de camisetas: <a [routerLink]="['/admin', 'camiseta', 'plist', 'byequipo', equipo.id]">{{ equipo.camisetas }}</a></p>
             </div>
           </div>
           <footer class="card-footer">

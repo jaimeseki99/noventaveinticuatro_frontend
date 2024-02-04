@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="columns">
+    <div class="column is-6">
+      <img src="{{ camiseta.imagen }}" alt="{{ camiseta.titulo }}" class="image">
+    </div>
+    <div class="column is-6">
+      <h1 class="title">{{ camiseta.titulo }}</h1>
+      <p><strong>Precio:</strong> ${{ camiseta.precio }}</p>
+      <p><strong>Stock:</strong> {{ camiseta.stock }}</p>
+      <div class="field">
+        <label class="label">Cantidad:</label>
+        <div class="control">
+          <input class="input" type="number" min="1" max="{{camiseta.stock}}" [(ngModel)]="cantidadSeleccionada">
+        </div>
+      </div>
+      <div class="field is-grouped">
+        <div class="control">
+          <button class="button is-primary" (click)="agregarAlCarrito()">Agregar al carrito</button>
+        </div>
+        <div class="control">
+          <button class="button is-success" (click)="comprarDirectamente()">Comprar directamente</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p-confirmPopup></p-confirmPopup>

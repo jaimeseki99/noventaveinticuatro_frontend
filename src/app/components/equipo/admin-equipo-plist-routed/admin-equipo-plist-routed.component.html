@@ -11,6 +11,9 @@
           Eliminar equipos
         </button>
       </div>
+      <div class="column">
+        <button class="button is-link" [routerLink]="['/admin', 'equipo', 'new']" [disabled]="bLoading">Añadir equipo</button>
+      </div>
     </div>
     <div class="columns">
       <div class="column">

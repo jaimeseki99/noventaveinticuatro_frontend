@@ -39,7 +39,7 @@ export class CarritoAjaxService {
     }
 
     createCarrito(carrito: ICarrito): Observable<ICarrito> {
-        return this.http.post<ICarrito>(this.url, carrito);
+        return this.http.post<ICarrito>(this.url, carrito, {});
     }
 
     generateCarritos(amount: number): Observable<number> {

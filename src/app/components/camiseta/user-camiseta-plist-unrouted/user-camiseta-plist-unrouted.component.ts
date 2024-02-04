@@ -188,7 +188,8 @@ export class UserCamisetaPlistUnroutedComponent implements OnInit {
           this.confirmService.confirm({
             message: '¿Quieres comprar la camiseta?',
             accept: () => {
-              this.compraAjaxService.createCompraCamiseta(camiseta.id, usuario.id).subscribe({
+              const cantidad = 1;
+              this.compraAjaxService.createCompraCamiseta(camiseta.id, usuario.id, cantidad).subscribe({
                 next: () => {
                   this.matSnackBar.open('Camiseta comprada', 'Aceptar', {duration: 3000});
                   this.router.navigate(['/usuario', 'compras', usuario.id]);

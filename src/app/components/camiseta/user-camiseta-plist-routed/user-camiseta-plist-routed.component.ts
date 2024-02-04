@@ -15,7 +15,7 @@ export class UserCamisetaPlistRoutedComponent implements OnInit {
   id_liga: number;
 
   constructor(
-    private activatedRoute: ActivatedRoute,
+    private activatedRoute: ActivatedRoute
   ) {
     this.id_equipo = parseInt(this.activatedRoute.snapshot.paramMap.get('id_equipo') || '0');
     this.id_modalidad = parseInt(this.activatedRoute.snapshot.paramMap.get('id_modalidad') || '0');

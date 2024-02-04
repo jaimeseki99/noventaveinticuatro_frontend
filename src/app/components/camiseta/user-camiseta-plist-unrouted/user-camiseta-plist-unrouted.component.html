@@ -20,11 +20,17 @@
       <div class="card">
         <div class="card-image">
           <figure class="image is-4by3">
+            <a [routerLink]="['/usuario', 'camiseta', 'view', camiseta.id]">
             <img src="{{camiseta.imagen}}" alt="Camiseta">
+            </a>
           </figure>
         </div>
         <div class="card-content">
-          <p class="title">{{camiseta.titulo}}</p>
+          <p class="title">
+            <a [routerLink]="['/usuario', 'camiseta', 'view', camiseta.id]">
+            {{camiseta.titulo}}
+            </a>
+          </p>
           <p class="subtitle">Precio: {{camiseta.precio}}</p>
           <p class="subtitle">Talla: {{camiseta.talla}}</p>
           <p class="stock-available" *ngIf="camiseta.stock > 0">Camiseta disponible</p>

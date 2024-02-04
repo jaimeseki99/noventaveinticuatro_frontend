@@ -27,6 +27,7 @@ import { AdminLigaViewRoutedComponent } from './components/liga/admin-liga-view-
 import { AdminModalidadEditRoutedComponent } from './components/modalidad/admin-modalidad-edit-routed/admin-modalidad-edit-routed.component';
 import { AdminModalidadNewRoutedComponent } from './components/modalidad/admin-modalidad-new-routed/admin-modalidad-new-routed.component';
 import { AdminModalidadViewRoutedComponent } from './components/modalidad/admin-modalidad-view-routed/admin-modalidad-view-routed.component';
+import { UserCamisetaPlistRoutedComponent } from './components/camiseta/user-camiseta-plist-routed/user-camiseta-plist-routed.component';
 
 const routes: Routes = [
   { path: '', component: HomeRoutedComponent},
@@ -41,6 +42,10 @@ const routes: Routes = [
   { path: 'admin/camiseta/edit/:id', component: AdminCamisetaEditRoutedComponent},
   { path: 'admin/camiseta/new', component: AdminCamisetaNewRoutedComponent},
   { path: 'admin/camiseta/view/:id', component: AdminCamisetaViewRoutedComponent},
+  { path: 'usuario/camiseta/plist', component: UserCamisetaPlistRoutedComponent},
+  { path: 'usuario/camiseta/plist/byequipo/:idequipo', component: UserCamisetaPlistRoutedComponent},
+  { path: 'usuario/camiseta/plist/bymodalidad/:idmodalidad', component: UserCamisetaPlistRoutedComponent},
+  { path: 'usuario/camiseta/plist/byliga/:idliga', component: UserCamisetaPlistRoutedComponent},
 
   { path: 'admin/usuario/plist', component: AdminUsuarioPlistRoutedComponent},
   { path: 'admin/usuario/edit/:id', component: AdminUsuarioEditRoutedComponent},

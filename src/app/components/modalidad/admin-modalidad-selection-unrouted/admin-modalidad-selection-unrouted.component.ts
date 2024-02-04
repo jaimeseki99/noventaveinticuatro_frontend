@@ -31,7 +31,7 @@ export class AdminModalidadSelectionUnroutedComponent implements OnInit {
   getPage(): void {
     const page = this.paginatorState.page || 0;
     const rows = this.paginatorState.rows || 0;
-    this.modalidadAjaxService.getModalidadPage(page, rows, this.orderField, this.orderDirection).subscribe({
+    this.modalidadAjaxService.getModalidadPage(rows, page, this.orderField, this.orderDirection).subscribe({
       next: (data: IModalidadPage) => {
         this.page = data;
         this.paginatorState.pageCount = data.totalPages;

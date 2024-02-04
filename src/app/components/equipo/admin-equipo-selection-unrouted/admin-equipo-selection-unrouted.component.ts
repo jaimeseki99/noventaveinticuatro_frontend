@@ -17,6 +17,7 @@ export class AdminEquipoSelectionUnroutedComponent implements OnInit {
   orderDirection: string = "asc";
   paginatorState: PaginatorState = { first: 0, rows: 10, page: 0, pageCount: 0 };
   status: HttpErrorResponse | null = null;
+  id_liga: number = 0;
 
 
   constructor(
@@ -32,7 +33,7 @@ export class AdminEquipoSelectionUnroutedComponent implements OnInit {
   getPage(): void {
     const page = this.paginatorState.page || 0;
     const rows = this.paginatorState.rows || 0;
-    this.equipoAjaxService.getEquiposPage(rows, page, this.orderField, this.orderDirection).subscribe({
+    this.equipoAjaxService.getEquiposPage(rows, page, this.orderField, this.orderDirection, this.id_liga).subscribe({
       next: (data: IEquipoPage) => {
         this.page = data;
         this.paginatorState.pageCount = data.totalPages;

@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { Paginator, PaginatorState } from 'primeng/paginator';
@@ -8,6 +9,7 @@ import { Subject } from 'rxjs';
 import { ICamiseta, ICamisetaPage, ICarrito, IEquipo, ILiga, IModalidad, IUsuario } from 'src/app/model/model.interfaces';
 import { CamisetaAjaxService } from 'src/app/service/camiseta.ajax.service.service';
 import { CarritoAjaxService } from 'src/app/service/carrito.ajax.service.service';
+import { CompraAjaxService } from 'src/app/service/compra.ajax.service.service';
 import { EquipoAjaxService } from 'src/app/service/equipo.ajax.service.service';
 import { LigaAjaxService } from 'src/app/service/liga.ajax.service.service';
 import { ModalidadAjaxService } from 'src/app/service/modalidad.ajax.service.service';
@@ -30,6 +32,7 @@ export class UserCamisetaPlistUnroutedComponent implements OnInit {
   modalidad: IModalidad | null = null;
   liga: ILiga | null = null;
   usuario: IUsuario | null = null;
+  carrito: ICarrito = { usuario: {}, camiseta: {}, cantidad: 0 } as ICarrito;
   orderField: string = "id";
   orderDirection: string = "asc";
   paginatorState: PaginatorState = { first: 0, rows: 15, page: 0, pageCount: 0 };
@@ -39,11 +42,13 @@ export class UserCamisetaPlistUnroutedComponent implements OnInit {
     private camisetaAjaxService: CamisetaAjaxService,
     private sesionAjaxService: SesionAjaxService,
     private carritoAjaxService: CarritoAjaxService,
+    private compraAjaxService: CompraAjaxService,
     private equipoAjaxService: EquipoAjaxService,
     private modalidadAjaxService: ModalidadAjaxService,
     private ligaAjaxService: LigaAjaxService,
     public dialogService: DialogService,
     private confirmService: ConfirmationService,
+    private router: Router,
     private matSnackBar: MatSnackBar
 
   ) { }
@@ -75,12 +80,34 @@ export class UserCamisetaPlistUnroutedComponent implements OnInit {
       next: (data: ICamisetaPage) => {
         this.page = data;
         this.paginatorState.pageCount = data.totalPages;
+
+        const camisetaIds = this.page.content.map(camiseta => camiseta.id);
+        const precios: { [id: number]: number } = {};
+
+        camisetaIds.forEach(id => {
+          this.camisetaAjaxService.getPrecioTotalCamiseta(id).subscribe({
+            next: (precio: number) => {
+              precios[id] = precio;
+
+              if (Object.keys(precios).length === camisetaIds.length) {
+                this.page?.content.forEach(camiseta => {
+                  camiseta.precio = precios[camiseta.id];
+                });
+              }
+            },
+            error: (err: HttpErrorResponse) => {
+              this.status = err;
+            }
+          });
+        });
       },
       error: (err: HttpErrorResponse) => {
         this.status = err;
       }
     })
-  }
+       
+    }
+
 
   onPageChange(event: PaginatorState): void {
     this.paginatorState.rows = event.rows;
@@ -124,19 +151,18 @@ export class UserCamisetaPlistUnroutedComponent implements OnInit {
     });
   }
 
+  
+
   agregarAlCarrito(camiseta: ICamiseta): void {
    this.sesionAjaxService.getSessionUser()?.subscribe({
     next: (usuario: IUsuario) => {
       if (usuario) {
-        const carrito: ICarrito = {
-          id: 0,
-          usuario: usuario,
-          camiseta: camiseta,
-          cantidad: 1,
-        };
-
-        this.carritoAjaxService.createCarrito(carrito).subscribe({
-          next: () => {
+        this.carrito.usuario = usuario;
+        this.carrito.camiseta = camiseta;
+        this.carrito.cantidad = 1;
+        this.carritoAjaxService.createCarrito(this.carrito).subscribe({
+          next: (data: ICarrito) => {
+            this.carrito = data;
             this.matSnackBar.open('Camiseta añadida al carrito', 'Aceptar', {duration: 3000});
           },
           error: (err: HttpErrorResponse) => {
@@ -155,7 +181,42 @@ export class UserCamisetaPlistUnroutedComponent implements OnInit {
    });
   }
 
+  comprarDirectamente(camiseta: ICamiseta): void {
+    this.sesionAjaxService.getSessionUser()?.subscribe({
+      next: (usuario: IUsuario) => {
+        if (usuario) {
+          this.confirmService.confirm({
+            message: '¿Quieres comprar la camiseta?',
+            accept: () => {
+              this.compraAjaxService.createCompraCamiseta(camiseta.id, usuario.id).subscribe({
+                next: () => {
+                  this.matSnackBar.open('Camiseta comprada', 'Aceptar', {duration: 3000});
+                  this.router.navigate(['/usuario', 'compras', usuario.id]);
+                  
+                },
+                error: (err: HttpErrorResponse) => {
+                  this.status = err;
+                  this.matSnackBar.open('Error al comprar la camiseta', 'Aceptar', {duration: 3000});
+                }
+              });
+              },
+            reject: () => {
+              this.matSnackBar.open('Compra cancelada', 'Aceptar', {duration: 3000});
+            }
+            })
+        } else {
+          this.matSnackBar.open('Debes estar logueado para comprar camisetas', 'Aceptar', {duration: 3000});
+        };
+        },
+      error: (err: HttpErrorResponse) => {
+        this.status = err;
+        this.matSnackBar.open('Error al obtener el usuario', 'Aceptar', {duration: 3000});
+      }
+      });
+    }
+        
   }
+ 
 
 
 

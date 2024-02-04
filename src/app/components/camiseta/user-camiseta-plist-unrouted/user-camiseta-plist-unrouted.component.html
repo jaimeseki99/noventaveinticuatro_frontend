@@ -1,3 +1,56 @@
-<p>
-  user-camiseta-plist-unrouted works!
-</p>
+<div class="container">
+
+  <div class="notification" *ngIf="id_equipo>0">
+    Filtrando por equipo: {{equipo?.nombre}}
+    <button class="delete" *ngIf="id_equipo>0" [routerLink]="['/usuario', 'camiseta', 'plist']">Quitar filtro</button>
+  </div>
+
+  <div class="notification" *ngIf="id_modalidad>0">
+    Filtrando por modalidad: {{modalidad?.nombre}}
+    <button class="delete" *ngIf="id_modalidad>0" [routerLink]="['/usuario', 'camiseta', 'plist']">Quitar filtro</button>
+  </div>
+
+  <div class="notification" *ngIf="id_liga>0">
+    Filtrando por liga: {{liga?.nombre}}
+    <button class="delete" *ngIf="id_liga>0" [routerLink]="['/usuario', 'camiseta', 'plist']">Quitar filtro</button>
+  </div>
+
+  <div class="columns is-multiline">
+    <div class="column is-one-third-desktop is-half-tablet is-full-mobile" *ngFor="let camiseta of page?.content">
+      <div class="card">
+        <div class="card-image">
+          <figure class="image is-4by3">
+            <img src="{{camiseta.imagen}}" alt="Camiseta">
+          </figure>
+        </div>
+        <div class="card-content">
+          <p class="title">{{camiseta.titulo}}</p>
+          <p class="subtitle">Precio: {{camiseta.precio}}</p>
+          <p class="subtitle">Talla: {{camiseta.talla}}</p>
+          <p class="stock-available" *ngIf="camiseta.stock > 0">Camiseta disponible</p>
+          <p class="stock-not-available" *ngIf="camiseta.stock == 0">Camiseta no disponible</p>
+          <p class="discount" *ngIf="camiseta.descuento">Descuento: {{camiseta.porcentajeDescuento}}</p>
+        </div>
+        <div class="card-footer">
+          <a class="card-footer-item" (click)="agregarAlCarrito(camiseta)">
+            <span class="icon">
+              <i class="fas fa-shopping-cart"></i>
+            </span>
+            Añadir al carrito
+          </a>
+          <a class="card-footer-item" (click)="comprarDirectamente(camiseta)">
+            <span class="icon">
+              <i class="fas fa-hand-holding-usd"></i>
+            </span>
+            Comprar ahora</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="level is-justify-content-center mb-3">
+    <p-paginator (onPageChange)="onPageChange($event)" [rows]="paginatorState.rows!" [totalRecords]="page?.totalElements || 0" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
+  </div>
+</div>
+
+<p-confirmPopup></p-confirmPopup>

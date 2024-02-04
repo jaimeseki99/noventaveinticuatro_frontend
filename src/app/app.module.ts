@@ -86,6 +86,10 @@ import { AdminModalidadEditRoutedComponent } from './components/modalidad/admin-
 import { AdminModalidadNewRoutedComponent } from './components/modalidad/admin-modalidad-new-routed/admin-modalidad-new-routed.component';
 import { AdminModalidadViewRoutedComponent } from './components/modalidad/admin-modalidad-view-routed/admin-modalidad-view-routed.component';
 import { AdminUsuarioViewRoutedComponent } from './components/usuario/admin-usuario-view-routed/admin-usuario-view-routed.component';
+import { UserCamisetaPlistUnroutedComponent } from './components/camiseta/user-camiseta-plist-unrouted/user-camiseta-plist-unrouted.component';
+import { UserCarritoPlistUnroutedComponent } from './components/carrito/user-carrito-plist-unrouted/user-carrito-plist-unrouted.component';
+import { UserCarritoPlistRoutedComponent } from './components/carrito/user-carrito-plist-routed/user-carrito-plist-routed.component';
+import { UserCamisetaPlistRoutedComponent } from './components/camiseta/user-camiseta-plist-routed/user-camiseta-plist-routed.component';
 
 @NgModule({
   declarations: [
@@ -104,9 +108,13 @@ import { AdminUsuarioViewRoutedComponent } from './components/usuario/admin-usua
     AdminCamisetaEditRoutedComponent,
     AdminCamisetaNewRoutedComponent,
     AdminCamisetaViewRoutedComponent,
+    UserCamisetaPlistUnroutedComponent,
+    UserCamisetaPlistRoutedComponent,
 
     AdminCarritoDetailUnroutedComponent,
     AdminCarritoPlistUnroutedComponent,
+    UserCarritoPlistUnroutedComponent,
+    UserCarritoPlistRoutedComponent,
 
     AdminCompraDetailUnroutedComponent,
     AdminCompraPlistUnroutedComponent,

@@ -2,7 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { PaginatorState } from 'primeng/paginator';
 import { Subject } from 'rxjs';
-import { IEquipoPage } from 'src/app/model/model.interfaces';
+import { IEquipoPage, ILiga } from 'src/app/model/model.interfaces';
 import { EquipoAjaxService } from 'src/app/service/equipo.ajax.service.service';
 
 @Component({
@@ -13,6 +13,7 @@ import { EquipoAjaxService } from 'src/app/service/equipo.ajax.service.service';
 export class UserEquipoPlistUnroutedComponent implements OnInit {
 
   @Input() forceReload: Subject<boolean> = new Subject<boolean>();
+  @Input() id_liga: number = 0;
   
   page: IEquipoPage | undefined;
   orderField: string = 'id';
@@ -24,12 +25,20 @@ export class UserEquipoPlistUnroutedComponent implements OnInit {
   {}
 
   ngOnInit() {
+    this.getEquipos();
+    this.forceReload.subscribe({
+      next: (v) => {
+        if (v) {
+          this.getEquipos();
+        }
+      }
+    })
   }
 
   getEquipos(): void {
     const rows = this.paginatorState.rows ?? 0;
     const page = this.paginatorState.page ?? 0;
-    this.equipoAjaxService.getEquiposPage(rows, page, this.orderField, this.orderDirection, 0).subscribe({
+    this.equipoAjaxService.getEquiposPage(rows, page, this.orderField, this.orderDirection, this.id_liga).subscribe({
       next: (data: IEquipoPage) => {
         this.page = data;
         this.paginatorState.pageCount = data.totalPages;

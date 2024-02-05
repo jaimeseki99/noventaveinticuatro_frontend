@@ -32,6 +32,7 @@ import { UserCamisetaPlistRoutedComponent } from './components/camiseta/user-cam
 import { UserModalidadPlistRoutedComponent } from './components/modalidad/user-modalidad-plist-routed/user-modalidad-plist-routed.component';
 import { UserLigaPlistRoutedComponent } from './components/liga/user-liga-plist-routed/user-liga-plist-routed.component';
 import { UserEquipoPlistRoutedComponent } from './components/equipo/user-equipo-plist-routed/user-equipo-plist-routed.component';
+import { UserCompraPlistRoutedComponent } from './components/compra/user-compra-plist-routed/user-compra-plist-routed.component';
 
 const routes: Routes = [
   { path: '', component: HomeRoutedComponent},
@@ -63,6 +64,8 @@ const routes: Routes = [
   { path: 'admin/valoracion/edit/:id', component: AdminValoracionEditRoutedComponent},
   { path: 'admin/valoracion/new', component: AdminValoracionNewRoutedComponent},
   { path: 'admin/valoracion/view/:id', component: AdminValoracionViewRoutedComponent},
+
+  { path: 'usuario/compra/plist', component: UserCompraPlistRoutedComponent},
 
 
   { path: 'admin/equipo/plist', component: AdminEquipoPlistRoutedComponent},

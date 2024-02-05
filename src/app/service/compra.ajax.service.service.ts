@@ -19,11 +19,11 @@ export class CompraAjaxService {
         return this.http.get<ICompra>(this.url + '/' + id);
     }
 
-    getCompraByUsuarioId(usuarioId: number, page: number, size: number, direction: string, sort: string): Observable<ICompraPage> {
+    getCompraByUsuarioId(usuarioId: number, size: number, page: number, direction: string, sort: string): Observable<ICompraPage> {
         return this.http.get<ICompraPage>(this.url + '/usuario/' + usuarioId + '?size=' + size + '&page=' + page + '&sort=' + sort + ',' + direction);
     }
 
-    getPageCompras(page: number, size: number, sort: string, direction: string): Observable<ICompraPage> {
+    getPageCompras(size: number, page: number, sort: string, direction: string): Observable<ICompraPage> {
         return this.http.get<ICompraPage>(this.url + '?size=' + size + '&page=' + page + '&sort=' + sort + ',' + direction);
     }
 
@@ -31,19 +31,19 @@ export class CompraAjaxService {
         return this.http.get<ICompra>(this.url + '/random');
     }
 
-    getComprasMasRecientes(page: number, size: number, sort: string, direction: string): Observable<ICompraPage> {
+    getComprasMasRecientes(size: number, page: number, sort: string, direction: string): Observable<ICompraPage> {
         return this.http.get<ICompraPage>(this.url + '/compras-mas-recientes?size=' + size + '&page=' + page + '&sort=' + sort + ',' + direction);
     }
 
-    getComprasMasAntiguas(page: number, size: number, sort: string, direction: string): Observable<ICompraPage> {
+    getComprasMasAntiguas(size: number, page: number, sort: string, direction: string): Observable<ICompraPage> {
         return this.http.get<ICompraPage>(this.url + '/compras-mas-antiguas?size=' + size + '&page=' + page + '&sort=' + sort + ',' + direction);
     }
 
-    getComprasMasCarasByUsuario(usuarioId: number, page: number, size: number, sort: string, direction: string): Observable<ICompraPage> {
+    getComprasMasCarasByUsuario(usuarioId: number, size: number, page: number, sort: string, direction: string): Observable<ICompraPage> {
         return this.http.get<ICompraPage>(this.url + '/compras-mas-caras-usuario/' + usuarioId + '?size=' + size + '&page=' + page + '&sort=' + sort + ',' + direction);
     }
 
-    getComprasMasBaratasByUsuario(usuarioId: number, page: number, size: number, sort: string, direction: string): Observable<ICompraPage> {
+    getComprasMasBaratasByUsuario(usuarioId: number, size: number, page: number, sort: string, direction: string): Observable<ICompraPage> {
         return this.http.get<ICompraPage>(this.url + '/compras-mas-baratas-usuario/' + usuarioId + '?size=' + size + '&page=' + page + '&sort=' + sort + ',' + direction);
     }
 

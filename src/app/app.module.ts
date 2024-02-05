@@ -98,6 +98,10 @@ import { UserLigaPlistUnroutedComponent } from './components/liga/user-liga-plis
 import { UserLigaPlistRoutedComponent } from './components/liga/user-liga-plist-routed/user-liga-plist-routed.component';
 import { UserEquipoPlistUnroutedComponent } from './components/equipo/user-equipo-plist-unrouted/user-equipo-plist-unrouted.component';
 import { UserEquipoPlistRoutedComponent } from './components/equipo/user-equipo-plist-routed/user-equipo-plist-routed.component';
+import { UserUsuarioDetailUnroutedComponent } from './components/usuario/user-usuario-detail-unrouted/user-usuario-detail-unrouted.component';
+import { UserUsuarioViewRoutedComponent } from './components/usuario/user-usuario-view-routed/user-usuario-view-routed.component';
+import { UserCompraPlistUnroutedComponent } from './components/compra/user-compra-plist-unrouted/user-compra-plist-unrouted.component';
+import { UserCompraPlistRoutedComponent } from './components/compra/user-compra-plist-routed/user-compra-plist-routed.component';
 
 @NgModule({
   declarations: [
@@ -128,6 +132,8 @@ import { UserEquipoPlistRoutedComponent } from './components/equipo/user-equipo-
 
     AdminCompraDetailUnroutedComponent,
     AdminCompraPlistUnroutedComponent,
+    UserCompraPlistUnroutedComponent,
+    UserCompraPlistRoutedComponent,
 
     AdminDetalle_compraDetailUnroutedComponent,
     AdminDetalle_compraPlistUnroutedComponent,
@@ -140,6 +146,8 @@ import { UserEquipoPlistRoutedComponent } from './components/equipo/user-equipo-
     AdminUsuarioEditRoutedComponent,
     AdminUsuarioNewRoutedComponent,
     AdminUsuarioViewRoutedComponent,
+    UserUsuarioDetailUnroutedComponent,
+    UserUsuarioViewRoutedComponent,
 
     AdminValoracionDetailUnroutedComponent,
     AdminValoracionPlisUnroutedComponent,

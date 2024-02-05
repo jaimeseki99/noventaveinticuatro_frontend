@@ -7,24 +7,41 @@
 
   <div id="navbar" class="navbar-menu">
     <div class="navbar-start">
-      <a class="navbar-item" *ngIf="username && userSesion?.tipo==true" [routerLink]="['/admin', 'usuario', 'plist']">
+      <ng-container *ngIf="username && userSesion?.tipo==true">
+      <a class="navbar-item" [routerLink]="['/admin', 'usuario', 'plist']">
         Usuarios
       </a>
-      <a class="navbar-item" *ngIf="username && userSesion?.tipo==true" [routerLink]="['/admin', 'camiseta', 'plist']">
+      <a class="navbar-item" [routerLink]="['/admin', 'camiseta', 'plist']">
         Camisetas
       </a>
-      <a class="navbar-item" *ngIf="username && userSesion?.tipo==true" [routerLink]="['/admin', 'valoracion', 'plist']">
+      <a class="navbar-item" [routerLink]="['/admin', 'valoracion', 'plist']">
         Valoraciones
       </a>
-      <a class="navbar-item" *ngIf="username && userSesion?.tipo==true" [routerLink]="['/admin', 'equipo', 'plist']">
+      <a class="navbar-item" [routerLink]="['/admin', 'equipo', 'plist']">
         Equipos
       </a>
-      <a class="navbar-item" *ngIf="username && userSesion?.tipo==true" [routerLink]="['/admin', 'modalidad', 'plist']">
+      <a class="navbar-item" [routerLink]="['/admin', 'modalidad', 'plist']">
         Modalidades
       </a>
-      <a class="navbar-item" *ngIf="username && userSesion?.tipo==true" [routerLink]="['/admin', 'liga', 'plist']">
+      <a class="navbar-item" [routerLink]="['/admin', 'liga', 'plist']">
         Ligas
       </a>
+      </ng-container>
+      <ng-container *ngIf="username && userSesion?.tipo==false">
+        <a class="navbar-item" [routerLink]="['/usuario', 'camiseta', 'plist']">
+          Camisetas
+        </a>
+        <a class="navbar-item" [routerLink]="['/usuario', 'equipo', 'plist']">
+          Equipos
+        </a>
+        <a class="navbar-item" [routerLink]="['/usuario', 'modalidad', 'plist']">
+          Modalidades
+        </a>
+        <a class="navbar-item" [routerLink]="['/usuario', 'liga', 'plist']">
+          Ligas
+        </a>
+
+      </ng-container>
       <!-- Puedes agregar más opciones según tus necesidades -->
     </div>
 
@@ -34,10 +51,10 @@
           <!-- Verificar si el usuario ha iniciado sesión -->
           <ng-container *ngIf="username">
             <!-- Mostrar opciones de usuario -->
-            <a class="navbar-item" href="#">
-              Bienvenido, {{ username }}
+            <a class="navbar-item">
+              ¡Bienvenid@, {{ username }}!
             </a>
-            <a class="navbar-item" href="#">
+            <a class="navbar-item">
               Perfil
             </a>
             <a class="navbar-item" href="#">

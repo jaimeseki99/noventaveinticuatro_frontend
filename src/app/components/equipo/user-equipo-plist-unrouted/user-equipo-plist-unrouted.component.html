@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="columns is-multiline">
+    <div class="column is-4" *ngFor="let equipo of page?.content">
+      <div class="card">
+        <div class="card-image">
+          <figure class="image is-4by3">
+            <a [routerLink]="['/usuario', 'equipo', 'plist', 'byequipo', equipo.id]">
+            <img src="{{equipo.imagen}}" alt="Imagen del equipo">
+            </a>
+          </figure>
+        </div>
+        <div class="card-content">
+          <div class="content">
+            <p class="title is-4">
+              <a [routerLink]="['/usuario', 'equipo', 'plist', 'byequipo', equipo.id]">
+              {{equipo.nombre}}
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="notification is-info" *ngIf="!page?.content || page?.content?.length === 0">
+    No hay equipos para mostrar.
+  </div>
+
+  <div class="level is-justify-content-center mb-3">
+    <p-paginator (onPageChange)="onPageChange($event)" [rows]="paginatorState.rows!" [totalRecords]="page?.totalElements || 0" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
+  </div>
+
+</div>

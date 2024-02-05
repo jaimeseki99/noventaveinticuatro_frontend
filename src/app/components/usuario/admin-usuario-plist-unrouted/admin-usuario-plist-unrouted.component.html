@@ -35,7 +35,7 @@
             <p>Teléfono: {{ usuario.telefono }}</p>
             <p>Tipo de Usuario: {{ usuario.tipo ? 'Administrador' : 'Usuario' }}</p>
             <p>Número de Carritos: {{ usuario.carritos }}</p>
-            <p>Número de Valoraciones: {{ usuario.valoraciones }}</p>
+            <p>Número de Valoraciones: <a [routerLink]="['/admin', 'valoracion', 'plist', 'byusuario', usuario.id]">{{ usuario.valoraciones }}</a></p>
             <p>Número de Compras: {{ usuario.compras }}</p>
           </div>
         </div>

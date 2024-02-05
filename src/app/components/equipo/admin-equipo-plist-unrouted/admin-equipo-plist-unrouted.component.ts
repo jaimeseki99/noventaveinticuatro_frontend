@@ -119,7 +119,6 @@ export class AdminEquipoPlistUnroutedComponent implements OnInit {
     this.ligaAjaxService.getLigaById(this.id_liga).subscribe({
       next: (data: ILiga) => {
         this.liga = data;
-        this.getPage();
       },
       error: (err: HttpErrorResponse) => {
         this.status = err;

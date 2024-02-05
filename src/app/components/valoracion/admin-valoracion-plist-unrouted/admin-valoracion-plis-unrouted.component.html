@@ -36,8 +36,8 @@
         <div class="card-content">
           <div class="content">
             <p>Fecha: {{ valoracion.fecha | date: 'dd-MM-yyyy'}}</p>
-            <p>Usuario: {{ valoracion.usuario.nombre }}</p>
-            <p>Camiseta: {{ valoracion.camiseta.titulo }}</p>
+            <p>Usuario:<a [routerLink]="['/admin', 'valoracion', 'plist', 'byusuario', valoracion.usuario.id]"> {{ valoracion.usuario.nombre }}</a></p>
+            <p>Camiseta:<a [routerLink]="['/admin', 'valoracion', 'plist', 'bycamiseta', valoracion.camiseta.id]"> {{ valoracion.camiseta.titulo }}</a></p>
           </div>
         </div>
         <footer class="card-footer">

@@ -81,7 +81,7 @@ export class ValoracionAjaxService {
     }
 
     deleteAllValoraciones(): Observable<number> {
-        return this.http.delete<number>(this.url);
+        return this.http.delete<number>(this.url + '/empty');
     }
 
 

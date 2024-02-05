@@ -56,7 +56,7 @@
             <p><strong>Precio:</strong> {{camiseta.precio}} €</p>
             <p><strong>Stock:</strong> {{camiseta.stock}}</p>
             <p><strong>En carritos: {{camiseta.carritos}}</strong></p>
-            <p><strong>Valoraciones: {{camiseta.valoraciones}}</strong></p>
+            <p><strong>Valoraciones: <a [routerLink]="['/admin', 'valoracion', 'plist', 'bycamiseta', camiseta.id]">{{camiseta.valoraciones}}</a></strong></p>
             <p><strong>Compras: {{camiseta.detalleCompras}}</strong></p>
           </div>
           <footer class="card-footer">

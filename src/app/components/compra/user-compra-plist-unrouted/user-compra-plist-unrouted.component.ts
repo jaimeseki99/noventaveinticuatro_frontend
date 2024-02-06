@@ -17,7 +17,7 @@ import { SesionAjaxService } from 'src/app/service/sesion.ajax.service.service';
 export class UserCompraPlistUnroutedComponent implements OnInit {
 
   @Input() forceReload: Subject<boolean> = new Subject<boolean>();
-  @Input() id_usuario: number = 0;
+ 
 
   page: ICompraPage | undefined;
   usuario: IUsuario | null = null;
@@ -34,7 +34,6 @@ export class UserCompraPlistUnroutedComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getUserSesion();
     this.getCompras();
     this.forceReload.subscribe({
       next: (v) => {
@@ -45,38 +44,24 @@ export class UserCompraPlistUnroutedComponent implements OnInit {
     })
   }
 
-  getUserSesion(): void {
+  getCompras(): void {
     this.sesionAjaxService.getSessionUser()?.subscribe({
-      next: (data: IUsuario) => {
-        this.usuario = data;
-      },
-      error: (err: HttpErrorResponse) => {
-        this.status = err;
-        this.matSnackBar.open('No se ha podido obtener la sesión del usuario', 'Aceptar', {
-          duration: 3000,
+      next: (usuario: IUsuario) => {
+        this.usuario = usuario;
+        const rows: number = this.paginatorState.rows ?? 0;
+        const page: number = this.paginatorState.page ?? 0;
+        this.compraAjaxService.getPageCompras(rows, page, this.orderField, this.orderDirection, this.usuario?.id).subscribe({
+          next: (page: ICompraPage) => {
+            this.page = page;
+            this.paginatorState.pageCount = this.page.totalPages;
+          },
+          error: (error: HttpErrorResponse) => {
+            this.status = error;
+            this.matSnackBar.open('Error al obtener las compras', 'OK', { duration: 3000 });
+          }
         });
       }
-    });
-  }
-
-  getCompras(): void {
-    if (this.usuario) {
-      this.id_usuario = this.usuario.id;
-      const rows = this.paginatorState.rows ?? 0;
-      const page = this.paginatorState.page ?? 0;
-      this.compraAjaxService.getPageCompras(rows, page, this.orderField, this.orderDirection, this.id_usuario).subscribe({
-        next: (data: ICompraPage) => {
-          this.page = data;
-          this.paginatorState.pageCount = data.totalPages;
-        },
-        error: (err: HttpErrorResponse) => {
-          this.status = err;
-          this.matSnackBar.open('No se ha podido obtener la lista de compras', 'Aceptar', {
-            duration: 3000,
-          });
-        }
-      });
-      }
+    })
     }
   
   onPageChange(event: PaginatorState) {

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SesionAjaxService } from 'src/app/service/sesion.ajax.service.service';
 
 @Component({
   selector: 'app-home-routed',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeRoutedComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private sesionAjaxService: SesionAjaxService
+  ) { }
 
   ngOnInit() {
+    this.isLogged();
+  }
+
+  isLogged(): boolean {
+    return this.sesionAjaxService.isSessionActive();
   }
 
 }

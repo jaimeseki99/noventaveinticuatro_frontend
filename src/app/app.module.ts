@@ -102,6 +102,9 @@ import { UserUsuarioDetailUnroutedComponent } from './components/usuario/user-us
 import { UserUsuarioViewRoutedComponent } from './components/usuario/user-usuario-view-routed/user-usuario-view-routed.component';
 import { UserCompraPlistUnroutedComponent } from './components/compra/user-compra-plist-unrouted/user-compra-plist-unrouted.component';
 import { UserCompraPlistRoutedComponent } from './components/compra/user-compra-plist-routed/user-compra-plist-routed.component';
+import { UserCompraDetailUnroutedComponent } from './components/compra/user-compra-detail-unrouted/user-compra-detail-unrouted.component';
+import { UserDetalle_compraPlistUnroutedComponent } from './components/detalle_compra/user-detalle_compra-plist-unrouted/user-detalle_compra-plist-unrouted.component';
+import { UserCompraViewRoutedComponent } from './components/compra/user-compra-view-routed/user-compra-view-routed.component';
 
 @NgModule({
   declarations: [
@@ -134,9 +137,12 @@ import { UserCompraPlistRoutedComponent } from './components/compra/user-compra-
     AdminCompraPlistUnroutedComponent,
     UserCompraPlistUnroutedComponent,
     UserCompraPlistRoutedComponent,
+    UserCompraDetailUnroutedComponent,
+    UserCompraViewRoutedComponent,
 
     AdminDetalle_compraDetailUnroutedComponent,
     AdminDetalle_compraPlistUnroutedComponent,
+    UserDetalle_compraPlistUnroutedComponent,
 
     AdminUsuarioDetailUnroutedComponent,
     AdminUsuarioFormUnroutedComponent,

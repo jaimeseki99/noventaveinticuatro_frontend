@@ -25,8 +25,8 @@ export class AdminValoracionPlistRoutedComponent implements OnInit {
     private confirmationService: ConfirmationService,
     private matSnackBar: MatSnackBar
   ) {
-    this.id_usuario = parseInt(this.activatedRoute.snapshot.paramMap.get('id_usuario') ?? "0");
-    this.id_camiseta = parseInt(this.activatedRoute.snapshot.paramMap.get('id_camiseta') ?? "0");
+    this.id_usuario = parseInt(this.activatedRoute.snapshot.paramMap.get('idusuario') ?? "0");
+    this.id_camiseta = parseInt(this.activatedRoute.snapshot.paramMap.get('idcamiseta') ?? "0");
    }
 
   ngOnInit() {

@@ -10,10 +10,13 @@ import { Subject } from 'rxjs';
 export class UserCompraPlistRoutedComponent implements OnInit {
 
   forceReload: Subject<boolean> = new Subject<boolean>();
+  id_usuario: number;
 
   constructor(
     private activatedRoute: ActivatedRoute
-  ) { }
+  ) { 
+    this.id_usuario = parseInt(this.activatedRoute.snapshot.paramMap.get("idusuario") || "0");
+  }
 
   ngOnInit() {
   }

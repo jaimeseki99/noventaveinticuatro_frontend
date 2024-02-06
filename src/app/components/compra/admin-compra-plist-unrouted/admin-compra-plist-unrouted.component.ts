@@ -53,7 +53,7 @@ export class AdminCompraPlistUnroutedComponent implements OnInit {
   getPage(): void {
     const rows = this.paginatorState.rows ?? 0;
     const page = this.paginatorState.page ?? 0;
-    this.compraAjaxService.getPageCompras(rows, page, this.orderField, this.orderDirection).subscribe({
+    this.compraAjaxService.getPageCompras(rows, page, this.orderField, this.orderDirection, this.id_usuario).subscribe({
       next: (data: ICompraPage) => {
         this.page = data;
         this.paginatorState.pageCount = data.totalPages;

@@ -15,6 +15,7 @@ export class AdminEquipoPlistRoutedComponent implements OnInit {
 
   forceReload: Subject<boolean> = new Subject<boolean>();
   bLoading: boolean = false;
+  id_liga: number;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -22,7 +23,8 @@ export class AdminEquipoPlistRoutedComponent implements OnInit {
     private confirmationService: ConfirmationService,
     private matSnackBar: MatSnackBar
   ) {
-   }
+    this.id_liga = parseInt(this.activatedRoute.snapshot.paramMap.get('idliga') ?? "0");
+  }
 
   ngOnInit() {
   }

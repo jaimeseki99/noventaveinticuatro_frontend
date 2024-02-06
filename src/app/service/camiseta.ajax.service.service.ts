@@ -57,7 +57,7 @@ export class CamisetaAjaxService {
     }
 
     searchCamisetas(searchText: string, size: number, page: number, sort: string, direction: string): Observable<ICamisetaPage> {
-        return this.http.get<ICamisetaPage>(this.url + '/search' + '?searchText='+ searchText + '&size=' + size + '&pagee=' + page + '&sort=' + sort + ',' + direction);
+        return this.http.get<ICamisetaPage>(this.url + '/search' + '?searchText='+ searchText + '&size=' + size + '&page=' + page + '&sort=' + sort + ',' + direction);
     }
 
     getCamisetasDescuento(page: number, size: number, sort: string, direction: string): Observable<ICamisetaPage> {

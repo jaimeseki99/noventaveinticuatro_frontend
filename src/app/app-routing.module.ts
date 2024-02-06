@@ -33,6 +33,7 @@ import { UserModalidadPlistRoutedComponent } from './components/modalidad/user-m
 import { UserLigaPlistRoutedComponent } from './components/liga/user-liga-plist-routed/user-liga-plist-routed.component';
 import { UserEquipoPlistRoutedComponent } from './components/equipo/user-equipo-plist-routed/user-equipo-plist-routed.component';
 import { UserCompraPlistRoutedComponent } from './components/compra/user-compra-plist-routed/user-compra-plist-routed.component';
+import { UserCompraViewRoutedComponent } from './components/compra/user-compra-view-routed/user-compra-view-routed.component';
 
 const routes: Routes = [
   { path: '', component: HomeRoutedComponent},
@@ -65,8 +66,9 @@ const routes: Routes = [
   { path: 'admin/valoracion/new', component: AdminValoracionNewRoutedComponent},
   { path: 'admin/valoracion/view/:id', component: AdminValoracionViewRoutedComponent},
 
-  { path: 'usuario/compra/plist', component: UserCompraPlistRoutedComponent},
-
+  { path: 'usuario/compra/plist/:idusuario', component: UserCompraPlistRoutedComponent},
+  { path: 'usuario/compra/view/:id', component: UserCompraViewRoutedComponent},
+  
 
   { path: 'admin/equipo/plist', component: AdminEquipoPlistRoutedComponent},
   { path: 'admin/equipo/plist/byliga/:idliga', component: AdminEquipoPlistRoutedComponent},

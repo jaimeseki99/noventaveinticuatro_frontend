@@ -9,7 +9,7 @@ import { IDetalleCompra, IDetalleCompraPage } from "../model/model.interfaces";
 })
 export class DetalleCompraAjaxService {
 
-    private url = API_URL + '/detalleCompra';
+    private url = API_URL + '/detallecompra';
 
     constructor(private http: HttpClient) {
 
@@ -19,8 +19,12 @@ export class DetalleCompraAjaxService {
         return this.http.get<IDetalleCompra>(this.url + '/' + id);
     }
 
-    getDetalleCompraPage(page: number, size: number, sort: string, direction: string, compraId: number, camisetaId: number): Observable<IDetalleCompraPage> {
-        return this.http.get<IDetalleCompraPage>(this.url + '?size=' + size + '&page=' + page + '&sort=' + sort + ',' + direction + '&compraId=' + compraId + '&camisetaId=' + camisetaId);
+    getDetalleCompraPage(size: number, page: number, sort: string, direction: string, camisetaId: number, compraId: number): Observable<IDetalleCompraPage> {
+        return this.http.get<IDetalleCompraPage>(this.url + '?size=' + size + '&page=' + page + '&sort=' + sort + ',' + direction + '&camisetaId=' + camisetaId + '&compraId=' + compraId);
+    }
+
+    getDetalleCompraPageByCompraId(id_compra: number, size: number, page: number, sort: string, direction: string): Observable<IDetalleCompraPage> {
+        return this.http.get<IDetalleCompraPage>(this.url + '/byCompra/' + id_compra + '?size=' + size + '&page=' + page + '&sort=' + sort + ',' + direction);
     }
 
     updateDetalleCompra(detalleCompra: IDetalleCompra): Observable<IDetalleCompra> {

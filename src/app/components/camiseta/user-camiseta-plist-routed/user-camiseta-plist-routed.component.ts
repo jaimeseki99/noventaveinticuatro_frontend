@@ -17,9 +17,9 @@ export class UserCamisetaPlistRoutedComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute
   ) {
-    this.id_equipo = parseInt(this.activatedRoute.snapshot.paramMap.get('id_equipo') || '0');
-    this.id_modalidad = parseInt(this.activatedRoute.snapshot.paramMap.get('id_modalidad') || '0');
-    this.id_liga = parseInt(this.activatedRoute.snapshot.paramMap.get('id_liga') || '0');
+    this.id_equipo = parseInt(this.activatedRoute.snapshot.paramMap.get('idequipo') || '0');
+    this.id_modalidad = parseInt(this.activatedRoute.snapshot.paramMap.get('idmodalidad') || '0');
+    this.id_liga = parseInt(this.activatedRoute.snapshot.paramMap.get('idliga') || '0');
    }
 
   ngOnInit() {

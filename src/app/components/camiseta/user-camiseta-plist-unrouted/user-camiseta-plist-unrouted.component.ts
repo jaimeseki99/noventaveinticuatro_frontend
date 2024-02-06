@@ -192,7 +192,7 @@ export class UserCamisetaPlistUnroutedComponent implements OnInit {
               this.compraAjaxService.createCompraCamiseta(camiseta.id, usuario.id, cantidad).subscribe({
                 next: () => {
                   this.matSnackBar.open('Camiseta comprada', 'Aceptar', {duration: 3000});
-                  this.router.navigate(['/usuario', 'compras', usuario.id]);
+                  this.router.navigate(['/usuario', 'compra', 'plist', usuario.id]);
                   
                 },
                 error: (err: HttpErrorResponse) => {

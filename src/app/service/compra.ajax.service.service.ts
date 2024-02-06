@@ -23,8 +23,12 @@ export class CompraAjaxService {
         return this.http.get<ICompraPage>(this.url + '/usuario/' + usuarioId + '?size=' + size + '&page=' + page + '&sort=' + sort + ',' + direction);
     }
 
-    getPageCompras(size: number, page: number, sort: string, direction: string): Observable<ICompraPage> {
-        return this.http.get<ICompraPage>(this.url + '?size=' + size + '&page=' + page + '&sort=' + sort + ',' + direction);
+    getPageCompras(size: number, page: number, sort: string, direction: string, id_usuario: number): Observable<ICompraPage> {
+        let usuario = '';
+        if (id_usuario > 0) {
+            usuario = '&usuario=' + id_usuario;
+        }
+        return this.http.get<ICompraPage>(this.url + '?size=' + size + '&page=' + page + '&sort=' + sort + ',' + direction + usuario);
     }
 
     getCompraRandom(): Observable<ICompra> {

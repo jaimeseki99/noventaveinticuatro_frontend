@@ -2,6 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit, Input} from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { throws } from 'assert';
 import { PaginatorState } from 'primeng/paginator';
 import { Subject } from 'rxjs';
 import { ICompraPage, IUsuario } from 'src/app/model/model.interfaces';
@@ -16,6 +17,7 @@ import { SesionAjaxService } from 'src/app/service/sesion.ajax.service.service';
 export class UserCompraPlistUnroutedComponent implements OnInit {
 
   @Input() forceReload: Subject<boolean> = new Subject<boolean>();
+  @Input() id_usuario: number = 0;
 
   page: ICompraPage | undefined;
   usuario: IUsuario | null = null;
@@ -32,6 +34,7 @@ export class UserCompraPlistUnroutedComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.getUserSesion();
     this.getCompras();
     this.forceReload.subscribe({
       next: (v) => {
@@ -57,26 +60,25 @@ export class UserCompraPlistUnroutedComponent implements OnInit {
   }
 
   getCompras(): void {
-    this.getUserSesion();
     if (this.usuario) {
+      this.id_usuario = this.usuario.id;
       const rows = this.paginatorState.rows ?? 0;
       const page = this.paginatorState.page ?? 0;
-      this.compraAjaxService.getCompraByUsuarioId(this.usuario.id, rows, page, this.orderField, this.orderDirection).subscribe({
+      this.compraAjaxService.getPageCompras(rows, page, this.orderField, this.orderDirection, this.id_usuario).subscribe({
         next: (data: ICompraPage) => {
-          console.log(data);
           this.page = data;
           this.paginatorState.pageCount = data.totalPages;
         },
         error: (err: HttpErrorResponse) => {
           this.status = err;
-          this.matSnackBar.open('No se han podido obtener las compras del usuario', 'Aceptar', {
+          this.matSnackBar.open('No se ha podido obtener la lista de compras', 'Aceptar', {
             duration: 3000,
           });
         }
-      })
+      });
+      }
     }
-  }
-
+  
   onPageChange(event: PaginatorState) {
     this.paginatorState.rows = event.rows;
     this.paginatorState.page = event.page;

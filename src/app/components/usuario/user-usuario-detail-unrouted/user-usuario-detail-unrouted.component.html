@@ -1,3 +1,23 @@
-<p>
-  user-usuario-detail-unrouted works!
-</p>
+<div class="container">
+  <div class="columns is-centered">
+    <div class="column is-half">
+      <div class="card">
+        <div class="card-content">
+          <div class="content">
+            <h5 class="title is-5">Detalle de Usuario</h5>
+            <p>Nombre: {{ usuario.nombre }}</p>
+            <p>Apellido: {{ usuario.apellido }}</p>
+            <p>Username: {{ usuario.username }}</p>
+            <p>Email: {{ usuario.email }}</p>
+            <p>Dirección: {{ usuario.direccion }}</p>
+            <p>Teléfono: {{ usuario.telefono }}</p>
+            <p>Tipo: {{ usuario.tipo ? 'Administrador' : 'Usuario Normal' }}</p>
+            <p>Carritos: {{ usuario.carritos }}</p>
+            <p>Valoraciones: {{ usuario.valoraciones }}</p>
+            <p>Compras: {{ usuario.compras }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

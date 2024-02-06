@@ -57,7 +57,7 @@
             <a class="navbar-item">
               ¡Bienvenid@, {{ username }}!
             </a>
-            <a class="navbar-item">
+            <a class="navbar-item" [routerLink]="['/usuario', 'usuario', 'view', userSesion?.id]">
               Perfil
             </a>
             <a class="navbar-item" href="#">

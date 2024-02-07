@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="columns is-multiline">
+    <div class="column is-one-third" *ngFor="let valoracion of page?.content">
+      <div class="card">
+        <div class="card-header">
+          <p class="card-header-title">{{valoracion.usuario.username}}</p>
+          <p class="card-header-icon">{{valoracion.fecha}}</p>
+        </div>
+        <div class="card-content">
+          <div class="content">
+            {{valoracion.comentario}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

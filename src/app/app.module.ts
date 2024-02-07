@@ -105,6 +105,8 @@ import { UserCompraPlistRoutedComponent } from './components/compra/user-compra-
 import { UserCompraDetailUnroutedComponent } from './components/compra/user-compra-detail-unrouted/user-compra-detail-unrouted.component';
 import { UserDetalle_compraPlistUnroutedComponent } from './components/detalle_compra/user-detalle_compra-plist-unrouted/user-detalle_compra-plist-unrouted.component';
 import { UserCompraViewRoutedComponent } from './components/compra/user-compra-view-routed/user-compra-view-routed.component';
+import { UserValoracionPlistUnroutedComponent } from './components/valoracion/user-valoracion-plist-unrouted/user-valoracion-plist-unrouted.component';
+import { UserValoracionFormUnroutedComponent } from './components/valoracion/user-valoracion-form-unrouted/user-valoracion-form-unrouted.component';
 
 @NgModule({
   declarations: [
@@ -162,6 +164,8 @@ import { UserCompraViewRoutedComponent } from './components/compra/user-compra-v
     AdminValoracionNewRoutedComponent,
     AdminValoracionEditRoutedComponent,
     AdminValoracionViewRoutedComponent,
+    UserValoracionPlistUnroutedComponent,
+    UserValoracionFormUnroutedComponent,
 
     AdminEquipoDetailUnroutedComponent,
     AdminEquipoPlistUnroutedComponent,

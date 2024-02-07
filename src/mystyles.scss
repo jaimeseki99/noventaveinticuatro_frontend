@@ -1,0 +1,64 @@
+// Set your brand colors
+$purple: #8A4D76;
+$pink: #FA7C91;
+$brown: #757763;
+$beige-light: #D0D1CD;
+$beige-lighter: #EFF0EB;
+
+$governor-bay-50: #eff2fe;
+$beige-light: #e3e7fc;
+$governor-bay-200: #ccd2f9;
+$governor-bay-300: #acb5f5;
+$governor-bay-400: #8b8eee;
+$governor-bay-500: #736fe5;
+$governor-bay-600: #6354d7;
+$governor-bay-700: #5141b9;
+$governor-bay-800: #463a99;
+$governor-bay-900: #3c357a;
+$governor-bay-950: #241f47;
+
+$tradewind-50: #f2fbfa;
+$tradewind-100: #d4f3ee;
+$tradewind-200: #a9e6de;
+$tradewind-300: #75d3ca;
+$tradewind-400: #46b4ad;
+$tradewind-500: #2f9d98;
+$tradewind-600: #247d7b;
+$tradewind-700: #206563;
+$tradewind-800: #1e5151;
+$tradewind-900: #1d4443;
+$tradewind-950: #0b2728;
+
+
+// Update Bulma's global variables
+$family-sans-serif: "Roboto", sans-serif;
+$grey-dark: black;
+$grey-light: $beige-light;
+$primary: $tradewind-400;
+$link: $governor-bay-400;
+$widescreen-enabled: false;
+$fullhd-enabled: false;
+
+// Update some of Bulma's component variables
+$body-background-color: $beige-lighter;
+$control-border-width: 2px;
+$input-border-color: transparent;
+$input-shadow: none;
+
+// Import only what you need from Bulma
+@import "../node_modules/bulma/sass/utilities/_all.sass";
+@import "../node_modules/bulma/sass/base/_all.sass";
+@import "../node_modules/bulma/sass/elements/_all.sass";
+@import "../node_modules/bulma/sass/components/_all.sass";
+@import "../node_modules/bulma/sass/layout/_all.sass";
+@import "../node_modules/bulma/sass/form/_all.sass";
+@import "../node_modules/bulma/sass/grid/_all.sass";
+@import "../node_modules/bulma/sass/helpers/_all.sass";
+
+@import '../node_modules/tailwindcss/base';
+@import '../node_modules/tailwindcss/components';
+@import '../node_modules/tailwindcss/utilities';
+
+/* importar primeng y primeicons */
+@import '~primeicons/primeicons.css';
+@import '~primeng/resources/themes/saga-blue/theme.css';

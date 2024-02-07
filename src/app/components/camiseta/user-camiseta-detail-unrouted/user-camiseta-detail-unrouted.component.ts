@@ -71,7 +71,7 @@ export class UserCamisetaDetailUnroutedComponent implements OnInit {
   }
 
   agregarAlCarrito(): void {
-    if (this.usuario) {
+    if (this.usuario && this.camiseta) {
       this.carrito.usuario = this.usuario;
       this.carrito.camiseta = this.camiseta;
       this.carrito.cantidad = this.cantidadSeleccionada;

@@ -25,10 +25,11 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css",
+              "src/mystyles.css",
               "node_modules/@fortawesome/fontawesome-free/css/all.min.css"
             ],
-            "scripts": []
+            "scripts": [
+            ]
           },
           "configurations": {
             "production": {
@@ -88,7 +89,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/mystyles.css"
             ],
             "scripts": []
           }

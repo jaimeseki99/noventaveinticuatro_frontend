@@ -1,3 +1,4 @@
+import { UserValoracionNewRoutedComponent } from './components/valoracion/user-valoracion-new-routed/user-valoracion-new-routed.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -107,6 +108,7 @@ import { UserDetalle_compraPlistUnroutedComponent } from './components/detalle_c
 import { UserCompraViewRoutedComponent } from './components/compra/user-compra-view-routed/user-compra-view-routed.component';
 import { UserValoracionPlistUnroutedComponent } from './components/valoracion/user-valoracion-plist-unrouted/user-valoracion-plist-unrouted.component';
 import { UserValoracionFormUnroutedComponent } from './components/valoracion/user-valoracion-form-unrouted/user-valoracion-form-unrouted.component';
+import { UserValoracionEditRoutedComponent } from './components/valoracion/user-valoracion-edit-routed/user-valoracion-edit-routed.component';
 
 @NgModule({
   declarations: [
@@ -166,6 +168,8 @@ import { UserValoracionFormUnroutedComponent } from './components/valoracion/use
     AdminValoracionViewRoutedComponent,
     UserValoracionPlistUnroutedComponent,
     UserValoracionFormUnroutedComponent,
+    UserValoracionNewRoutedComponent,
+    UserValoracionEditRoutedComponent,
 
     AdminEquipoDetailUnroutedComponent,
     AdminEquipoPlistUnroutedComponent,

@@ -3,7 +3,7 @@
   <div class="filters">
     <div class="notification" *ngIf="id_liga>0">
       Filtrando por liga: {{ liga?.nombre}}
-      <button class="delete" *ngIf="id_liga>0" routerLink="['/admin', 'equipo', 'plist']">Quitar filtro</button>
+      <button class="delete" *ngIf="id_liga>0" [routerLink]="['/admin', 'equipo', 'plist']">Quitar filtro</button>
     </div>
   </div>
   

@@ -35,6 +35,8 @@ import { UserEquipoPlistRoutedComponent } from './components/equipo/user-equipo-
 import { UserCompraPlistRoutedComponent } from './components/compra/user-compra-plist-routed/user-compra-plist-routed.component';
 import { UserCompraViewRoutedComponent } from './components/compra/user-compra-view-routed/user-compra-view-routed.component';
 import { UserUsuarioViewRoutedComponent } from './components/usuario/user-usuario-view-routed/user-usuario-view-routed.component';
+import { UserValoracionNewRoutedComponent } from './components/valoracion/user-valoracion-new-routed/user-valoracion-new-routed.component';
+import { UserValoracionEditRoutedComponent } from './components/valoracion/user-valoracion-edit-routed/user-valoracion-edit-routed.component';
 
 const routes: Routes = [
   { path: '', component: HomeRoutedComponent},
@@ -66,6 +68,8 @@ const routes: Routes = [
   { path: 'admin/valoracion/edit/:id', component: AdminValoracionEditRoutedComponent},
   { path: 'admin/valoracion/new', component: AdminValoracionNewRoutedComponent},
   { path: 'admin/valoracion/view/:id', component: AdminValoracionViewRoutedComponent},
+  { path: 'usuario/valoracion/new:idcamiseta', component: UserValoracionNewRoutedComponent},
+  { path: 'usuario/valoracion/edit/:id', component: UserValoracionEditRoutedComponent},
 
   { path: 'usuario/compra/plist/:idusuario', component: UserCompraPlistRoutedComponent},
   { path: 'usuario/compra/view/:id', component: UserCompraViewRoutedComponent},

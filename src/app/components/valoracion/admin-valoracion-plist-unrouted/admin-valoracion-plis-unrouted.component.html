@@ -2,11 +2,11 @@
 
   <div class="notification" *ngIf="id_usuario>0">
     Filtrando por usuario: {{ usuario?.nombre}}
-    <button class="delete" *ngIf="id_usuario>0" routerLink="['/admin', 'valoracion', 'plist']">Quitar filtro</button>
+    <button class="delete" *ngIf="id_usuario>0" [routerLink]="['/admin', 'valoracion', 'plist']">Quitar filtro</button>
   </div>
   <div class="notification" *ngIf="id_camiseta>0">
     Filtrando por modalidad: {{ camiseta?.titulo}}
-    <button class="delete" *ngIf="id_camiseta>0" routerLink="['/admin', 'valoracion, 'plist']">Quitar filtro</button>
+    <button class="delete" *ngIf="id_camiseta>0" [routerLink]="['/admin', 'valoracion', 'plist']">Quitar filtro</button>
   </div>
 
   <!-- Menú desplegable para ordenar -->

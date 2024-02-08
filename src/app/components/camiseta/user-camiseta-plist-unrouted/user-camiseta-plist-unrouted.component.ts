@@ -151,35 +151,54 @@ export class UserCamisetaPlistUnroutedComponent implements OnInit {
     });
   }
 
+  agregarAlCarrito(camiseta: ICamiseta): void {
+    if (this.sesionAjaxService.isSessionActive()) {
+          this.sesionAjaxService.getSessionUser()?.subscribe({
+            next: (usuario: IUsuario) => {
+              if (usuario) {
+                this.carrito.usuario = {id: usuario.id} as IUsuario;
+                this.carrito.camiseta = {id: camiseta.id} as ICamiseta;
+                this.carrito.cantidad = 1;
+                this.carritoAjaxService.createCarrito(this.carrito).subscribe({
+                  next: (data: ICarrito) => {
+                    this.carrito = data;
+                    this.matSnackBar.open('Camiseta añadida al carrito', 'Aceptar', {duration: 3000});
+                  },
+                  error: (err: HttpErrorResponse) => {
+                    this.status = err;
+                    this.matSnackBar.open('Error al añadir la camiseta al carrito', 'Aceptar', {duration: 3000});
+                  }
+                });
+              } else {
+                this.matSnackBar.open('Debes estar logueado para añadir camisetas al carrito', 'Aceptar', {duration: 3000});
+              }
+            },
+            error: (err: HttpErrorResponse) => {
+              this.status = err;
+              this.matSnackBar.open('Error al obtener el usuario', 'Aceptar', {duration: 3000});
+            }
+          })
+      }
+    }
   
 
-  agregarAlCarrito(camiseta: ICamiseta): void {
-   this.sesionAjaxService.getSessionUser()?.subscribe({
-    next: (usuario: IUsuario) => {
-      if (usuario) {
-        this.carrito.usuario = usuario;
-        this.carrito.camiseta = camiseta;
-        this.carrito.cantidad = 1;
-        this.carritoAjaxService.createCarrito(this.carrito).subscribe({
-          next: (data: ICarrito) => {
-            this.carrito = data;
-            this.matSnackBar.open('Camiseta añadida al carrito', 'Aceptar', {duration: 3000});
-          },
-          error: (err: HttpErrorResponse) => {
-            this.status = err;
-            this.matSnackBar.open('Error al añadir la camiseta al carrito', 'Aceptar', {duration: 3000});
-          }
-        });
-      } else {
-        this.matSnackBar.open('Debes estar logueado para añadir camisetas al carrito', 'Aceptar', {duration: 3000});
-      }
-    },
-    error: (err: HttpErrorResponse) => {
-      this.status = err;
-      this.matSnackBar.open('Error al obtener el usuario', 'Aceptar', {duration: 3000});
-    }
-   });
-  }
+  // agregarAlCarrito(camiseta: ICamiseta): void {
+  //   if (this.sesionAjaxService.isSessionActive()) {
+
+  //       this.carrito.camiseta = {id: camiseta.id} as ICamiseta;
+  //       this.carrito.cantidad = 1;
+  //       this.carritoAjaxService.createCarrito(this.carrito).subscribe({
+  //         next: (data: ICarrito) => {
+  //           this.carrito = data;
+  //           this.matSnackBar.open('Camiseta añadida al carrito', 'Aceptar', {duration: 3000});
+  //         },
+  //         error: (err: HttpErrorResponse) => {
+  //           this.status = err;
+  //           this.matSnackBar.open('Error al añadir la camiseta al carrito', 'Aceptar', {duration: 3000});
+  //         }
+  //       });
+  //   }
+  // }
 
   comprarDirectamente(camiseta: ICamiseta): void {
     this.sesionAjaxService.getSessionUser()?.subscribe({

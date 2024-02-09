@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 import { API_URL } from "src/environment/environment";
 import { UsuarioAjaxService } from "./usuario.ajax.service.service";
 import { IPrelogin, IToken, IUsuario, SessionEvent } from "../model/model.interfaces";
-import { Observable, Subject } from "rxjs";
+import { Observable, Subject, of } from "rxjs";
 
 @Injectable()
 
@@ -94,4 +94,11 @@ export class SesionAjaxService {
         }
     }
 
+    getSessionUserId(): Observable<number | null> {
+       if (this.isSessionActive() && this.getUsername()) {
+           return this.usuarioAjaxService.getUsuarioIdByUsername(this.getUsername());
+       } else {
+           return of(null);
+       }
+    }
 }

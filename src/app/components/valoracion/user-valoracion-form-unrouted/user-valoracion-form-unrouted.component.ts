@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
-import { IValoracion, formOperation } from 'src/app/model/model.interfaces';
+import { ICamiseta, IValoracion, formOperation, IUsuario } from 'src/app/model/model.interfaces';
 import { SesionAjaxService } from 'src/app/service/sesion.ajax.service.service';
 import { ValoracionAjaxService } from 'src/app/service/valoracion.ajax.service.service';
 
@@ -16,11 +16,12 @@ import { ValoracionAjaxService } from 'src/app/service/valoracion.ajax.service.s
 export class UserValoracionFormUnroutedComponent implements OnInit {
 
   @Input() id: number = 1;
-  @Input() id_camiseta: number = 0;
+  @Input() id_camiseta: number = 1 ;
   @Input() operation: formOperation = 'NEW';
 
   valoracionForm!: FormGroup;
   valoracion: IValoracion = { fecha: new Date(Date.now()), usuario: {}, camiseta: {}} as IValoracion;
+  usuario: IUsuario | null = null;
   status: HttpErrorResponse | null = null;
   dynamicDialogRef: DynamicDialogRef | undefined;
 
@@ -51,11 +52,11 @@ export class UserValoracionFormUnroutedComponent implements OnInit {
 
   initializeForm(valoracion: IValoracion) {
     this.valoracionForm = this.formBuilder.group({
-      id: [valoracion.id],
-      fecha: [new Date(valoracion.fecha)],
-      comentario: [valoracion.comentario, [Validators.required, Validators.minLength(5), Validators.maxLength(255)]],
-      usuario: [this.sesionAjaxService.getUsername()],
-      camiseta: [this.id_camiseta]
+      id: [this.valoracion.id],
+      fecha: [new Date(this.valoracion.fecha)],
+      comentario: [this.valoracion.comentario, [Validators.required, Validators.minLength(5), Validators.maxLength(255)]],
+      usuario: [ this.sesionAjaxService.getSessionUserId() ],
+      camiseta: [{id: this.id_camiseta} as ICamiseta]
     });
   }
 
@@ -64,6 +65,7 @@ export class UserValoracionFormUnroutedComponent implements OnInit {
       if (this.operation == 'NEW') {
         this.valoracionAjaxService.createValoracion(this.valoracionForm.value).subscribe({
           next: (data: IValoracion) => {
+            this.valoracion = data;
             this.matSnackBar.open('Valoración creada', 'Aceptar', { duration: 3000 });
             this.router.navigate(['/usuario', 'camiseta', 'view', this.id_camiseta]);
           },
@@ -75,6 +77,7 @@ export class UserValoracionFormUnroutedComponent implements OnInit {
       } else {
         this.valoracionAjaxService.updateValoracion(this.valoracionForm.value).subscribe({
           next: (data: IValoracion) => {
+            this.valoracion = data;
             this.matSnackBar.open('Valoración actualizada', 'Aceptar', { duration: 3000 });
             this.router.navigate(['/usuario', 'camiseta', 'view', this.id_camiseta]);
           },

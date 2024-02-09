@@ -18,8 +18,8 @@ export class CarritoAjaxService {
         return this.http.get<ICarrito>(this.url + '/' + id);
     }
 
-    getCarritoByUsuarioId(usuarioId: number): Observable<ICarrito> {
-        return this.http.get<ICarrito>(this.url + '/usuario/' + usuarioId);
+    getCarritosByUsuario(usuarioId: number, size: number, page: number, sort: string, direction: string): Observable<ICarritoPage> {
+        return this.http.get<ICarritoPage>(this.url + '/usuario/' + usuarioId + '?size=' + size + '&page=' + page + '&sort=' + sort + ',' + direction);
     }
 
     getCarritoByUsuarioAndCamiseta(usuarioId: number, camisetaId: number): Observable<ICarrito> {

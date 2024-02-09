@@ -71,21 +71,21 @@ export class UserCamisetaDetailUnroutedComponent implements OnInit {
   }
 
   agregarAlCarrito(): void {
-    if (this.usuario && this.camiseta) {
-      this.carrito.usuario = this.usuario;
-      this.carrito.camiseta = this.camiseta;
+    if (this.sesionAjaxService.isSessionActive()) {
+      this.carrito.usuario = {username: this.sesionAjaxService.getUsername()} as IUsuario; 
+      this.carrito.camiseta = {id: this.camiseta.id} as ICamiseta;
       this.carrito.cantidad = this.cantidadSeleccionada;
       this.carritoAjaxService.createCarrito(this.carrito).subscribe({
         next: (data: ICarrito) => {
           this.carrito = data;
-          this.matSnackBar.open("Camiseta añadida al carrito", 'Aceptar', {duration: 3000});
+          this.matSnackBar.open('Camiseta añadida al carrito', 'Aceptar', {duration: 3000});
         },
         error: (err: HttpErrorResponse) => {
           this.status = err;
-          this.matSnackBar.open("Error al añadir la camiseta al carrito", 'Aceptar', {duration: 3000});
+          this.matSnackBar.open('Error al añadir la camiseta al carrito', 'Aceptar', {duration: 3000});
         }
-      })
-    }
+      });
+  }
   }
 
   comprarDirectamente(): void {

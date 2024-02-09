@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
+import { Observable, map } from "rxjs";
 import { API_URL } from "src/environment/environment";
 import { IUsuario, IUsuarioPage } from "../model/model.interfaces";
 import { SassMixin } from "sass";
@@ -21,6 +21,18 @@ export class UsuarioAjaxService {
 
     getUsuarioByUsername(username: string): Observable<IUsuario> {
         return this.http.get<IUsuario>(this.url + '/username/' + username);
+    }
+
+    getUsuarioIdByUsername(username: string): Observable<number | null> {
+        return this.http.get<IUsuario[]>(this.url + '/username/' + username).pipe(
+            map((usuarios: IUsuario[]) => {
+            if (usuarios.length > 0) {
+                return usuarios[0].id;
+            } else {
+                return null;
+            }
+        }));
+            
     }
 
     createUsuario(usuario: IUsuario): Observable<IUsuario> {

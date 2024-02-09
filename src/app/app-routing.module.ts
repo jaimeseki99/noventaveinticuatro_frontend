@@ -37,6 +37,7 @@ import { UserCompraViewRoutedComponent } from './components/compra/user-compra-v
 import { UserUsuarioViewRoutedComponent } from './components/usuario/user-usuario-view-routed/user-usuario-view-routed.component';
 import { UserValoracionNewRoutedComponent } from './components/valoracion/user-valoracion-new-routed/user-valoracion-new-routed.component';
 import { UserValoracionEditRoutedComponent } from './components/valoracion/user-valoracion-edit-routed/user-valoracion-edit-routed.component';
+import { UserCarritoPlistRoutedComponent } from './components/carrito/user-carrito-plist-routed/user-carrito-plist-routed.component';
 
 const routes: Routes = [
   { path: '', component: HomeRoutedComponent},
@@ -68,7 +69,7 @@ const routes: Routes = [
   { path: 'admin/valoracion/edit/:id', component: AdminValoracionEditRoutedComponent},
   { path: 'admin/valoracion/new', component: AdminValoracionNewRoutedComponent},
   { path: 'admin/valoracion/view/:id', component: AdminValoracionViewRoutedComponent},
-  { path: 'usuario/valoracion/new:idcamiseta', component: UserValoracionNewRoutedComponent},
+  { path: 'usuario/valoracion/new/:idcamiseta', component: UserValoracionNewRoutedComponent},
   { path: 'usuario/valoracion/edit/:id', component: UserValoracionEditRoutedComponent},
 
   { path: 'usuario/compra/plist/:idusuario', component: UserCompraPlistRoutedComponent},
@@ -92,7 +93,9 @@ const routes: Routes = [
   { path: 'admin/modalidad/edit/:id', component: AdminModalidadEditRoutedComponent},
   { path: 'admin/modalidad/new', component: AdminModalidadNewRoutedComponent},
   { path: 'admin/modalidad/view/:id', component: AdminModalidadViewRoutedComponent},
-  { path: 'usuario/modalidad/plist', component: UserModalidadPlistRoutedComponent}
+  { path: 'usuario/modalidad/plist', component: UserModalidadPlistRoutedComponent},
+
+  { path: 'usuario/carrito/plist', component: UserCarritoPlistRoutedComponent},
 ];
 
 @NgModule({

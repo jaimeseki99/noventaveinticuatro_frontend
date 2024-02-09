@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-user-carrito-plist-routed',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-carrito-plist-routed.component.css']
 })
 export class UserCarritoPlistRoutedComponent implements OnInit {
+
+  forceReload: Subject<boolean> = new Subject<boolean>();
 
   constructor() { }
 

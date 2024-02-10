@@ -1,6 +1,6 @@
 <div class="container">
   <div class="notification" *ngIf="id_compra>0">
-    Mostrando los datos de la compra: {{compra?.codigo_pedido}}
+    Mostrando los datos de la compra: {{compra?.codigoPedido}}
   </div>
 
   <table class="table is-fullwidth">
@@ -21,9 +21,9 @@
         <td>{{detalleCompra.camiseta.titulo}}</td>
         <td>{{detalleCompra.precio}}</td>
         <td>{{detalleCompra.cantidad}}</td>
-        <td>{{detalleCompra.iva}}</td>
-        <td>{{detalleCompra.descuento}}</td>
-        <td>{{detalleCompra.porcentajeDescuento}}</td>
+        <td>{{detalleCompra.iva}}%</td>
+        <td>{{detalleCompra.descuento ? 'Con descuento' : 'Sin descuento'}}</td>
+        <td>{{detalleCompra.porcentajeDescuento}}%</td>
       </tr>
     </tbody>
   </table>

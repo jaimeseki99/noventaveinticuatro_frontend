@@ -1,10 +1,11 @@
+import { ConfirmationService } from 'primeng/api';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { PaginatorState } from 'primeng/paginator';
 import { Subject } from 'rxjs';
-import { ICarrito, ICarritoPage, ICompra, IUsuario } from 'src/app/model/model.interfaces';
+import { ICamiseta, ICarrito, ICarritoPage, ICompra, IUsuario } from 'src/app/model/model.interfaces';
 import { CarritoAjaxService } from 'src/app/service/carrito.ajax.service.service';
 import { CompraAjaxService } from 'src/app/service/compra.ajax.service.service';
 import { SesionAjaxService } from 'src/app/service/sesion.ajax.service.service';
@@ -20,13 +21,14 @@ export class UserCarritoPlistUnroutedComponent implements OnInit {
 
   page: ICarritoPage | undefined;
   usuario: IUsuario | null = null;
-  costeCarrito: number = 0;
+  camiseta: ICamiseta | null = null;
+  carrito: ICarrito = { usuario: {}, camiseta: {}, cantidad: 0 } as ICarrito;
   costeTotal: number = 0;
   orderField: string = 'id';
   orderDirection: string = 'asc';
   paginatorState: PaginatorState = { first: 0, rows: 10, page: 0, pageCount: 0 };
   status: HttpErrorResponse | null = null;
-  
+  precioIndividualMap: Map<number, number> = new Map<number, number>();
 
   constructor(
     private carritoAjaxService: CarritoAjaxService,
@@ -58,6 +60,9 @@ export class UserCarritoPlistUnroutedComponent implements OnInit {
           next: (page: ICarritoPage) => {
             this.page = page;
             this.paginatorState.pageCount = this.page.totalPages;
+            this.page.content.forEach((carrito: ICarrito) => {
+              this.getCosteCarrito(carrito);
+            })
             this.updateCosteTotal();
           },
           error: (err: HttpErrorResponse) => {
@@ -70,23 +75,22 @@ export class UserCarritoPlistUnroutedComponent implements OnInit {
   }
 
   getCosteCarrito(carrito: ICarrito): void {
-    this.carritoAjaxService.getCosteCarrito(carrito.id).subscribe({
-      next: (coste: number) => {
-        this.costeCarrito = coste;
-      },
-      error: (err: HttpErrorResponse) => {
-        this.status
-      }
-    })
+    const precioCamiseta = carrito.camiseta.precio;
+    const cantidad = carrito.cantidad;
+    const precioIndividual = precioCamiseta * cantidad;
+    this.precioIndividualMap.set(carrito.id, precioIndividual);
   }
 
   updateCantidad(carrito: ICarrito, nuevaCantidad: number): void {
+    carrito.usuario ={id: carrito.usuario.id} as IUsuario;
+    carrito.camiseta = {id: carrito.camiseta.id} as ICamiseta;
     carrito.cantidad = nuevaCantidad;
     this.carritoAjaxService.updateCarrito(carrito).subscribe({
       next: (data: ICarrito) => {
         this.matSnackBar.open('Cantidad actualizada', 'Aceptar', { duration: 3000 });
         this.getCosteCarrito(data);
         this.updateCosteTotal();
+        this.getCarritos();
       },
       error: (err: HttpErrorResponse) => {
         this.status = err;

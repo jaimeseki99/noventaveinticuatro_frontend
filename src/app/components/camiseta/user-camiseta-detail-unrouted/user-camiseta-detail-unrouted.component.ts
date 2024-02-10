@@ -79,6 +79,7 @@ export class UserCamisetaDetailUnroutedComponent implements OnInit {
         next: (data: ICarrito) => {
           this.carrito = data;
           this.matSnackBar.open('Camiseta añadida al carrito', 'Aceptar', {duration: 3000});
+          this.router.navigate(['/usuario', 'carrito', 'plist']);
         },
         error: (err: HttpErrorResponse) => {
           this.status = err;

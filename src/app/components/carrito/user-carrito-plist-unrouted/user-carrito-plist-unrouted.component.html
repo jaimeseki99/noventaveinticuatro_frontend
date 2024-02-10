@@ -26,7 +26,7 @@
           {{carrito.cantidad}}
           <button class="button is-success" (click)="updateCantidad(carrito, carrito.cantidad + 1)">+</button>
         </td>
-        <td> {{ costeCarrito }}</td>
+        <td>{{ precioIndividualMap.get(carrito.id) | currency }} </td>
         <td>
           <button class="button is-danger" (click)="eliminarDelCarrito(carrito.id)">Eliminar</button>
           <button class="button is-primary" (click)="comprarUnicoCarrito(carrito.id)">Comprar</button>
@@ -39,7 +39,7 @@
     <div class="column is-half">
       <div class="box">
         <h3 class="title is-4">Total</h3>
-        <p>Coste total: {{ costeTotal }}</p>
+        <p>Coste total (incluyendo IVA): {{ costeTotal | currency }}</p>
         <button class="button is-primary" (click)="usuario && eliminarTodosCarritos(usuario.id)">Vacíar el carrito</button>
         <button class="button is-success" (click)="comprarTodosCarritos()">Comprar</button>
       </div>

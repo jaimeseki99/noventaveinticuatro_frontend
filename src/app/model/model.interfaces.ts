@@ -107,7 +107,7 @@ export interface IValoracionPage extends IPage<IValoracion> {
 export interface ICompra extends IEntity {
     usuario: IUsuario,
     fecha: Date,
-    codigo_pedido: string,
+    codigoPedido: string,
     factura_id?: number,
     fecha_factura?: Date,
     detalleCompras: number

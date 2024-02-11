@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="page && page.content.length > 0">
   <table class="table is-fullwidth is-bordered">
     <thead>
       <tr>
@@ -35,7 +35,6 @@
     </tbody>
   </table>
 
-  <div *ngIf=" page && page.content.length > 0">
   <div class="columns is-centered">
     <div class="column is-half">
       <div class="box">
@@ -46,7 +45,6 @@
       </div>
     </div>
   </div>
-  </div>
 
   <div class="columns is-centered">
     <div class="column is-half">
@@ -54,4 +52,9 @@
     </div>
   </div>
 
+</div>
+
+<div class="container" *ngIf="page && page.content.length === 0">
+  <p>Todavía no has añadido nada a tu carrito.</p>
+  <a class="button is-info" [routerLink]="['/usuario', 'camiseta', 'plist']">Seguir comprando</a>
 </div>

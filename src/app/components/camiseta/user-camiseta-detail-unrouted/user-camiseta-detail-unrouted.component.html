@@ -35,7 +35,7 @@
           <button class="button is-success" (click)="comprarDirectamente()">Comprar directamente</button>
         </div>
         <div class="control">
-          <button class="button is-link" [routerLink]="['/usuario', 'valoracion', 'new', camiseta.id]">Escribir valoración</button>
+          <button class="button is-link" (click)="realizarValoracion(camiseta)">Escribir valoración</button>
         </div>
       </div>
     </div>

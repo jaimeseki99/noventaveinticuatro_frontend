@@ -9,6 +9,7 @@
         <div class="card-content">
           <div class="content">
             {{valoracion.comentario}}
+            <button *ngIf="isUsuarioValoracion(valoracion)" (click)="borrarValoracion(valoracion.id)" class="button is-danger">Borrar valoración</button>
           </div>
         </div>
       </div>

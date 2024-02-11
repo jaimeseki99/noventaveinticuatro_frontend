@@ -3,12 +3,13 @@ import { Component, Input, OnInit, Optional } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
-import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { DialogService, DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ICamiseta, ICarrito, IUsuario } from 'src/app/model/model.interfaces';
 import { CamisetaAjaxService } from 'src/app/service/camiseta.ajax.service.service';
 import { CarritoAjaxService } from 'src/app/service/carrito.ajax.service.service';
 import { CompraAjaxService } from 'src/app/service/compra.ajax.service.service';
 import { SesionAjaxService } from 'src/app/service/sesion.ajax.service.service';
+import { UserCamisetaValoracionFormUnroutedComponent } from '../user-camiseta-valoracion-form-unrouted/user-camiseta-valoracion-form-unrouted.component';
 
 @Component({
   selector: 'app-user-camiseta-detail-unrouted',
@@ -33,6 +34,7 @@ export class UserCamisetaDetailUnroutedComponent implements OnInit {
     private router: Router,
     private matSnackBar: MatSnackBar,
     private confirmService: ConfirmationService,
+    public dialogService: DialogService,
     @Optional() public ref: DynamicDialogRef,
     @Optional() public config: DynamicDialogConfig
   ) {
@@ -111,4 +113,21 @@ export class UserCamisetaDetailUnroutedComponent implements OnInit {
     }
   }
 
-}
+  realizarValoracion(camiseta: ICamiseta): void {
+    const id_camiseta = camiseta.id;
+    if (this.sesionAjaxService.isSessionActive()) {
+      this.ref = this.dialogService.open(UserCamisetaValoracionFormUnroutedComponent, {
+        data: {
+          id_usuario: this.usuario?.id,
+          id_camiseta: id_camiseta
+        },
+        header: 'Valorar camiseta',
+        width: '70%',
+        contentStyle: {"max-height": "500px", "overflow": "auto"},
+        maximizable: false
+        });
+      };
+    }
+  }
+
+

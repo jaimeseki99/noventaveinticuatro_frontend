@@ -4,6 +4,7 @@ import { API_URL } from "src/environment/environment";
 import { IValoracion, IValoracionPage } from "../model/model.interfaces";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
+import { EventEmitter } from 'stream';
 
 @Injectable({
     providedIn: 'root'

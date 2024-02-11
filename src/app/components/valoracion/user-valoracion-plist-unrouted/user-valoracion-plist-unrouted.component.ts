@@ -2,8 +2,9 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { PaginatorState } from 'primeng/paginator';
 import { Subject } from 'rxjs';
-import { ICamiseta, IValoracionPage } from 'src/app/model/model.interfaces';
+import { ICamiseta, IUsuario, IValoracion, IValoracionPage } from 'src/app/model/model.interfaces';
 import { CamisetaAjaxService } from 'src/app/service/camiseta.ajax.service.service';
+import { SesionAjaxService } from 'src/app/service/sesion.ajax.service.service';
 import { ValoracionAjaxService } from 'src/app/service/valoracion.ajax.service.service';
 
 @Component({
@@ -22,10 +23,12 @@ export class UserValoracionPlistUnroutedComponent implements OnInit {
   orderDirection: string = 'asc';
   paginatorState: PaginatorState = { first: 0, rows: 30, page: 0, pageCount: 0 };
   status: HttpErrorResponse | null = null;
+  usuario: IUsuario | null = null;
 
   constructor(
     private valoracionAjaxService: ValoracionAjaxService,
-    private camisetaAjaxService: CamisetaAjaxService
+    private camisetaAjaxService: CamisetaAjaxService,
+    private sesionAjaxService: SesionAjaxService
   ) { }
 
   ngOnInit() {
@@ -34,6 +37,14 @@ export class UserValoracionPlistUnroutedComponent implements OnInit {
       next: (v) => {
         if (v) {
           this.getValoraciones();}
+      }
+    });
+    this.sesionAjaxService.getSessionUser()?.subscribe({
+      next: (usuario: IUsuario) => {
+        this.usuario = usuario;
+      },
+      error: (err: HttpErrorResponse) => {
+        this.status = err;
       }
     })
   }
@@ -55,6 +66,21 @@ export class UserValoracionPlistUnroutedComponent implements OnInit {
   getPage(event: PaginatorState) {
     this.paginatorState.rows = event.rows;
     this.paginatorState.page = event.page;
+  }
+
+  isUsuarioValoracion(valoracion: IValoracion): boolean {
+    return this.usuario !== null && valoracion.usuario.id === this.usuario.id;
+  }
+
+  borrarValoracion(id_valoracion: number) {
+    this.valoracionAjaxService.deleteValoracion(id_valoracion).subscribe({
+      next: () => {
+        this.getValoraciones();
+      },
+      error: (err: HttpErrorResponse) => {
+        this.status = err;
+      }
+    })
   }
 
 

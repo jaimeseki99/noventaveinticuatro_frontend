@@ -35,6 +35,7 @@
     </tbody>
   </table>
 
+  <div *ngIf=" page && page.content.length > 0">
   <div class="columns is-centered">
     <div class="column is-half">
       <div class="box">
@@ -44,6 +45,7 @@
         <button class="button is-success" (click)="comprarTodosCarritos()">Comprar</button>
       </div>
     </div>
+  </div>
   </div>
 
   <div class="columns is-centered">

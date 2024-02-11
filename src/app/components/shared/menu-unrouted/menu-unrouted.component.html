@@ -3,6 +3,13 @@
     <a class="navbar-item" routerLink="/home">
       <img src="http://localhost:8085/media/Captura%20de%20pantalla%202024-01-26%20a%20las%2012.35.57.png" alt="Logo">
     </a>
+
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbar">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+
   </div>
 
   <div id="navbar" class="navbar-menu">
@@ -82,3 +89,22 @@
     </div>
   </div>
 </nav>
+
+<script>
+   document.addEventListener('DOMContentLoaded', function () {
+         const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+ 
+         if ($navbarBurgers.length > 0) {
+             $navbarBurgers.forEach(function ($el) {
+                 $el.addEventListener('click', function () {
+                     const target = $el.dataset.target;
+                     const $target = document.getElementById(target);
+ 
+                     $el.classList.toggle('is-active');
+                     $target.classList.toggle('is-active');
+                 });
+             });
+         }
+     });
+    
+</script>

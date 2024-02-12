@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-user-camiseta-view-routed',
@@ -9,6 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 export class UserCamisetaViewRoutedComponent implements OnInit {
 
   id: number = 1;
+ 
 
   constructor(
     private activatedRoute: ActivatedRoute

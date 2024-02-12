@@ -35,7 +35,8 @@ export class UserCarritoPlistUnroutedComponent implements OnInit {
     private sesionAjaxService: SesionAjaxService,
     private compraAjaxService: CompraAjaxService,
     private router: Router,
-    private matSnackBar: MatSnackBar
+    private matSnackBar: MatSnackBar,
+    private confirmationService: ConfirmationService
   ) { }
 
   ngOnInit() {
@@ -82,21 +83,25 @@ export class UserCarritoPlistUnroutedComponent implements OnInit {
   }
 
   updateCantidad(carrito: ICarrito, nuevaCantidad: number): void {
-    carrito.usuario ={id: carrito.usuario.id} as IUsuario;
-    carrito.camiseta = {id: carrito.camiseta.id} as ICamiseta;
+    carrito.usuario = { id: carrito.usuario.id } as IUsuario;
+    carrito.camiseta = { id: carrito.camiseta.id } as ICamiseta;
     carrito.cantidad = nuevaCantidad;
-    this.carritoAjaxService.updateCarrito(carrito).subscribe({
-      next: (data: ICarrito) => {
-        this.matSnackBar.open('Cantidad actualizada', 'Aceptar', { duration: 3000 });
-        this.getCosteCarrito(data);
-        this.updateCosteTotal();
-        this.getCarritos();
-      },
-      error: (err: HttpErrorResponse) => {
-        this.status = err;
-        this.matSnackBar.open('Error al actualizar la cantidad', 'Aceptar', { duration: 3000 })
-      }
-    })
+    if (nuevaCantidad == 0) {
+      this.eliminarDelCarrito(carrito.id)
+    } else {
+      this.carritoAjaxService.updateCarrito(carrito).subscribe({
+        next: (data: ICarrito) => {
+          this.matSnackBar.open('Cantidad actualizada', 'Aceptar', { duration: 3000 });
+          this.getCosteCarrito(data);
+          this.updateCosteTotal();
+          this.getCarritos();
+        },
+        error: (err: HttpErrorResponse) => {
+          this.status = err;
+          this.matSnackBar.open('Error al actualizar la cantidad', 'Aceptar', { duration: 3000 })
+        }
+      })
+    }
   }
 
   updateCosteTotal(): void {
@@ -126,66 +131,80 @@ export class UserCarritoPlistUnroutedComponent implements OnInit {
     this.sesionAjaxService.getSessionUser()?.subscribe({
       next: (usuario: IUsuario) => {
         this.usuario = usuario;
-        this.compraAjaxService.createCompraUnicoCarrito(this.usuario.id, id_carrito).subscribe({
-          next: (compra: ICompra) => {
-            this.matSnackBar.open('Compra realizada', 'Aceptar', { duration: 3000 });
-            this.router.navigate(['/usuario', 'compra', 'view', compra.id]);
-          },
-          error: (err: HttpErrorResponse) => {
-            this.status = err;
-            this.matSnackBar.open('Error al realizar la compra', 'Aceptar', { duration: 3000 })
+        this.confirmationService.confirm({
+          message: '¿Desea comprar este carrito?',
+          accept: () => {
+            this.compraAjaxService.createCompraUnicoCarrito(usuario.id, id_carrito).subscribe({
+              next: (compra: ICompra) => {
+                this.matSnackBar.open('Compra realizada', 'Aceptar', { duration: 3000 });
+                this.router.navigate(['/usuario', 'compra', 'view', compra.id]);
+              },
+              error: (err: HttpErrorResponse) => {
+                this.status = err;
+                this.matSnackBar.open('Error al realizar la compra', 'Aceptar', { duration: 3000 })
+              }
+            });
           }
-        })
-      }, error: (err: HttpErrorResponse) => {
+        });
+      },
+      error: (err: HttpErrorResponse) => {
         this.status = err;
         this.matSnackBar.open('Error al recuperar el usuario', 'Aceptar', { duration: 3000 })
       }
-    })
+    });
   }
 
   comprarTodosCarritos() {
     this.sesionAjaxService.getSessionUser()?.subscribe({
       next: (usuario: IUsuario) => {
-        if (usuario !== null) {
         this.usuario = usuario;
-        this.compraAjaxService.createCompraTodosCarritos(this.usuario.id).subscribe({
-          next: (compra: ICompra) => {
-            this.matSnackBar.open('Compra realizada', 'Aceptar', { duration: 3000 });
-            this.router.navigate(['/usuario', 'compra', 'view', compra.id]);
-          },
-          error: (err: HttpErrorResponse) => {
-            this.status = err;
-            this.matSnackBar.open('Error al realizar la compra', 'Aceptar', { duration: 3000 })
+        this.confirmationService.confirm({
+          message: '¿Desea comprar todos los carritos?',
+          accept: () => {
+            this.compraAjaxService.createCompraTodosCarritos(usuario.id).subscribe({
+              next: (compra: ICompra) => {
+                this.matSnackBar.open('Compra realizada', 'Aceptar', { duration: 3000 });
+                this.router.navigate(['/usuario', 'compra', 'view', compra.id]);
+              },
+              error: (err: HttpErrorResponse) => {
+                this.status = err;
+                this.matSnackBar.open('Error al realizar la compra', 'Aceptar', { duration: 3000 })
+              }
+            });
           }
-        })
-      }
-      }, error: (err: HttpErrorResponse) => {
-        this.status = err;
-        this.matSnackBar.open('Error al recuperar el usuario', 'Aceptar', { duration: 3000 })
-      }
-    
-    })
-  
-  }
-
-  eliminarDelCarrito(id_carrito: number): void {
-    this.carritoAjaxService.deleteCarrito(id_carrito).subscribe({
-      next: () => {
-        this.matSnackBar.open('Carrito eliminado', 'Aceptar', { duration: 3000 });
-        this.getCarritos();
+        });
       },
       error: (err: HttpErrorResponse) => {
         this.status = err;
-        this.matSnackBar.open('Error al eliminar el carrito', 'Aceptar', { duration: 3000 })
+        this.matSnackBar.open('Error al recuperar el usuario', 'Aceptar', { duration: 3000 })
       }
-    })
+    });
+
+  }
+
+  eliminarDelCarrito(id_carrito: number): void {
+    this.confirmationService.confirm({
+      message: '¿Desea eliminar este carrito?',
+      accept: () => {
+        this.carritoAjaxService.deleteCarrito(id_carrito).subscribe({
+          next: () => {
+            this.matSnackBar.open('Carrito eliminado', 'Aceptar', { duration: 3000 });
+            this.getCarritos();
+          },
+          error: (err: HttpErrorResponse) => {
+            this.status = err;
+            this.matSnackBar.open('Error al eliminar el carrito', 'Aceptar', { duration: 3000 })
+          }
+        });
+      }
+    });
   }
 
   eliminarTodosCarritos(id_usuario: number): void {
-    this.sesionAjaxService.getSessionUser()?.subscribe({
-      next: (usuario: IUsuario) => {
-        this.usuario = usuario;
-        this.carritoAjaxService.deleteCarritoByUsuario(this.usuario.id).subscribe({
+    this.confirmationService.confirm({
+      message: '¿Desea eliminar todos los carritos?',
+      accept: () => {
+        this.carritoAjaxService.deleteCarritoByUsuario(id_usuario).subscribe({
           next: () => {
             this.matSnackBar.open('Carritos eliminados', 'Aceptar', { duration: 3000 });
             this.getCarritos();
@@ -194,12 +213,8 @@ export class UserCarritoPlistUnroutedComponent implements OnInit {
             this.status = err;
             this.matSnackBar.open('Error al eliminar los carritos', 'Aceptar', { duration: 3000 })
           }
-        })
-      }, error: (err: HttpErrorResponse) => {
-        this.status = err;
-        this.matSnackBar.open('Error al recuperar el usuario', 'Aceptar', { duration: 3000 })
+        });
       }
-    })
-
+    });
   }
 }

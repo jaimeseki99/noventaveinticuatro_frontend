@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DialogService, DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
@@ -7,12 +7,15 @@ import { CamisetaAjaxService } from 'src/app/service/camiseta.ajax.service.servi
 import { UsuarioAjaxService } from 'src/app/service/usuario.ajax.service.service';
 import { ValoracionAjaxService } from 'src/app/service/valoracion.ajax.service.service';
 
+
 @Component({
   selector: 'app-user-camiseta-valoracion-form-unrouted',
   templateUrl: './user-camiseta-valoracion-form-unrouted.component.html',
   styleUrls: ['./user-camiseta-valoracion-form-unrouted.component.css']
 })
 export class UserCamisetaValoracionFormUnroutedComponent implements OnInit {
+
+  @Output() valoracionAgregada: EventEmitter<void> = new EventEmitter<void>();
 
   id_camiseta: number | undefined;
   id_usuario: number | undefined;
@@ -84,6 +87,7 @@ export class UserCamisetaValoracionFormUnroutedComponent implements OnInit {
           next: (data: IValoracion) => {
             this.matSnackBar.open('Valoración creada', 'Aceptar', { duration: 3000 });
             this.dynamicDialogRef.close(data);
+            this.valoracionAgregada.emit();
           },
           error: (err) => {
             this.matSnackBar.open(err.error.message, 'Aceptar', { duration: 3000 });

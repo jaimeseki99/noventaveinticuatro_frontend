@@ -1,5 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ConfirmationService } from 'primeng/api';
 import { PaginatorState } from 'primeng/paginator';
 import { Subject } from 'rxjs';
 import { ICamiseta, IUsuario, IValoracion, IValoracionPage } from 'src/app/model/model.interfaces';
@@ -28,7 +30,9 @@ export class UserValoracionPlistUnroutedComponent implements OnInit {
   constructor(
     private valoracionAjaxService: ValoracionAjaxService,
     private camisetaAjaxService: CamisetaAjaxService,
-    private sesionAjaxService: SesionAjaxService
+    private sesionAjaxService: SesionAjaxService,
+    private confirmationService: ConfirmationService,
+    private matSnackBar: MatSnackBar
   ) { }
 
   ngOnInit() {
@@ -68,19 +72,31 @@ export class UserValoracionPlistUnroutedComponent implements OnInit {
     this.paginatorState.page = event.page;
   }
 
+  recargarValoraciones() {
+    this.getValoraciones();
+  }
+
   isUsuarioValoracion(valoracion: IValoracion): boolean {
     return this.usuario !== null && valoracion.usuario.id === this.usuario.id;
   }
 
   borrarValoracion(id_valoracion: number) {
-    this.valoracionAjaxService.deleteValoracion(id_valoracion).subscribe({
-      next: () => {
-        this.getValoraciones();
-      },
-      error: (err: HttpErrorResponse) => {
-        this.status = err;
+    this.confirmationService.confirm({
+      message: '¿Estás seguro de que quieres borrar la valoración?',
+      accept: () => {
+        this.valoracionAjaxService.deleteValoracion(id_valoracion).subscribe({
+          next: () => {
+            this.getValoraciones();
+            this.matSnackBar.open('Valoración borrada', 'Aceptar', { duration: 3000 });
+          },
+          error: (err: HttpErrorResponse) => {
+            this.status = err;
+            this.matSnackBar.open('Error al borrar la valoración', 'Aceptar', { duration: 3000 });
+          }
+        })
       }
-    })
+    });
+    
   }
 
 

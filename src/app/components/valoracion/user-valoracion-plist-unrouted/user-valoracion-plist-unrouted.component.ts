@@ -72,10 +72,6 @@ export class UserValoracionPlistUnroutedComponent implements OnInit {
     this.paginatorState.page = event.page;
   }
 
-  recargarValoraciones() {
-    this.getValoraciones();
-  }
-
   isUsuarioValoracion(valoracion: IValoracion): boolean {
     return this.usuario !== null && valoracion.usuario.id === this.usuario.id;
   }
@@ -98,7 +94,5 @@ export class UserValoracionPlistUnroutedComponent implements OnInit {
     });
     
   }
-
-
 
 }

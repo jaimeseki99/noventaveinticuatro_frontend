@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DialogService, DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { Subject } from 'rxjs';
 import { ICamiseta, IUsuario, IValoracion } from 'src/app/model/model.interfaces';
 import { CamisetaAjaxService } from 'src/app/service/camiseta.ajax.service.service';
 import { UsuarioAjaxService } from 'src/app/service/usuario.ajax.service.service';

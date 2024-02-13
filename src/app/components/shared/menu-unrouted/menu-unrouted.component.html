@@ -1,110 +1,61 @@
-<nav class="navbar is-primary" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a class="navbar-item" routerLink="/home">
-      <img src="http://localhost:8085/media/Captura%20de%20pantalla%202024-01-26%20a%20las%2012.35.57.png" alt="Logo">
-    </a>
-
-    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbar">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-
-  </div>
-
-  <div id="navbar" class="navbar-menu">
-    <div class="navbar-start">
-      <ng-container *ngIf="username && userSesion?.tipo==true">
-      <a class="navbar-item" [routerLink]="['/admin', 'usuario', 'plist']">
-        Usuarios
-      </a>
-      <a class="navbar-item" [routerLink]="['/admin', 'camiseta', 'plist']">
-        Camisetas
-      </a>
-      <a class="navbar-item" [routerLink]="['/admin', 'valoracion', 'plist']">
-        Valoraciones
-      </a>
-      <a class="navbar-item" [routerLink]="['/admin', 'equipo', 'plist']">
-        Equipos
-      </a>
-      <a class="navbar-item" [routerLink]="['/admin', 'modalidad', 'plist']">
-        Modalidades
-      </a>
-      <a class="navbar-item" [routerLink]="['/admin', 'liga', 'plist']">
-        Ligas
-      </a>
-      </ng-container>
-      <ng-container *ngIf="username && userSesion?.tipo==false">
-        <a class="navbar-item" [routerLink]="['/usuario', 'camiseta', 'plist']">
-          Camisetas
+<nav class="bg-tradewind-500" role="navigation" aria-label="main navigation">
+  <div class="container mx-auto px-6 py-4">
+    <div class="flex items-center justify-between">
+      <div class="flex items-center">
+        <a class="navbar-item text-white" routerLink="/home">
+          <img src="http://localhost:8085/media/Captura%20de%20pantalla%202024-01-26%20a%20las%2012.35.57.png" alt="Logo">
         </a>
-        <a class="navbar-item" [routerLink]="['/usuario', 'equipo', 'plist']">
-          Equipos
-        </a>
-        <a class="navbar-item" [routerLink]="['/usuario', 'modalidad', 'plist']">
-          Modalidades
-        </a>
-        <a class="navbar-item" [routerLink]="['/usuario', 'liga', 'plist']">
-          Ligas
-        </a>
-        <a class="navbar-item" [routerLink]="['/usuario', 'compra', 'plist', userSesion?.id]">
-          Mis compras 
-        </a>
+      </div>
 
-      </ng-container>
-      <!-- Puedes agregar más opciones según tus necesidades -->
-    </div>
+      <div class="block lg:hidden">
+        <button id="navbar-toggle" class="text-white focus:outline-none">
+          <svg class="h-6 w-6 fill-current" viewBox="0 0 24 24">
+            <path class="hidden" id="menu-open-icon" d="M4 6h16M4 12h16m-7 6h7"></path>
+            <path class="hidden" id="menu-close-icon" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
 
-    <div class="navbar-end">
-      <div class="navbar-item">
-        <div class="buttons">
-          <!-- Verificar si el usuario ha iniciado sesión -->
-          <ng-container *ngIf="username">
-            <!-- Mostrar opciones de usuario -->
-            <a class="navbar-item">
-              ¡Bienvenid@, {{ username }}!
-            </a>
-            <a class="navbar-item" [routerLink]="['/usuario', 'usuario', 'view', userSesion?.id]">
-              Perfil
-            </a>
-            <a class="navbar-item" href="#">
-              Configuración
-            </a>
-            <a class="navbar-item" routerLink="/logout">
-              <i class="pi pi-power-off"></i>
-            </a>
-            <!-- Mostrar carrito solo si el usuario ha iniciado sesión -->
-            <a class="button is-light" [routerLink]="['/usuario', 'carrito', 'plist']">
-              <span class="icon">
-                <i class="pi pi-shopping-cart"></i>
-              </span>
-            </a>
+      <div class="hidden lg:flex lg:items-center lg:w-auto" id="navbar">
+        
+          <ng-container *ngIf="username && userSesion?.tipo==true">
+            <a class="navbar-item text-governor-bay-600" [routerLink]="['/admin', 'usuario', 'plist']">Usuarios</a>
+            <a class="navbar-item text-governor-bay-600" [routerLink]="['/admin', 'camiseta', 'plist']">Camisetas</a>
+            <a class="navbar-item text-governor-bay-600" [routerLink]="['/admin', 'valoracion', 'plist']">Valoraciones</a>
+            <a class="navbar-item text-governor-bay-600" [routerLink]="['/admin', 'equipo', 'plist']">Equipos</a>
+            <a class="navbar-item text-governor-bay-600" [routerLink]="['/admin', 'modalidad', 'plist']">Modalidades</a>
+            <a class="navbar-item text-governor-bay-600" [routerLink]="['/admin', 'liga', 'plist']">Ligas</a>
           </ng-container>
-          <!-- Si el usuario no ha iniciado sesión, mostrar botón para iniciar sesión -->
-          <a class="button is-light" routerLink="/login" *ngIf="!username">
-            Iniciar sesión
-          </a>
+          <ng-container *ngIf="username && userSesion?.tipo==false">
+            <a class="navbar-item text-governor-bay-600" [routerLink]="['/usuario', 'camiseta', 'plist']">Camisetas</a>
+            <a class="navbar-item text-governor-bay-600" [routerLink]="['/usuario', 'equipo', 'plist']">Equipos</a>
+            <a class="navbar-item text-governor-bay-600" [routerLink]="['/usuario', 'modalidad', 'plist']">Modalidades</a>
+            <a class="navbar-item text-governor-bay-600" [routerLink]="['/usuario', 'liga', 'plist']">Ligas</a>
+            <a class="navbar-item text-governor-bay-600" [routerLink]="['/usuario', 'compra', 'plist', userSesion?.id]">Mis compras</a>
+          </ng-container>
+        
+
+        
+          <div class="navbar-item">
+              <ng-container *ngIf="username">
+                <a class="navbar-item text-governor-bay-600" [routerLink]="['/usuario', 'usuario', 'view', userSesion?.id]">¡Bienvenid@, {{ username }}!</a>
+                <a class="navbar-item text-governor-bay-600" routerLink="/logout">
+                  <i class="pi pi-power-off"></i>
+                </a>
+                <a *ngIf="userSesion?.tipo==false" class="button is-light" [routerLink]="['/usuario', 'carrito', 'plist']">
+                  <span class="icon">
+                    <i class="pi pi-shopping-cart"></i>
+                  </span>
+                </a>
+              </ng-container>
+              <a class="button is-light text-black" routerLink="/login" *ngIf="!username">Iniciar sesión</a>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+
+
 </nav>
 
-<script>
-   document.addEventListener('DOMContentLoaded', function () {
-         const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
- 
-         if ($navbarBurgers.length > 0) {
-             $navbarBurgers.forEach(function ($el) {
-                 $el.addEventListener('click', function () {
-                     const target = $el.dataset.target;
-                     const $target = document.getElementById(target);
- 
-                     $el.classList.toggle('is-active');
-                     $target.classList.toggle('is-active');
-                 });
-             });
-         }
-     });
-    
-</script>
+
+

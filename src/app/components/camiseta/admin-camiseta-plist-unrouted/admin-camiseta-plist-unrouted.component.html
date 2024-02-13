@@ -1,56 +1,59 @@
-<div class="container">
-  <div class="notification" *ngIf="id_equipo>0">
+<div class="container mx-auto">
+  <div class="notification" *ngIf="id_equipo > 0">
     Filtrando por equipo: {{ equipo?.nombre}}
-    <button class="delete" *ngIf="id_equipo>0" [routerLink]="['/admin', 'camiseta', 'plist']">Quitar filtro</button>
+    <button class="delete" *ngIf="id_equipo > 0" [routerLink]="['/admin', 'camiseta', 'plist']">Quitar filtro</button>
   </div>
-  <div class="notification" *ngIf="id_modalidad>0">
+  <div class="notification" *ngIf="id_modalidad > 0">
     Filtrando por modalidad: {{ modalidad?.nombre}}
-    <button class="delete" *ngIf="id_modalidad>0" [routerLink]="['/admin', 'camiseta', 'plist']">Quitar filtro</button>
+    <button class="delete" *ngIf="id_modalidad > 0" [routerLink]="['/admin', 'camiseta', 'plist']">Quitar filtro</button>
   </div>
-  <div class="notification" *ngIf="id_liga>0">
+  <div class="notification" *ngIf="id_liga > 0">
     Filtrando por liga: {{ liga?.nombre}}
-    <button class="delete" *ngIf="id_liga>0" [routerLink]="['/admin', 'camiseta', 'plist']">Quitar filtro</button>
+    <button class="delete" *ngIf="id_liga > 0" [routerLink]="['/admin', 'camiseta', 'plist']">Quitar filtro</button>
   </div>
 
-  <div class="field">
-    <label class="label">Ordenar por:</label>
-    <div class="control">
-      <div class="select">
-        <select #selectElement (change)="doOrder(selectElement.value)">
-          <option value="titulo">Título</option>
-          <option value="equipo.nombre">Equipo</option>
-          <option value="modalidad.nombre">Modalidad</option>
-          <option value="liga.nombre">Liga</option>
-          <option value="precio">Precio</option>
-          <option value="stock">Stock</option>
-          <option value="carritos">En carritos</option>
-          <option value="valoraciones">Valoraciones</option>
-          <option value="detalleCompras">Compras</option>
-        </select>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <!-- Ordenar por -->
+    <div class="field">
+      <label class="label">Ordenar por:</label>
+      <div class="control">
+        <div class="select">
+          <select #selectElement (change)="doOrder(selectElement.value)">
+            <option value="titulo">Título</option>
+            <option value="equipo.nombre">Equipo</option>
+            <option value="modalidad.nombre">Modalidad</option>
+            <option value="liga.nombre">Liga</option>
+            <option value="precio">Precio</option>
+            <option value="stock">Stock</option>
+            <option value="carritos">En carritos</option>
+            <option value="valoraciones">Valoraciones</option>
+            <option value="detalleCompras">Compras</option>
+          </select>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="field">
-    <label class="label">Buscar por título:</label>
-    <div class="control">
-      <input class="input" type="text" placeholder="Ingrese el título" [(ngModel)]="searchText">
+    <!-- Buscar por título -->
+    <div class="field">
+      <label class="label">Buscar por título:</label>
+      <div class="control">
+        <input class="input" type="text" placeholder="Ingrese el título" [(ngModel)]="searchText">
+      </div>
+      <button class="button bg-governor-bay-500 hover:bg-governor-bay-700 text-white font-bold py-2 px-4 rounded" (click)="searchCamisetas(searchText)">Buscar</button>
     </div>
-    <button class="button is-primary" (click)="searchCamisetas(searchText)">Buscar</button>
   </div>
 
-  <div class="columns is-multiline">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+    <!-- Camisetas -->
     <ng-container *ngIf="page?.content">
-      <div class="column is-one-third" *ngFor="let camiseta of page?.content">
+      <div class="column" *ngFor="let camiseta of page?.content">
         <div class="card">
           <div class="card-image">
-            <figure class="image is-4by3">
-              <img src="{{ camiseta.imagen }}" alt="Imagen de la camiseta">
-            </figure>
+              <img src="{{ camiseta.imagen }}" alt="Imagen de la camiseta" class="w-full h-80 object-cover">
           </div>
           <div class="card-content">
-            <p class="title is-4" (click)="doView(camiseta)"> {{camiseta.titulo}} </p>
-            <p><strong>Equipo:</strong> <a [routerLink]="['/admin', 'camiseta', 'plist', 'byequipo', camiseta.equipo.id]">{{camiseta.equipo.nombre}}</a></p>
+            <p class="title text-xl cursor-pointer" (click)="doView(camiseta)"> {{camiseta.titulo}} </p>
+            <p><strong>Equipo:</strong> <a [routerLink]="['/admin', 'camiseta', 'plist', 'byequipo', camiseta.equipo.id]"> {{camiseta.equipo.nombre}}</a></p>
             <p><strong>Modalidad:</strong><a [routerLink]="['/admin', 'camiseta', 'plist', 'bymodalidad', camiseta.modalidad.id]"> {{camiseta.modalidad.nombre}}</a></p>
             <p><strong>Liga:</strong><a [routerLink]="['/admin', 'camiseta', 'plist', 'byliga', camiseta.liga.id]"> {{camiseta.liga.nombre}}</a></p>
             <p><strong>Precio:</strong> {{camiseta.precio}} €</p>
@@ -69,12 +72,11 @@
       </div>
     </ng-container>
     <div class="column" *ngIf="!page?.content || page?.content?.length === 0">
-      <div class="notification is-warning">
+      <div class="notification bg-governor-bay-200">
         No se encontraron camisetas.
       </div>
-     </div>
+    </div>
   </div>
-
   <div class="level is-justify-content-center mb-3">
     <p-paginator (onPageChange)="onPageChange($event)" [rows]="paginatorState.rows!" [totalRecords]="page?.totalElements || 0" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
   </div>

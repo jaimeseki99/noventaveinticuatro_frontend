@@ -1,32 +1,31 @@
-<div class="container">
-  <h1 class="title is-4">Formulario de equipo</h1>
-  <form [formGroup]="equipoForm" (ngSubmit)="onSubmit()">
-    <div class="field">
-      <label class="label">Nombre</label>
-      <div class="control">
-        <input class="input" type="text" formControlName="nombre" placeholder="Escribe el nombre del equipo">
+<div class="flex justify-center items-center h-screen">
+  <div class="max-w-md bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+    <h1 class="text-2xl font-bold mb-6">Formulario de equipo</h1>
+    <form [formGroup]="equipoForm" (ngSubmit)="onSubmit()">
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="nombre">
+          Nombre
+        </label>
+        <input class="appearance-none border rounded w-full border border-governor-bay-400 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="nombre" type="text" formControlName="nombre" placeholder="Escribe el nombre del equipo">
       </div>
-    </div>
 
-    <div class="field">
-      <label class="label">Escudo</label>
-      <div class="control">
-        <input class="input" type="file" (change)="onFileSelected($event)">
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="escudo">
+          Escudo
+        </label>
+        <input class="appearance-none border rounded w-full  border border-governor-bay-400 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="escudo" type="file" (change)="onFileSelected($event)">
       </div>
-    </div>
 
-    <div class="field">
-      <label class="label">Liga</label>
-      <div class="control">
-        <button class="button is-link" (click)="onShowLigaSelection()">Seleccionar liga</button>
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="liga">
+          Liga
+        </label>
+        <button class="bg-tradewind-500 hover:bg-tradewind-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" (click)="onShowLigaSelection()">Seleccionar liga</button>
       </div>
-    </div>
 
-    <div class="field is-grouped">
-      <div class="control">
-        <button class="button is-primary" type="submit">Guardar</button>
+      <div class="flex items-center justify-between">
+        <button class="bg-governor-bay-500 hover:bg-governor-bay-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">Guardar</button>
       </div>
-    </div>
-
-  </form>
+    </form>
+  </div>
 </div>

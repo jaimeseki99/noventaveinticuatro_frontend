@@ -1,90 +1,92 @@
-<div class="container mx-auto">
-  <h1 class="text-2xl font-bold mb-4">Formulario de Camiseta</h1>
-  <form [formGroup]="camisetaForm" (ngSubmit)="onSubmit()" class="max-w-lg mx-auto">
-    <!-- Título -->
-    <div class="mb-4">
-      <label class="block text-sm font-bold mb-2">Título</label>
-      <input class="w-full border border-governor-bay-400 rounded p-2" type="text" formControlName="titulo" placeholder="Ingrese el título">
-    </div>
+<div class="flex justify-center items-center mt-10">
+  <div class="max-w-md bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+    <h1 class="text-2xl font-bold mb-6">Formulario de Camiseta</h1>
+    <form [formGroup]="camisetaForm" (ngSubmit)="onSubmit()">
+      <!-- Título -->
+      <div class="mb-4">
+        <label class="block text-sm font-bold mb-2">Título</label>
+        <input class="w-full border border-governor-bay-400 rounded p-2" type="text" formControlName="titulo" placeholder="Ingrese el título">
+      </div>
 
-    <!-- Temporada -->
-    <div class="mb-4">
-      <label class="block text-sm font-bold mb-2">Temporada</label>
-      <select formControlName="temporada" class="w-full border border-governor-bay-400 rounded p-2">
-        <option value="">Seleccione la temporada</option>
-        <option *ngFor="let temporada of temporadas" [value]="temporada">{{ temporada }}</option>
-      </select>
-    </div>
+      <!-- Temporada -->
+      <div class="mb-4">
+        <label class="block text-sm font-bold mb-2">Temporada</label>
+        <select formControlName="temporada" class="w-full border border-governor-bay-400 rounded p-2">
+          <option value="">Seleccione la temporada</option>
+          <option *ngFor="let temporada of temporadas" [value]="temporada">{{ temporada }}</option>
+        </select>
+      </div>
 
-    <!-- Manga -->
-    <div class="mb-4">
-      <label class="block text-sm font-bold mb-2">Manga</label>
-      <select formControlName="manga" class="w-full border border-governor-bay-400 rounded p-2">
-        <option value="">Seleccione el tipo de manga</option>
-        <option value="corta">Corta</option>
-        <option value="larga">Larga</option>
-        <option value="sin">Sin manga</option>
-      </select>
-    </div>
+      <!-- Manga -->
+      <div class="mb-4">
+        <label class="block text-sm font-bold mb-2">Manga</label>
+        <select formControlName="manga" class="w-full border border-governor-bay-400 rounded p-2">
+          <option value="">Seleccione el tipo de manga</option>
+          <option value="corta">Corta</option>
+          <option value="larga">Larga</option>
+          <option value="sin">Sin manga</option>
+        </select>
+      </div>
 
-    <!-- Talla -->
-    <div class="mb-4">
-      <label class="block text-sm font-bold mb-2">Talla</label>
-      <select formControlName="talla" class="w-full border border-governor-bay-400 rounded p-2">
-        <option value="">Seleccione la talla</option>
-        <option value="XS">XS</option>
-        <option value="S">S</option>
-        <option value="M">M</option>
-        <option value="L">L</option>
-        <option value="XL">XL</option>
-      </select>
-    </div>
+      <!-- Talla -->
+      <div class="mb-4">
+        <label class="block text-sm font-bold mb-2">Talla</label>
+        <select formControlName="talla" class="w-full border border-governor-bay-400 rounded p-2">
+          <option value="">Seleccione la talla</option>
+          <option value="XS">XS</option>
+          <option value="S">S</option>
+          <option value="M">M</option>
+          <option value="L">L</option>
+          <option value="XL">XL</option>
+        </select>
+      </div>
 
-    <!-- Imagen -->
-    <div class="mb-4">
-      <label class="block text-sm font-bold mb-2">Imagen</label>
-      <input class="w-full border border-governor-bay-400 rounded p-2" type="file" (change)="onFileSelected($event)">
-    </div>
+      <!-- Imagen -->
+      <div class="mb-4">
+        <label class="block text-sm font-bold mb-2">Imagen</label>
+        <input class="w-full border border-governor-bay-400 rounded p-2" type="file" (change)="onFileSelected($event)">
+      </div>
 
-    <!-- Precio -->
-    <div class="mb-4">
-      <label class="block text-sm font-bold mb-2">Precio</label>
-      <input class="w-full border border-governor-bay-400 rounded p-2" type="number" formControlName="precio" placeholder="Ingrese el precio">
-    </div>
+      <!-- Precio -->
+      <div class="mb-4">
+        <label class="block text-sm font-bold mb-2">Precio</label>
+        <input class="w-full border border-governor-bay-400 rounded p-2" type="number" formControlName="precio" placeholder="Ingrese el precio">
+      </div>
 
-    <!-- IVA -->
-    <div class="mb-4">
-      <label class="block text-sm font-bold mb-2">IVA</label>
-      <input class="w-full border border-governor-bay-400 rounded p-2" type="number" formControlName="iva" placeholder="Ingrese el precio">
-    </div>
+      <!-- IVA -->
+      <div class="mb-4">
+        <label class="block text-sm font-bold mb-2">IVA</label>
+        <input class="w-full border border-governor-bay-400 rounded p-2" type="number" formControlName="iva" placeholder="Ingrese el precio">
+      </div>
 
-    <!-- Stock -->
-    <div class="mb-4">
-      <label class="block text-sm font-bold mb-2">Stock</label>
-      <input class="w-full border border-governor-bay-400 rounded p-2" type="number" formControlName="stock" placeholder="Ingrese el stock">
-    </div>
+      <!-- Stock -->
+      <div class="mb-4">
+        <label class="block text-sm font-bold mb-2">Stock</label>
+        <input class="w-full border border-governor-bay-400 rounded p-2" type="number" formControlName="stock" placeholder="Ingrese el stock">
+      </div>
 
-    <!-- Equipo -->
-    <div class="mb-4">
-      <label class="block text-sm font-bold mb-2">Equipo</label>
-      <button class="bg-tradewind-400 text-white py-2 px-4 rounded inline-block" (click)="onShowEquiposSelection()">Seleccionar Equipo</button>
-    </div>
+      <!-- Equipo -->
+      <div class="mb-4">
+        <label class="block text-sm font-bold mb-2">Equipo</label>
+        <button class="bg-tradewind-400 text-white py-2 px-4 rounded inline-block" (click)="onShowEquiposSelection()">Seleccionar Equipo</button>
+      </div>
 
-    <!-- Modalidad -->
-    <div class="mb-4">
-      <label class="block text-sm font-bold mb-2">Modalidad</label>
-      <button class="bg-tradewind-400 text-white py-2 px-4 rounded inline-block" (click)="onShowModalidadSelection()">Seleccionar Modalidad</button>
-    </div>
+      <!-- Modalidad -->
+      <div class="mb-4">
+        <label class="block text-sm font-bold mb-2">Modalidad</label>
+        <button class="bg-tradewind-400 text-white py-2 px-4 rounded inline-block" (click)="onShowModalidadSelection()">Seleccionar Modalidad</button>
+      </div>
 
-    <!-- Liga -->
-    <div class="mb-4">
-      <label class="block text-sm font-bold mb-2">Liga</label>
-      <button class="bg-tradewind-400 text-white py-2 px-4 rounded inline-block" (click)="onShowLigaSelection()">Seleccionar Liga</button>
-    </div>
+      <!-- Liga -->
+      <div class="mb-4">
+        <label class="block text-sm font-bold mb-2">Liga</label>
+        <button class="bg-tradewind-400 text-white py-2 px-4 rounded inline-block" (click)="onShowLigaSelection()">Seleccionar Liga</button>
+      </div>
 
-    <!-- Botones -->
-    <div class="mb-4">
-      <button class="bg-governor-bay-700 text-white py-2 px-4 rounded inline-block" type="submit">Guardar</button>
-    </div>
-  </form>
+      <!-- Botones -->
+      <div class="mb-4">
+        <button class="bg-governor-bay-700 text-white py-2 px-4 rounded inline-block" type="submit">Guardar</button>
+      </div>
+    </form>
+  </div>
 </div>

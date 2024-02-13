@@ -1,33 +1,33 @@
 <div class="table-container">
-  <table class="table is-bordered is-hoverable is-fullwidth">
-    <thead>
+  <table class="table border-collapse w-full">
+    <thead class="bg-gray-200">
       <tr>
-        <th (click)="doOrder('id')">ID</th>
-        <th (click)="doOrder('titulo')">Título</th>
-        <th (click)="doOrder('talla')">Talla</th>
-        <th (click)="doOrder('manga')">Manga</th>
-        <th>Modalidad</th>
-        <th>Equipo</th>
-        <th>Liga</th>
-        <th>Opciones</th>
+        <th (click)="doOrder('id')" class="cursor-pointer py-2 px-4">ID</th>
+        <th (click)="doOrder('titulo')" class="cursor-pointer py-2 px-4">Título</th>
+        <th (click)="doOrder('talla')" class="cursor-pointer py-2 px-4">Talla</th>
+        <th (click)="doOrder('manga')" class="cursor-pointer py-2 px-4">Manga</th>
+        <th class="py-2 px-4">Modalidad</th>
+        <th class="py-2 px-4">Equipo</th>
+        <th class="py-2 px-4">Liga</th>
+        <th class="py-2 px-4">Opciones</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let camiseta of page?.content">
-        <td>{{camiseta.id}}</td>
-        <td>{{camiseta.titulo}}</td>
-        <td>{{camiseta.talla}}</td>
-        <td>{{camiseta.manga}}</td>
-        <td>{{camiseta.modalidad.nombre}}</td>
-        <td>{{camiseta.equipo.nombre}}</td>
-        <td>{{camiseta.liga.nombre}}</td>
-        <td>
-         <button class="button is-link" (click)="selectCamiseta(camiseta)">Seleccionar</button>
+      <tr *ngFor="let camiseta of page?.content" class="border-b border-gray-200">
+        <td class="py-2 px-4">{{ camiseta.id }}</td>
+        <td class="py-2 px-4">{{ camiseta.titulo }}</td>
+        <td class="py-2 px-4">{{ camiseta.talla }}</td>
+        <td class="py-2 px-4">{{ camiseta.manga }}</td>
+        <td class="py-2 px-4">{{ camiseta.modalidad.nombre }}</td>
+        <td class="py-2 px-4">{{ camiseta.equipo.nombre }}</td>
+        <td class="py-2 px-4">{{ camiseta.liga.nombre }}</td>
+        <td class="py-2 px-4">
+          <button class="button bg-governor-bay-500 hover:bg-governor-bay-700 text-white font-bold py-2 px-4 rounded" (click)="selectCamiseta(camiseta)">Seleccionar</button>
         </td>
       </tr>
     </tbody>
   </table>
-  <div class="pagination-container">
+  <div class="pagination-container mt-4">
     <p-paginator (onPageChange)="onPageChange($event)" [rows]="paginatorState.rows!" [totalRecords]="page?.totalElements || 0" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
   </div>
 </div>

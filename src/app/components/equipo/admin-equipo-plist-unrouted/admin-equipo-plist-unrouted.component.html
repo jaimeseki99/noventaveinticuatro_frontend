@@ -1,41 +1,34 @@
-<div class="container">
-
-  <div class="filters">
+<div class="container mx-auto">
     <div class="notification" *ngIf="id_liga>0">
       Filtrando por liga: {{ liga?.nombre}}
       <button class="delete" *ngIf="id_liga>0" [routerLink]="['/admin', 'equipo', 'plist']">Quitar filtro</button>
     </div>
-  </div>
-  
-  <div class="field">
-    <label class="label">Ordenar por:</label>
-    <div class="control">
-      <div class="select">
-        <select #selectElement (change)="doOrder(selectElement.value)">
-          <option value="nombre">Nombre</option>
-          <option value="liga.nombre">Liga</option>
-          <option value="camisetas">Número de Camisetas</option>
-        </select>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div class="field">
+      <label class="label">Ordenar por:</label>
+        <div class="control">
+          <div class="select">
+            <select #selectElement (change)="doOrder(selectElement.value)">
+              <option value="nombre">Nombre</option>
+              <option value="liga.nombre">Liga</option>
+              <option value="camisetas">Número de Camisetas</option>
+            </select>
+          </div>
+        </div>
       </div>
     </div>
   
-    <div class="columns is-multiline">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
       <ng-container *ngIf="page?.content">
-      <div class="column is-one-third" *ngFor="let equipo of page?.content">
+      <div class="column" *ngFor="let equipo of page?.content">
         <div class="card">
-          <header class="card-header">
-            <p class="card-header-title" (click)="doView(equipo)">{{equipo.nombre}}</p>
-            <a class="card-header-icon" aria-label="more options" (click)="doOrder('camisetas')">
-              <i class="fas fa-angle-down" aria-hidden="true"></i>
-            </a>
-          </header>
           <div class="card-image">
-            <figure class="image is-4by3">
-              <img src="{{equipo.imagen}}" alt="Imagen del equipo">
-            </figure>
+              <img src="{{equipo.imagen}}" alt="Imagen del equipo" class="w-full h-80 object-cover">
           </div>
           <div class="card-content">
             <div class="content">
+              <p class="title text-xl cursor-pointer" (click)="doView(equipo)"> {{equipo.nombre}} </p>
               <p>Liga: <a [routerLink]="['/admin', 'equipo', 'plist', 'byliga', equipo.liga.id]">{{ equipo.liga.nombre }}</a></p>
               <p>Número de camisetas: <a [routerLink]="['/admin', 'camiseta', 'plist', 'byequipo', equipo.id]">{{ equipo.camisetas }}</a></p>
             </div>
@@ -48,7 +41,7 @@
       </div>
       </ng-container>
       <div class="column" *ngIf="!page?.content || page?.content?.length === 0">
-        <div class="notification is-warning">
+        <div class="notification bg-governor-bay-200">
           No se encontraron equipos.
         </div>
        </div>

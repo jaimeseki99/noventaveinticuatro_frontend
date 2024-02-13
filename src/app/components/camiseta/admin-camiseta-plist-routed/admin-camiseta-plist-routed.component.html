@@ -1,29 +1,33 @@
 <div class="section">
-  <div class="container">
-    <div class="columns">
-      <div class="column">
-        <button class="button is-primary" (click)="doGenerateCamisetas(10)" [disabled]="bLoading">
+  <div class="container mx-auto">
+    <div class="flex flex-wrap justify-center items-center mb-4">
+      <!-- Botón Generar camisetas -->
+      <div class="m-2">
+        <button class="bg-tradewind-500 hover:bg-tradewind-700 text-white font-bold py-2 px-4 rounded" (click)="doGenerateCamisetas(10)" [disabled]="bLoading">
           Generar camisetas
         </button>
       </div>
-      <div class="column">
-        <button class="button is-danger" (click)="doEmpty($event)" [disabled]="bLoading">
+
+      <!-- Botón Eliminar camisetas -->
+      <div class="m-2">
+        <button class="bg-stiletto-700 hover:bg-stiletto-900 text-white font-bold py-2 px-4 rounded" (click)="doEmpty($event)" [disabled]="bLoading">
           Eliminar camisetas
         </button>
       </div>
-      <div class="column">
-        <button class="button is-link" [routerLink]="['/admin', 'camiseta', 'new']" [disabled]="bLoading">Añadir nueva camiseta</button>
+
+      <!-- Botón Añadir nueva camiseta -->
+      <div class="m-2">
+        <button class="bg-governor-bay-500 hover:bg-governor-bay-700 text-white font-bold py-2 px-4 rounded" [routerLink]="['/admin', 'camiseta', 'new']" [disabled]="bLoading">Añadir nueva camiseta</button>
       </div>
     </div>
-    <div class="columns">
-      <div class="column">
-        <div class="has-text-centered" *ngIf="bLoading">
-          <mat-spinner diameter="30" color="accent"></mat-spinner>
-        </div>
-      </div>
+
+    <!-- Spinner de carga -->
+    <div class="flex justify-center" *ngIf="bLoading">
+      <mat-spinner diameter="30" color="accent"></mat-spinner>
     </div>
-    <app-admin-camiseta-plist-unrouted [forceReload]="forceReload" [id_equipo]="id_equipo" [id_modalidad]="id_modalidad" [id_liga]="id_liga" *ngIf="!bLoading">
-    </app-admin-camiseta-plist-unrouted>
+
+    <!-- Componente app-admin-camiseta-plist-unrouted -->
+    <app-admin-camiseta-plist-unrouted [forceReload]="forceReload" [id_equipo]="id_equipo" [id_modalidad]="id_modalidad" [id_liga]="id_liga" *ngIf="!bLoading"></app-admin-camiseta-plist-unrouted>
   </div>
 </div>
 

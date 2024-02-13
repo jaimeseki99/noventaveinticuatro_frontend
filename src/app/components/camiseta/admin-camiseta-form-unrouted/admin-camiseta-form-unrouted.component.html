@@ -1,121 +1,90 @@
-<div class="container">
-  <h1 class="title">Formulario de Camiseta</h1>
-  <form [formGroup]="camisetaForm" (ngSubmit)="onSubmit()">
+<div class="container mx-auto">
+  <h1 class="text-2xl font-bold mb-4">Formulario de Camiseta</h1>
+  <form [formGroup]="camisetaForm" (ngSubmit)="onSubmit()" class="max-w-lg mx-auto">
     <!-- Título -->
-    <div class="field">
-      <label class="label">Título</label>
-      <div class="control">
-        <input class="input" type="text" formControlName="titulo" placeholder="Ingrese el título">
-      </div>
+    <div class="mb-4">
+      <label class="block text-sm font-bold mb-2">Título</label>
+      <input class="w-full border border-governor-bay-400 rounded p-2" type="text" formControlName="titulo" placeholder="Ingrese el título">
     </div>
 
     <!-- Temporada -->
-    <div class="field">
-      <label class="label">Temporada</label>
-      <div class="control">
-        <div class="select">
-          <select formControlName="temporada">
-            <option value="">Seleccione la temporada</option>
-            <option *ngFor="let temporada of temporadas" [value]="temporada">{{ temporada }}</option>
-          </select>
-        </div>
-      </div>
+    <div class="mb-4">
+      <label class="block text-sm font-bold mb-2">Temporada</label>
+      <select formControlName="temporada" class="w-full border border-governor-bay-400 rounded p-2">
+        <option value="">Seleccione la temporada</option>
+        <option *ngFor="let temporada of temporadas" [value]="temporada">{{ temporada }}</option>
+      </select>
     </div>
 
     <!-- Manga -->
-    <div class="field">
-      <label class="label">Manga</label>
-      <div class="control">
-        <div class="select">
-          <select formControlName="manga">
-            <option value="">Seleccione el tipo de manga</option>
-            <option value="corta">Corta</option>
-            <option value="larga">Larga</option>
-            <option value="sin">Sin manga</option>
-          </select>
-        </div>
-      </div>
+    <div class="mb-4">
+      <label class="block text-sm font-bold mb-2">Manga</label>
+      <select formControlName="manga" class="w-full border border-governor-bay-400 rounded p-2">
+        <option value="">Seleccione el tipo de manga</option>
+        <option value="corta">Corta</option>
+        <option value="larga">Larga</option>
+        <option value="sin">Sin manga</option>
+      </select>
     </div>
 
     <!-- Talla -->
-    <div class="field">
-      <label class="label">Talla</label>
-      <div class="control">
-        <div class="select">
-          <select formControlName="talla">
-            <option value="">Seleccione la talla</option>
-            <option value="XS">XS</option>
-            <option value="S">S</option>
-            <option value="M">M</option>
-            <option value="L">L</option>
-            <option value="XL">XL</option>
-          </select>
-        </div>
-      </div>
+    <div class="mb-4">
+      <label class="block text-sm font-bold mb-2">Talla</label>
+      <select formControlName="talla" class="w-full border border-governor-bay-400 rounded p-2">
+        <option value="">Seleccione la talla</option>
+        <option value="XS">XS</option>
+        <option value="S">S</option>
+        <option value="M">M</option>
+        <option value="L">L</option>
+        <option value="XL">XL</option>
+      </select>
     </div>
 
     <!-- Imagen -->
-    <div class="field">
-      <label class="label">Imagen</label>
-      <div class="control">
-        <input class="input" type="file" (change)="onFileSelected($event)">
-      </div>
+    <div class="mb-4">
+      <label class="block text-sm font-bold mb-2">Imagen</label>
+      <input class="w-full border border-governor-bay-400 rounded p-2" type="file" (change)="onFileSelected($event)">
     </div>
 
     <!-- Precio -->
-    <div class="field">
-      <label class="label">Precio</label>
-      <div class="control">
-        <input class="input" type="number" formControlName="precio" placeholder="Ingrese el precio">
-      </div>
+    <div class="mb-4">
+      <label class="block text-sm font-bold mb-2">Precio</label>
+      <input class="w-full border border-governor-bay-400 rounded p-2" type="number" formControlName="precio" placeholder="Ingrese el precio">
     </div>
 
     <!-- IVA -->
-
-    <div class="field">
-      <label class="label">IVA</label>
-      <div class="control">
-        <input class="input" type="number" formControlName="iva" placeholder="Ingrese el precio">
-      </div>
+    <div class="mb-4">
+      <label class="block text-sm font-bold mb-2">IVA</label>
+      <input class="w-full border border-governor-bay-400 rounded p-2" type="number" formControlName="iva" placeholder="Ingrese el precio">
     </div>
 
     <!-- Stock -->
-    <div class="field">
-      <label class="label">Stock</label>
-      <div class="control">
-        <input class="input" type="number" formControlName="stock" placeholder="Ingrese el stock">
-      </div>
+    <div class="mb-4">
+      <label class="block text-sm font-bold mb-2">Stock</label>
+      <input class="w-full border border-governor-bay-400 rounded p-2" type="number" formControlName="stock" placeholder="Ingrese el stock">
     </div>
 
     <!-- Equipo -->
-<div class="field">
-  <label class="label">Equipo</label>
-  <div class="control">
-    <button class="button is-link" (click)="onShowEquiposSelection()">Seleccionar Equipo</button>
-  </div>
-</div>
+    <div class="mb-4">
+      <label class="block text-sm font-bold mb-2">Equipo</label>
+      <button class="bg-tradewind-400 text-white py-2 px-4 rounded inline-block" (click)="onShowEquiposSelection()">Seleccionar Equipo</button>
+    </div>
 
-<!-- Modalidad -->
-<div class="field">
-  <label class="label">Modalidad</label>
-  <div class="control">
-    <button class="button is-link" (click)="onShowModalidadSelection()">Seleccionar Modalidad</button>
-  </div>
-</div>
+    <!-- Modalidad -->
+    <div class="mb-4">
+      <label class="block text-sm font-bold mb-2">Modalidad</label>
+      <button class="bg-tradewind-400 text-white py-2 px-4 rounded inline-block" (click)="onShowModalidadSelection()">Seleccionar Modalidad</button>
+    </div>
 
-<!-- Liga -->
-<div class="field">
-  <label class="label">Liga</label>
-  <div class="control">
-    <button class="button is-link" (click)="onShowLigaSelection()">Seleccionar Liga</button>
-  </div>
-</div>
+    <!-- Liga -->
+    <div class="mb-4">
+      <label class="block text-sm font-bold mb-2">Liga</label>
+      <button class="bg-tradewind-400 text-white py-2 px-4 rounded inline-block" (click)="onShowLigaSelection()">Seleccionar Liga</button>
+    </div>
 
     <!-- Botones -->
-    <div class="field is-grouped">
-      <div class="control">
-        <button class="button is-primary" type="submit">Guardar</button>
-      </div>
+    <div class="mb-4">
+      <button class="bg-governor-bay-700 text-white py-2 px-4 rounded inline-block" type="submit">Guardar</button>
     </div>
   </form>
 </div>

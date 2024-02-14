@@ -1,5 +1,6 @@
-<div class="container">
+<div class="container mx-auto">
   <!-- Menú desplegable para ordenar -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
   <div class="field">
     <label class="label">Ordenar por:</label>
     <div class="control">
@@ -11,37 +12,31 @@
       </div>
     </div>
   </div>
+</div>
 
   <!-- Contenido de modalidades -->
-  <div class="columns is-multiline">
-    <div class="column is-one-third" *ngFor="let modalidad of page?.content">
-      <div class="card">
-        <header class="card-header">
-          <p class="card-header-title" (click)="doView(modalidad)">Modalidad: {{ modalidad.nombre }}</p>
-          <a class="card-header-icon" aria-label="more options" (click)="doOrder('camisetas')">
-            <i class="fas fa-angle-down" aria-hidden="true"></i>
-          </a>
-        </header>
-        <div class="card-image">
-          <figure class="image is-4by3">
-            <img src="{{modalidad.imagen}}" alt="Imagen de la modalidad">
-          </figure>
-        <div class="card-content">
-          <div class="content">
-            <p>Número de Camisetas: <a [routerLink]="['/admin', 'camiseta', 'plist', 'bymodalidad', modalidad.id]">{{ modalidad.camisetas }}</a></p>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+      <div class="column" *ngFor="let modalidad of page?.content">
+        <div class="card">
+          <div class="card-image">
+              <img src="{{modalidad.imagen}}" alt="Imagen de la modalidad" class="w-full h-80 object-cover">
+          <div class="card-content">
+              <p class="title text-xl cursor-pointer" (click)="doView(modalidad)">{{modalidad.nombre}}</p>
+              <p><strong>Número de Camisetas:</strong> <a [routerLink]="['/admin', 'camiseta', 'plist', 'bymodalidad', modalidad.id]">{{ modalidad.camisetas }}</a></p>
           </div>
+          <footer class="card-footer">
+            <a class="card-footer-item" [routerLink]="['/admin', 'modalidad', 'edit', modalidad.id]">Actualizar</a>
+            <a class="card-footer-item" (click)="doRemove(modalidad)">Eliminar</a>
+          </footer>
         </div>
-        <footer class="card-footer">
-          <a class="card-footer-item" [routerLink]="['/admin', 'modalidad', 'edit', modalidad.id]">Actualizar</a>
-          <a class="card-footer-item" (click)="doRemove(modalidad)">Eliminar</a>
-        </footer>
       </div>
-    </div>
   </div>
 
   <!-- Mensaje si no hay modalidades -->
-  <div class="notification is-info" *ngIf="!page?.content || page?.content?.length === 0">
-    No hay modalidades para mostrar.
+  <div class="column" *ngIf="!page?.content || page?.content?.length === 0">
+    <div class="notification bg-governor-bay-200">
+      No hay modalidades para mostrar
+    </div>
   </div>
 
   <!-- Paginación -->

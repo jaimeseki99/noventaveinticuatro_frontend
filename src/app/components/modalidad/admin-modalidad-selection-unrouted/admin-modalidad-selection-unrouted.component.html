@@ -1,25 +1,25 @@
 <div class="table-container">
-  <table class="table is-bordered is-hoverable is-fullwidth">
-    <thead>
+  <table class="table border-collapse w-full">
+    <thead class="bg-gray-200">
       <tr>
-        <th (click)="doOrder('id')">ID</th>
-        <th (click)="doOrder('nombre')">Nombre</th>
-        <th>Camisetas</th>
-        <th>Opciones</th>
+        <th (click)="doOrder('id')" class="cursor-pointer py-2 px-4">ID</th>
+        <th (click)="doOrder('nombre')" class="cursor-pointer py-2 px-4">Nombre</th>
+        <th class="py-2 px-4">Camisetas</th>
+        <th class="py-2 px-4">Opciones</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let modalidad of page?.content">
-        <td>{{modalidad.id}}</td>
-        <td>{{modalidad.nombre}}</td>
+      <tr *ngFor="let modalidad of page?.content" class="border-b border-gray-200">
+        <td class="py-2 px-4">{{modalidad.id}}</td>
+        <td class="py-2 px-4">{{modalidad.nombre}}</td>
         <td>{{modalidad.camisetas}}</td>
         <td>
-          <button class="button is-success" (click)="onSelectModalidad(modalidad)">Seleccionar</button>
+          <button class="button bg-governor-bay-500 hover:bg-governor-bay-700 text-white font-bold py-2 px-4 rounded" (click)="onSelectModalidad(modalidad)">Seleccionar</button>
         </td>
       </tr>
     </tbody>
   </table>
-  <div class="paginator-container">
+  <div class="paginator-container mt-4">
     <p-paginator (onPageChange)="onPageChange($event)" [rows]="paginatorState.rows!" [totalRecords]="page?.totalElements || 0" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
   </div>
 </div>

@@ -1,5 +1,6 @@
-<div class="container">
+<div class="container mx-auto">
   <!-- Menú desplegable para ordenar -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
   <div class="field">
     <label class="label">Ordenar por:</label>
     <div class="control">
@@ -16,28 +17,23 @@
       </div>
     </div>
   </div>
+</div>
 
   <!-- Contenido de usuarios -->
-  <div class="columns is-multiline">
-    <div class="column is-one-third" *ngFor="let usuario of page?.content">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+    <ng-container *ngIf="page?.content">
+    <div class="column" *ngFor="let usuario of page?.content">
       <div class="card">
-        <header class="card-header">
-          <p class="card-header-title" (click)="doView(usuario)">Usuario: {{ usuario.nombre }} {{ usuario.apellido }}</p>
-          <a class="card-header-icon" aria-label="more options" (click)="doOrder('apellido')">
-            <i class="fas fa-angle-down" aria-hidden="true"></i>
-          </a>
-        </header>
         <div class="card-content">
-          <div class="content">
-            <p>Nombre de Usuario: {{ usuario.username }}</p>
-            <p>Email: {{ usuario.email }}</p>
-            <p>Dirección: {{ usuario.direccion }}</p>
-            <p>Teléfono: {{ usuario.telefono }}</p>
-            <p>Tipo de Usuario: {{ usuario.tipo ? 'Administrador' : 'Usuario' }}</p>
-            <p>Número de Carritos: {{ usuario.carritos }}</p>
-            <p>Número de Valoraciones: <a [routerLink]="['/admin', 'valoracion', 'plist', 'byusuario', usuario.id]">{{ usuario.valoraciones }}</a></p>
-            <p>Número de Compras: {{ usuario.compras }}</p>
-          </div>
+          <p class="title text-xl cursor-pointer" (click)="doView(usuario)"> {{ usuario.nombre }} {{ usuario.apellido }}</p>
+            <p><strong>Nombre de Usuario:</strong> {{ usuario.username }}</p>
+            <p><strong>Email:</strong> {{ usuario.email }}</p>
+            <p><strong>Dirección:</strong> {{ usuario.direccion }}</p>
+            <p><strong>Teléfono:</strong> {{ usuario.telefono }}</p>
+            <p><strong>Tipo de Usuario:</strong> {{ usuario.tipo ? 'Administrador' : 'Usuario' }}</p>
+            <p><strong>Número de Carritos:</strong> {{ usuario.carritos }}</p>
+            <p><strong>Número de Valoraciones:</strong> <a [routerLink]="['/admin', 'valoracion', 'plist', 'byusuario', usuario.id]">{{ usuario.valoraciones }}</a></p>
+            <p><strong>Número de Compras:</strong> {{ usuario.compras }}</p>
         </div>
         <footer class="card-footer">
           <a class="card-footer-item" [routerLink]="['/admin', 'usuario', 'edit', usuario.id]">Actualizar</a>
@@ -45,11 +41,12 @@
         </footer>
       </div>
     </div>
-  </div>
-
-  <!-- Mensaje si no hay usuarios -->
-  <div class="notification is-info" *ngIf="!page?.content || page?.content?.length === 0">
-    No hay usuarios para mostrar.
+    </ng-container>
+    <div class="column" *ngIf="!page?.content || page?.content?.length === 0">
+      <div class="notification bg-governor-bay-200">
+        No hay usuarios para mostrar.
+      </div>
+    </div>
   </div>
 
   <!-- Paginación -->

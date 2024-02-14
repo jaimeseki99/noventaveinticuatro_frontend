@@ -1,75 +1,59 @@
-<div class="container">
-  <h1 class="title is-4">Formulario de Usuario</h1>
+<div class="flex justify-center items-center mt-10">
+  <div class="max-w-md bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+  <h1 class="text-2xl font-bold mb-6">Formulario de Usuario</h1>
   <form [formGroup]="usuarioForm" (submit)="onSubmit()">
-    <div class="field">
-      <label class="label">Nombre</label>
-      <div class="control">
-        <input type="text" class="input" id="nombre" formControlName="nombre" placeholder="Ingrese el nombre">
-        <div class="help is-danger" *ngIf="hasError('nombre', 'required')">No has introducido el nombre</div>
-        <div class="help is-danger" *ngIf="hasError('nombre', 'minlength')">El nombre debe tener al menos 3 caracteres</div>
-        <div class="help is-danger" *ngIf="hasError('nombre', 'maxlength')">El nombre no puede tener más de 50 caracteres</div>
-      </div>
+    <div class="mb-4">
+      <label class="block text-sm font-bold mb-2">Nombre</label>
+        <input type="text" class="w-full border boder-governor-bay-400 rounded p-2" id="nombre" formControlName="nombre" placeholder="Ingrese el nombre">
+        <div class="text-red-500" *ngIf="hasError('nombre', 'required')">No has introducido el nombre</div>
+        <div class="text-red-500" *ngIf="hasError('nombre', 'minlength')">El nombre debe tener al menos 3 caracteres</div>
+        <div class="text-red-500" *ngIf="hasError('nombre', 'maxlength')">El nombre no puede tener más de 50 caracteres</div>
     </div>
-    <div class="field">
-      <label class="label">Apellido</label>
-      <div class="control">
-        <input type="text" class="input" id="apellido" formControlName="apellido" placeholder="Ingrese el apellido">
-        <div class="help is-danger" *ngIf="hasError('apellido', 'required')">No has introducido el apellido</div>
-        <div class="help is-danger" *ngIf="hasError('apellido', 'minlength')">El apellido debe tener al menos 3 caracteres</div>
-        <div class="help is-danger" *ngIf="hasError('apellido', 'maxlength')">El apellido no puede tener más de 50 caracteres</div>
-      </div>
+    <div class="mb-4">
+      <label class="block text-sm font-bold mb-2">Apellido</label>
+        <input type="text" class="w-full border border-governor-bay-400 rounded p-2" id="apellido" formControlName="apellido" placeholder="Ingrese el apellido">
+        <div class="text-red-500" *ngIf="hasError('apellido', 'required')">No has introducido el apellido</div>
+        <div class="text-red-500" *ngIf="hasError('apellido', 'minlength')">El apellido debe tener al menos 3 caracteres</div>
+        <div class="text-red-500" *ngIf="hasError('apellido', 'maxlength')">El apellido no puede tener más de 50 caracteres</div>
     </div>
-    <div class="field">
-      <label class="label">Username</label>
-      <div class="control">
-        <input type="text" class="input" id="username" formControlName="username" placeholder="Ingrese el username">
-        <div class="help is-danger" *ngIf="hasError('username', 'required')">No has introducido el username</div>
-        <div class="help is-danger" *ngIf="hasError('username', 'minlength')">El username debe tener al menos 3 caracteres</div>
-        <div class="help is-danger" *ngIf="hasError('username', 'maxlength')">El username no puede tener más de 50 caracteres</div>
-      </div>
+    <div class="mb-4">
+      <label class="block text-sm font-bold mb-2">Username</label>
+        <input type="text" class="w-full border border-governor-bay-400 rounded p-2" id="username" formControlName="username" placeholder="Ingrese el username">
+        <div class="text-red-500" *ngIf="hasError('username', 'required')">No has introducido el username</div>
+        <div class="text-red-500" *ngIf="hasError('username', 'minlength')">El username debe tener al menos 3 caracteres</div>
+        <div class="text-red-500" *ngIf="hasError('username', 'maxlength')">El username no puede tener más de 50 caracteres</div>
     </div>
-    <div class="field">
-      <label class="label">Email</label>
-      <div class="control">
-        <input type="email" class="input" id="email" formControlName="email" placeholder="Ingrese el email">
-        <div class="help is-danger" *ngIf="hasError('email', 'required')">No has introducido el email</div>
-        <div class="help is-danger" *ngIf="hasError('email', 'email')">El email no es válido</div>
-      </div>
+    <div class="mb-4">
+      <label class="block text-sm font-bold mb-2">Email</label>
+        <input type="email" class="w-full border border-governor-bay-400 rounded p-2" id="email" formControlName="email" placeholder="Ingrese el email">
+        <div class="text-red-500" *ngIf="hasError('email', 'required')">No has introducido el email</div>
+        <div class="text-red-500" *ngIf="hasError('email', 'email')">El email no es válido</div>
     </div>
-    <div class="field">
-      <label class="label">Dirección</label>
-      <div class="control">
-        <input type="text" class="input" id="direccion" formControlName="direccion" placeholder="Ingrese la dirección">
-        <div class="help is-danger" *ngIf="hasError('direccion', 'required')">No has introducido la dirección</div>
-        <div class="help is-danger" *ngIf="hasError('direccion', 'minlength')">La dirección debe tener al menos 3 caracteres</div>
-        <div class="help is-danger" *ngIf="hasError('direccion', 'maxlength')">La dirección no puede tener más de 1000 caracteres</div>
-      </div>
+    <div class="mb-4">
+      <label class="block text-sm font-bold mb-2">Dirección</label>
+        <input type="text" class="w-full border border-governor-bay-400 rounded p-2" id="direccion" formControlName="direccion" placeholder="Ingrese la dirección">
+        <div class="text-red-500" *ngIf="hasError('direccion', 'required')">No has introducido la dirección</div>
+        <div class="text-red-500" *ngIf="hasError('direccion', 'minlength')">La dirección debe tener al menos 3 caracteres</div>
+        <div class="text-red-500" *ngIf="hasError('direccion', 'maxlength')">La dirección no puede tener más de 1000 caracteres</div> 
     </div>
-    <div class="field">
-      <label class="label">Teléfono</label>
-      <div class="control">
-        <input type="text" class="input" id="telefono" formControlName="telefono" placeholder="Ingrese el teléfono">
-        <div class="help is-danger" *ngIf="hasError('telefono', 'required')">No has introducido el teléfono</div>
-        <div class="help is-danger" *ngIf="hasError('telefono', 'minlength')">El teléfono debe tener al menos 9 caracteres</div>
-        <div class="help is-danger" *ngIf="hasError('telefono', 'maxlength')">El teléfono no puede tener más de 15 caracteres</div>
-      </div>
+    <div class="mb-4">
+      <label class="block text-sm font-bold">Teléfono</label>
+        <input type="text" class="w-full border border-governor-bay-400 rounded p-2" id="telefono" formControlName="telefono" placeholder="Ingrese el teléfono">
+        <div class="text-red-500" *ngIf="hasError('telefono', 'required')">No has introducido el teléfono</div>
+        <div class="text-red-500" *ngIf="hasError('telefono', 'minlength')">El teléfono debe tener al menos 9 caracteres</div>
+        <div class="text-red-500" *ngIf="hasError('telefono', 'maxlength')">El teléfono no puede tener más de 15 caracteres</div>
     </div>
-    <div class="field">
-      <label class="label">Tipo</label>
-      <div class="control">
-        <div class="select">
-          <select id="tipo" formControlName="tipo">
+    <div class="mb-4">
+      <label class="block text-sm font-bold mb-2">Tipo</label>
+          <select id="tipo" formControlName="tipo" class="w-full border border-governor-bay-400 rounded p-2">
             <option [ngValue]="false">Usuario Normal</option>
             <option [ngValue]="true">Administrador</option>
           </select>
-        </div>
-        <div class="help is-danger" *ngIf="hasError('tipo', 'required')">Especifica si eres Administrador o Usuario</div>
-      </div>
+        <div class="text-red-500" *ngIf="hasError('tipo', 'required')">Especifica si eres Administrador o Usuario</div>
     </div>
     <div class="field">
-      <div class="control">
-        <button type="submit" class="button is-primary">Enviar formulario</button>
-      </div>
+        <button type="submit" class="bg-governor-bay-700 text-white py-2 px-4 rounded inline-block">Enviar formulario</button>
     </div>
   </form>
+</div>
 </div>

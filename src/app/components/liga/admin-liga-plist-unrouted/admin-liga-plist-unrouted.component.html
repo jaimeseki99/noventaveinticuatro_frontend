@@ -29,8 +29,8 @@
             <p class="title text-xl cursor-pointer" (click)="doView(liga)">{{liga.nombre}}</p>
             <p><strong>País:</strong> {{ liga.pais }}</p>
             <p><strong>Deporte:</strong> {{ liga.deporte }}</p>
-            <p><strong>Número de Equipos:</strong> <a [routerLink]="['/admin', 'equipo', 'plist', 'byliga', liga.id]">{{ liga.equipos }}</a></p>
-            <p><strong>Número de Camisetas:</strong> <a [routerLink]="['/admin', 'camiseta', 'plist', 'byliga', liga.id]">{{ liga.camisetas }}</a></p>
+            <p><strong>Número de Equipos:</strong> <a [routerLink]="['/admin', 'equipo', 'plist', 'byliga', liga.id]"> {{ liga.equipos }}</a></p>
+            <p><strong>Número de Camisetas:</strong> <a [routerLink]="['/admin', 'camiseta', 'plist', 'byliga', liga.id]"> {{ liga.camisetas }}</a></p>
         </div>
         <footer class="card-footer">
           <a class="card-footer-item" [routerLink]="['/admin', 'liga', 'edit', liga.id]">Actualizar</a>

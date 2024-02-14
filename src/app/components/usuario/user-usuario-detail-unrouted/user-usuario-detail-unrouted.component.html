@@ -1,23 +1,20 @@
-<div class="container">
-  <div class="columns is-centered">
-    <div class="column is-half">
-      <div class="card">
-        <div class="card-content">
-          <div class="content">
-            <h5 class="title is-5">Detalle de Usuario</h5>
-            <p>Nombre: {{ usuario.nombre }}</p>
-            <p>Apellido: {{ usuario.apellido }}</p>
-            <p>Username: {{ usuario.username }}</p>
-            <p>Email: {{ usuario.email }}</p>
-            <p>Dirección: {{ usuario.direccion }}</p>
-            <p>Teléfono: {{ usuario.telefono }}</p>
-            <p>Tipo: {{ usuario.tipo ? 'Administrador' : 'Usuario Normal' }}</p>
-            <p>Carritos: {{ usuario.carritos }}</p>
-            <p>Valoraciones: {{ usuario.valoraciones }}</p>
-            <p>Compras: {{ usuario.compras }}</p>
+<div class="container mx-auto">
+  <div class="flex justify-center">
+    <div class="w-full md:w-1/2">
+      <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+          <div class="px-6 py-4">
+            <div class="font-bold text-xl mb-2">{{ usuario.nombre }} {{usuario.apellido}}</div>
+            <p>Username: {{ usuario.username }} <br>
+            Email: {{ usuario.email }} <br>
+            Dirección: {{ usuario.direccion }} <br>
+            Teléfono: {{ usuario.telefono }} <br>
+            Tipo: {{ usuario.tipo ? 'Administrador' : 'Usuario Normal' }} <br>
+            Carritos: {{ usuario.carritos }} <br>
+            Valoraciones: {{ usuario.valoraciones }} <br>
+            Compras: {{ usuario.compras }} <br>
+            </p>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>

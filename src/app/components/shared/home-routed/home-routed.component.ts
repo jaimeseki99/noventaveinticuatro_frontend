@@ -20,4 +20,6 @@ export class HomeRoutedComponent implements OnInit {
     return this.sesionAjaxService.isSessionActive();
   }
 
+  
+
 }

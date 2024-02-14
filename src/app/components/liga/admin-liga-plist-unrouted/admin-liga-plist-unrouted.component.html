@@ -1,42 +1,36 @@
-<div class="container">
+<div class="container mx-auto">
   <!-- Menú desplegable para ordenar -->
-  <div class="field">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div class="field">
     <label class="label">Ordenar por:</label>
-    <div class="control">
-      <div class="select">
-        <select #selectElement (change)="doOrder(selectElement.value)">
-          <option value="nombre">Nombre</option>
-          <option value="pais">País</option>
-          <option value="deporte">Deporte</option>
-          <option value="equipos">Número de Equipos</option>
-          <option value="camisetas">Número de Camisetas</option>
-        </select>
+      <div class="control">
+        <div class="select">
+          <select #selectElement (change)="doOrder(selectElement.value)">
+            <option value="nombre">Nombre</option>
+            <option value="pais">País</option>
+            <option value="deporte">Deporte</option>
+            <option value="equipos">Número de Equipos</option>
+            <option value="camisetas">Número de Camisetas</option>
+          </select>
+        </div>
       </div>
     </div>
   </div>
 
   <!-- Contenido de ligas -->
-  <div class="columns is-multiline">
-    <div class="column is-one-third" *ngFor="let liga of page?.content">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+    <ng-container *ngIf="page?.content">
+    <div class="column" *ngFor="let liga of page?.content">
       <div class="card">
-        <header class="card-header">
-          <p class="card-header-title" (click)="doView(liga)">Liga: {{ liga.nombre }}</p>
-          <a class="card-header-icon" aria-label="more options" (click)="doOrder('camisetas')">
-            <i class="fas fa-angle-down" aria-hidden="true"></i>
-          </a>
-        </header>
         <div class="card-image">
-          <figure class="image is-4by3">
-            <img src="{{liga.imagen}}" alt="Imagen de la liga">
-          </figure>
+            <img src="{{liga.imagen}}" alt="Imagen de la liga" class="w-full h-80 object-cover">
         </div>
         <div class="card-content">
-          <div class="content">
-            <p>País: {{ liga.pais }}</p>
-            <p>Deporte: {{ liga.deporte }}</p>
-            <p>Número de Equipos: <a [routerLink]="['/admin', 'equipo', 'plist', 'byliga', liga.id]">{{ liga.equipos }}</a></p>
-            <p>Número de Camisetas: <a [routerLink]="['/admin', 'camiseta', 'plist', 'byliga', liga.id]">{{ liga.camisetas }}</a></p>
-          </div>
+            <p class="title text-xl cursor-pointer" (click)="doView(liga)">{{liga.nombre}}</p>
+            <p><strong>País:</strong> {{ liga.pais }}</p>
+            <p><strong>Deporte:</strong> {{ liga.deporte }}</p>
+            <p><strong>Número de Equipos:</strong> <a [routerLink]="['/admin', 'equipo', 'plist', 'byliga', liga.id]">{{ liga.equipos }}</a></p>
+            <p><strong>Número de Camisetas:</strong> <a [routerLink]="['/admin', 'camiseta', 'plist', 'byliga', liga.id]">{{ liga.camisetas }}</a></p>
         </div>
         <footer class="card-footer">
           <a class="card-footer-item" [routerLink]="['/admin', 'liga', 'edit', liga.id]">Actualizar</a>
@@ -44,11 +38,15 @@
         </footer>
       </div>
     </div>
+    </ng-container>
   </div>
+  
 
   <!-- Mensaje si no hay ligas -->
-  <div class="notification is-info" *ngIf="!page?.content || page?.content?.length === 0">
-    No hay ligas para mostrar.
+  <div class="column" *ngIf="!page?.content || page?.content?.length === 0">
+    <div class="notification bg-governor-bay-200">
+      No hay ligas para mostrar.
+    </div>
   </div>
 
   <!-- Paginación -->

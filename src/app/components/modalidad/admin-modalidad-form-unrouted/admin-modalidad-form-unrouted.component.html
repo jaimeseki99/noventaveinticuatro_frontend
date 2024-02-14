@@ -1,25 +1,23 @@
-<div class="container">
-  <h1 class="title is-4">Formulario de Modalidad</h1>
+<div class="flex justify-center items-center h-screen">
+  <div class="max-w-md bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+  <h1 class="text-2xl font-bold mb-6">Formulario de Modalidad</h1>
   <form [formGroup]="modalidadForm" (submit)="onSubmit()">
-    <div class="field">
-      <label class="label">Nombre</label>
+    <div class="mb-4">
+      <label class="block text-gray-700 text-sm font-bold mb-2">Nombre</label>
       <div class="control">
-        <input class="input" type="text" formControlName="nombre" placeholder="Nombre de la modalidad">
-        <div class="help is-danger" *ngIf="hasError('nombre', 'required')">No has introducido el nombre</div>
-        <div class="help is-danger" *ngIf="hasError('nombre', 'minlength')">El nombre es demasiado corto, debe tener al menos 3 carácteres</div>
-        <div class="help is-danger" *ngIf="hasError('nombre', 'maxlength')">El nombre es demasiado largo</div>
+        <input class="appearance-none border rounded w-full border border-governor-bay-400 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" formControlName="nombre" placeholder="Nombre de la modalidad">
+        <div class="text-red-500" *ngIf="hasError('nombre', 'required')">No has introducido el nombre</div>
+        <div class="text-red-500" *ngIf="hasError('nombre', 'minlength')">El nombre es demasiado corto, debe tener al menos 3 carácteres</div>
+        <div class="text-red-500" *ngIf="hasError('nombre', 'maxlength')">El nombre es demasiado largo</div>
       </div>
     </div>
-    <div class="field">
-      <label class="label">Imagen</label>
-      <div class="control">
-        <input class="input" type="file" (change)="onFileSelected($event)">
-      </div>
+    <div class="mb-4">
+      <label class="block text-gray-700 text-sm font-bold mb-2">Imagen</label>
+        <input class="appearance-none border rounded w-full  border border-governor-bay-400 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="file" (change)="onFileSelected($event)">
     </div>
-    <div class="field">
-      <div class="control">
-        <button class="button is-primary" type="submit">Enviar</button>
-      </div>
+    <div class="flex items-center justify-between">
+        <button class="bg-governor-bay-500 hover:bg-governor-bay-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">Enviar</button>
     </div>
   </form>
+</div>
 </div>

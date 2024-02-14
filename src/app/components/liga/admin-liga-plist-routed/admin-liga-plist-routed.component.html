@@ -1,27 +1,25 @@
 <div class="section">
-  <div class="container">
-    <div class="columns">
-      <div class="column">
-        <button class="button is-primary" (click)="doGenerateLigas(10)" [disabled]="bLoading">
+  <div class="container mx-auto">
+    <div class="flex flex-wrap justify-center items-center mb-4">
+      <div class="m-2">
+        <button class="bg-tradewind-500 hover:bg-tradewind-700 text-white font-bold py-2 px-4 rounded" (click)="doGenerateLigas(10)" [disabled]="bLoading">
           Generar ligas
         </button>
       </div>
-      <div class="column">
-        <button class="button is-danger" (click)="doEmpty($event)" [disabled]="bLoading">
+      <div class="m-2">
+        <button class="bg-stiletto-700 hover:bg-stiletto-900 text-white font-bold py-2 px-4 rounded" (click)="doEmpty($event)" [disabled]="bLoading">
           Eliminar ligas
         </button>
       </div>
-      <div class="column">
-        <button class="button is-link" [routerLink]="['/admin', 'liga', 'new']">Añadir nueva liga</button>
+      <div class="m-2">
+        <button class="bg-governor-bay-500 hover:bg-governor-bay-700 text-white font-bold py-2 px-4 rounded" [routerLink]="['/admin', 'liga', 'new']">Añadir nueva liga</button>
       </div>
     </div>
-    <div class="columns">
-      <div class="column">
-        <div class="has-text-centered" *ngIf="bLoading">
+    
+        <div class="flex justify-center" *ngIf="bLoading">
           <mat-spinner diameter="30" color="accent"></mat-spinner>
         </div>
-      </div>
-    </div>
+      
     <app-admin-liga-plist-unrouted [forceReload]="forceReload" *ngIf="!bLoading"></app-admin-liga-plist-unrouted>
   </div>
 </div>

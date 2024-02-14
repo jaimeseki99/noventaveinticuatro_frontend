@@ -1,23 +1,12 @@
-<div class="container">
-  <div class="columns is-centered">
-    <div class="column is-half">
-      <div class="card">
-        <header class="card-header">
-          <p class="card-header-title">
-            Información de la Modalidad
-          </p>
-        </header>
-        <div class="card-image">
-          <figure class="image is-4by3">
-            <img src="{{modalidad.imagen}}" alt="Imagen de la modalidad">
-          </figure>
-        <div class="card-content">
-          <div class="content">
-            <h5 class="title is-5">{{ modalidad.nombre }}</h5>
-            <p>Número de camisetas: {{modalidad.camisetas}}</p>
+<div class="flex justify-center items-center">
+  <div class="max-w-sm rounded overflow-hidden shadow-lg">
+    <div class="px-6 py-4">
+            <img src="{{modalidad.imagen}}" alt="Imagen de la modalidad" class="w-full h-80">          
+        <div class="px-6 py-4">
+          <div class="font-bold text-xl mb-2">{{modalidad.nombre}}</div>
+            <p class="text-gray-700 text-base">Número de camisetas: {{modalidad.camisetas}}</p>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
+

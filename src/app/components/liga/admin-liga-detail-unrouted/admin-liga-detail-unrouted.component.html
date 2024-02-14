@@ -1,27 +1,20 @@
-<div class="container">
-  <div class="columns is-centered">
-    <div class="column is-half">
-      <div class="card">
-        <header class="card-header">
-          <p class="card-header-title">
-            Información de la Liga
-          </p>
-        </header>
-        <div class="card-image">
-          <figure class="image is-4by3">
-            <img src="{{liga.imagen}}" alt="Imagen de la liga">
-          </figure>
+<div class="container mx-auto">
+  <div class="flex justify-center">
+    <div class="w-full md:w-1/2">
+      <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+        <div class="aspect-w-4 aspect-h-3">
+            <img src="{{liga.imagen}}" alt="Imagen de la liga" class="object-cover w-full h-full">         
         </div>
-        <div class="card-content">
-          <div class="content">
-            <h5 class="title is-5">{{ liga.nombre }}</h5>
-            <p>País: {{liga.pais}}</p>
-            <p>Deporte: {{liga.deporte}}</p>
-            <p>Número de equipos: {{liga.equipos}}</p>
-            <p>Número de camisetas: {{liga.camisetas}}</p>
+        <div class="px-6 py-4">
+          <div class="font-bold text-xl mb-2">{{liga.nombre}}</div>
+          <p class="text-gray-700 text-base">
+            País: {{liga.pais}} <br>
+            Deporte: {{liga.deporte}} <br>
+            Número de equipos: {{liga.equipos}} <br>
+            Número de camisetas: {{liga.camisetas}} <br>
+          </p>
           </div>
         </div>
       </div>
     </div>
-  </div>
 </div>

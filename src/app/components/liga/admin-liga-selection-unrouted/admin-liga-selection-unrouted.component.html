@@ -1,31 +1,31 @@
 <div class="table-container">
-  <table class="table is-bordered is-hoverable is-fullwidth">
-    <thead>
+  <table class="table border-collapse w-full">
+    <thead class="bg-gray-200">
       <tr>
-        <th (click)="doOrder('id')">ID</th>
-        <th (click)="doOrder('nombre')">Nombre</th>
-        <th (click)="doOrder('pais')">País</th>
-        <th (click)="doOrder('deporte')">Deporte</th>
-        <th>Equipos</th>
-        <th>Camisetas</th>
-        <th>Opciones</th>
+        <th (click)="doOrder('id')" class="cursor-pointer py-2 px-4">ID</th>
+        <th (click)="doOrder('nombre')" class="cursor-pointer py-2 px-4">Nombre</th>
+        <th (click)="doOrder('pais')" class="cursor-pointer py-2 px-4">País</th>
+        <th (click)="doOrder('deporte')" class="cursor-pointer py-2 px-4">Deporte</th>
+        <th class="py-2 px-4">Equipos</th>
+        <th class="py-2 px-4">Camisetas</th>
+        <th class="py-2 px-4">Opciones</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let liga of page?.content">
-        <td>{{liga.id}}</td>
-        <td>{{liga.nombre}}</td>
-        <td>{{liga.pais}}</td>
-        <td>{{liga.deporte}}</td>
-        <td>{{liga.equipos}}</td>
-        <td>{{liga.camisetas}}</td>
+      <tr *ngFor="let liga of page?.content" class="border-b border-gray-200">
+        <td class="py-2 px-4">{{liga.id}}</td>
+        <td class="py-2 px-4">{{liga.nombre}}</td>
+        <td class="py-2 px-4">{{liga.pais}}</td>
+        <td class="py-2 px-4">{{liga.deporte}}</td>
+        <td class="py-2 px-4">{{liga.equipos}}</td>
+        <td class="py-2 px-4">{{liga.camisetas}}</td>
         <td>
-          <button class="button is-success" (click)="onSelectLiga(liga)">Seleccionar</button>
+          <button class="button bg-governor-bay-500 hover:bg-governor-bay-700 text-white font-bold py-2 px-4 rounded" (click)="onSelectLiga(liga)">Seleccionar</button>
         </td>
       </tr>
     </tbody>
   </table>
-  <div class="pagination-container">
+  <div class="pagination-container mt-4">
     <p-paginator (onPageChange)="onPageChange($event)" [rows]="paginatorState.rows!" [totalRecords]="page?.totalElements || 0" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
   </div>
 </div>

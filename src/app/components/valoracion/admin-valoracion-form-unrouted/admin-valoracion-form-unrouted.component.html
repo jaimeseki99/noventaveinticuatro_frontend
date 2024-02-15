@@ -1,44 +1,36 @@
-<div class="container">
-  <h1 class="title">Formulario de Valoración</h1>
+<div class="flex justify-center items-center mt-10">
+  <div class="max-w-md bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+  <h1 class="text-2xl font-bold mb-6">Formulario de Valoración</h1>
   <form [formGroup]="valoracionForm" (ngSubmit)="onSubmit()">
 
     <!--Fecha-->
-    <div class="field">
-      <label class="label">Fecha</label>
-      <div class="control">
-        <input class="input" type="date" formControlName="fecha" placeholder="Fecha">
-      </div>
+    <div class="mb-4">
+      <label class="block text-sm font-bold mb-2">Fecha</label>
+        <input class="w-full border boder-governor-bay-400 rounded p-2" type="date" formControlName="fecha" placeholder="Fecha">
     </div>
   
     <!-- Comentario -->
-    <div class="field">
-      <label class="label">Comentario</label>
-      <div class="control">
-        <textarea class="textarea" formControlName="comentario" placeholder="Ingrese un comentario"></textarea>
-      </div>
+    <div class="mb-4">
+      <label class="block text-sm font-bold mb-2">Comentario</label>
+        <textarea class="w-full border boder-governor-bay-400 rounded p-2" formControlName="comentario" placeholder="Ingrese un comentario"></textarea>
     </div>
 
     <!-- Selector de Usuario -->
-    <div class="field">
-      <label class="label">Usuario</label>
-      <div class="control">
-        <button class="button is-link" type="button" (click)="onShowUsuariosSelection()">Seleccionar Usuario</button>
-      </div>
+    <div class="mb-4">
+      <label class="block text-sm font-bold mb-2">Usuario</label>
+        <button class="bg-tradewind-400 text-white py-2 px-4 rounded inline-block" (click)="onShowUsuariosSelection()">Seleccionar Usuario</button>
     </div>
 
     <!-- Selector de Camiseta -->
-    <div class="field">
-      <label class="label">Camiseta</label>
-      <div class="control">
-        <button class="button is-link" type="button" (click)="onShowCamisetasSelection()">Seleccionar Camiseta</button>
-      </div>
+    <div class="mb-4">
+      <label class="block text-sm font-bold mb-2">Camiseta</label>
+        <button class="bg-tradewind-400 text-white py-2 px-4 rounded inline-block" (click)="onShowCamisetasSelection()">Seleccionar Camiseta</button>
     </div>
 
     <!-- Botones -->
-    <div class="field is-grouped">
-      <div class="control">
-        <button class="button is-primary" type="submit">Guardar</button>
-      </div>
+    <div class="mb-4">
+        <button class="bg-governor-bay-700 text-white py-2 px-4 rounded inline-block" type="submit">Guardar</button>
     </div>
   </form>
+  </div>
 </div>

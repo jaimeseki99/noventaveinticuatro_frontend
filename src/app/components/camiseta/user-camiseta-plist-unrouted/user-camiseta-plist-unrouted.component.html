@@ -37,7 +37,7 @@
           <p class="stock-not-available" *ngIf="camiseta.stock == 0">Camiseta no disponible</p>
           <p class="discount" *ngIf="camiseta.descuento">Descuento: {{camiseta.porcentajeDescuento}}</p>
         </div>
-        <div class="card-footer">
+        <div class="card-footer" *ngIf="camiseta.stock > 0">
           <a class="card-footer-item" (click)="agregarAlCarrito(camiseta)">
             <span class="icon">
               <i class="fas fa-shopping-cart"></i>

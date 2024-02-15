@@ -102,6 +102,12 @@ export class UserCamisetaDetailUnroutedComponent implements OnInit {
     })
   }
 
+  handleKeyDown(event: KeyboardEvent): void {
+    if (event.key !== 'ArrowUp' && event.key !== 'ArrowDown') {
+      event.preventDefault();
+    }
+  }
+
   agregarAlCarrito(): void {
     if (this.sesionAjaxService.isSessionActive()) {
       this.carrito.usuario = {username: this.sesionAjaxService.getUsername()} as IUsuario; 

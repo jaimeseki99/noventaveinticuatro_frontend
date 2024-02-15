@@ -83,6 +83,10 @@ export class UserCarritoPlistUnroutedComponent implements OnInit {
   }
 
   updateCantidad(carrito: ICarrito, nuevaCantidad: number): void {
+
+    const stockDisponible = carrito.camiseta.stock;
+
+    if (nuevaCantidad >= 0 && nuevaCantidad <= stockDisponible) {
     carrito.usuario = { id: carrito.usuario.id } as IUsuario;
     carrito.camiseta = { id: carrito.camiseta.id } as ICamiseta;
     carrito.cantidad = nuevaCantidad;
@@ -102,7 +106,10 @@ export class UserCarritoPlistUnroutedComponent implements OnInit {
         }
       })
     }
+  } else {
+    this.matSnackBar.open('No hay suficiente stock en tienda', 'Aceptar', { duration: 3000 })
   }
+}
 
   updateCosteTotal(): void {
     this.sesionAjaxService.getSessionUser()?.subscribe({
@@ -183,9 +190,6 @@ export class UserCarritoPlistUnroutedComponent implements OnInit {
   }
 
   eliminarDelCarrito(id_carrito: number): void {
-    this.confirmationService.confirm({
-      message: '¿Desea eliminar este carrito?',
-      accept: () => {
         this.carritoAjaxService.deleteCarrito(id_carrito).subscribe({
           next: () => {
             this.matSnackBar.open('Carrito eliminado', 'Aceptar', { duration: 3000 });
@@ -196,8 +200,7 @@ export class UserCarritoPlistUnroutedComponent implements OnInit {
             this.matSnackBar.open('Error al eliminar el carrito', 'Aceptar', { duration: 3000 })
           }
         });
-      }
-    });
+      
   }
 
   eliminarTodosCarritos(id_usuario: number): void {

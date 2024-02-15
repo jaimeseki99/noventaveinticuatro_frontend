@@ -26,6 +26,7 @@
     "autoprefixer": "^10.4.17",
     "bulma": "^0.9.4",
     "crypto-js": "^4.2.0",
+    "flowbite": "^2.3.0",
     "postcss": "^8.4.33",
     "primeicons": "^6.0.1",
     "primeng": "^17.3.3",

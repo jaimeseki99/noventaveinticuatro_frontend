@@ -1,60 +1,64 @@
-<div class="container">
+<div class="container mx-auto">
 
-  <div class="notification" *ngIf="id_equipo>0">
-    Filtrando por equipo: {{equipo?.nombre}}
-    <button class="delete" *ngIf="id_equipo>0" [routerLink]="['/usuario', 'camiseta', 'plist']">Quitar filtro</button>
+  <div class="mt-4" *ngIf="id_equipo > 0">
+    <div class="bg-governor-bay-100 border border-governor-bay-400 text-governor-bay-700 px-4 py-3 rounded relative" role="alert">
+      Filtrando por equipo: {{ equipo?.nombre }}
+      <button class="absolute top-0 bottom-0 right-0 px-4 py-3" [routerLink]="['/usuario', 'camiseta', 'plist']">
+        <svg class="fill-current h-6 w-6 text-blue-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+          <title>Close</title>
+          <path fill-rule="evenodd" d="M3.293 4.293a1 1 0 011.414 0L10 8.586l5.293-5.293a1 1 0 111.414 1.414L11.414 10l5.293 5.293a1 1 0 01-1.414 1.414L10 11.414l-5.293 5.293a1 1 0 01-1.414-1.414L8.586 10 3.293 4.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+        </svg>
+      </button>
+    </div>
   </div>
 
-  <div class="notification" *ngIf="id_modalidad>0">
-    Filtrando por modalidad: {{modalidad?.nombre}}
-    <button class="delete" *ngIf="id_modalidad>0" [routerLink]="['/usuario', 'camiseta', 'plist']">Quitar filtro</button>
+  <div class="mt-4" *ngIf="id_modalidad > 0">
+    <div class="bg-governor-bay-100 border border-governor-bay-400 text-governor-bay-700 px-4 py-3 rounded relative" role="alert">
+      Filtrando por modalidad: {{ modalidad?.nombre }}
+      <button class="absolute top-0 bottom-0 right-0 px-4 py-3" [routerLink]="['/usuario', 'camiseta', 'plist']">
+        <svg class="fill-current h-6 w-6 text-blue-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+          <title>Close</title>
+          <path fill-rule="evenodd" d="M3.293 4.293a1 1 0 011.414 0L10 8.586l5.293-5.293a1 1 0 111.414 1.414L11.414 10l5.293 5.293a1 1 0 01-1.414 1.414L10 11.414l-5.293 5.293a1 1 0 01-1.414-1.414L8.586 10 3.293 4.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+        </svg>
+      </button>
+    </div>
   </div>
 
-  <div class="notification" *ngIf="id_liga>0">
-    Filtrando por liga: {{liga?.nombre}}
-    <button class="delete" *ngIf="id_liga>0" [routerLink]="['/usuario', 'camiseta', 'plist']">Quitar filtro</button>
+  <div class="mt-4" *ngIf="id_liga > 0">
+    <div class="bg-governor-bay-100 border border-governor-bay-400 text-governor-bay-700 px-4 py-3 rounded relative" role="alert">
+      Filtrando por liga: {{ liga?.nombre }}
+      <button class="absolute top-0 bottom-0 right-0 px-4 py-3" [routerLink]="['/usuario', 'camiseta', 'plist']">
+        <svg class="fill-current h-6 w-6 text-blue-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+          <title>Close</title>
+          <path fill-rule="evenodd" d="M3.293 4.293a1 1 0 011.414 0L10 8.586l5.293-5.293a1 1 0 111.414 1.414L11.414 10l5.293 5.293a1 1 0 01-1.414 1.414L10 11.414l-5.293 5.293a1 1 0 01-1.414-1.414L8.586 10 3.293 4.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+        </svg>
+      </button>
+    </div>
   </div>
 
-  <div class="columns is-multiline">
-    <div class="column is-one-third-desktop is-half-tablet is-full-mobile" *ngFor="let camiseta of page?.content">
-      <div class="card">
-        <div class="card-image">
-          <figure class="image is-4by3">
-            <a [routerLink]="['/usuario', 'camiseta', 'view', camiseta.id]">
-            <img src="{{camiseta.imagen}}" alt="Camiseta">
-            </a>
-          </figure>
-        </div>
-        <div class="card-content">
-          <p class="title">
-            <a [routerLink]="['/usuario', 'camiseta', 'view', camiseta.id]">
-            {{camiseta.titulo}}
-            </a>
-          </p>
-          <p class="subtitle">Precio: {{camiseta.precio | currency}}€</p>
-          <p class="subtitle">Talla: {{camiseta.talla}}</p>
-          <p class="stock-available" *ngIf="camiseta.stock > 0">Camiseta disponible</p>
-          <p class="stock-not-available" *ngIf="camiseta.stock == 0">Camiseta no disponible</p>
-          <p class="discount" *ngIf="camiseta.descuento">Descuento: {{camiseta.porcentajeDescuento}}</p>
-        </div>
-        <div class="card-footer" *ngIf="camiseta.stock > 0">
-          <a class="card-footer-item" (click)="agregarAlCarrito(camiseta)">
-            <span class="icon">
-              <i class="fas fa-shopping-cart"></i>
-            </span>
-            Añadir al carrito
-          </a>
-          <a class="card-footer-item" (click)="comprarDirectamente(camiseta)">
-            <span class="icon">
-              <i class="fas fa-hand-holding-usd"></i>
-            </span>
-            Comprar ahora</a>
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
+    <div class="flex flex-col h-full" *ngFor="let camiseta of page?.content">
+      <div class="bg-white shadow-lg rounded-lg overflow-hidden transition-transform transform hover:scale-105 sm:hover:scale-100 lg:hover:scale-105 w-full h-full">
+        <a [routerLink]="['/usuario', 'camiseta', 'view', camiseta.id]">
+          <img class="w-full h-80" src="{{ camiseta.imagen }}" alt="Camiseta">
+        </a>
+        <div class="p-4">
+          <a [routerLink]="['/usuario', 'camiseta', 'view', camiseta.id]" class="font-semibold text-xl mb-2">{{ camiseta.titulo }}</a>
+          <p class="text-gray-700 text-base">{{ camiseta.precio | currency }}€</p>
+          <p class="text-gray-700 text-base">Talla: {{ camiseta.talla }}</p>
+          <p class="text-gray-700 text-base" *ngIf="camiseta.stock > 0">Camiseta disponible</p>
+          <p class="text-gray-700 text-base" *ngIf="camiseta.stock == 0">Camiseta no disponible</p>
+          <p class="text-gray-700 text-base" *ngIf="camiseta.descuento">Descuento: {{ camiseta.porcentajeDescuento }}</p>
+          <div class="flex justify-between mt-4" *ngIf="camiseta.stock > 0">
+            <a class="bg-tradewind-500 hover:bg-tradewind-700 text-white font-bold py-2 px-4 rounded" (click)="agregarAlCarrito(camiseta)">Añadir al carrito</a>
+            <a class="bg-governor-bay-500 hover:bg-governor-bay-700 text-white font-bold py-2 px-4 rounded" (click)="comprarDirectamente(camiseta)">Comprar ahora</a>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="level is-justify-content-center mb-3">
+  <div class="flex justify-center mt-4">
     <p-paginator (onPageChange)="onPageChange($event)" [rows]="paginatorState.rows!" [totalRecords]="page?.totalElements || 0" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
   </div>
 </div>

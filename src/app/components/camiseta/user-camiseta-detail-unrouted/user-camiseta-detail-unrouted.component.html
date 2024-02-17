@@ -1,16 +1,16 @@
-<div class="container">
-  <div class="columns">
-    <div class="column is-6">
-      <img src="{{ camiseta.imagen }}" alt="{{ camiseta.titulo }}" class="image">
+<div class="container mx-auto mt-8 px-4 lg:px-0">
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+    <div class="lg:order-2">
+      <img [src]="camiseta.imagen" [alt]="camiseta.titulo" class="w-full">
     </div>
-    <div class="column is-6">
-      <h1 class="title">{{ camiseta.titulo }}</h1>
+    <div class="lg:order-1">
+      <h1 class="text-3xl font-bold mb-4">{{ camiseta.titulo }}</h1>
       <p><strong>Equipo:</strong> {{ camiseta.equipo.nombre }}</p>
-      <p><strong>Tipo de camiseta:</strong>{{camiseta.modalidad.nombre}}</p>
+      <p><strong>Tipo de camiseta:</strong>{{ camiseta.modalidad.nombre }}</p>
       <p><strong>Precio:</strong> {{ camiseta.precio }}€</p>
-      <p><strong>Talla {{camiseta.talla}}</strong></p>
-      <p><strong>Longitud de la manga: {{camiseta.manga}}</strong></p>
-      <p><strong>IVA: {{camiseta.iva}}</strong></p>
+      <p><strong>Talla {{ camiseta.talla }}</strong></p>
+      <p><strong>Longitud de la manga: {{ camiseta.manga }}</strong></p>
+      <p><strong>IVA: {{ camiseta.iva }}</strong></p>
       <ng-container *ngIf="camiseta.stock > 25">
         <p><strong>Stock:</strong> Camiseta disponible en tienda</p>
       </ng-container>
@@ -21,48 +21,38 @@
         <p><strong>Stock:</strong> ¡Últimas unidades disponibles!</p>
       </ng-container>
 
-      <div class="field">
-        <label class="label">Cantidad:</label>
-        <div class="control">
-          <input class="input" type="number" min="1" max="{{camiseta.stock}}" [(ngModel)]="cantidadSeleccionada" (keydown)="handleKeyDown($event)">
-        </div>
+      <div class="mt-6">
+        <label class="block text-sm font-medium">Cantidad:</label>
+        <input class="w-full mt-1 form-input" type="number" min="1" max="{{ camiseta.stock }}" [(ngModel)]="cantidadSeleccionada" (keydown)="handleKeyDown($event)">
       </div>
-      <div class="field is-grouped">
-        <div class="control">
-          <button class="button is-primary" (click)="agregarAlCarrito()" [disabled]="camiseta.stock == 0">Agregar al carrito</button>
-        </div>
-        <div class="control">
-          <button class="button is-success" (click)="comprarDirectamente()" [disabled]="camiseta.stock == 0">Comprar directamente</button>
-        </div>
-        <div class="control">
-          <button class="button is-link" (click)="realizarValoracion(camiseta)">Escribir valoración</button>
+      <div class="mt-6 space-y-4">
+        <button class="w-full px-4 py-2 bg-tradewind-500 hover:bg-tradewind-600 text-white rounded-md" (click)="agregarAlCarrito()" [disabled]="camiseta.stock == 0">Agregar al carrito</button>
+        <button class="w-full px-4 py-2 bg-tradewind-700 hover:bg-tradewind-800 text-white rounded-md" (click)="comprarDirectamente()" [disabled]="camiseta.stock == 0">Comprar directamente</button>
+        <button class="w-full px-4 py-2 bg-governor-bay-600 hover:bg-governor-bay-700 text-white rounded-md" (click)="realizarValoracion(camiseta)">Escribir valoración</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container mx-auto mt-8 mb-8 px-4 lg:px-0">
+  <h1 class="text-2xl font-bold mb-4">Valoraciones</h1>
+  <div class="overflow-y-auto max-h-96">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div *ngFor="let valoracion of page?.content">
+        <div class="w-full h-full bg-white rounded-lg overflow-hidden shadow-md"> <!-- Establecemos un tamaño fijo y ocultamos el overflow -->
+          <div class="p-4">
+            <p class="text-lg font-semibold">{{ valoracion.usuario.username }}</p>
+            <p class="text-sm">{{ valoracion.fecha | date: 'dd-MM-yyyy' }}</p>
+            <p class="mt-2">{{ valoracion.comentario }}</p>
+            <button *ngIf="isUsuarioValoracion(valoracion)" class="mt-2 w-full px-4 py-2 bg-stiletto-500 hover:bg-stiletto-700 text-white rounded-md" (click)="borrarValoracion(valoracion.id)">Borrar</button>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<div class="container">
-  <h1 class="title is-4">Valoraciones</h1>
-  <div class="box is-scrollable">
-    <div class="columns is-multiline">
-      <div class="column is-one-third" *ngFor="let valoracion of page?.content">
-        <div class="card">
-          <div class="card-header">
-            <p class="card-header-title">{{valoracion.usuario.username}}</p>
-            <p class="card-header-icon">{{valoracion.fecha | date: 'dd-MM-yyyy'}}</p>
-          </div>
-          <div class="card-content">
-            <div class="content">
-              {{valoracion.comentario}}
-              <button *ngIf="isUsuarioValoracion(valoracion)" class="button is-danger" (click)="borrarValoracion(valoracion.id)">Borrar</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+
 
 
 <p-confirmPopup></p-confirmPopup>

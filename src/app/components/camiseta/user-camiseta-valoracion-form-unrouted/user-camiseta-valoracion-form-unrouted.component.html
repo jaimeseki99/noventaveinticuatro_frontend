@@ -1,21 +1,16 @@
-<div class="container">
-  <form [formGroup]="valoracionForm" (ngSubmit)="onSubmit()">
-    <div class="field">
-      <label class="label">Comentario</label>
-      <div class="control">
-        <textarea class="textarea" formControlName="comentario"></textarea>
-      </div>
-      <div class="help is-danger" *ngIf="valoracionForm.get('comentario')?.invalid && valoracionForm.get('comentario')?.touched">
+<div class="container mx-auto">
+  <form [formGroup]="valoracionForm" (ngSubmit)="onSubmit()" class="max-w-md mx-auto">
+    <div class="mb-4">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="comentario">Comentario</label>
+      <textarea id="comentario" class="w-full px-3 py-2 border rounded-md text-gray-700 focus:outline-none focus:border-teal-500" formControlName="comentario" rows="4"></textarea>
+      <div class="text-red-500 text-xs mt-1" *ngIf="valoracionForm.get('comentario')?.invalid && valoracionForm.get('comentario')?.touched">
         Debes escribir un comentario
       </div>
     </div>
 
-    <div class="field">
-      <div class="control">
-        <button class="button is-primary" type="submit" [disabled]="valoracionForm.invalid">Enviar valoración</button>
-        <button class="button is-link" (click)="onCancel()">Cancelar</button>
-      </div>
+    <div class="flex items-center justify-between">
+      <button type="submit" class="bg-governor-bay-500 hover:bg-governor-bay-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" [disabled]="valoracionForm.invalid">Enviar valoración</button>
+      <button type="button" class="bg-stiletto-500 hover:bg-stiletto-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" (click)="onCancel()">Cancelar</button>
     </div>
-    
   </form>
 </div>

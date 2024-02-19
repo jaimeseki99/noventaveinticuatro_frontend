@@ -1,12 +1,27 @@
 <div class="container">
 
-  <div class="notification" *ngIf="id_usuario>0">
-    Filtrando por usuario: {{ usuario?.nombre}}
-    <button class="delete" *ngIf="id_usuario>0" [routerLink]="['/admin', 'valoracion', 'plist']">Quitar filtro</button>
+  <div class="mt-4" *ngIf="id_usuario > 0">
+    <div class="bg-governor-bay-100 border border-governor-bay-400 text-governor-bay-700 px-4 py-3 rounded relative" role="alert">
+      Filtrando por usuario: {{ usuario?.nombre }} {{ usuario?.apellido }}
+      <button class="absolute top-0 bottom-0 right-0 px-4 py-3" [routerLink]="['/admin', 'valoracion', 'plist']">
+        <svg class="fill-current h-6 w-6 text-blue-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+          <title>Close</title>
+          <path fill-rule="evenodd" d="M3.293 4.293a1 1 0 011.414 0L10 8.586l5.293-5.293a1 1 0 111.414 1.414L11.414 10l5.293 5.293a1 1 0 01-1.414 1.414L10 11.414l-5.293 5.293a1 1 0 01-1.414-1.414L8.586 10 3.293 4.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+        </svg>
+      </button>
+    </div>
   </div>
-  <div class="notification" *ngIf="id_camiseta>0">
-    Filtrando por modalidad: {{ camiseta?.titulo}}
-    <button class="delete" *ngIf="id_camiseta>0" [routerLink]="['/admin', 'valoracion', 'plist']">Quitar filtro</button>
+
+  <div class="mt-4" *ngIf="id_camiseta > 0">
+    <div class="bg-governor-bay-100 border border-governor-bay-400 text-governor-bay-700 px-4 py-3 rounded relative" role="alert">
+      Filtrando por camiseta: {{ camiseta?.titulo }}
+      <button class="absolute top-0 bottom-0 right-0 px-4 py-3" [routerLink]="['/admin', 'valoracion', 'plist']">
+        <svg class="fill-current h-6 w-6 text-blue-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+          <title>Close</title>
+          <path fill-rule="evenodd" d="M3.293 4.293a1 1 0 011.414 0L10 8.586l5.293-5.293a1 1 0 111.414 1.414L11.414 10l5.293 5.293a1 1 0 01-1.414 1.414L10 11.414l-5.293 5.293a1 1 0 01-1.414-1.414L8.586 10 3.293 4.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+        </svg>
+      </button>
+    </div>
   </div>
 
   <!-- Menú desplegable para ordenar -->

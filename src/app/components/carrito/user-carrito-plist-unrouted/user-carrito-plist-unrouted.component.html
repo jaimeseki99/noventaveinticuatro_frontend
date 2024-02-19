@@ -1,62 +1,58 @@
-<div class="container" *ngIf="page && page.content.length > 0">
-  <table class="table is-fullwidth is-bordered">
+<div class="container mx-auto" *ngIf="page && page.content.length > 0">
+  <table class="table-auto w-full border-collapse border bg-white">
     <thead>
-      <tr>
-        <th>Imagen</th>
-        <th>Camiseta</th>
-        <th>Talla</th>
-        <th>Manga</th>
-        <th>Precio</th>
-        <th>IVA</th>
-        <th>Cantidad</th>
-        <th>Coste Total</th>
-        <th>Acciones</th>
+      <tr class="bg-gray-200">
+        <th class="px-4 py-2">Imagen</th>
+        <th class="px-4 py-2">Camiseta</th>
+        <th class="px-4 py-2">Talla</th>
+        <th class="px-4 py-2">Manga</th>
+        <th class="px-4 py-2">Precio</th>
+        <th class="px-4 py-2">IVA</th>
+        <th class="px-4 py-2">Cantidad</th>
+        <th class="px-4 py-2">Coste Total</th>
+        <th class="px-4 py-2">Acciones</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let carrito of page?.content">
-        <td><img [src]="carrito.camiseta.imagen" alt="Imagen de la camiseta" class="image is-64x64"></td>
-        <td>{{carrito.camiseta.titulo}}</td>
-        <td>{{carrito.camiseta.talla}}</td>
-        <td>{{carrito.camiseta.manga}}</td>
-        <td>{{carrito.camiseta.precio | currency }}</td>
-        <td>{{carrito.camiseta.iva}}%</td>
-        <td>
-          <button class="button is-danger" (click)="updateCantidad(carrito, carrito.cantidad - 1)">-</button>
-          {{carrito.cantidad}}
-          <button class="button is-success" (click)="updateCantidad(carrito, carrito.cantidad + 1)">+</button>
+        <td class="border px-4 py-2"><img [src]="carrito.camiseta.imagen" alt="Imagen de la camiseta" class="w-16 h-16"></td>
+        <td class="border px-4 py-2">{{carrito.camiseta.titulo}}</td>
+        <td class="border px-4 py-2">{{carrito.camiseta.talla}}</td>
+        <td class="border px-4 py-2">{{carrito.camiseta.manga}}</td>
+        <td class="border px-4 py-2">{{carrito.camiseta.precio | currency }}</td>
+        <td class="border px-4 py-2">{{carrito.camiseta.iva}}%</td>
+        <td class="border px-4 py-2">
+          <button class="bg-governor-bay-500 hover:bg-governor-bay-700 text-white font-bold py-1 px-2 rounded focus:outline-none focus:shadow-outline" (click)="updateCantidad(carrito, carrito.cantidad - 1)">-</button>
+          <span class="mx-2">{{carrito.cantidad}}</span>
+          <button class="bg-tradewind-500 hover:bg-tradewind-700 text-white font-bold py-1 px-2 rounded focus:outline-none focus:shadow-outline" (click)="updateCantidad(carrito, carrito.cantidad + 1)">+</button>
         </td>
-        <td>{{ precioIndividualMap.get(carrito.id) | currency }} </td>
-        <td>
-          <button class="button is-danger" (click)="eliminarDelCarrito(carrito.id)">Eliminar</button>
-          <button class="button is-primary" (click)="comprarUnicoCarrito(carrito.id)">Comprar</button>
+        <td class="border px-4 py-2">{{ precioIndividualMap.get(carrito.id) | currency }} </td>
+        <td class="border px-4 py-2">
+          <button class="bg-stiletto-500 hover:bg-stiletto-700 text-white font-bold py-1 px-2 rounded focus:outline-none focus:shadow-outline" (click)="eliminarDelCarrito(carrito.id)">Eliminar</button>
+          <button class="bg-tradewind-600 hover:bg-tradewind-800 text-white font-bold py-1 px-2 rounded focus:outline-none focus:shadow-outline" (click)="comprarUnicoCarrito(carrito.id)">Comprar</button>
         </td>
       </tr>
     </tbody>
   </table>
 
-  <div class="columns is-centered">
-    <div class="column is-half">
-      <div class="box">
-        <h3 class="title is-4">Total</h3>
-        <p>Coste total (incluyendo IVA): {{ costeTotal | currency }}</p>
-        <button class="button is-primary" (click)="usuario && eliminarTodosCarritos(usuario.id)">Vacíar el carrito</button>
-        <button class="button is-success" (click)="comprarTodosCarritos()">Comprar</button>
-      </div>
+  <div class="flex items-center justify-center mt-8">
+    <div class="box w-1/2">
+      <h3 class="text-lg font-bold">Total</h3>
+      <p class="mb-4">Coste total (incluyendo IVA): {{ costeTotal | currency }}</p>
+      <button class="bg-stiletto-500 hover:bg-stiletto-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-4" (click)="usuario && eliminarTodosCarritos(usuario.id)">Vaciar el carrito</button>
+      <button class="bg-tradewind-700 hover:bg-tradewind-900 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" (click)="comprarTodosCarritos()">Comprar</button>
     </div>
   </div>
 
-  <div class="columns is-centered">
-    <div class="column is-half">
-      <a class="button is-info" [routerLink]="['/usuario', 'camiseta', 'plist']">Seguir comprando</a>
-    </div>
+  <div class="flex items-center justify-center mt-4">
+    <a class="bg-governor-bay-400 hover:bg-governor-bay-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" [routerLink]="['/usuario', 'camiseta', 'plist']">Seguir comprando</a>
   </div>
 
 </div>
 
-<div class="container" *ngIf="page && page.content.length === 0">
-  <p>Todavía no has añadido nada a tu carrito.</p>
-  <a class="button is-info" [routerLink]="['/usuario', 'camiseta', 'plist']">Seguir comprando</a>
+<div class="container mx-auto" *ngIf="page && page.content.length === 0">
+  <p class="text-lg">Todavía no has añadido nada a tu carrito.</p>
+  <a class="bg-governor-bay-400 hover:bg-governor-bay-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-4" [routerLink]="['/usuario', 'camiseta', 'plist']">Seguir comprando</a>
 </div>
 
 <p-confirmPopup></p-confirmPopup>

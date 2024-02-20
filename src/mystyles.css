@@ -9489,6 +9489,11 @@ a.has-text-danger-dark:hover, a.has-text-danger-dark:focus {
     visibility: hidden !important;
   }
 }
+
+.ui-paginator .ui-paginator-current .ui-paginator-bottom {
+  background-color: beige !important; /* Puedes ajustar el color según tus necesidades */
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

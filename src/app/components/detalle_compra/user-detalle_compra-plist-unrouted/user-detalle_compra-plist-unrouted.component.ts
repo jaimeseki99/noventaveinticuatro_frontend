@@ -74,6 +74,16 @@ export class UserDetalle_compraPlistUnroutedComponent implements OnInit {
       })
     }
 
+    calcularTotal(): string {
+      let total = 0;
+      if (this.page && this.page.content) {
+        this.page.content.forEach((dc) => {
+          total += dc.cantidad * (dc.precio + (dc.precio * dc.iva / 100));
+        })
+      }
+      return total.toFixed(2);
+    }
+
   }
 
   

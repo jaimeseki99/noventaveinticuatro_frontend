@@ -89,7 +89,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/mystyles.css"
+              "src/styles.css"
             ],
             "scripts": []
           }

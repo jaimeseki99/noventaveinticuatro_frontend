@@ -1,33 +1,26 @@
-<div class="container">
-  <div class="columns is-multiline">
-    <div class="column is-4" *ngFor="let liga of page?.content">
-      <div class="card">
-        <div class="catd-image">
-          <figure class="image is-4by3">
-            <a [routerLink]="['/usuario', 'camiseta', 'plist', 'byliga', liga.id]">
-              <img src="{{ liga.imagen }}" alt="Imagen de la liga">
-            </a>
-          </figure>
+<div class="container mx-auto px-4">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <ng-container *ngFor="let liga of page?.content">
+      <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+        <div class="card-image">
+          <a [routerLink]="['/usuario', 'camiseta', 'plist', 'byliga', liga.id]">
+            <img src="{{ liga.imagen }}" alt="Imagen de la liga" class="object-cover h-48 md:h-64 w-full">
+          </a>
         </div>
-        <div class="card-content">
-          <div class="content">
-            <p class="title is-4">
-              <a [routerLink]="['usuario', 'camiseta', 'plist', 'byliga', liga.id]">
-                {{ liga.nombre }}
-              </a>
-            </p>
-          </div>
+        <div class="card-content p-4">
+          <p class="text-xl font-bold mb-2">
+            <a [routerLink]="['/usuario', 'camiseta', 'plist', 'byliga', liga.id]">{{ liga.nombre }}</a>
+          </p>
         </div>
       </div>
-    </div>
+    </ng-container>
   </div>
 
-  <div class="notification is-info" *ngIf="!page?.content || page?.content?.length === 0">
+  <div class="notification bg-governor-bay-200 text-governor-bay-800 text-center my-4" *ngIf="!page?.content || page?.content?.length === 0">
     No hay ligas para mostrar.
   </div>
 
-  <div class="level is-justify-content-center mb-3">
+  <div class="flex justify-center">
     <p-paginator (onPageChange)="onPageChange($event)" [rows]="paginatorState.rows!" [totalRecords]="page?.totalElements || 0" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
   </div>
-
 </div>

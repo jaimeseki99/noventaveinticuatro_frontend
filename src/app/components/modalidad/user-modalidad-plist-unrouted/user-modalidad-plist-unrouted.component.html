@@ -1,31 +1,26 @@
-<div class="container">
-  <div class="columns is-multiline">
-    <div class="column is-4" *ngFor="let modalidad of page?.content">
-      <div class="card">
-        <div class="card-image">
-          <figure class="image is-4by3">
+<div class="container mx-auto">
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
+    <ng-container *ngFor="let modalidad of page?.content">
+      <div class="bg-white rounded-lg shadow-md overflow-hidden transition-transform transform hover:scale-105 sm:hover:scale-100 lg:hover:scale-105 w-full h-full flex flex-col">
+        <a [routerLink]="['/usuario', 'camiseta', 'plist', 'bymodalidad', modalidad.id]">
+          <img src="{{modalidad.imagen}}" alt="Imagen de la modalidad" class="object-cover h-64 w-full">
+        </a>
+        <div class="p-4">
+          <p class="text-xl font-semibold mb-2">
             <a [routerLink]="['/usuario', 'camiseta', 'plist', 'bymodalidad', modalidad.id]">
-            <img src="{{modalidad.imagen}}" alt="Imagen de la modalidad">
+              {{ modalidad.nombre }}
             </a>
-          </figure>
-        </div>
-        <div class="card-content">
-          <div class="content">
-          <p class="title is-4">
-            <a [routerLink]="['/usuario', 'camiseta', 'plist', 'bymodalidad', modalidad.id]">{{ modalidad.nombre }}</a></p>
-          </div>
+          </p>
         </div>
       </div>
-    </div>
+    </ng-container>
   </div>
 
-  <div class="notification is-info" *ngIf="!page?.content || page?.content?.length === 0">
-    No hay modalidades para mostrar.
+  <div *ngIf="page?.content?.length === 0" class="bg-governor-bay-200 text-governor-bay-800 mt-8 p-4 rounded-lg">
+    <p class="text-center">No hay modalidades para mostrar.</p>
   </div>
 
-  <!-- Paginación -->
-  <div class="level is-justify-content-center mb-3">
+  <div class="flex justify-center mt-4">
     <p-paginator (onPageChange)="onPageChange($event)" [rows]="paginatorState.rows!" [totalRecords]="page?.totalElements || 0" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
   </div>
-
 </div>

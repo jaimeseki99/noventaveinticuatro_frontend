@@ -1,17 +1,18 @@
-<div class="container">
-  <div class="box">
-    <h1 class="title is-4">Compra #{{compra.codigoPedido}}</h1>
+<div class="container mx-auto p-4 min-h-screen">
+  <div class="bg-gray-200 rounded-lg p-4 mb-4">
+    <h1 class="text-xl font-bold">Compra #{{compra.codigoPedido}}</h1>
   </div>
-  <div class="content">
-    <p><strong>Cliente: </strong>{{compra.usuario.nombre}} {{compra.usuario.apellido}}</p>
-    <p><strong>Fecha: </strong>{{compra.fecha | date: 'dd/MM/yyyy'}}</p>
-    <p><strong>Dirección de entrega: </strong>{{compra.usuario.direccion}}</p>
+  <div class="bg-white rounded-lg p-4 mb-4">
+    <p class="mb-2"><strong>Cliente: </strong>{{compra.usuario.nombre}} {{compra.usuario.apellido}}</p>
+    <p class="mb-2"><strong>Fecha: </strong>{{compra.fecha | date: 'dd/MM/yyyy'}}</p>
+    <p class="mb-2"><strong>Dirección de entrega: </strong>{{compra.usuario.direccion}}</p>
     <ng-container *ngIf="compra.factura_id">
-      <p><strong>Número de factura: </strong>{{compra.factura_id}}</p>
-      <p><strong>Fecha de factura: </strong>{{compra.fecha_factura | date: 'dd/MM/yyyy'}}</p>
+      <p class="mb-2"><strong>Número de factura: </strong>{{compra.factura_id}}</p>
+      <p class="mb-2"><strong>Fecha de factura: </strong>{{compra.fecha_factura | date: 'dd/MM/yyyy'}}</p>
     </ng-container>
   </div>
-  <div class="box">
-    <h2 class="subtitle is-5">Detalles de la compra</h2>
-   <app-user-detalle_compra-plist-unrouted [id_compra]="id"></app-user-detalle_compra-plist-unrouted>
+  <div class="bg-gray-200 rounded-lg p-4">
+    <h2 class="text-lg font-bold mb-4">Detalles de la compra</h2>
+    <app-user-detalle_compra-plist-unrouted [id_compra]="id"></app-user-detalle_compra-plist-unrouted>
+  </div>
 </div>

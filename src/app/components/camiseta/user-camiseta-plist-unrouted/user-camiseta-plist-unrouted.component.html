@@ -44,7 +44,7 @@
         </a>
         <div class="p-4">
           <a [routerLink]="['/usuario', 'camiseta', 'view', camiseta.id]" class="font-semibold text-xl mb-2">{{ camiseta.titulo }}</a>
-          <p class="text-gray-700 text-base">{{ camiseta.precio | currency }}€</p>
+          <p class="text-gray-700 text-base">{{ camiseta.precio.toFixed(2) }}€</p>
           <p class="text-gray-700 text-base">Talla: {{ camiseta.talla }}</p>
           <p class="text-gray-700 text-base" *ngIf="camiseta.stock > 0">Camiseta disponible</p>
           <p class="text-gray-700 text-base" *ngIf="camiseta.stock == 0">Camiseta no disponible</p>

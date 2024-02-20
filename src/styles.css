@@ -8,3 +8,7 @@
 @import '~primeng/resources/themes/saga-blue/theme.css';
 
 @import '~bulma/css/bulma.css';
+
+.ui-paginator {
+    background-color: beige !important;
+}

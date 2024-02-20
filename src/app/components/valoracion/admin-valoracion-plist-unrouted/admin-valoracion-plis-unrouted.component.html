@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container mx-auto">
 
   <div class="mt-4" *ngIf="id_usuario > 0">
     <div class="bg-governor-bay-100 border border-governor-bay-400 text-governor-bay-700 px-4 py-3 rounded relative" role="alert">
@@ -44,12 +44,12 @@
   <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
   <ng-container *ngIf="page?.content">
     <div class="column" *ngFor="let valoracion of page?.content">
-      <div class="card">
+      <div class="card h-full">
         <div class="card-content">
             <p class="title text-xl cursor-pointer" (click)="doView(valoracion)">Valoración hecha por {{valoracion.usuario.username}}</p>
             <p><strong>Fecha:</strong> {{ valoracion.fecha | date: 'dd-MM-yyyy'}} <br>
-            <strong>Usuario:</strong><a [routerLink]="['/admin', 'valoracion', 'plist', 'byusuario', valoracion.usuario.id]"> {{ valoracion.usuario.nombre }} {{ valoracion.usuario.apellido}}</a> <br>
-            Camiseta:<a [routerLink]="['/admin', 'valoracion', 'plist', 'bycamiseta', valoracion.camiseta.id]"> {{ valoracion.camiseta.titulo }}</a></p>
+            <strong>Usuario:</strong><a [routerLink]="['/admin', 'valoracion', 'plist', 'byusuario', valoracion.usuario.id]" class="text-blue-500"> {{ valoracion.usuario.nombre }} {{ valoracion.usuario.apellido}}</a> <br>
+            <strong>Camiseta:</strong><a [routerLink]="['/admin', 'valoracion', 'plist', 'bycamiseta', valoracion.camiseta.id]"  class="text-blue-500"> {{ valoracion.camiseta.titulo }}</a></p>
         </div>
         <footer class="card-footer">
           <a class="card-footer-item" [routerLink]="['/admin', 'valoracion', 'edit', valoracion.id]">Editar</a>
@@ -59,7 +59,7 @@
     </div>
   </ng-container>
   <div class="column" *ngIf="!page?.content || page?.content?.length === 0">
-      <div class="notification is-info">
+      <div class="notification bg-governor-bay-200 text-governor-bay-800">
           No hay valoraciones para mostrar.
       </div>
     </div>
@@ -68,7 +68,7 @@
   <!-- Mensaje si no hay valoraciones -->
   
   <!-- Paginación -->
-  <div class="level is-justify-content-center mb-3">
+  <div class="flex justify-center mb-3">
     <p-paginator (onPageChange)="onPageChange($event)" [rows]="paginatorState.rows!" [totalRecords]="page?.totalElements || 0" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
   </div>
 </div>

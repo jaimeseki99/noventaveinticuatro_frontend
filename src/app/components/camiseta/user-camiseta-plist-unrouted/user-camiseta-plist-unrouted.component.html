@@ -58,6 +58,10 @@
     </div>
   </div>
 
+  <div class="notification bg-governor-bay-200 text-governor-bay-800 text-center my-4" *ngIf="!page?.content || page?.content?.length === 0">
+    No hay camisetas para mostrar. 
+  </div>
+
   <div class="flex justify-center mt-4">
     <p-paginator (onPageChange)="onPageChange($event)" [rows]="paginatorState.rows!" [totalRecords]="page?.totalElements || 0" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
   </div>

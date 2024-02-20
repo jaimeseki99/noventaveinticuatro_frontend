@@ -1,25 +1,23 @@
-<div class="container">
-  <div class="columns is-multiline">
-    <div class="column is-4" *ngFor="let compra of page?.content">
-      <div class="card">
-        <div class="card-content">
-          <p class="title is-4">Compra #{{compra.codigoPedido}}</p>
-          <p class="subtitle is-6">Fecha: {{compra.fecha | date: 'dd/MM/yyyy'}}</p>
-          <p *ngIf="compra.factura_id" class="subtitle is-6">Número de factura: {{compra.factura_id}}</p>
-          <p *ngIf="compra.factura_id" class="subtitle is-6">Fecha de factura: {{compra.fecha_factura | date: 'dd/MM/yyyy'}}</p>
-          <a [routerLink]="['/usuario', 'compra', 'view', compra.id]">Ver detalles de la compra</a>
+<div class="container mx-auto px-4">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <ng-container *ngFor="let compra of page?.content">
+      <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+        <div class="card-content p-4">
+          <p class="text-xl font-bold mb-2">Compra #{{compra.codigoPedido}}</p>
+          <p class="text-sm mb-2">Fecha: {{compra.fecha | date: 'dd/MM/yyyy'}}</p>
+          <p *ngIf="compra.factura_id" class="text-sm mb-2">Número de factura: {{compra.factura_id}}</p>
+          <p *ngIf="compra.factura_id" class="text-sm mb-2">Fecha de factura: {{compra.fecha_factura | date: 'dd/MM/yyyy'}}</p>
+          <a [routerLink]="['/usuario', 'compra', 'view', compra.id]" class="text-blue-500">Ver detalles de la compra</a>
         </div>
       </div>
-    </div>
+    </ng-container>
   </div>
 
-  <div class="notification is-info" *ngIf="!page?.content || page?.content?.length === 0">
-    No has hecho ninguna compra todavía. <a [routerLink]="['/usuario', 'camiseta', 'plist']">Seguir comprando</a>
+  <div class="notification bg-governor-bay-200 text-governor-bay-800 text-center my-4" *ngIf="!page?.content || page?.content?.length === 0">
+    No has hecho ninguna compra todavía. <a [routerLink]="['/usuario', 'camiseta', 'plist']" class="underline">Seguir comprando</a>
   </div>
 
-
-  <div class="level is-justify-content-center mb-3">
+  <div class="flex justify-center">
     <p-paginator (onPageChange)="onPageChange($event)" [rows]="paginatorState.rows!" [totalRecords]="page?.totalElements || 0" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
   </div>
-
 </div>

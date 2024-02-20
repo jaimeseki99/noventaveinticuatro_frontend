@@ -38,8 +38,8 @@
           <div class="card-content">
             <div class="content">
               <p class="title text-xl cursor-pointer" (click)="doView(equipo)"> {{equipo.nombre}} </p>
-              <p>Liga: <a [routerLink]="['/admin', 'equipo', 'plist', 'byliga', equipo.liga.id]"> {{ equipo.liga.nombre }}</a></p>
-              <p>Número de camisetas: <a [routerLink]="['/admin', 'camiseta', 'plist', 'byequipo', equipo.id]"> {{ equipo.camisetas }}</a></p>
+              <p>Liga: <a [routerLink]="['/admin', 'equipo', 'plist', 'byliga', equipo.liga.id]" class="text-blue-500"> {{ equipo.liga.nombre }}</a></p>
+              <p>Número de camisetas: <a [routerLink]="['/admin', 'camiseta', 'plist', 'byequipo', equipo.id]" class="text-blue-500"> {{ equipo.camisetas }}</a></p>
             </div>
           </div>
           <footer class="card-footer">
@@ -50,7 +50,7 @@
       </div>
       </ng-container>
       <div class="column" *ngIf="!page?.content || page?.content?.length === 0">
-        <div class="notification bg-governor-bay-200">
+        <div class="notification bg-governor-bay-200 text-governor-bay-800">
           No se encontraron equipos.
         </div>
        </div>

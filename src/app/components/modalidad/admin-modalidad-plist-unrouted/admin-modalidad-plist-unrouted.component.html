@@ -22,7 +22,7 @@
               <img src="{{modalidad.imagen}}" alt="Imagen de la modalidad" class="w-full h-80 object-cover">
           <div class="card-content">
               <p class="title text-xl cursor-pointer" (click)="doView(modalidad)">{{modalidad.nombre}}</p>
-              <p><strong>Número de Camisetas:</strong> <a [routerLink]="['/admin', 'camiseta', 'plist', 'bymodalidad', modalidad.id]"> {{ modalidad.camisetas }}</a></p>
+              <p><strong>Número de Camisetas:</strong> <a [routerLink]="['/admin', 'camiseta', 'plist', 'bymodalidad', modalidad.id]" class="text-blue-500"> {{ modalidad.camisetas }}</a></p>
           </div>
           <footer class="card-footer">
             <a class="card-footer-item" [routerLink]="['/admin', 'modalidad', 'edit', modalidad.id]">Actualizar</a>
@@ -34,7 +34,7 @@
 
   <!-- Mensaje si no hay modalidades -->
   <div class="column" *ngIf="!page?.content || page?.content?.length === 0">
-    <div class="notification bg-governor-bay-200">
+    <div class="notification bg-governor-bay-200 text-governor-bay-800">
       No hay modalidades para mostrar
     </div>
   </div>

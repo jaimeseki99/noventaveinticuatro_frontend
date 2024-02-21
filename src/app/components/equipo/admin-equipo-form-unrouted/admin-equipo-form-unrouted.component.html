@@ -7,6 +7,7 @@
           Nombre
         </label>
         <input class="appearance-none border rounded w-full border border-governor-bay-400 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="nombre" type="text" formControlName="nombre" placeholder="Escribe el nombre del equipo">
+        <div class="text-stiletto-700" *ngIf="hasError('nombre', 'required')">No has introducido el nombre del equipo</div>
       </div>
 
       <div class="mb-4">
@@ -20,11 +21,12 @@
         <label class="block text-gray-700 text-sm font-bold mb-2" for="liga">
           Liga
         </label>
-        <button class="bg-tradewind-500 hover:bg-tradewind-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" (click)="onShowLigaSelection()">Seleccionar liga</button>
+        <button class="bg-tradewind-500 hover:bg-tradewind-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" (click)="onShowLigaSelection()">Seleccionar liga</button> {{equipo.liga.nombre}}
       </div>
 
       <div class="flex items-center justify-between">
-        <button class="bg-governor-bay-500 hover:bg-governor-bay-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">Guardar</button>
+        <button class="bg-governor-bay-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-2" type="submit">Guardar</button>
+        <button class="bg-stiletto-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" [routerLink]="['/admin', 'equipo', 'plist']">Cancelar</button>
       </div>
     </form>
   </div>

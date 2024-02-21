@@ -89,7 +89,7 @@ export class AdminValoracionFormUnroutedComponent implements OnInit {
             this.valoracion = data;
             this.initializeForm(this.valoracion);
             this.matSnackBar.open('Valoración actualizada correctamente', 'Aceptar', { duration: 3000 });
-            this.router.navigate(['/admin', 'valoracion', 'view', this.valoracion.id]);
+            this.router.navigate(['/admin', 'valoracion', 'plist']);
           },
           error: (err: HttpErrorResponse) => {
             this.status = err;

@@ -5,9 +5,9 @@
       <div class="mb-4">
         <label class="block text-sm font-bold mb-2">Nombre</label>
           <input class="w-full border border-governor-bay-400 rounded p-2" type="text" formControlName="nombre" placeholder="Nombre de la liga">
-          <div class="text-red-500" *ngIf="hasError('nombre', 'required')">No has introducido el nombre</div>
-          <div class="text-red-500" *ngIf="hasError('nombre', 'minlength')">El nombre es demasiado corto, debe tener al menos 3 carácteres</div>
-          <div class="text-red-500" *ngIf="hasError('nombre', 'maxlength')">El nombre es demasiado largo</div>
+          <div class="text-stiletto-700" *ngIf="hasError('nombre', 'required')">No has introducido el nombre</div>
+          <div class="text-stiletto-700" *ngIf="hasError('nombre', 'minlength')">El nombre es demasiado corto, debe tener al menos 3 carácteres</div>
+          <div class="text-stiletto-700" *ngIf="hasError('nombre', 'maxlength')">El nombre es demasiado largo</div>
         </div>
   
       <div class="mb-4">
@@ -21,16 +21,19 @@
               <option value="Inglaterra">Inglaterra</option>
               <option value="Portugal">Portugal</option>
               <option value="Países Bajos">Holanda</option>
+              <option value="Estados Unidos">Estados Unidos</option>
             </select>
+          <div class="text-stiletto-700" *ngIf="hasError('pais', 'required')">Elige el país de la liga</div>
       </div>
   
       <div class="mb-4">
         <label class="block text-sm font-bold mb-2">Deporte</label>
             <select formControlName="deporte" class="w-full border border-governor-bay-400 rounded p-2">
               <option value="">Selecciona un deporte</option>
-              <option value="futbol">Fútbol</option>
-              <option value="baloncesto">Baloncesto</option>
+              <option value="Fútbol">Fútbol</option>
+              <option value="Baloncesto">Baloncesto</option>
             </select>
+          <div class="text-stiletto-700" *ngIf="hasError('deporte', 'required')">Elige el deporte de la liga</div>
       </div>
       
       <div class="mb-4">
@@ -38,8 +41,9 @@
           <input class="w-full border border-governor-bay-400 rounded p-2" type="file" (change)="onFileSelected($event)">
       </div>
   
-      <div class="mb-4">
-          <button class="bg-governor-bay-700 text-white py-2 px-4 rounded inline-block" type="submit">Guardar</button>
+      <div class="flex items-center justify-between">
+          <button class="bg-governor-bay-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-2" type="submit">Guardar</button>
+          <button class="bg-stiletto-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" [routerLink]="['/admin', 'liga', 'plist']">Cancelar</button>
       </div>
   
     </form>

@@ -25,8 +25,8 @@
               <p><strong>Número de Camisetas:</strong> <a [routerLink]="['/admin', 'camiseta', 'plist', 'bymodalidad', modalidad.id]" class="text-blue-500"> {{ modalidad.camisetas }}</a></p>
           </div>
           <footer class="card-footer">
-            <a class="card-footer-item" [routerLink]="['/admin', 'modalidad', 'edit', modalidad.id]">Actualizar</a>
-            <a class="card-footer-item" (click)="doRemove(modalidad)">Eliminar</a>
+            <button class="card-footer-item text-white bg-tradewind-500 hover:bg-tradewind-700" [routerLink]="['/admin', 'modalidad', 'edit', modalidad.id]">Actualizar</button>
+            <button class="card-footer-item text-white bg-stiletto-500 hover:bg-stiletto-700" (click)="doRemove(modalidad)" [class.invisible]="modalidad.camisetas > 0">Eliminar</button>
           </footer>
         </div>
       </div>

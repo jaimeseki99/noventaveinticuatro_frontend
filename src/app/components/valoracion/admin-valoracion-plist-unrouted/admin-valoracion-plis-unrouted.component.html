@@ -52,8 +52,8 @@
             <strong>Camiseta:</strong><a [routerLink]="['/admin', 'valoracion', 'plist', 'bycamiseta', valoracion.camiseta.id]"  class="text-blue-500"> {{ valoracion.camiseta.titulo }}</a></p>
         </div>
         <footer class="card-footer">
-          <a class="card-footer-item" [routerLink]="['/admin', 'valoracion', 'edit', valoracion.id]">Editar</a>
-          <a class="card-footer-item" (click)="doRemove(valoracion)">Eliminar</a>
+          <button class="card-footer-item text-white bg-tradewind-500 hover:bg-tradewind-700" [routerLink]="['/admin', 'valoracion', 'edit', valoracion.id]">Editar</button>
+          <button class="card-footer-item text-white bg-stiletto-500 hover:bg-stiletto-700" (click)="doRemove(valoracion)">Eliminar</button>
         </footer>
       </div>
     </div>

@@ -1,4 +1,4 @@
-<nav class="bg-tradewind-500 border-gray-200 dark:bg-gray-900 font-sans">
+<nav class="bg-tradewind-500 border-gray-200 dark:bg-gray-900">
   <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
     <a routerLink="/home" class="flex items-center space-x-3 rtl:space-x-reverse">
         <img src="http://localhost:8085/media/Captura%20de%20pantalla%202024-01-26%20a%20las%2012.35.57.png" class="h-8" alt="Logo de 90:24"/>
@@ -14,55 +14,55 @@
         <ng-container *ngIf="username && userSesion?.tipo==true">
           <!-- Menú para usuario administrador -->
           <li>
-            <a class="block py-2 px-3 text-governor-bay-600 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent" [routerLink]="['/admin', 'usuario', 'plist']">Usuarios</a>
+            <a class="block py-2 px-3 text-governor-bay-600 hover:bg-tradewind-600 md:hover:bg-tradewind-600 md:border-0 md:hover:text-governor-bay-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent {{ url.startsWith('/admin/usuario') ? 'bg-tradewind-700' : '' }}" [routerLink]="['/admin', 'usuario', 'plist']">Usuarios</a>
           </li>
           <li>
-            <a class="block py-2 px-3 text-governor-bay-600 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent" [routerLink]="['/admin', 'camiseta', 'plist']">Camisetas</a>
+            <a class="block py-2 px-3 text-governor-bay-600 hover:bg-tradewind-600 md:hover:bg-tradewind-600 md:border-0 md:hover:text-governor-bay-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent {{ url.startsWith('/admin/camiseta') ? 'bg-tradewind-700' : '' }}" [routerLink]="['/admin', 'camiseta', 'plist']">Camisetas</a>
           </li>
           <li>
-            <a class="block py-2 px-3 text-governor-bay-600 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent" [routerLink]="['/admin', 'valoracion', 'plist']">Valoraciones</a>
+            <a class="block py-2 px-3 text-governor-bay-600 hover:bg-tradewind-600 md:hover:bg-tradewind-600 md:border-0 md:hover:text-governor-bay-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent {{ url.startsWith('/admin/valoracion') ? 'bg-tradewind-700' : '' }}"  [routerLink]="['/admin', 'valoracion', 'plist']">Valoraciones</a>
           </li>
           <li>
-            <a class="block py-2 px-3 text-governor-bay-600 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent" [routerLink]="['/admin', 'equipo', 'plist']">Equipos</a>
+            <a class="block py-2 px-3 text-governor-bay-600 hover:bg-tradewind-600 md:hover:bg-tradewind-600 md:border-0 md:hover:text-governor-bay-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent {{ url.startsWith('/admin/equipo') ? 'bg-tradewind-700' : '' }}" [routerLink]="['/admin', 'equipo', 'plist']">Equipos</a>
           </li>
           <li>
-            <a class="block py-2 px-3 text-governor-bay-600 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent" [routerLink]="['/admin', 'modalidad', 'plist']">Modalidades</a>
+            <a class="block py-2 px-3 text-governor-bay-600 hover:bg-tradewind-600 md:hover:bg-tradewind-600 md:border-0 md:hover:text-governor-bay-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent {{ url.startsWith('/admin/modalidad') ? 'bg-tradewind-700' : '' }} " [routerLink]="['/admin', 'modalidad', 'plist']">Modalidades</a>
           </li>
           <li>
-            <a class="block py-2 px-3 text-governor-bay-600 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent" [routerLink]="['/admin', 'liga', 'plist']">Ligas</a>
+            <a class="block py-2 px-3 text-governor-bay-600 hover:bg-tradewind-600 md:hover:bg-tradewind-600 md:border-0 md:hover:text-governor-bay-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent {{ url.startsWith('/admin/liga') ? 'bg-tradewind-700' : '' }}" [routerLink]="['/admin', 'liga', 'plist']">Ligas</a>
           </li>
         </ng-container>
         <ng-container *ngIf="username && userSesion?.tipo==false">
           <!-- Menú para usuario regular -->
           <li>
-            <a href="#" class="block py-2 px-3 text-governor-bay-600 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent" [routerLink]="['/usuario', 'camiseta', 'plist']">Camisetas</a>
+            <a href="#" class="block py-2 px-3 text-governor-bay-600 hover:bg-tradewind-600 md:hover:bg-tradewind-600 md:border-0 md:hover:text-governor-bay-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent {{ url.startsWith('/usuario/camiseta') ? 'bg-tradewind-700' : '' }}" [routerLink]="['/usuario', 'camiseta', 'plist']">Camisetas</a>
           </li>
           <li>
-            <a href="#" class="block py-2 px-3 text-governor-bay-600 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent" [routerLink]="['/usuario', 'equipo', 'plist']">Equipos</a>
+            <a href="#" class="block py-2 px-3 text-governor-bay-600 hover:bg-tradewind-600 md:hover:bg-tradewind-600 md:border-0 md:hover:text-governor-bay-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent {{ url.startsWith('/usuario/equipo') ? 'bg-tradewind-700' : '' }}" [routerLink]="['/usuario', 'equipo', 'plist']">Equipos</a>
           </li>
           <li>
-            <a href="#" class="block py-2 px-3 text-governor-bay-600 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent" [routerLink]="['/usuario', 'modalidad', 'plist']">Modalidades</a>
+            <a href="#" class="block py-2 px-3 text-governor-bay-600 hover:bg-tradewind-600 md:hover:bg-tradewind-600 md:border-0 md:hover:text-governor-bay-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent {{ url.startsWith('/usuario/modalidad') ? 'bg-tradewind-700' : '' }}" [routerLink]="['/usuario', 'modalidad', 'plist']">Modalidades</a>
           </li>
           <li>
-            <a href="#" class="block py-2 px-3 text-governor-bay-600 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent" [routerLink]="['/usuario', 'liga', 'plist']">Ligas</a>
+            <a href="#" class="block py-2 px-3 text-governor-bay-600 hover:bg-tradewind-600 md:hover:bg-tradewind-600 md:border-0 md:hover:text-governor-bay-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent {{ url.startsWith('/usuario/liga') ? 'bg-tradewind-700' : '' }}" [routerLink]="['/usuario', 'liga', 'plist']">Ligas</a>
           </li>
           <li>
-            <a href="#" class="block py-2 px-3 text-governor-bay-600 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent" [routerLink]="['/usuario', 'compra', 'plist', userSesion?.id]">Mis compras</a>
+            <a href="#" class="block py-2 px-3 text-governor-bay-600 hover:bg-tradewind-600 md:hover:bg-tradewind-600 md:border-0 md:hover:text-governor-bay-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent {{ url.startsWith('/usuario/compra') ? 'bg-tradewind-700' : '' }}" [routerLink]="['/usuario', 'compra', 'plist', userSesion?.id]">Mis compras</a>
           </li>
         </ng-container>
         
         <!-- Contenido para usuarios logueados -->
         <ng-container *ngIf="username">
           <li>
-            <a class="block py-2 px-3 text-governor-bay-600 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent" [routerLink]="['/usuario', 'usuario', 'view', userSesion?.id]">¡Bienvenid@, {{ username }}!</a>
+            <a class="block py-2 px-3 text-governor-bay-600 hover:bg-tradewind-600 md:hover:bg-tradewind-600 md:border-0 md:hover:text-governor-bay-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent {{ url.startsWith('/usuario/usuario') ? 'bg-tradewind-700' : '' }}" [routerLink]="['/usuario', 'usuario', 'view', userSesion?.id]">¡Bienvenid@, {{ username }}!</a>
           </li>
           <li>
-            <a class="block py-2 px-3 text-governor-bay-600 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent" routerLink="/logout">
+            <a class="block py-2 px-3 text-governor-bay-600 hover:bg-tradewind-600 md:hover:bg-tradewind-600 md:border-0 md:hover:text-governor-bay-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent {{ url == '/logout' ? 'bg-tradewind-700' : ''}}" routerLink="/logout">
               <i class="pi pi-power-off"></i>
             </a>
           </li>
           <li *ngIf="userSesion?.tipo==false">
-            <a class="button is-light text-black" [routerLink]="['/usuario', 'carrito', 'plist']">
+            <a class="button is-light text-black {{ url.startsWith('/usuario/carrito') ? 'bg-tradewind-700' : '' }}" [routerLink]="['/usuario', 'carrito', 'plist']">
               <span class="icon">
                 <i class="pi pi-shopping-cart"></i>
               </span>

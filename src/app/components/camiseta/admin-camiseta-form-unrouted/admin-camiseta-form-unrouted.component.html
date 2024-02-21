@@ -6,6 +6,9 @@
       <div class="mb-4">
         <label class="block text-sm font-bold mb-2">Título</label>
         <input class="w-full border border-governor-bay-400 rounded p-2" type="text" formControlName="titulo" placeholder="Ingrese el título">
+        <div class="text-stiletto-700" *ngIf="hasError('titulo', 'required')">No has introducido el título de la camiseta</div>
+        <div class="text-stiletto-700" *ngIf="hasError('titulo', 'minlength')">El título debe tener al menos 3 caracteres</div>
+        <div class="text-stiletto-700" *ngIf="hasError('titulo', 'maxlength')">El título no puede tener más de 100 caracteres</div>
       </div>
 
       <!-- Temporada -->
@@ -15,6 +18,7 @@
           <option value="">Seleccione la temporada</option>
           <option *ngFor="let temporada of temporadas" [value]="temporada">{{ temporada }}</option>
         </select>
+        <div class="text-stiletto-700" *ngIf="hasError('temporada', 'required')">Elige la temporada de la camiseta</div>
       </div>
 
       <!-- Manga -->
@@ -22,10 +26,11 @@
         <label class="block text-sm font-bold mb-2">Manga</label>
         <select formControlName="manga" class="w-full border border-governor-bay-400 rounded p-2">
           <option value="">Seleccione el tipo de manga</option>
-          <option value="corta">Corta</option>
-          <option value="larga">Larga</option>
-          <option value="sin">Sin manga</option>
+          <option value="Corta">Corta</option>
+          <option value="Larga">Larga</option>
+          <option value="Sin Mangas">Sin manga</option>
         </select>
+        <div class="text-stiletto-700" *ngIf="hasError('manga', 'required')">Elige la longitud de la manga de la camiseta</div>
       </div>
 
       <!-- Talla -->
@@ -39,6 +44,7 @@
           <option value="L">L</option>
           <option value="XL">XL</option>
         </select>
+        <div class="text-stiletto-700" *ngIf="hasError('talla', 'required')">Elige la talla de la camiseta</div>
       </div>
 
       <!-- Imagen -->
@@ -51,41 +57,45 @@
       <div class="mb-4">
         <label class="block text-sm font-bold mb-2">Precio</label>
         <input class="w-full border border-governor-bay-400 rounded p-2" type="number" formControlName="precio" placeholder="Ingrese el precio">
+        <div class="text-stiletto-700" *ngIf="hasError('precio', 'required')">Especifica el precio de la camiseta</div>
       </div>
 
       <!-- IVA -->
       <div class="mb-4">
         <label class="block text-sm font-bold mb-2">IVA</label>
         <input class="w-full border border-governor-bay-400 rounded p-2" type="number" formControlName="iva" placeholder="Ingrese el precio">
+        <div class="text-stiletto-700" *ngIf="hasError('iva', 'required')">Fija el IVA de la camiseta</div>
       </div>
 
       <!-- Stock -->
       <div class="mb-4">
         <label class="block text-sm font-bold mb-2">Stock</label>
         <input class="w-full border border-governor-bay-400 rounded p-2" type="number" formControlName="stock" placeholder="Ingrese el stock">
+        <div class="text-stiletto-700" *ngIf="hasError('stock', 'required')">Especifica el número de unidades disponibles de la camiseta</div>
       </div>
 
       <!-- Equipo -->
       <div class="mb-4">
         <label class="block text-sm font-bold mb-2">Equipo</label>
-        <button class="bg-tradewind-400 text-white py-2 px-4 rounded inline-block" (click)="onShowEquiposSelection()">Seleccionar Equipo</button>
+        <button class="bg-tradewind-400 text-white py-2 px-4 rounded inline-block" (click)="onShowEquiposSelection()">Seleccionar Equipo</button> {{ camiseta.equipo.nombre }}
       </div>
 
       <!-- Modalidad -->
       <div class="mb-4">
         <label class="block text-sm font-bold mb-2">Modalidad</label>
-        <button class="bg-tradewind-400 text-white py-2 px-4 rounded inline-block" (click)="onShowModalidadSelection()">Seleccionar Modalidad</button>
+        <button class="bg-tradewind-400 text-white py-2 px-4 rounded inline-block" (click)="onShowModalidadSelection()">Seleccionar Modalidad</button> {{ camiseta.modalidad.nombre }}
       </div>
 
       <!-- Liga -->
       <div class="mb-4">
         <label class="block text-sm font-bold mb-2">Liga</label>
-        <button class="bg-tradewind-400 text-white py-2 px-4 rounded inline-block" (click)="onShowLigaSelection()">Seleccionar Liga</button>
+        <button class="bg-tradewind-400 text-white py-2 px-4 rounded inline-block" (click)="onShowLigaSelection()">Seleccionar Liga</button> {{ camiseta.liga.nombre }}
       </div>
 
       <!-- Botones -->
-      <div class="mb-4">
-        <button class="bg-governor-bay-700 text-white py-2 px-4 rounded inline-block" type="submit">Guardar</button>
+      <div class="flex items-center justify-between">
+        <button class="bg-governor-bay-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-2" type="submit">Guardar</button>
+        <button class="bg-stiletto-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" [routerLink]="['/admin', 'camiseta', 'plist']">Cancelar</button>
       </div>
     </form>
   </div>

@@ -12,20 +12,20 @@
     <div class="flex flex-wrap">
       <div class="w-full md:w-1/3 px-4 mb-8">
         <div class="bg-white p-8 rounded-lg shadow">
-          <h3 class="text-lg font-bold mb-4">Nuestros Productos</h3>
-          <p>Descubre nuestra colección de camisetas de fútbol y baloncesto de alta calidad.</p>
+          <h3 class="text-lg font-sans font-bold mb-4">Nuestros Productos</h3>
+          <p class="font-sans">Descubre nuestra colección de camisetas de fútbol y baloncesto de alta calidad.</p>
         </div>
       </div>
       <div class="w-full md:w-1/3 px-4 mb-8">
         <div class="bg-white p-8 rounded-lg shadow">
-          <h3 class="text-lg font-bold mb-4">Ofertas Especiales</h3>
-          <p>¡Aprovecha nuestras ofertas especiales en productos seleccionados!</p>
+          <h3 class="text-lg font-sans font-bold mb-4">Ofertas Especiales</h3>
+          <p class="font-sans">¡Aprovecha nuestras ofertas especiales en productos seleccionados!</p>
         </div>
       </div>
       <div class="w-full md:w-1/3 px-4 mb-8">
         <div class="bg-white p-8 rounded-lg shadow">
-          <h3 class="text-lg font-bold mb-4">Envío Gratis</h3>
-          <p>Disfruta del envío gratuito en todas tus compras.</p>
+          <h3 class="text-lg font-sans font-bold mb-4">Envío Gratis</h3>
+          <p class="font-sans">Disfruta del envío gratuito en todas tus compras.</p>
         </div>
       </div>
     </div>
@@ -36,10 +36,10 @@
   <div class="container mx-auto">
     <div class="flex flex-wrap items-center">
       <div class="w-full md:w-1/2 px-4 mb-8">
-        <h2 class="text-3xl font-bold mb-4">Camisetas Versión Jugador</h2>
-        <p>¿Quieres sentirte como uno de tus ídolos?</p>
-        <p>Échale un vistazo a nuestra colección de camisetas de fútbol y baloncesto Player Version y viste como los mejores jugadores del momento.</p>
-        <p><a *ngIf="isLogged()" [routerLink]="['/usuario', 'camiseta', 'plist', 'bymodalidad', 2]">Ver colección</a></p>
+        <h2 class="text-3xl font-sans font-bold mb-4">Camisetas Versión Jugador</h2>
+        <p class="font-sans">¿Quieres sentirte como uno de tus ídolos?</p>
+        <p class="font-sans">Échale un vistazo a nuestra colección de camisetas de fútbol y baloncesto Player Version y viste como los mejores jugadores del momento.</p>
+        <p class="font-sans"><a *ngIf="isLogged()" [routerLink]="['/usuario', 'camiseta', 'plist', 'bymodalidad', 2]" class="text-blue-500">Ver colección</a></p>
       </div>
       <div class="w-full md:w-1/2 px-4 mb-8">
         <img src="http://localhost:8085/media/f.elconfidencial.com_original_9ef_43c_97e_9ef43c97e95f47883dc33eea68b1d7a7.jpg" alt="Player Version" class="rounded-lg shadow-md">
@@ -55,9 +55,9 @@
         <img src="http://localhost:8085/media/futbolpasiones.jpg" alt="Fan Version" class="rounded-lg shadow-md">
       </div>
       <div class="w-full md:w-1/2 px-4 mb-8">
-        <h2 class="text-3xl font-bold">Camisetas Versión Fan</h2>
-        <p>En 90:24 encontrarás las mejores camisetas para animar a tu equipo al estadio</p>
-        <p><a *ngIf="isLogged()" [routerLink]="['/usuario', 'camiseta', 'plist', 'bymodalidad', 3]">Ver colección</a></p>
+        <h2 class="text-3xl font-sans font-bold">Camisetas Versión Fan</h2>
+        <p class="font-sans">En 90:24 encontrarás las mejores camisetas para animar a tu equipo al estadio</p>
+        <p class="font-sans"><a *ngIf="isLogged()" [routerLink]="['/usuario', 'camiseta', 'plist', 'bymodalidad', 3]" class="text-blue-500">Ver colección</a></p>
       </div>
     </div>
   </div>
@@ -67,10 +67,10 @@
   <div class="container mx-auto">
     <div class="flex flex-wrap items-center">
       <div class="w-full md:w-1/2 px-4 mb-8">
-        <h2 class="text-3xl font-bold mb-4">Camisetas Versión Retro</h2>
-        <p>¿Eres un nostálgico de aquellos viejos buenos tiempos?</p>
-        <p>Viaja en el tiempo con nuestra colección de camisetas Retro.</p>
-        <p><a *ngIf="isLogged()" [routerLink]="['/usuario', 'camiseta', 'plist', 'bymodalidad', 1]">Ver colección</a></p>
+        <h2 class="text-3xl font-sans font-bold mb-4">Camisetas Versión Retro</h2>
+        <p class="font-sans">¿Eres un nostálgico de aquellos viejos buenos tiempos?</p>
+        <p class="font-sans">Viaja en el tiempo con nuestra colección de camisetas Retro.</p>
+        <p><a *ngIf="isLogged()" [routerLink]="['/usuario', 'camiseta', 'plist', 'bymodalidad', 1]" class="text-blue-500">Ver colección</a></p>
       </div>
       <div class="w-full md:w-1/2 px-4 mb-8">
         <img src="http://localhost:8085/media/850697_71e242d2371549a7baf5e299d7a336eb~mv2.webp" alt="Retro Version" class="rounded-lg shadow-md">

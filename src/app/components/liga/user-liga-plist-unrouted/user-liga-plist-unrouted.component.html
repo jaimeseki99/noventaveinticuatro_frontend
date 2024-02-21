@@ -1,7 +1,7 @@
 <div class="container mx-auto px-4 font-sans">
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+  <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-4">
     <ng-container *ngFor="let liga of page?.content">
-      <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+      <div class="bg-white shadow-lg rounded-lg overflow-hidden transition-transform transform hover:scale-105 sm:hover:scale-100 lg:hover:scale-105 w-full h-full flex flex-col">
         <div class="card-image">
           <a [routerLink]="['/usuario', 'camiseta', 'plist', 'byliga', liga.id]">
             <img src="{{ liga.imagen }}" alt="Imagen de la liga" class="object-cover h-48 md:h-64 w-full">

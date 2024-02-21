@@ -43,8 +43,8 @@
             </div>
           </div>
           <footer class="card-footer">
-            <a class="card-footer-item" [routerLink]="['/admin', 'equipo', 'edit', equipo.id]">Actualizar</a>
-            <a class="card-footer-item" (click)="doRemove(equipo)">Eliminar</a>
+            <button class="card-footer-item text-white bg-tradewind-500 hover:bg-tradewind-700" [routerLink]="['/admin', 'equipo', 'edit', equipo.id]">Actualizar</button>
+            <button class="card-footer-item text-white bg-stiletto-500 hover:bg-stiletto-700" (click)="doRemove(equipo)" [class.invisible]="equipo.camisetas > 0">Eliminar</button>
           </footer>
         </div>
       </div>

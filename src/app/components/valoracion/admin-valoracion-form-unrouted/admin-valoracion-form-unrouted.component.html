@@ -13,23 +13,27 @@
     <div class="mb-4">
       <label class="block text-sm font-bold mb-2">Comentario</label>
         <textarea class="w-full border boder-governor-bay-400 rounded p-2" formControlName="comentario" placeholder="Ingrese un comentario"></textarea>
+        <div class="text-stiletto-700" *ngIf="hasError('comentario', 'required')">Escribe el comentario</div>
+        <div class="text-stiletto-700" *ngIf="hasError('comentario', 'minlength')">El comentario debe tener al menos 2 caracteres</div>
+        <div class="text-stiletto-700" *ngIf="hasError('comentario', 'maxlength')">El comentario no puede tener más de 255 caracteres</div>
     </div>
 
     <!-- Selector de Usuario -->
     <div class="mb-4">
       <label class="block text-sm font-bold mb-2">Usuario</label>
-        <button class="bg-tradewind-400 text-white py-2 px-4 rounded inline-block" (click)="onShowUsuariosSelection()">Seleccionar Usuario</button>
+        <button class="bg-tradewind-400 text-white py-2 px-4 rounded inline-block" (click)="onShowUsuariosSelection()">Seleccionar Usuario</button> {{valoracion.usuario.nombre}} {{valoracion.usuario.apellido}}
     </div>
 
     <!-- Selector de Camiseta -->
     <div class="mb-4">
       <label class="block text-sm font-bold mb-2">Camiseta</label>
-        <button class="bg-tradewind-400 text-white py-2 px-4 rounded inline-block" (click)="onShowCamisetasSelection()">Seleccionar Camiseta</button>
+        <button class="bg-tradewind-400 text-white py-2 px-4 rounded inline-block" (click)="onShowCamisetasSelection()">Seleccionar Camiseta</button> {{valoracion.camiseta.titulo}}
     </div>
 
     <!-- Botones -->
-    <div class="mb-4">
-        <button class="bg-governor-bay-700 text-white py-2 px-4 rounded inline-block" type="submit">Guardar</button>
+    <div class="flex items-center justify-between">
+        <button class="bg-governor-bay-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-2" type="submit">Guardar</button>
+        <button [routerLink]="['/admin', 'valoracion', 'plist']" class="bg-stiletto-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Cancelar</button>
     </div>
   </form>
   </div>

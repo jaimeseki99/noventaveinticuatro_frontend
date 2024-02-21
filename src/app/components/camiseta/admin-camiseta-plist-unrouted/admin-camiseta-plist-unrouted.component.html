@@ -79,10 +79,10 @@
             <p><strong>Compras: {{camiseta.detalleCompras}}</strong></p>
           </div>
           <footer class="card-footer">
-            <!-- Botón para ver detalles -->
-            <a class="card-footer-item" [routerLink]="['/admin', 'camiseta', 'edit', camiseta.id]">Actualizar</a>
+             <!-- Botón para ver detalles -->
+            <button class="card-footer-item text-white bg-tradewind-500 hover:bg-tradewind-700" [routerLink]="['/admin', 'camiseta', 'edit', camiseta.id]">Actualizar</button>
             <!-- Botón para eliminar -->
-            <a class="card-footer-item" (click)="doRemove(camiseta)">Eliminar</a>
+            <button class="card-footer-item text-white bg-stiletto-500 hover:bg-stiletto-700" (click)="doRemove(camiseta)" [class.invisible]="camiseta.valoraciones > 0 || camiseta.detalleCompras > 0">Eliminar</button>
           </footer>
         </div>
       </div>

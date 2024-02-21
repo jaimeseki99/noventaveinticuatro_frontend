@@ -44,6 +44,9 @@ module.exports = {
           '900': '#732929',
           '950': '#3e1111',
       },
+      },
+      fontFamily: {
+        'sans': ['Montserrat', 'sans-serif'],
       }
     },
   },

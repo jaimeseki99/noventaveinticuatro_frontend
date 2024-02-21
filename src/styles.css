@@ -9,6 +9,7 @@
 
 @import '~bulma/css/bulma.css';
 
+
 .ui-paginator {
     background-color: beige !important;
 }

@@ -85,10 +85,10 @@
       <div class="w-full md:w-1/2 px-4 mb-8">
         <img src="http://localhost:8085/media/5grandesligas.jpeg" alt="Ligas" class="rounded-lg shadow-md">
       </div>
-      <div class="w-full md:w-1/2 px-4 mb-8">
-        <h2 class="text-3xl font-bold">Visita nuestra colección de ligas</h2>
-        <p>Contamos con las camisetas de las mejores ligas de fútbol y baloncesto</p>
-        <p><a *ngIf="isLogged()" [routerLink]="['/usuario', 'liga', 'plist']">Ver ligas disponibles</a></p>
+      <div class="w-full md:w-1/2 px-4 mb-8 font-sans">
+        <h2 class="text-3xl font-sans font-bold">Visita nuestra colección de ligas</h2>
+        <p class="font-sans">Contamos con las camisetas de las mejores ligas de fútbol y baloncesto</p>
+        <p class="font-sans"><a *ngIf="isLogged()" [routerLink]="['/usuario', 'liga', 'plist']">Ver ligas disponibles</a></p>
       </div>
     </div>
   </div>

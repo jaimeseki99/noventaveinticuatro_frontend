@@ -1,6 +1,6 @@
 <div class="container mx-auto font-sans">
   <div *ngIf="page && page.content.length > 0" class="overflow-x-auto min-h-screen overflow-auto">
-    <table class="table-auto w-full border-collapse border bg-white">
+    <table class="table-auto w-full border-collapse border bg-white overflow-x-auto">
       <thead>
         <tr class="bg-gray-200">
           <th class="px-4 py-2">Imagen</th>
@@ -29,7 +29,7 @@
           </td>
           <td class="border px-4 py-2">{{ precioIndividualMap.get(carrito.id)?.toFixed(2) }}€ </td>
           <td class="border px-4 py-2">
-            <button class="bg-stiletto-500 hover:bg-stiletto-700 text-white font-bold py-1 px-2 rounded focus:outline-none focus:shadow-outline" (click)="eliminarDelCarrito(carrito.id)">Eliminar</button>
+            <button class="bg-stiletto-500 hover:bg-stiletto-700 text-white font-bold py-1 px-2 rounded focus:outline-none focus:shadow-outline mr-4" (click)="eliminarDelCarrito(carrito.id)">Eliminar</button>
             <button class="bg-tradewind-600 hover:bg-tradewind-800 text-white font-bold py-1 px-2 rounded focus:outline-none focus:shadow-outline" (click)="comprarUnicoCarrito(carrito.id)">Comprar</button>
           </td>
         </tr>
@@ -54,7 +54,7 @@
 
 </div>
 
-<div class="container mx-auto h-screen flex justify-center items-center">
+<div class="container mx-auto h-screen flex justify-center items-center" *ngIf="!page?.content || page?.content?.length == 0">
   <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
     <p class="text-lg mb-4">Todavía no has añadido nada a tu carrito.</p>
     <div class="text-center">

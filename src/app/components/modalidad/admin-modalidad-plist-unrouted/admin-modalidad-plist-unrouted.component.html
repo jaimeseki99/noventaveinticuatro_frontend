@@ -1,18 +1,18 @@
 <div class="container mx-auto font-sans">
   <!-- Menú desplegable para ordenar -->
   <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-  <div class="field">
-    <label class="label">Ordenar por:</label>
-    <div class="control">
-      <div class="select">
-        <select #selectElement (change)="doOrder(selectElement.value)">
-          <option value="nombre">Nombre</option>
-          <option value="camisetas">Número de Camisetas</option>
-        </select>
+    <div class="field">
+      <label class="label">Ordenar por:</label>
+      <div class="control">
+        <div class="select">
+          <select #selectElement (change)="doOrder(selectElement.value)">
+            <option value="nombre">Nombre</option>
+            <option value="camisetas">Número de Camisetas</option>
+          </select>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
   <!-- Contenido de modalidades -->
   <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
@@ -20,6 +20,7 @@
         <div class="card">
           <div class="card-image">
               <img src="{{modalidad.imagen}}" alt="Imagen de la modalidad" class="w-full h-80 object-cover">
+          </div>
           <div class="card-content">
               <p class="title text-xl cursor-pointer" (click)="doView(modalidad)">{{modalidad.nombre}}</p>
               <p><strong>Número de Camisetas:</strong> <a [routerLink]="['/admin', 'camiseta', 'plist', 'bymodalidad', modalidad.id]" class="text-blue-500"> {{ modalidad.camisetas }}</a></p>
@@ -40,7 +41,8 @@
   </div>
 
   <!-- Paginación -->
-  <div class="level is-justify-content-center mb-3">
+  <div class="flex justify-center mb-3">
     <p-paginator (onPageChange)="onPageChange($event)" [rows]="paginatorState.rows!" [totalRecords]="page?.totalElements || 0" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
   </div>
+
 </div>

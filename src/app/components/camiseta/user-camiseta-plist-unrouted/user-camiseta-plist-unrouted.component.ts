@@ -6,7 +6,7 @@ import { ConfirmationService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { Paginator, PaginatorState } from 'primeng/paginator';
 import { Subject, switchMap } from 'rxjs';
-import { ICamiseta, ICamisetaPage, ICarrito, IEquipo, ILiga, IModalidad, IUsuario } from 'src/app/model/model.interfaces';
+import { ICamiseta, ICamisetaPage, ICarrito, ICompra, IEquipo, ILiga, IModalidad, IUsuario } from 'src/app/model/model.interfaces';
 import { CamisetaAjaxService } from 'src/app/service/camiseta.ajax.service.service';
 import { CarritoAjaxService } from 'src/app/service/carrito.ajax.service.service';
 import { CompraAjaxService } from 'src/app/service/compra.ajax.service.service';
@@ -14,6 +14,7 @@ import { EquipoAjaxService } from 'src/app/service/equipo.ajax.service.service';
 import { LigaAjaxService } from 'src/app/service/liga.ajax.service.service';
 import { ModalidadAjaxService } from 'src/app/service/modalidad.ajax.service.service';
 import { SesionAjaxService } from 'src/app/service/sesion.ajax.service.service';
+import { ConfirmationUnroutedComponent } from '../../shared/confirmation-unrouted/confirmation-unrouted.component';
 
 @Component({
   selector: 'app-user-camiseta-plist-unrouted',
@@ -224,38 +225,81 @@ export class UserCamisetaPlistUnroutedComponent implements OnInit {
 
   comprarDirectamente(camiseta: ICamiseta): void {
     this.sesionAjaxService.getSessionUser()?.subscribe({
-      next: (usuario: IUsuario) => {
+      next: (usuario: IUsuario | null ) => {
         if (usuario) {
-          this.confirmService.confirm({
-            message: '¿Quieres comprar la camiseta?',
-            accept: () => {
+          this.dialogService.open(ConfirmationUnroutedComponent, {
+            header: 'Confirmación',
+            data: {
+              message: '¿Quieres comprar esta camiseta?'
+            },
+            width: '400px',
+            style: {
+              'border-radius': '8px',
+              'box-shadow': '0 4px 6px rgba(0, 0, 0, 0.1)'
+            },
+            baseZIndex: 10000
+          }).onClose.subscribe((confirmed: boolean) => {
+            if (confirmed) {
               const cantidad = 1;
               this.compraAjaxService.createCompraCamiseta(camiseta.id, usuario.id, cantidad).subscribe({
-                next: () => {
-                  this.matSnackBar.open('Camiseta comprada', 'Aceptar', {duration: 3000});
-                  this.router.navigate(['/usuario', 'compra', 'plist', usuario.id]);
-                  
+                next: (compra: ICompra) => {
+                  this.matSnackBar.open('Camiseta comprada con éxito', 'Aceptar', { duration: 3000 });
+                  this.router.navigate(['/usuario', 'compra', 'view', compra.id]);
                 },
                 error: (err: HttpErrorResponse) => {
                   this.status = err;
-                  this.matSnackBar.open('Error al comprar la camiseta', 'Aceptar', {duration: 3000});
+                  this.matSnackBar.open('Ha habido un error al comprar la camiseta', 'Aceptar', { duration: 3000 });
                 }
               });
-              },
-            reject: () => {
-              this.matSnackBar.open('Compra cancelada', 'Aceptar', {duration: 3000});
+            } else {
+              this.matSnackBar.open('Se ha cancelado la compra', 'Aceptar', { duration: 3000 });
             }
-            })
+          });
         } else {
-          this.matSnackBar.open('Debes estar logueado para comprar camisetas', 'Aceptar', {duration: 3000});
-        };
-        },
+          this.matSnackBar.open('Debes estar logueado para comprar las camisetas de la tienda', 'Aceptar', { duration: 3000 });
+        }
+      },
       error: (err: HttpErrorResponse) => {
         this.status = err;
-        this.matSnackBar.open('Error al obtener el usuario', 'Aceptar', {duration: 3000});
+        this.matSnackBar.open('Error al obtener los datos del usuario', 'Aceptar', { duration: 3000 });
       }
-      });
-    }
+    })
+  }
+
+  // comprarDirectamente(camiseta: ICamiseta): void {
+  //   this.sesionAjaxService.getSessionUser()?.subscribe({
+  //     next: (usuario: IUsuario) => {
+  //       if (usuario) {
+  //         this.confirmService.confirm({
+  //           message: '¿Quieres comprar la camiseta?',
+  //           accept: () => {
+  //             const cantidad = 1;
+  //             this.compraAjaxService.createCompraCamiseta(camiseta.id, usuario.id, cantidad).subscribe({
+  //               next: () => {
+  //                 this.matSnackBar.open('Camiseta comprada', 'Aceptar', {duration: 3000});
+  //                 this.router.navigate(['/usuario', 'compra', 'plist', usuario.id]);
+                  
+  //               },
+  //               error: (err: HttpErrorResponse) => {
+  //                 this.status = err;
+  //                 this.matSnackBar.open('Error al comprar la camiseta', 'Aceptar', {duration: 3000});
+  //               }
+  //             });
+  //             },
+  //           reject: () => {
+  //             this.matSnackBar.open('Compra cancelada', 'Aceptar', {duration: 3000});
+  //           }
+  //           })
+  //       } else {
+  //         this.matSnackBar.open('Debes estar logueado para comprar camisetas', 'Aceptar', {duration: 3000});
+  //       };
+  //       },
+  //     error: (err: HttpErrorResponse) => {
+  //       this.status = err;
+  //       this.matSnackBar.open('Error al obtener el usuario', 'Aceptar', {duration: 3000});
+  //     }
+  //     });
+  //   }
         
   }
  

@@ -10,6 +10,7 @@ import { CamisetaAjaxService } from 'src/app/service/camiseta.ajax.service.servi
 import { UsuarioAjaxService } from 'src/app/service/usuario.ajax.service.service';
 import { ValoracionAjaxService } from 'src/app/service/valoracion.ajax.service.service';
 import { AdminValoracionDetailUnroutedComponent } from '../admin-valoracion-detail-unrouted/admin-valoracion-detail-unrouted.component';
+import { ConfirmationUnroutedComponent } from '../../shared/confirmation-unrouted/confirmation-unrouted.component';
 
 @Component({
   selector: 'app-admin-valoracion-plis-unrouted',
@@ -95,24 +96,54 @@ export class AdminValoracionPlisUnroutedComponent implements OnInit {
 
     doRemove(valoracion: IValoracion) {
       this.valoracionABorrar = valoracion;
-      this.confirmationService.confirm({
-        accept: () => {
+      this.dialogService.open(ConfirmationUnroutedComponent, {
+        header: 'Confirmación',
+        data: {
+          message: '¿Está seguro que desea eliminar la valoración?',
+        },
+        width: '400px',
+        style: {
+          'border-radius': '8px',
+          'box-shadow': '0 4px 5px rgba(0, 0, 0, 0.1)'
+        },
+        baseZIndex: 10000
+      }).onClose.subscribe((confirmed: boolean) => {
+        if (confirmed) {
           this.valoracionAjaxService.deleteValoracion(valoracion.id).subscribe({
             next: () => {
-              this.matSnackBar.open("Valoracion borrada", "Aceptar", { duration: 3000 });
+              this.matSnackBar.open('Valoración eliminada con éxito', 'Aceptar', { duration: 3000 });
               this.getPage();
             },
             error: (err: HttpErrorResponse) => {
-              this.status = err;
-              this.matSnackBar.open("Error al borrar la valoracion", "Aceptar", { duration: 3000 });
+              this.matSnackBar.open('Ha habido un error al eliminar la valoración', 'Aceptar', { duration: 3000 });
             }
           });
-        },
-        reject: () => {
-          this.matSnackBar.open("No se ha borrado la valoracion", "Aceptar", { duration: 3000 });
+        } else {
+          this.matSnackBar.open('Se ha cancelado la eliminación de la valoración', 'Aceptar', { duration: 3000 })
         }
-      });
+      })
     }
+
+    // doRemove(valoracion: IValoracion) {
+    //   this.valoracionABorrar = valoracion;
+    //   this.confirmationService.confirm({
+    //     accept: () => {
+    //       this.valoracionAjaxService.deleteValoracion(valoracion.id).subscribe({
+    //         next: () => {
+    //           this.matSnackBar.open("Valoracion borrada", "Aceptar", { duration: 3000 });
+    //           this.getPage();
+    //         },
+    //         error: (err: HttpErrorResponse) => {
+    //           this.status = err;
+    //           this.matSnackBar.open("Error al borrar la valoracion", "Aceptar", { duration: 3000 });
+    //         }
+    //       });
+    //     },
+    //     reject: () => {
+    //       this.matSnackBar.open("No se ha borrado la valoracion", "Aceptar", { duration: 3000 });
+    //     }
+    //   });
+    // }
 
     getUsuario(): void {
       this.usuarioAjaxService.getUsuarioById(this.id_usuario).subscribe({

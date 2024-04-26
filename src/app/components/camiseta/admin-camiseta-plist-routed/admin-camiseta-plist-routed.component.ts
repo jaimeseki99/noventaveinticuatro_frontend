@@ -1,8 +1,10 @@
+import { ConfirmationUnroutedComponent } from './../../shared/confirmation-unrouted/confirmation-unrouted.component';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
+import { DialogService } from 'primeng/dynamicdialog';
 import { Subject } from 'rxjs';
 import { CamisetaAjaxService } from 'src/app/service/camiseta.ajax.service.service';
 
@@ -23,6 +25,7 @@ export class AdminCamisetaPlistRoutedComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private camisetaAjaxService: CamisetaAjaxService,
     private confirmationService: ConfirmationService,
+    private dialogService: DialogService,
     private matSnackBar: MatSnackBar
   ) { 
     this.id_equipo = parseInt(this.activatedRoute.snapshot.paramMap.get('idequipo') ?? "0");
@@ -50,11 +53,19 @@ export class AdminCamisetaPlistRoutedComponent implements OnInit {
   }
 
   doEmpty($event: Event) {
-    this.confirmationService.confirm({
-      target: $event.target as EventTarget,
-      message: '¿Está seguro que desea vaciar el listado de camisetas?',
-      icon: 'pi pi-exclamation-triangle',
-      accept: () => {
+    this.dialogService.open(ConfirmationUnroutedComponent, {
+      header: 'Confirmación',
+      data: {
+        message: '¿Está seguro que desea vaciar el listado de camisetas?'
+      },
+      width: '400px',
+      style: {
+        'border-radius': '8px',
+        'box-shadow': '0 4px 6px rgba(0, 0, 0, 0.1)'
+      },
+      baseZIndex: 10000
+    }).onClose.subscribe((confirmed: boolean) => {
+      if (confirmed) {
         this.camisetaAjaxService.deleteAllCamisetas().subscribe({
           next: (response: number) => {
             this.matSnackBar.open('Se han eliminado ' + response + ' camisetas', 'Aceptar', { duration: 3000 });
@@ -65,9 +76,30 @@ export class AdminCamisetaPlistRoutedComponent implements OnInit {
             this.matSnackBar.open('Se ha producido un error al eliminar las camisetas', 'Aceptar', { duration: 3000 });
             this.bLoading = false;
           }
-        })
+        });
       }
-    })
+    });
   }
+
+  // doEmpty($event: Event) {
+  //   this.confirmationService.confirm({
+  //     target: $event.target as EventTarget,
+  //     message: '¿Está seguro que desea vaciar el listado de camisetas?',
+  //     icon: 'pi pi-exclamation-triangle',
+  //     accept: () => {
+  //       this.camisetaAjaxService.deleteAllCamisetas().subscribe({
+  //         next: (response: number) => {
+  //           this.matSnackBar.open('Se han eliminado ' + response + ' camisetas', 'Aceptar', { duration: 3000 });
+  //           this.forceReload.next(true);
+  //           this.bLoading = false;
+  //         },
+  //         error: (err: HttpErrorResponse) => {
+  //           this.matSnackBar.open('Se ha producido un error al eliminar las camisetas', 'Aceptar', { duration: 3000 });
+  //           this.bLoading = false;
+  //         }
+  //       })
+  //     }
+  //   })
+  // }
 
 }

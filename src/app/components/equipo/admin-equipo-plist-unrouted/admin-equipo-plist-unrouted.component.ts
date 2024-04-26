@@ -9,6 +9,7 @@ import { IEquipo, IEquipoPage, ILiga } from 'src/app/model/model.interfaces';
 import { EquipoAjaxService } from 'src/app/service/equipo.ajax.service.service';
 import { LigaAjaxService } from 'src/app/service/liga.ajax.service.service';
 import { AdminEquipoDetailUnroutedComponent } from '../admin-equipo-detail-unrouted/admin-equipo-detail-unrouted.component';
+import { ConfirmationUnroutedComponent } from '../../shared/confirmation-unrouted/confirmation-unrouted.component';
 
 @Component({
   selector: 'app-admin-equipo-plist-unrouted',
@@ -95,25 +96,53 @@ export class AdminEquipoPlistUnroutedComponent implements OnInit {
 
   doRemove(equipo: IEquipo) {
     this.equipoABorrar = equipo;
-    this.confirmationSerivce.confirm({
-      accept: () => {
-        this.matSnackBar.open("Borrando equipo...", "Aceptar", { duration: 3000 });
+    this.dialogService.open(ConfirmationUnroutedComponent, {
+      header: 'Confirmación',
+      data: {
+        message: '¿Estás seguro de querer eliminar el equipo de la lista?'
+      },
+      width: '400px',
+      style: {
+        'border-radius': '8px',
+        'box-shadow': '0 4px 6px rgba(0, 0, 0, 0.1)'
+      },
+      baseZIndex: 10000
+    }).onClose.subscribe((confirmed: boolean) => {
+      if (confirmed) {
+        this.matSnackBar.open('Eliminando equipo de la lista. Por favor, espere...', 'Aceptar', { duration: 3000 });
         this.equipoAjaxService.deleteEquipo(equipo.id).subscribe({
           next: () => {
-            this.matSnackBar.open("Equipo borrado correctamente", "Aceptar", { duration: 3000 });
+            this.matSnackBar.open('Equipo eliminado de la base de datos con éxito', 'Aceptar', { duration: 3000 });
             this.getPage();
-          },
-          error: (err: HttpErrorResponse) => {
-            this.matSnackBar.open("Error al borrar el equipo", "Aceptar", { duration: 3000 });
-            this.status = err;
           }
         });
-      },
-      reject: () => {
-        this.matSnackBar.open("Cancelando borrado de equipo...", "Aceptar", { duration: 3000 });
+      } else {
+        this.matSnackBar.open('Operación de eliminación de equipo cancelada', 'Aceptar', { duration: 3000 })
       }
-    })
+    });
   }
+
+  // doRemove(equipo: IEquipo) {
+  //   this.equipoABorrar = equipo;
+  //   this.confirmationSerivce.confirm({
+  //     accept: () => {
+  //       this.matSnackBar.open("Borrando equipo...", "Aceptar", { duration: 3000 });
+  //       this.equipoAjaxService.deleteEquipo(equipo.id).subscribe({
+  //         next: () => {
+  //           this.matSnackBar.open("Equipo borrado correctamente", "Aceptar", { duration: 3000 });
+  //           this.getPage();
+  //         },
+  //         error: (err: HttpErrorResponse) => {
+  //           this.matSnackBar.open("Error al borrar el equipo", "Aceptar", { duration: 3000 });
+  //           this.status = err;
+  //         }
+  //       });
+  //     },
+  //     reject: () => {
+  //       this.matSnackBar.open("Cancelando borrado de equipo...", "Aceptar", { duration: 3000 });
+  //     }
+  //   })
+  // }
 
   getLiga(): void {
     this.ligaAjaxService.getLigaById(this.id_liga).subscribe({

@@ -107,6 +107,7 @@ import { UserDetalle_compraPlistUnroutedComponent } from './components/detalle_c
 import { UserCompraViewRoutedComponent } from './components/compra/user-compra-view-routed/user-compra-view-routed.component';
 import { UserValoracionPlistUnroutedComponent } from './components/valoracion/user-valoracion-plist-unrouted/user-valoracion-plist-unrouted.component';
 import { UserCamisetaValoracionFormUnroutedComponent } from './components/camiseta/user-camiseta-valoracion-form-unrouted/user-camiseta-valoracion-form-unrouted.component';
+import { ConfirmationUnroutedComponent } from './components/shared/confirmation-unrouted/confirmation-unrouted.component';
 
 
 @NgModule({
@@ -117,6 +118,7 @@ import { UserCamisetaValoracionFormUnroutedComponent } from './components/camise
     HomeRoutedComponent,
     LoginRoutedComponent,
     LogoutRoutedComponent,
+    ConfirmationUnroutedComponent,
 
     AdminCamisetaDetailUnroutedComponent,
     AdminCamisetaPlistUnroutedComponent,

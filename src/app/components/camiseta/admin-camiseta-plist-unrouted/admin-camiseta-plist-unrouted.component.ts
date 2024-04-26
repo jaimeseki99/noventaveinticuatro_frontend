@@ -11,6 +11,7 @@ import { ModalidadAjaxService } from 'src/app/service/modalidad.ajax.service.ser
 import { LigaAjaxService } from 'src/app/service/liga.ajax.service.service';
 import { ConfirmEventType, ConfirmationService } from 'primeng/api';
 import { AdminCamisetaDetailUnroutedComponent } from '../admin-camiseta-detail-unrouted/admin-camiseta-detail-unrouted.component';
+import { ConfirmationUnroutedComponent } from '../../shared/confirmation-unrouted/confirmation-unrouted.component';
 
 @Component({
   selector: 'app-admin-camiseta-plist-unrouted',
@@ -111,24 +112,53 @@ export class AdminCamisetaPlistUnroutedComponent implements OnInit {
 
   doRemove(camiseta: ICamiseta) {
     this.camisetaABorrar = camiseta;
-    this.confirmService.confirm({
-      accept: () => {
+    this.dialogService.open(ConfirmationUnroutedComponent, {
+      header: 'Confirmación',
+      data: {
+        message: '¿Está seguro que desea eliminar la camiseta?'
+      },
+      width: '400px',
+      style: {
+        'border-radius': '8px',
+        'box-shadow': '0 4px 6px rgba(0, 0, 0, 0.1)'
+      },
+      baseZIndex: 10000
+    }).onClose.subscribe((confirmed: boolean) => {
+      if (confirmed) {
         this.camisetaAjaxService.deleteCamiseta(camiseta.id).subscribe({
           next: () => {
-            this.matSnackBar.open("Camiseta borrada correctamente", "Aceptar", {duration: 3000});
+            this.matSnackBar.open('Camiseta eliminada correctamente', 'Aceptar', { duration: 3000 });
             this.getPage();
           },
           error: (err: HttpErrorResponse) => {
             this.status = err;
-            this.matSnackBar.open("Error al borrar la camiseta", "Aceptar", {duration: 3000});
+            this.matSnackBar.open('Ha habido un error al eliminar la camiseta', 'Aceptar', { duration: 3000})
           }
-        });
-      },
-      reject: (type: ConfirmEventType) => {
-        this.matSnackBar.open("Operación cancelada", "Aceptar", {duration: 3000});
-    }
-  });
+        })
+      }
+    })
   }
+
+  // doRemove(camiseta: ICamiseta) {
+  //   this.camisetaABorrar = camiseta;
+  //   this.confirmService.confirm({
+  //     accept: () => {
+  //       this.camisetaAjaxService.deleteCamiseta(camiseta.id).subscribe({
+  //         next: () => {
+  //           this.matSnackBar.open("Camiseta borrada correctamente", "Aceptar", {duration: 3000});
+  //           this.getPage();
+  //         },
+  //         error: (err: HttpErrorResponse) => {
+  //           this.status = err;
+  //           this.matSnackBar.open("Error al borrar la camiseta", "Aceptar", {duration: 3000});
+  //         }
+  //       });
+  //     },
+  //     reject: (type: ConfirmEventType) => {
+  //       this.matSnackBar.open("Operación cancelada", "Aceptar", {duration: 3000});
+  //   }
+  // });
+  // }
 
   getEquipo(): void {
     this.equipoAjaxService.getEquipoById(this.id_equipo).subscribe({

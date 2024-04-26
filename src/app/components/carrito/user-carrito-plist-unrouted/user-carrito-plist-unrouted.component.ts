@@ -1,6 +1,6 @@
 import { ConfirmationService } from 'primeng/api';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Optional } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { PaginatorState } from 'primeng/paginator';
@@ -9,6 +9,8 @@ import { ICamiseta, ICarrito, ICarritoPage, ICompra, IUsuario } from 'src/app/mo
 import { CarritoAjaxService } from 'src/app/service/carrito.ajax.service.service';
 import { CompraAjaxService } from 'src/app/service/compra.ajax.service.service';
 import { SesionAjaxService } from 'src/app/service/sesion.ajax.service.service';
+import { DialogService, DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { ConfirmationUnroutedComponent } from '../../shared/confirmation-unrouted/confirmation-unrouted.component';
 
 @Component({
   selector: 'app-user-carrito-plist-unrouted',
@@ -36,7 +38,10 @@ export class UserCarritoPlistUnroutedComponent implements OnInit {
     private compraAjaxService: CompraAjaxService,
     private router: Router,
     private matSnackBar: MatSnackBar,
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
+    public dialogService: DialogService,
+    @Optional() public ref: DynamicDialogRef,
+    @Optional() public config: DynamicDialogConfig
   ) { }
 
   ngOnInit() {
@@ -138,17 +143,23 @@ export class UserCarritoPlistUnroutedComponent implements OnInit {
     this.sesionAjaxService.getSessionUser()?.subscribe({
       next: (usuario: IUsuario) => {
         this.usuario = usuario;
-        this.confirmationService.confirm({
-          message: '¿Desea comprar este carrito?',
-          accept: () => {
+        this.dialogService.open(ConfirmationUnroutedComponent, {
+          header: 'Confirmación',
+          data: {
+            message: '¿Quieres únicamente comprar esta camiseta?'
+          },
+          width: '400px',
+          baseZIndex: 10000
+        }).onClose.subscribe((confirmed: boolean) => {
+          if (confirmed) {
             this.compraAjaxService.createCompraUnicoCarrito(usuario.id, id_carrito).subscribe({
               next: (compra: ICompra) => {
-                this.matSnackBar.open('Compra realizada', 'Aceptar', { duration: 3000 });
+                this.matSnackBar.open('Compra realizada con éxito', 'Aceptar', { duration: 3000 });
                 this.router.navigate(['/usuario', 'compra', 'view', compra.id]);
               },
               error: (err: HttpErrorResponse) => {
                 this.status = err;
-                this.matSnackBar.open('Error al realizar la compra', 'Aceptar', { duration: 3000 })
+                this.matSnackBar.open('Ha habido un error al realizar la compra', 'Aceptar', { duration: 3000 });
               }
             });
           }
@@ -156,18 +167,59 @@ export class UserCarritoPlistUnroutedComponent implements OnInit {
       },
       error: (err: HttpErrorResponse) => {
         this.status = err;
-        this.matSnackBar.open('Error al recuperar el usuario', 'Aceptar', { duration: 3000 })
+        this.matSnackBar.open('Error al obtener los datos del usuario', 'Aceptar', { duration: 3000 });
       }
-    });
+    })
   }
+
+ 
+  // comprarUnicoCarrito(id_carrito: number) {
+  //   this.sesionAjaxService.getSessionUser()?.subscribe({
+  //     next: (usuario: IUsuario) => {
+  //       this.usuario = usuario;
+  //       this.confirmationService.confirm({
+  //         message: '¿Desea comprar este carrito?',
+  //         accept: () => {
+  //           this.compraAjaxService.createCompraUnicoCarrito(usuario.id, id_carrito).subscribe({
+  //             next: (compra: ICompra) => {
+  //               this.matSnackBar.open('Compra realizada', 'Aceptar', { duration: 3000 });
+  //               this.router.navigate(['/usuario', 'compra', 'view', compra.id]);
+  //             },
+  //             error: (err: HttpErrorResponse) => {
+  //               this.status = err;
+  //               this.matSnackBar.open('Error al realizar la compra', 'Aceptar', { duration: 3000 })
+  //             },
+  //           });
+  //         },
+  //         reject: () => {
+  //           this.confirmationService.close();
+  //         }
+  //       });
+  //     },
+
+  //     error: (err: HttpErrorResponse) => {
+  //       this.status = err;
+  //       this.matSnackBar.open('Error al recuperar el usuario', 'Aceptar', { duration: 3000 })
+  //     }
+  //   });
+  // }
 
   comprarTodosCarritos() {
     this.sesionAjaxService.getSessionUser()?.subscribe({
       next: (usuario: IUsuario) => {
-        this.usuario = usuario;
-        this.confirmationService.confirm({
-          message: '¿Desea comprar todos los carritos?',
-          accept: () => {
+        this.dialogService.open(ConfirmationUnroutedComponent, {
+          header: 'Confirmación',
+          data: {
+            message: '¿Desea comprar todas las camisetas de tu carrito ahora?'
+          },
+          width: '400px',
+          style: {
+            'border-radius': '8px',
+            'box-shadow': '0 4px 6px rgba(0, 0, 0, 0.1)'
+          },
+          baseZIndex: 10000
+        }).onClose.subscribe((confirmed: boolean) => {
+          if (confirmed) {
             this.compraAjaxService.createCompraTodosCarritos(usuario.id).subscribe({
               next: (compra: ICompra) => {
                 this.matSnackBar.open('Compra realizada', 'Aceptar', { duration: 3000 });
@@ -175,7 +227,7 @@ export class UserCarritoPlistUnroutedComponent implements OnInit {
               },
               error: (err: HttpErrorResponse) => {
                 this.status = err;
-                this.matSnackBar.open('Error al realizar la compra', 'Aceptar', { duration: 3000 })
+                this.matSnackBar.open('Ha habido un fallo al realizar la compra del carrito', 'Aceptar', { duration: 3000 })
               }
             });
           }
@@ -183,11 +235,40 @@ export class UserCarritoPlistUnroutedComponent implements OnInit {
       },
       error: (err: HttpErrorResponse) => {
         this.status = err;
-        this.matSnackBar.open('Error al recuperar el usuario', 'Aceptar', { duration: 3000 })
+        this.matSnackBar.open('Error al obtener los datos del usuario');
       }
-    });
-
+    })
   }
+
+  // comprarTodosCarritos() {
+  //   this.sesionAjaxService.getSessionUser()?.subscribe({
+  //     next: (usuario: IUsuario) => {
+  //       this.usuario = usuario;
+  //       this.confirmationService.confirm({
+  //         message: '¿Desea comprar todos los carritos?',
+  //         accept: () => {
+  //           this.compraAjaxService.createCompraTodosCarritos(usuario.id).subscribe({
+  //             next: (compra: ICompra) => {
+  //               this.matSnackBar.open('Compra realizada', 'Aceptar', { duration: 3000 });
+  //               this.router.navigate(['/usuario', 'compra', 'view', compra.id]);
+  //             },
+  //             error: (err: HttpErrorResponse) => {
+  //               this.status = err;
+  //               this.matSnackBar.open('Error al realizar la compra', 'Aceptar', { duration: 3000 })
+  //             }
+  //           });
+  //         }
+  //       });
+  //     },
+  //     error: (err: HttpErrorResponse) => {
+  //       this.status = err;
+  //       this.matSnackBar.open('Error al recuperar el usuario', 'Aceptar', { duration: 3000 })
+  //     }
+  //   });
+
+  // }
+
+  
 
   eliminarDelCarrito(id_carrito: number): void {
         this.carritoAjaxService.deleteCarrito(id_carrito).subscribe({
@@ -204,20 +285,47 @@ export class UserCarritoPlistUnroutedComponent implements OnInit {
   }
 
   eliminarTodosCarritos(id_usuario: number): void {
-    this.confirmationService.confirm({
-      message: '¿Desea eliminar todos los carritos?',
-      accept: () => {
+    this.dialogService.open(ConfirmationUnroutedComponent, {
+      header: 'Confirmación',
+      data: {
+        message: '¿Está seguro de vaciar el carrito?'
+      },
+      width: '400px',
+      style: {
+        'border-radius': '8px',
+        'box-shadow': '0 4px 6px rgba(0, 0, 0, 0.1)'
+      },
+      baseZIndex: 10000
+    }).onClose.subscribe((confirmed: boolean) => {
+      if (confirmed) {
         this.carritoAjaxService.deleteCarritoByUsuario(id_usuario).subscribe({
           next: () => {
-            this.matSnackBar.open('Carritos eliminados', 'Aceptar', { duration: 3000 });
+            this.matSnackBar.open('Carrito vaciado con éxito', 'Aceptar', { duration: 3000 });
             this.getCarritos();
           },
           error: (err: HttpErrorResponse) => {
-            this.status = err;
-            this.matSnackBar.open('Error al eliminar los carritos', 'Aceptar', { duration: 3000 })
+            this.matSnackBar.open('Ha habido un error al vaciar el carrito', 'Aceptar', { duration: 3000 });
           }
         });
       }
     });
   }
+
+  // eliminarTodosCarritos(id_usuario: number): void {
+  //   this.confirmationService.confirm({
+  //     message: '¿Desea eliminar todos los carritos?',
+  //     accept: () => {
+  //       this.carritoAjaxService.deleteCarritoByUsuario(id_usuario).subscribe({
+  //         next: () => {
+  //           this.matSnackBar.open('Carritos eliminados', 'Aceptar', { duration: 3000 });
+  //           this.getCarritos();
+  //         },
+  //         error: (err: HttpErrorResponse) => {
+  //           this.status = err;
+  //           this.matSnackBar.open('Error al eliminar los carritos', 'Aceptar', { duration: 3000 })
+  //         }
+  //       });
+  //     }
+  //   });
+  // }
 }

@@ -14,6 +14,7 @@ import { DynamicDialogRef } from 'primeng/dynamicdialog';
 )
 export class ConfirmationUnroutedComponent {
 
+  @Input() message: string = '';
   @Output() confirm = new EventEmitter<void>();
   @Output() cancel = new EventEmitter<void>();
 

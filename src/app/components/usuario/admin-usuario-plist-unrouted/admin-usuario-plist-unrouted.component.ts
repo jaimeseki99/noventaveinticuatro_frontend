@@ -8,6 +8,7 @@ import { Subject } from 'rxjs';
 import { IUsuario, IUsuarioPage } from 'src/app/model/model.interfaces';
 import { UsuarioAjaxService } from 'src/app/service/usuario.ajax.service.service';
 import { AdminUsuarioDetailUnroutedComponent } from '../admin-usuario-detail-unrouted/admin-usuario-detail-unrouted.component';
+import { ConfirmationUnroutedComponent } from '../../shared/confirmation-unrouted/confirmation-unrouted.component';
 
 @Component({
   providers: [DialogService, ConfirmationService],
@@ -82,23 +83,56 @@ export class AdminUsuarioPlistUnroutedComponent implements OnInit {
 
       doRemove(usuario: IUsuario) {
         this.usuarioABorrar = usuario;
-        this.confirmationService.confirm({
-          accept: () => {
-            this.matSnackBar.open("Se ha eliminado el usuario", 'Aceptar', { duration: 3000 });
+        this.dialogService.open(ConfirmationUnroutedComponent, {
+          header: 'Confirmación',
+          data: {
+            message: '¿Está seguro que desea eliminar el usuario?'
+          },
+          width: '400px',
+          style: {
+            'border-radius': '8px',
+            'box-shadow': '0 4px 6px rgba(0, 0, 0, 0.1)'
+          },
+          baseZIndex: 10000
+        }).onClose.subscribe((confirmed: boolean) => {
+          if (confirmed) {
             this.usuarioAjaxService.deleteUsuario(usuario.id).subscribe({
               next: () => {
+                this.matSnackBar.open('Usuario eliminado', 'Aceptar', { duration: 3000 });
+                this.forceReload.next(true);
                 this.getPage();
               },
               error: (err: HttpErrorResponse) => {
+                this.matSnackBar.open("No se ha podido eliminar el usuario", 'Aceptar', { duration: 3000 });
                 this.status = err;
               }
             });
-          },
-          reject: (type: ConfirmEventType) => {
-            this.matSnackBar.open("No se ha podido eliminar el usuario", 'Aceptar', { duration: 3000 });
+          } else {
+            this.matSnackBar.open('Operación cancelada', 'Aceptar', { duration: 3000 });
           }
+        
         })
       }
+
+      // doRemove(usuario: IUsuario) {
+      //   this.usuarioABorrar = usuario;
+      //   this.confirmationService.confirm({
+      //     accept: () => {
+      //       this.matSnackBar.open("Se ha eliminado el usuario", 'Aceptar', { duration: 3000 });
+      //       this.usuarioAjaxService.deleteUsuario(usuario.id).subscribe({
+      //         next: () => {
+      //           this.getPage();
+      //         },
+      //         error: (err: HttpErrorResponse) => {
+      //           this.status = err;
+      //         }
+      //       });
+      //     },
+      //     reject: (type: ConfirmEventType) => {
+      //       this.matSnackBar.open("No se ha podido eliminar el usuario", 'Aceptar', { duration: 3000 });
+      //     }
+      //   })
+      // }
 
 
     }

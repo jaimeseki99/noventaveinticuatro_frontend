@@ -13,6 +13,7 @@ import { UserCamisetaValoracionFormUnroutedComponent } from '../user-camiseta-va
 import { Subject } from 'rxjs';
 import { PaginatorState } from 'primeng/paginator';
 import { ValoracionAjaxService } from 'src/app/service/valoracion.ajax.service.service';
+import { ConfirmationUnroutedComponent } from '../../shared/confirmation-unrouted/confirmation-unrouted.component';
 
 @Component({
   selector: 'app-user-camiseta-detail-unrouted',
@@ -177,9 +178,19 @@ export class UserCamisetaDetailUnroutedComponent implements OnInit {
     }
 
     borrarValoracion(id_valoracion: number) {
-      this.confirmService.confirm({
-        message: '¿Quieres borrar la valoración?',
-        accept: () => {
+      this.dialogService.open(ConfirmationUnroutedComponent, {
+        header: 'Confirmación',
+        data: {
+          message: '¿Quieres borrar la valoración?'
+        },
+        width: '400px',
+        baseZIndex: 10000,
+        style: {
+          "border-radius": "8px",
+          "box-shadow": "0 4px 6px rgba(0, 0, 0, 0.1)"
+        }
+      }).onClose.subscribe((confirmed: boolean) => {
+        if (confirmed) {
           this.valoracionAjaxService.deleteValoracion(id_valoracion).subscribe({
             next: () => {
               this.matSnackBar.open('Valoración borrada', 'Aceptar', {duration: 3000});
@@ -193,6 +204,24 @@ export class UserCamisetaDetailUnroutedComponent implements OnInit {
         }
       });
     }
+
+    // borrarValoracion(id_valoracion: number) {
+    //   this.confirmService.confirm({
+    //     message: '¿Quieres borrar la valoración?',
+    //     accept: () => {
+    //       this.valoracionAjaxService.deleteValoracion(id_valoracion).subscribe({
+    //         next: () => {
+    //           this.matSnackBar.open('Valoración borrada', 'Aceptar', {duration: 3000});
+    //           this.getValoraciones();
+    //         },
+    //         error: (err: HttpErrorResponse) => {
+    //           this.status = err;
+    //           this.matSnackBar.open('Error al borrar la valoración', 'Aceptar', {duration: 3000});
+    //         }
+    //       });
+    //     }
+    //   });
+    // }
 
   }
 

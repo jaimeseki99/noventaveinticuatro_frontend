@@ -8,6 +8,7 @@ import { Subject } from 'rxjs';
 import { IModalidad, IModalidadPage } from 'src/app/model/model.interfaces';
 import { ModalidadAjaxService } from 'src/app/service/modalidad.ajax.service.service';
 import { AdminModalidadDetailUnroutedComponent } from '../admin-modalidad-detail-unrouted/admin-modalidad-detail-unrouted.component';
+import { ConfirmationUnroutedComponent } from '../../shared/confirmation-unrouted/confirmation-unrouted.component';
 
 @Component({
   selector: 'app-admin-modalidad-plist-unrouted',
@@ -88,23 +89,53 @@ export class AdminModalidadPlistUnroutedComponent implements OnInit {
 
   doRemove(modalidad: IModalidad) {
     this.modalidadABorrar = modalidad;
-    this.confirmationService.confirm({
-      accept: () => {
-        this.matSnackBar.open("Se ha eliminado la modalidad", 'Aceptar', { duration: 3000});
+    this.dialogService.open(ConfirmationUnroutedComponent, {
+      header: 'Confirmación',
+      data: {
+        message: '¿Estás seguro de eliminar la modalidad?'
+      },
+      width: '400px',
+      style: {
+        'border-radius': '8px',
+        'box-shadow': '0 4px 6px rgba(0, 0, 0, 0.1)'
+      },
+      baseZIndex: 10000
+    }).onClose.subscribe((confirmed: boolean) => {
+      if (confirmed) {
         this.modalidadAjaxService.deleteModalidad(modalidad.id).subscribe({
           next: () => {
-            this.getPage();
+            this.matSnackBar.open('Modalidad eliminada', 'Aceptar', { duration: 3000 });
+            this.forceReload.next(true);
           },
           error: (err: HttpErrorResponse) => {
-            this.status = err;
-            this.matSnackBar.open("No se ha podido eliminar la modalidad", 'Aceptar', { duration: 3000});
+            this.matSnackBar.open(`Error al eliminar la modalidad: ${err.message}`, 'Aceptar', { duration: 3000 });
           }
         });
-      },
-      reject: (type: ConfirmEventType) => {
-        this.matSnackBar.open("Se ha anulado la eliminación de la modalidad", 'Aceptar', { duration: 3000});
+      } else {
+        this.matSnackBar.open('Operación cancelada', 'Aceptar', { duration: 3000 });
       }
-    })
+    });
   }
+
+  // doRemove(modalidad: IModalidad) {
+  //   this.modalidadABorrar = modalidad;
+  //   this.confirmationService.confirm({
+  //     accept: () => {
+  //       this.matSnackBar.open("Se ha eliminado la modalidad", 'Aceptar', { duration: 3000});
+  //       this.modalidadAjaxService.deleteModalidad(modalidad.id).subscribe({
+  //         next: () => {
+  //           this.getPage();
+  //         },
+  //         error: (err: HttpErrorResponse) => {
+  //           this.status = err;
+  //           this.matSnackBar.open("No se ha podido eliminar la modalidad", 'Aceptar', { duration: 3000});
+  //         }
+  //       });
+  //     },
+  //     reject: (type: ConfirmEventType) => {
+  //       this.matSnackBar.open("Se ha anulado la eliminación de la modalidad", 'Aceptar', { duration: 3000});
+  //     }
+  //   })
+  // }
 
 }

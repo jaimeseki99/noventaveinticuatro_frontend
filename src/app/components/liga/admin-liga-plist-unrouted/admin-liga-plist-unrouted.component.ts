@@ -8,6 +8,7 @@ import { Subject } from 'rxjs';
 import { ILiga, ILigaPage } from 'src/app/model/model.interfaces';
 import { LigaAjaxService } from 'src/app/service/liga.ajax.service.service';
 import { AdminLigaDetailUnroutedComponent } from '../admin-liga-detail-unrouted/admin-liga-detail-unrouted.component';
+import { ConfirmationUnroutedComponent } from '../../shared/confirmation-unrouted/confirmation-unrouted.component';
 
 @Component({
   selector: 'app-admin-liga-plist-unrouted',
@@ -81,23 +82,54 @@ export class AdminLigaPlistUnroutedComponent implements OnInit {
 
   doRemove(liga: ILiga) {
     this.ligaABorrar = liga;
-    this.confirmationService.confirm({
-      accept: () => {
+    this.dialogService.open(ConfirmationUnroutedComponent, {
+      header: 'Confirmación',
+      data: {
+        message: '¿Estás seguro de que quieres borrar esta liga de la base de datos?'
+      },
+      width: '400px',
+      style: {
+        'border-radius': '8px',
+        'box-shadow': '0 4px 6px rgba(0, 0, 0, 0.1)'
+      },
+      baseZIndex: 10000
+    }).onClose.subscribe((confirmed: boolean) => {
+      if (confirmed) {
         this.ligaAjaxService.deleteLiga(liga.id).subscribe({
           next: () => {
-            this.matSnackBar.open("Liga borrada correctamente", "Aceptar", { duration: 3000 });
+            this.matSnackBar.open('Liga borrada', 'Aceptar', { duration: 3000 });
             this.getPage();
           },
           error: (err: HttpErrorResponse) => {
             this.status = err;
-            this.matSnackBar.open("No se ha podido borrar la liga", "Aceptar", { duration: 3000 })
+            this.matSnackBar.open('Error al borrar la liga', 'Aceptar', { duration: 3000 });
           }
         });
-      },
-      reject: (type: ConfirmEventType) => {
-        this.matSnackBar.open("Cancelando borrado de liga...", "Aceptar", { duration: 3000 });
+      } else {
+        this.matSnackBar.open('Operación cancelada', 'Aceptar', { duration: 3000 });
       }
-    });
+    })
   }
+
+  // doRemove(liga: ILiga) {
+  //   this.ligaABorrar = liga;
+  //   this.confirmationService.confirm({
+  //     accept: () => {
+  //       this.ligaAjaxService.deleteLiga(liga.id).subscribe({
+  //         next: () => {
+  //           this.matSnackBar.open("Liga borrada correctamente", "Aceptar", { duration: 3000 });
+  //           this.getPage();
+  //         },
+  //         error: (err: HttpErrorResponse) => {
+  //           this.status = err;
+  //           this.matSnackBar.open("No se ha podido borrar la liga", "Aceptar", { duration: 3000 })
+  //         }
+  //       });
+  //     },
+  //     reject: (type: ConfirmEventType) => {
+  //       this.matSnackBar.open("Cancelando borrado de liga...", "Aceptar", { duration: 3000 });
+  //     }
+  //   });
+  // }
 
 }

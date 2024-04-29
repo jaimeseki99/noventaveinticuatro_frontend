@@ -63,11 +63,11 @@
     <!-- Camisetas -->
     <ng-container *ngIf="page?.content">
       <div class="column" *ngFor="let camiseta of page?.content">
-        <div class="card h-full">
+        <div class="card h-full flex flex-col">
           <div class="card-image">
               <img src="{{ camiseta.imagen }}" alt="Imagen de la camiseta" class="w-full h-80 object-cover">
           </div>
-          <div class="card-content">
+          <div class="card-content flex-grow">
             <p class="title text-xl cursor-pointer" (click)="doView(camiseta)"> {{camiseta.titulo}} </p>
             <p><strong>Equipo:</strong> <a [routerLink]="['/admin', 'camiseta', 'plist', 'byequipo', camiseta.equipo.id]" class="text-blue-500"> {{camiseta.equipo.nombre}}</a></p>
             <p><strong>Modalidad:</strong><a [routerLink]="['/admin', 'camiseta', 'plist', 'bymodalidad', camiseta.modalidad.id]" class="text-blue-500"> {{camiseta.modalidad.nombre}}</a></p>

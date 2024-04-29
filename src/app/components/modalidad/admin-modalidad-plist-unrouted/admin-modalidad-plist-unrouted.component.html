@@ -17,11 +17,11 @@
   <!-- Contenido de modalidades -->
   <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
       <div class="column" *ngFor="let modalidad of page?.content">
-        <div class="card">
+        <div class="card h-full flex flex-col">
           <div class="card-image">
               <img src="{{modalidad.imagen}}" alt="Imagen de la modalidad" class="w-full h-80 object-cover">
           </div>
-          <div class="card-content">
+          <div class="card-content flex-grow">
               <p class="title text-xl cursor-pointer" (click)="doView(modalidad)">{{modalidad.nombre}}</p>
               <p><strong>Número de Camisetas:</strong> <a [routerLink]="['/admin', 'camiseta', 'plist', 'bymodalidad', modalidad.id]" class="text-blue-500"> {{ modalidad.camisetas }}</a></p>
           </div>

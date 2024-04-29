@@ -1,6 +1,6 @@
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
 import { ConfirmEventType, ConfirmationService } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { PaginatorState } from 'primeng/paginator';
@@ -9,6 +9,7 @@ import { IUsuario, IUsuarioPage } from 'src/app/model/model.interfaces';
 import { UsuarioAjaxService } from 'src/app/service/usuario.ajax.service.service';
 import { AdminUsuarioDetailUnroutedComponent } from '../admin-usuario-detail-unrouted/admin-usuario-detail-unrouted.component';
 import { ConfirmationUnroutedComponent } from '../../shared/confirmation-unrouted/confirmation-unrouted.component';
+import * as Masonry from 'masonry-layout';
 
 @Component({
   providers: [DialogService, ConfirmationService],
@@ -23,7 +24,7 @@ export class AdminUsuarioPlistUnroutedComponent implements OnInit {
   page: IUsuarioPage | undefined;
   orderField: string = "id";
   orderDirection: string = "asc";
-  paginatorState: PaginatorState = { first: 0, rows: 10, page: 0, pageCount: 0};
+  paginatorState: PaginatorState = { first: 0, rows: 12, page: 0, pageCount: 0};
   status: HttpErrorResponse | null = null;
   usuarioABorrar: IUsuario | null = null;
   

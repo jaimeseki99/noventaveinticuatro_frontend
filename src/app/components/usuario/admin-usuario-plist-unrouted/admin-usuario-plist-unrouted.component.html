@@ -1,4 +1,4 @@
-<div class="container mx-auto font-sans">
+<div class="container mx-auto font-sans" id="userGrid">
   <!-- Menú desplegable para ordenar -->
   <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
   <div class="field">
@@ -23,8 +23,8 @@
   <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
     <ng-container *ngIf="page?.content">
     <div class="column" *ngFor="let usuario of page?.content">
-      <div class="card h-full">
-        <div class="card-content">
+      <div class="card h-full flex flex-col">
+        <div class="card-content flex-grow">
           <p class="title text-xl cursor-pointer" (click)="doView(usuario)"> {{ usuario.nombre }} {{ usuario.apellido }}</p>
             <p><strong>Nombre de Usuario:</strong> {{ usuario.username }}</p>
             <p><strong>Email:</strong> {{ usuario.email }}</p>

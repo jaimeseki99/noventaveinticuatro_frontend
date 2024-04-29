@@ -21,11 +21,11 @@
   <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
     <ng-container *ngIf="page?.content">
     <div class="column" *ngFor="let liga of page?.content">
-      <div class="card">
+      <div class="card h-full flex flex-col">
         <div class="card-image">
             <img src="{{liga.imagen}}" alt="Imagen de la liga" class="w-full h-80 object-cover">
         </div>
-        <div class="card-content">
+        <div class="card-content flex-grow">
             <p class="title text-xl cursor-pointer" (click)="doView(liga)">{{liga.nombre}}</p>
             <p><strong>País:</strong> {{ liga.pais }}</p>
             <p><strong>Deporte:</strong> {{ liga.deporte }}</p>

@@ -31,7 +31,7 @@ export class AdminCamisetaPlistUnroutedComponent implements OnInit {
   liga: ILiga | null = null;
   orderField: string = "id";
   orderDirection: string = "asc";
-  paginatorState: PaginatorState = { first: 0, rows: 10, page: 0, pageCount: 0};
+  paginatorState: PaginatorState = { first: 0, rows: 12, page: 0, pageCount: 0};
   status: HttpErrorResponse | null = null;
   camisetaABorrar: ICamiseta | null = null;
   searchText: any;

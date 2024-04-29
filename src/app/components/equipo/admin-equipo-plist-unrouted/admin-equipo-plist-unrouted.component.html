@@ -31,11 +31,11 @@
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
       <ng-container *ngIf="page?.content">
       <div class="column" *ngFor="let equipo of page?.content">
-        <div class="card h-full">
+        <div class="card h-full flex flex-col">
           <div class="card-image">
               <img src="{{equipo.imagen}}" alt="Imagen del equipo" class="w-full h-80 object-cover">
           </div>
-          <div class="card-content">
+          <div class="card-content flex-grow">
             <div class="content">
               <p class="title text-xl cursor-pointer" (click)="doView(equipo)"> {{equipo.nombre}} </p>
               <p>Liga: <a [routerLink]="['/admin', 'equipo', 'plist', 'byliga', equipo.liga.id]" class="text-blue-500"> {{ equipo.liga.nombre }}</a></p>

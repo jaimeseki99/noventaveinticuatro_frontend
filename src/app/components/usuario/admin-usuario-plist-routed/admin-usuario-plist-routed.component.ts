@@ -42,7 +42,7 @@ export class AdminUsuarioPlistRoutedComponent implements OnInit {
     })
   }
 
-  doEmty($event: Event) {
+  doEmpty($event: Event) {
     this.dialogService.open(ConfirmationUnroutedComponent, {
       header: 'Confirmación',
       data: {

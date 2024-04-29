@@ -44,8 +44,8 @@
   <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
   <ng-container *ngIf="page?.content">
     <div class="column" *ngFor="let valoracion of page?.content">
-      <div class="card h-full">
-        <div class="card-content">
+      <div class="card h-full flex flex-col">
+        <div class="card-content flex-grow">
             <p class="title text-xl cursor-pointer" (click)="doView(valoracion)">Valoración hecha por {{valoracion.usuario.username}}</p>
             <p><strong>Fecha:</strong> {{ valoracion.fecha | date: 'dd-MM-yyyy'}} <br>
             <strong>Usuario:</strong><a [routerLink]="['/admin', 'valoracion', 'plist', 'byusuario', valoracion.usuario.id]" class="text-blue-500"> {{ valoracion.usuario.nombre }} {{ valoracion.usuario.apellido}}</a> <br>

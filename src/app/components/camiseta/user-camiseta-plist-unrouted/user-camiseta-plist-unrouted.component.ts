@@ -228,11 +228,10 @@ export class UserCamisetaPlistUnroutedComponent implements OnInit {
       next: (usuario: IUsuario | null ) => {
         if (usuario) {
           this.dialogService.open(ConfirmationUnroutedComponent, {
-            header: 'Confirmación',
             data: {
               message: '¿Quieres comprar esta camiseta?'
             },
-            width: '400px',
+            width: '450px',
             style: {
               'border-radius': '8px',
               'box-shadow': '0 4px 6px rgba(0, 0, 0, 0.1)'

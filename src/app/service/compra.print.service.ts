@@ -138,22 +138,24 @@ export class CompraPrintService {
     private lineaFactura(doc: any, detalleCompra: IDetalleCompra, linea: number): void {
 
         doc.setFontSize(8);
-        doc.text(detalleCompra.camiseta.titulo, 15, linea);
-        // const titulo = detalleCompra.camiseta.titulo;
-        // const maxLength = 30;
-        // if (titulo.length > maxLength) {
-        //     const firstLine = titulo.substring(0, maxLength);
-        //     const secondLine = titulo.substring(maxLength);
-        //     doc.text(firstLine, 15, linea);
-        //     doc.text(secondLine, 15, linea + 5);
-        //     doc.text('', 15, linea + 20);
-        // } else {
-        //     doc.text(titulo, 15, linea);
-        // }
+        // doc.text(detalleCompra.camiseta.titulo, 15, linea);
+        const titulo = detalleCompra.camiseta.titulo;
+        const maxLength = 30;
+        if (titulo.length > maxLength) {
+            const firstLine = titulo.substring(0, maxLength);
+            const secondLine = titulo.substring(maxLength);
+            doc.text(firstLine, 15, linea);
+            doc.text(secondLine, 15, linea + 5);
+            doc.text('', 15, linea + 20);
+        } else {
+            doc.text(titulo, 15, linea);
+        }
+
+        const manga = detalleCompra.camiseta.manga === "Sin Mangas" ? "Sin" : detalleCompra.camiseta.manga;
        
         doc.setFontSize(12);
         doc.text(detalleCompra.camiseta.talla + '', 90, linea, 'right');
-        doc.text(detalleCompra.camiseta.manga + '', 110, linea, 'right');
+        doc.text(manga + '', 110, linea, 'right');
         doc.text(detalleCompra.cantidad + '', 130, linea, 'right');
         doc.text(this.sp(detalleCompra.camiseta.precio), 156, linea, 'right');
         doc.text(this.sp(detalleCompra.iva), 173, linea, 'right');

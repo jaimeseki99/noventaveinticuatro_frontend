@@ -27,6 +27,7 @@
     "bulma": "^0.9.4",
     "crypto-js": "^4.2.0",
     "flowbite": "^2.3.0",
+    "jspdf": "^2.5.1",
     "masonry-layout": "^4.2.2",
     "postcss": "^8.4.33",
     "primeicons": "^6.0.1",

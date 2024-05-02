@@ -108,6 +108,11 @@ import { UserCompraViewRoutedComponent } from './components/compra/user-compra-v
 import { UserValoracionPlistUnroutedComponent } from './components/valoracion/user-valoracion-plist-unrouted/user-valoracion-plist-unrouted.component';
 import { UserCamisetaValoracionFormUnroutedComponent } from './components/camiseta/user-camiseta-valoracion-form-unrouted/user-camiseta-valoracion-form-unrouted.component';
 import { ConfirmationUnroutedComponent } from './components/shared/confirmation-unrouted/confirmation-unrouted.component';
+import { CompraPrintService } from './service/compra.print.service';
+import { registerLocaleData } from '@angular/common';
+import localEs from '@angular/common/locales/es';
+
+registerLocaleData(localEs);
 
 
 @NgModule({
@@ -233,7 +238,8 @@ import { ConfirmationUnroutedComponent } from './components/shared/confirmation-
     CryptoService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
     DialogService,
-    ConfirmationService
+    ConfirmationService,
+    CompraPrintService
   ],
   bootstrap: [AppComponent]
 })

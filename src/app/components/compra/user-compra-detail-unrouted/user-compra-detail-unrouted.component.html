@@ -17,5 +17,6 @@
   </div>
   <div class="text-center mb-4 mt-8">
     <a class="bg-governor-bay-500 hover:bg-governor-bay-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" [routerLink]="['/usuario', 'compra', 'plist', compra.usuario.id]">Ver compras</a>
+    <button class="bg-tradewind-700 hover:bg-tradewind-900 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ml-4" (click)="generatePDF()">Generar PDF</button>
   </div>
 </div>

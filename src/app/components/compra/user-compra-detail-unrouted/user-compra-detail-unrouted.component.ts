@@ -1,3 +1,4 @@
+import { CompraPrintService } from './../../../service/compra.print.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, Optional, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -20,6 +21,7 @@ export class UserCompraDetailUnroutedComponent implements OnInit {
   constructor(
     private compraAjaxService: CompraAjaxService,
     private router: Router,
+    private compraPrintService: CompraPrintService,
     @Optional() public ref: DynamicDialogRef,
     @Optional() public config: DynamicDialogConfig
   ) { 
@@ -48,6 +50,10 @@ export class UserCompraDetailUnroutedComponent implements OnInit {
 
   getDetailsArray(): number[] {
     return Array.from({ length: this.compra.detalleCompras }, (_, index) => index);
+  }
+
+  generatePDF(): void {
+    this.compraPrintService.printFacturaCompra(this.id);
   }
 
 }

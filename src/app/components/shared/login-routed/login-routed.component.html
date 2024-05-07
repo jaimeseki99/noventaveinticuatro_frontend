@@ -1,53 +1,52 @@
 <div class="flex items-center justify-center min-h-screen bg-gray-100 font-sans">
-  <div class="relative flex flex-col m-6 space-y-8 bg-white shadow-2xl rounded-2xl md:flex-row md:space-y-0">
-    <div class="flex flex-col justify-center p-8 md:p-14">
+  <div class="relative flex flex-col m-6 space-y-8 bg-white shadow-2xl rounded-2xl md:flex-row md:space-y-0 md:space-x-8">
+    <div class="flex flex-col justify-center p-8 md:p-14 flex-1">
       <span class="mb-3 text-4xl font-bold">Login</span>
       <span class="font-light text-gray-400 mb-8">
         ¡Bienvenid@! Introduce tus datos
       </span>
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="py-4">
-      <div class="py-4">
-        <span class="mb-2 text-md">Username</span>
-        <input type="text" class="w-full p-2 border border-gray-300 rounded-md placeholder:font-light placeholder:text-gray-500 md::placeholder-opacity-0"
-        name="username" id="username" formControlName="username" placeholder="Introduce tu nombre de usuario">
-      </div>
-      <div class="py-4">
-        <span class="mb-2 text-md">Contraseña</span>
-        <input type="password" class="w-full p-2 border border-gray-300 rounded-md placeholder:font-light placeholder:text-gray-500 md::placeholder-opacity-0 "
-        name="contrasenya" id="contrasenya" formControlName="contrasenya" placeholder="Introduce tu contraseña">
-      </div>
-      <div class="py-4">
-        <span class="mb-2 text-md">Captcha</span>
-        <div class="flex items-center justify-center mb-2">
-          <img [src]="'data:image/png;base64,' + prelogin?.captchaImage" alt="captcha" class="mr-2">
-          <input type="text" id="captcha" name="captcha" formControlName="captcha" placeholder="Introduce el Captcha"
-          class="w-1/2 p-2 border border-gray-300 rounded-md">
+        <div class="py-4">
+          <span class="mb-2 text-md">Username</span>
+          <input type="text" class="w-full p-2 border border-gray-300 rounded-md placeholder:font-light placeholder:text-gray-500 md::placeholder-opacity-0"
+          name="username" id="username" formControlName="username" placeholder="Introduce tu nombre de usuario">
         </div>
-      </div>
-      <div class="flex justify-between w-full py-4">
-        <div class="mr-24">
-          <input type="checkbox" name="checkbox" id="checkbox" class="mr-2">
-          <span class="text-md">Recuérdame</span>
+        <div class="py-4">
+          <span class="mb-2 text-md">Contraseña</span>
+          <input type="password" class="w-full p-2 border border-gray-300 rounded-md placeholder:font-light placeholder:text-gray-500 md::placeholder-opacity-0 "
+          name="contrasenya" id="contrasenya" formControlName="contrasenya" placeholder="Introduce tu contraseña">
         </div>
-        <span class="font-bold text-md">¿Te has olvidado de la contraseña</span>
-      </div>
-      <button class="w-full bg-black text-white p-2 rounded-lg mb-6 hover:bg-white hover:text-black hover:border hover:border-gray-300">Login</button>
-      <button type="button" class="w-full bg-black text-white p-2 rounded-lg mb-6 hover:bg-white hover:text-black hover:border hover:border-gray-300" (click)="loginAdmin()">Soy Admin</button>
-      <button type="button" class="w-full bg-black text-white p-2 rounded-lg mb-6 hover:bg-white hover:text-black hover:border hover:border-gray-300" (click)="loginUser()">Soy Usuario</button>
+        <div class="py-4">
+          <span class="mb-2 text-md">Captcha</span>
+          <div class="flex flex-col items-center">
+            <img [src]="'data:image/png;base64,' + prelogin?.captchaImage" alt="captcha" class="w-[350px] h-auto mb-2">
+            <input type="text" id="captcha" name="captcha" formControlName="captcha" placeholder="Introduce el Captcha"
+            class="w-full p-2 border border-gray-300 rounded-md">
+          </div>
+        </div>
+        <div class="flex justify-between w-full py-4">
+          <div class="mr-24">
+            <input type="checkbox" name="checkbox" id="checkbox" class="mr-2">
+            <span class="text-md">Recuérdame</span>
+          </div>
+          <span class="font-bold text-md">¿Te has olvidado de la contraseña</span>
+        </div>
+        <button class="w-full bg-black text-white p-2 rounded-lg mb-6 hover:bg-white hover:text-black hover:border hover:border-gray-300">Login</button>
+        <button type="button" class="w-full bg-black text-white p-2 rounded-lg mb-6 hover:bg-white hover:text-black hover:border hover:border-gray-300" (click)="loginAdmin()">Soy Admin</button>
+        <button type="button" class="w-full bg-black text-white p-2 rounded-lg mb-6 hover:bg-white hover:text-black hover:border hover:border-gray-300" (click)="loginUser()">Soy Usuario</button>
       </form>
       <div class="text-center text-gray-400">
         ¿No tienes cuenta?
         <span class="font-bold text-black">Regístrate</span>
       </div>
     </div>
-    <div class="relative">
-      <img src="http://localhost:8085/media/neymar-236616.jpeg" alt="imagen de login" class="w-[400px] h-full hidden rounded-r-2xl md:block object-cover">
-      <div class="absolute hidden bottom-10 right-6 p-6 bg-white bg-opacity-30 backdrop-blur-sm rounded drop-shadow-lg md:block">
+    <div class="relative hidden md:block w-[400px]">
+      <img src="http://localhost:8085/media/neymar-236616.jpeg" alt="imagen de login" class="w-full h-full rounded-r-2xl object-cover">
+      <div class="absolute bottom-10 right-6 p-6 bg-white bg-opacity-30 backdrop-blur-sm rounded drop-shadow-lg">
         <span class="text-white text-xl">
           Únete a la tienda de camisetas de fútbol y baloncesto del momento y disfruta de las mejores ofertas
         </span>
       </div>
     </div>
   </div>
-
 </div>

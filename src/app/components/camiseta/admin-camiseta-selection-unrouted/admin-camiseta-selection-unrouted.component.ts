@@ -20,6 +20,7 @@ export class AdminCamisetaSelectionUnroutedComponent implements OnInit {
   id_equipo: number = 0;
   id_modalidad: number = 0;
   id_liga: number = 0;
+  filtro: string = '';
   
   constructor(
     private camisetaAjaxService: CamisetaAjaxService,
@@ -34,7 +35,7 @@ export class AdminCamisetaSelectionUnroutedComponent implements OnInit {
   getPage(): void {
     const page = this.paginatorState.page || 0;
     const rows = this.paginatorState.rows || 0;
-    this.camisetaAjaxService.getPageCamisetas(rows, page, this.orderField, this.orderDirection, this.id_equipo, this.id_modalidad, this.id_liga).subscribe({
+    this.camisetaAjaxService.getPageCamisetas(rows, page, this.orderField, this.orderDirection, this.id_equipo, this.id_modalidad, this.id_liga, this.filtro).subscribe({
       next: (data: ICamisetaPage) => {
         this.page = data;
         this.paginatorState.pageCount = data.totalPages;

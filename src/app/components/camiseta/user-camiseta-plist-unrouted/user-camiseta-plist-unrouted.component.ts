@@ -15,6 +15,7 @@ import { LigaAjaxService } from 'src/app/service/liga.ajax.service.service';
 import { ModalidadAjaxService } from 'src/app/service/modalidad.ajax.service.service';
 import { SesionAjaxService } from 'src/app/service/sesion.ajax.service.service';
 import { ConfirmationUnroutedComponent } from '../../shared/confirmation-unrouted/confirmation-unrouted.component';
+import { data } from 'autoprefixer';
 
 @Component({
   selector: 'app-user-camiseta-plist-unrouted',
@@ -27,6 +28,7 @@ export class UserCamisetaPlistUnroutedComponent implements OnInit {
   @Input() id_equipo: number = 0;
   @Input() id_modalidad: number = 0;
   @Input() id_liga: number = 0;
+  filtro: string = '';
 
   page: ICamisetaPage | undefined;
   equipo: IEquipo | null = null;
@@ -34,6 +36,7 @@ export class UserCamisetaPlistUnroutedComponent implements OnInit {
   liga: ILiga | null = null;
   usuario: IUsuario | null = null;
   carrito: ICarrito = { usuario: {}, camiseta: {}, cantidad: 0 } as ICarrito;
+  camisetas: ICamiseta[] = [];
   orderField: string = "id";
   orderDirection: string = "asc";
   paginatorState: PaginatorState = { first: 0, rows: 15, page: 0, pageCount: 0 };
@@ -77,7 +80,7 @@ export class UserCamisetaPlistUnroutedComponent implements OnInit {
   getCamisetas(): void {
     const rows = this.paginatorState.rows || 0;
     const page = this.paginatorState.page || 0;
-    this.camisetaAjaxService.getPageCamisetas(rows, page, this.orderField, this.orderDirection, this.id_equipo, this.id_modalidad, this.id_liga).subscribe({
+    this.camisetaAjaxService.getPageCamisetas(rows, page, this.orderField, this.orderDirection, this.id_equipo, this.id_modalidad, this.id_liga, this.filtro).subscribe({
       next: (data: ICamisetaPage) => {
         this.page = data;
         this.paginatorState.pageCount = data.totalPages;
@@ -150,6 +153,25 @@ export class UserCamisetaPlistUnroutedComponent implements OnInit {
         this.status = err;
       }
     });
+  }
+
+  onInputChange(query: string): void {
+    const rows = this.paginatorState.rows || 0;
+    const page = this.paginatorState.page || 0;
+    if (query.length > 2) {
+      this.camisetaAjaxService.getPageCamisetas(rows, page, this.orderField, this.orderDirection, this.id_equipo, this.id_modalidad, this.id_liga, query).subscribe({
+        next: (data: ICamisetaPage) => {
+          this.page = data;
+          this.camisetas = data.content;
+          this.paginatorState.pageCount = data.totalPages;
+        },
+        error: (err: HttpErrorResponse) => {
+          this.status = err;
+        }
+      })
+    } else {
+      this.getCamisetas();
+    }
   }
 
       

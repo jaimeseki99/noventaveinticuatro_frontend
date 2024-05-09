@@ -4,7 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
 import { DialogService, DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { ICamiseta, ICarrito, IUsuario, IValoracion, IValoracionPage } from 'src/app/model/model.interfaces';
+import { ICamiseta, ICamisetaPage, ICarrito, IUsuario, IValoracion, IValoracionPage } from 'src/app/model/model.interfaces';
 import { CamisetaAjaxService } from 'src/app/service/camiseta.ajax.service.service';
 import { CarritoAjaxService } from 'src/app/service/carrito.ajax.service.service';
 import { CompraAjaxService } from 'src/app/service/compra.ajax.service.service';
@@ -33,6 +33,9 @@ export class UserCamisetaDetailUnroutedComponent implements OnInit {
   orderDirection: string = 'asc';
   paginatorState: PaginatorState = { first: 0, rows: 30, page: 0, pageCount: 0 };
   status: HttpErrorResponse | null = null;
+  usuarioHaComprado: boolean = false;
+  usuarioHaValorado: boolean = false;
+  mostrarBotonValoracion: boolean = false;
   
   constructor(
     private camisetaAjaxService: CamisetaAjaxService,
@@ -102,6 +105,10 @@ export class UserCamisetaDetailUnroutedComponent implements OnInit {
       }
     })
   }
+
+  
+
+
 
   handleKeyDown(event: KeyboardEvent): void {
     if (event.key !== 'ArrowUp' && event.key !== 'ArrowDown') {
@@ -204,6 +211,9 @@ export class UserCamisetaDetailUnroutedComponent implements OnInit {
         }
       });
     }
+
+     
+
 
     // borrarValoracion(id_valoracion: number) {
     //   this.confirmService.confirm({

@@ -138,24 +138,33 @@ export class UserCamisetaDetailUnroutedComponent implements OnInit {
   comprarDirectamente(): void {
     if (this.usuario) {
       const usuarioid = this.usuario.id;
-      this.confirmService.confirm({
-        message: `¿Quieres comprar ${this.cantidadSeleccionada} camiseta(s)?`,
-        accept: () => {
+      this.dialogService.open(ConfirmationUnroutedComponent, {
+        header: 'Confirmación de compra',
+        data: {
+          message: `¿Quieres comprar ${this.cantidadSeleccionada} camiseta(s)?`
+        },
+        width: '400px',
+        style: {
+          'border-radius': '8px',
+          'box-shadow': '0 4px 6px rgba(0, 0, 0, 0.1)'
+        },
+        baseZIndex: 10000
+      }).onClose.subscribe((confirmed: boolean) => {
+        if (confirmed) {
           this.compraAjaxService.createCompraCamiseta(this.camiseta.id, usuarioid, this.cantidadSeleccionada).subscribe({
             next: () => {
-              this.matSnackBar.open(`Has comprado ${this.cantidadSeleccionada} camisetas(s)`, 'Aceptar', {duration: 3000});
+              this.matSnackBar.open(`Has comprado ${this.cantidadSeleccionada} camiseta(s)`, 'Aceptar', { duration: 3000 });
               this.router.navigate(['/usuario', 'compra', 'plist', usuarioid]);
             }
           });
-        },
-        reject: () => {
-          this.matSnackBar.open('Compra cancelada', 'Aceptar', {duration: 3000});
+        } else {
+          this.matSnackBar.open('Compra cancelada', 'Aceptar', { duration: 3000 });
         }
       });
     } else {
-      this.matSnackBar.open('Debes estar logueado para comprar camisetas', 'Aceptar', {duration: 3000});
+      this.matSnackBar.open('Debes estar logueado para comprar camisetas', 'Aceptar', { duration: 3000});
     }
-  }
+}
 
   realizarValoracion(camiseta: ICamiseta): void {
     const id_camiseta = camiseta.id;

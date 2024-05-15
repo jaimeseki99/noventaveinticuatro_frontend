@@ -28,7 +28,7 @@
       <div class="mt-6 space-y-4">
         <button class="w-full px-4 py-2 bg-tradewind-500 hover:bg-tradewind-600 text-white rounded-md" (click)="agregarAlCarrito()" [disabled]="camiseta.stock == 0">Agregar al carrito</button>
         <button class="w-full px-4 py-2 bg-tradewind-700 hover:bg-tradewind-800 text-white rounded-md" (click)="comprarDirectamente()" [disabled]="camiseta.stock == 0">Comprar directamente</button>
-        <button class="w-full px-4 py-2 bg-governor-bay-600 hover:bg-governor-bay-700 text-white rounded-md" (click)="realizarValoracion(camiseta)">Escribir valoración</button>
+        <button *ngIf="usuarioHaComprado && !usuarioHaValorado" class="w-full px-4 py-2 bg-governor-bay-600 hover:bg-governor-bay-700 text-white rounded-md" (click)="realizarValoracion(camiseta)">Escribir valoración</button>
       </div>
     </div>
   </div>

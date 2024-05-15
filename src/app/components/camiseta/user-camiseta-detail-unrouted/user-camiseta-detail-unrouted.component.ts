@@ -10,10 +10,11 @@ import { CarritoAjaxService } from 'src/app/service/carrito.ajax.service.service
 import { CompraAjaxService } from 'src/app/service/compra.ajax.service.service';
 import { SesionAjaxService } from 'src/app/service/sesion.ajax.service.service';
 import { UserCamisetaValoracionFormUnroutedComponent } from '../user-camiseta-valoracion-form-unrouted/user-camiseta-valoracion-form-unrouted.component';
-import { Subject } from 'rxjs';
+import { Subject, switchMap } from 'rxjs';
 import { PaginatorState } from 'primeng/paginator';
 import { ValoracionAjaxService } from 'src/app/service/valoracion.ajax.service.service';
 import { ConfirmationUnroutedComponent } from '../../shared/confirmation-unrouted/confirmation-unrouted.component';
+import { data } from 'autoprefixer';
 
 @Component({
   selector: 'app-user-camiseta-detail-unrouted',
@@ -35,7 +36,7 @@ export class UserCamisetaDetailUnroutedComponent implements OnInit {
   status: HttpErrorResponse | null = null;
   usuarioHaComprado: boolean = false;
   usuarioHaValorado: boolean = false;
-  mostrarBotonValoracion: boolean = false;
+
   
   constructor(
     private camisetaAjaxService: CamisetaAjaxService,
@@ -61,10 +62,12 @@ export class UserCamisetaDetailUnroutedComponent implements OnInit {
     this.getCamiseta();
     this.getUsuario();
     this.getValoraciones();
+    this.verificarCompraYValoracion()
     this.forceReload.subscribe({
       next: (v) => {
         if (v) {
           this.getValoraciones();
+          this.verificarCompraYValoracion();
         }
       }
     });
@@ -89,7 +92,7 @@ export class UserCamisetaDetailUnroutedComponent implements OnInit {
       error: (err: HttpErrorResponse) => {
         this.status = err;
       }
-    })
+      })
   }
 
   getValoraciones() {
@@ -106,9 +109,40 @@ export class UserCamisetaDetailUnroutedComponent implements OnInit {
     })
   }
 
+ 
+  verificarCompraYValoracion() {
+    this.sesionAjaxService.getSessionUser()?.subscribe({
+      next: (data: IUsuario) => {
+        this.usuario = data;
   
-
-
+        if (this.usuario) {
+          this.camisetaAjaxService.getCamisetasCompradas(this.usuario.id, 100, 0, 'id', 'asc').subscribe({
+            next: (page: ICamisetaPage) => {
+              const camisetas = page.content;
+              this.usuarioHaComprado = camisetas.some(camiseta => camiseta.id === this.camiseta.id);
+            },
+            error: (err: HttpErrorResponse) => {
+              this.status = err;
+            }
+          });
+  
+          this.valoracionAjaxService.getValoracionByUsuarioAndCamiseta(this.usuario.id, this.camiseta.id).subscribe({
+            next: (valoracion: IValoracion) => {
+              this.usuarioHaValorado = !!valoracion;
+            },
+            error: (err: HttpErrorResponse) => {
+              this.status = err;
+            }
+          });
+        }
+      },
+      error: (err: HttpErrorResponse) => {
+        this.status = err;
+      }
+    });
+  }
+  
+  
 
   handleKeyDown(event: KeyboardEvent): void {
     if (event.key !== 'ArrowUp' && event.key !== 'ArrowDown') {

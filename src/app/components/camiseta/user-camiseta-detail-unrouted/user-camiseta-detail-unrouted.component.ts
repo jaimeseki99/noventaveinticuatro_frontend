@@ -217,6 +217,7 @@ export class UserCamisetaDetailUnroutedComponent implements OnInit {
           next: (v) => {
             if (v) {
               this.getValoraciones();
+              this.verificarCompraYValoracion();
             }
           }
         })
@@ -245,6 +246,7 @@ export class UserCamisetaDetailUnroutedComponent implements OnInit {
             next: () => {
               this.matSnackBar.open('Valoración borrada', 'Aceptar', {duration: 3000});
               this.getValoraciones();
+              this.verificarCompraYValoracion();
             },
             error: (err: HttpErrorResponse) => {
               this.status = err;

@@ -29,8 +29,10 @@
           </td>
           <td class="border px-4 py-2">{{ precioIndividualMap.get(carrito.id)?.toFixed(2) }}€ </td>
           <td class="border px-4 py-2">
-            <button class="bg-stiletto-500 hover:bg-stiletto-700 text-white font-bold py-1 px-2 rounded focus:outline-none focus:shadow-outline mr-4" (click)="eliminarDelCarrito(carrito.id)">Eliminar</button>
-            <button class="bg-tradewind-600 hover:bg-tradewind-800 text-white font-bold py-1 px-2 rounded focus:outline-none focus:shadow-outline" (click)="comprarUnicoCarrito(carrito.id)">Comprar</button>
+            <div class="flex flex-col gap-3 sm:flex-row sm:space-x-4">
+              <button class="bg-stiletto-500 hover:bg-stiletto-700 text-white font-bold py-1 px-2 rounded focus:outline-none focus:shadow-outline" (click)="eliminarDelCarrito(carrito.id)">Eliminar</button>
+              <button class="bg-tradewind-600 hover:bg-tradewind-800 text-white font-bold py-1 px-2 rounded focus:outline-none focus:shadow-outline" (click)="comprarUnicoCarrito(carrito.id)">Comprar</button>
+            </div>
           </td>
         </tr>
       </tbody>

@@ -39,7 +39,7 @@ export class UserCamisetaPlistUnroutedComponent implements OnInit {
   camisetas: ICamiseta[] = [];
   orderField: string = "id";
   orderDirection: string = "asc";
-  paginatorState: PaginatorState = { first: 0, rows: 15, page: 0, pageCount: 0 };
+  paginatorState: PaginatorState = { first: 0, rows: 12, page: 0, pageCount: 0 };
   status: HttpErrorResponse | null = null;
   
   constructor(

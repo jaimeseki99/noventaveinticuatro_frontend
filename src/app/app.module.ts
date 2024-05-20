@@ -111,6 +111,8 @@ import { ConfirmationUnroutedComponent } from './components/shared/confirmation-
 import { CompraPrintService } from './service/compra.print.service';
 import { registerLocaleData } from '@angular/common';
 import localEs from '@angular/common/locales/es';
+import { AdminCompraPlistRoutedComponent } from './components/compra/admin-compra-plist-routed/admin-compra-plist-routed.component';
+import { AdminCompraViewRoutedComponent } from './components/compra/admin-compra-view-routed/admin-compra-view-routed.component';
 
 registerLocaleData(localEs);
 
@@ -146,6 +148,8 @@ registerLocaleData(localEs);
 
     AdminCompraDetailUnroutedComponent,
     AdminCompraPlistUnroutedComponent,
+    AdminCompraPlistRoutedComponent,
+    AdminCompraViewRoutedComponent,
     UserCompraPlistUnroutedComponent,
     UserCompraPlistRoutedComponent,
     UserCompraDetailUnroutedComponent,

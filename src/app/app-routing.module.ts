@@ -36,6 +36,8 @@ import { UserCompraPlistRoutedComponent } from './components/compra/user-compra-
 import { UserCompraViewRoutedComponent } from './components/compra/user-compra-view-routed/user-compra-view-routed.component';
 import { UserUsuarioViewRoutedComponent } from './components/usuario/user-usuario-view-routed/user-usuario-view-routed.component';
 import { UserCarritoPlistRoutedComponent } from './components/carrito/user-carrito-plist-routed/user-carrito-plist-routed.component';
+import { AdminCompraPlistRoutedComponent } from './components/compra/admin-compra-plist-routed/admin-compra-plist-routed.component';
+import { AdminCompraViewRoutedComponent } from './components/compra/admin-compra-view-routed/admin-compra-view-routed.component';
 
 const routes: Routes = [
   { path: '', component: HomeRoutedComponent},
@@ -68,6 +70,8 @@ const routes: Routes = [
   { path: 'admin/valoracion/new', component: AdminValoracionNewRoutedComponent},
   { path: 'admin/valoracion/view/:id', component: AdminValoracionViewRoutedComponent},
 
+  { path: 'admin/compra/plist/byusuario/:idusuario', component: AdminCompraPlistRoutedComponent},
+  { path: 'admin/compra/view/:id', component: AdminCompraViewRoutedComponent},
   { path: 'usuario/compra/plist/:idusuario', component: UserCompraPlistRoutedComponent},
   { path: 'usuario/compra/view/:id', component: UserCompraViewRoutedComponent},
   

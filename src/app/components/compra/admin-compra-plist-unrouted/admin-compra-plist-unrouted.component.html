@@ -1,10 +1,11 @@
-<div class="font-sans container mx-auto">
+<div class="container mx-auto font-sans">
 
+  <!-- Filtrado por usuario -->
   <div class="mt-4" *ngIf="usuario">
-    <div class="bg-blue-100 border border-blue-400 text-blue-700 px-4 py-3 rounded relative" role="alert">
+    <div class="bg-governor-bay-50 border border-governor-bay-400 text-governor-bay-700 px-4 py-3 rounded relative" role="alert">
       Filtrado por usuario: {{usuario.nombre}} {{usuario.apellido}}
       <button class="absolute top-0 bottom-0 right-0 px-4 py-3" *ngIf="id_usuario > 0" [routerLink]="['/admin', 'compra', 'plist']">
-        <svg class="fill-current h-6 w-6 text-blue-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+        <svg class="fill-current h-6 w-6 text-governor-bay-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
           <title>Close</title>
           <path fill-rule="evenodd" d="M3.293 4.293a1 1 0 011.414 0L10 8.586l5.293-5.293a1 1 0 111.414 1.414L11.414 10l5.293 5.293a1 1 0 01-1.414 1.414L10 11.414l-5.293 5.293a1 1 0 01-1.414-1.414L8.586 10 3.293 4.707a1 1 0 010-1.414z" clip-rule="evenodd"/>
         </svg>
@@ -12,6 +13,7 @@
     </div>
   </div>
 
+  <!-- Menú desplegable para ordenar -->
   <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
     <div class="field">
       <label class="label">Ordenar por:</label>
@@ -27,33 +29,36 @@
     </div>
   </div>
 
+  <!-- Contenido de compras -->
   <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
     <ng-container *ngIf="page?.content">
       <div class="column" *ngFor="let compra of page?.content">
-        <div class="bg-white shadow-md rounded-md p-4">
-          <p class="text-xl cursor-pointer" (click)="doView(compra)">Compra #{{ compra.id }}</p>
-          <div class="mt-2">
-            <p>Fecha: {{ compra.fecha }}</p>
+        <div class="card h-full flex flex-col">
+          <div class="card-content flex-grow bg-white shadow-md rounded-md p-4">
+            <p class="title text-xl cursor-pointer" (click)="doView(compra)">Compra #{{ compra.id }}</p>
+            <p>Fecha: {{ compra.fecha | date: 'dd/MM/yyyy'}}</p>
             <p>Código pedido: {{ compra.codigoPedido }}</p>
             <p *ngIf="compra.factura_id">Factura: {{ compra.factura_id }}</p>
             <p *ngIf="compra.factura_id">Fecha de factura: {{ compra.fecha_factura }}</p>
           </div>
-          <div class="mt-4">
-            <a href="#" class="text-blue-500 mr-2" [routerLink]="['/admin', 'compra', 'edit', compra.id]">Actualizar</a>
-            <a href="#" class="text-blue-500" (click)="doRemove(compra)">Eliminar</a>
-          </div>
+          <footer class="card-footer">
+            <a class="card-footer-item text-white bg-stiletto-500 hover:bg-stiletto-700" (click)="doRemove(compra)">Cancelar compra</a>
+          </footer>
         </div>
       </div>
     </ng-container>
     <div class="column" *ngIf="!page?.content || page?.content?.length === 0">
-      <div class="bg-blue-200 p-4 rounded-md">
+      <div class="bg-governor-bay-200 p-4 rounded-md text-governor-bay-800">
         No hay compras para mostrar.
       </div>
     </div>
   </div>
 
-  <div class="level justify-center mt-4">
-    <p-paginator (onPageChange)="onPageChange($event)" [rows]="paginatorState.rows!" [totalRecords]="page?.totalElements || 0" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
+  <!-- Paginación -->
+  <div class="flex justify-center mb-3 mt-4">
+    <p-paginator (onPageChange)="onPageChange($event)" [rows]="paginatorState.rows!" [totalRecords]="page?.totalElements || 0" [rowsPerPageOptions]="[12, 24, 36]"></p-paginator>
   </div>
 
 </div>
+
+<p-confirmPopup></p-confirmPopup>

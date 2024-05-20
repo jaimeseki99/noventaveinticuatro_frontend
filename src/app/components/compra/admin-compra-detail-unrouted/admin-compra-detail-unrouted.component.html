@@ -7,7 +7,7 @@
             <h5 class="title is-5">Detalle de la compra</h5>
             <p>ID: {{compra.id}}</p>
             <p>Usuario: {{compra.usuario.nombre}} {{compra.usuario.apellido}}</p>
-            <p>Fecha: {{compra.fecha}}</p>
+            <p>Fecha: {{compra.fecha | date: 'dd/MM/yyyy'}}</p>
             <p>Código pedido: {{compra.codigoPedido}}</p>
             <p *ngIf="compra.factura_id"> Factura: {{compra.factura_id}}</p>
             <p *ngIf="compra.factura_id"> Fecha de factura: {{compra.fecha_factura}}</p>

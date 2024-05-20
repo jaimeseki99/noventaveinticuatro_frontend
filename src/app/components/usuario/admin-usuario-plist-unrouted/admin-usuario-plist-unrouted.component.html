@@ -33,7 +33,7 @@
             <p><strong>Tipo de Usuario:</strong> {{ usuario.tipo ? 'Administrador' : 'Usuario' }}</p>
             <p><strong>Número de Carritos:</strong> {{ usuario.carritos }}</p>
             <p><strong>Número de Valoraciones:</strong> <a [routerLink]="['/admin', 'valoracion', 'plist', 'byusuario', usuario.id]" class="text-blue-500">{{ usuario.valoraciones }}</a></p>
-            <p><strong>Número de Compras:</strong> {{ usuario.compras }}</p>
+            <p><strong>Número de Compras:</strong><a [routerLink]="['/admin', 'compra', 'plist', 'byusuario', usuario.id]" class="text-blue-500"> {{ usuario.compras }}</a></p>
         </div>
         <footer class="card-footer">
           <button class="card-footer-item text-white bg-tradewind-500 hover:bg-tradewind-700" [routerLink]="['/admin', 'usuario', 'edit', usuario.id]">Actualizar</button>
@@ -51,7 +51,7 @@
 
   <!-- Paginación -->
   <div class="flex justify-center mb-3">
-    <p-paginator (onPageChange)="onPageChange($event)" [rows]="paginatorState.rows!" [totalRecords]="page?.totalElements || 0" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
+    <p-paginator (onPageChange)="onPageChange($event)" [rows]="paginatorState.rows!" [totalRecords]="page?.totalElements || 0" [rowsPerPageOptions]="[12, 24, 36]"></p-paginator>
   </div>
 </div>
 

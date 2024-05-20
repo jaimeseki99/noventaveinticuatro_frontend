@@ -1,3 +1,4 @@
+import { ConfirmationUnroutedComponent } from './../../shared/confirmation-unrouted/confirmation-unrouted.component';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -24,7 +25,7 @@ export class AdminCompraPlistUnroutedComponent implements OnInit {
   usuario: IUsuario | null = null;
   orderField: string = "id";
   orderDirection: string = "asc";
-  paginatorState: PaginatorState = { first: 0, rows: 10, page: 0, pageCount: 0};
+  paginatorState: PaginatorState = { first: 0, rows: 12, page: 0, pageCount: 0};
   status: HttpErrorResponse | null = null;
   compraABorrar: ICompra | null = null;
   
@@ -94,24 +95,34 @@ export class AdminCompraPlistUnroutedComponent implements OnInit {
 
   doRemove(compra: ICompra) {
     this.compraABorrar = compra;
-    this.confirmationService.confirm({
-      accept: () => {
-        this.matSnackBar.open(`Cancelando la compra ${compra.id}`, "Borrando", {duration: 3000});
+    this.dialogService.open(ConfirmationUnroutedComponent, {
+      header: 'Confirmación de cancelación',
+      data: {
+        message: `¿Estás seguro de cancelar la compra ${compra.codigoPedido}?`
+      },
+      width: '400px',
+      style: {
+        'border-radius': '8px',
+        'box-shadow': '0 4px 5px rgba(0, 0, 0, 0.1)'
+      },
+      baseZIndex: 10000
+    }).onClose.subscribe((confirmed: boolean) => {
+      if (confirmed) {
+        this.matSnackBar.open('Cancelando la compra', 'Cancelando', { duration: 3000 });
         this.compraAjaxService.deleteCompra(compra.id).subscribe({
           next: () => {
-            this.matSnackBar.open(`Compra ${compra.id} cancelada correctamente`, "Aceptar", {duration: 3000});
+            this.matSnackBar.open(`La compra ${compra.codigoPedido} ha sido cancelada con éxito`, 'Aceptar', { duration: 3000 });
             this.getPage();
           },
           error: (err: HttpErrorResponse) => {
-            this.matSnackBar.open(`Error al cancelar la compra ${compra.id}`, "Aceptar", {duration: 3000});
+            this.matSnackBar.open('Ha habido un error al cancelar la compra', 'Aceptar', { duration: 3000 });
             this.status = err;
           }
         });
-      },
-      reject: (type: ConfirmEventType) => {
-        this.matSnackBar.open("Se ha anulado la cancelación de la compra")
+      } else {
+        this.matSnackBar.open('Se ha anulado la cancelación de la compra', 'Aceptar', { duration: 3000 });
       }
-    });
+    })
   }
 
   getUsuario(): void {

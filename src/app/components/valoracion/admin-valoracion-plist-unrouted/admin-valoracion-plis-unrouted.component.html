@@ -52,8 +52,14 @@
             <strong>Camiseta:</strong><a [routerLink]="['/admin', 'valoracion', 'plist', 'bycamiseta', valoracion.camiseta.id]"  class="text-blue-500"> {{ valoracion.camiseta.titulo }}</a></p>
         </div>
         <footer class="card-footer">
-          <button class="card-footer-item text-white bg-tradewind-500 hover:bg-tradewind-700" [routerLink]="['/admin', 'valoracion', 'edit', valoracion.id]">Editar</button>
-          <button class="card-footer-item text-white bg-stiletto-500 hover:bg-stiletto-700" (click)="doRemove(valoracion)">Eliminar</button>
+          <button class="card-footer-item text-white bg-tradewind-500 hover:bg-tradewind-700" [routerLink]="['/admin', 'valoracion', 'edit', valoracion.id]">
+            <i class="pi pi-pencil mr-2"></i>
+            Editar
+          </button>
+          <button class="card-footer-item text-white bg-stiletto-500 hover:bg-stiletto-700" (click)="doRemove(valoracion)">
+            <i class="pi pi-trash mr-2"></i>
+            Eliminar
+          </button>
         </footer>
       </div>
     </div>

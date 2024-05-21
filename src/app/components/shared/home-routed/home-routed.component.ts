@@ -20,7 +20,9 @@ export class HomeRoutedComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.isLogged();
+    if (this.isLogged()) {
+      this.fetchUserDetails();
+    }
     this.sesionAjaxService.on().subscribe({
       next: (data: SessionEvent) => {
         if (data.type === 'login') {
@@ -35,6 +37,7 @@ export class HomeRoutedComponent implements OnInit {
           });
         } else if (data.type === 'logout') {
           this.username = '';
+          this.userSesion = null;
         }
       }
     });
@@ -44,6 +47,21 @@ export class HomeRoutedComponent implements OnInit {
     return this.sesionAjaxService.isSessionActive();
   }
 
+  fetchUserDetails(): void {
+    this.usuarioAjaxService.getUsuarioByUsername(this.sesionAjaxService.getUsername()).subscribe({
+      next: (usuario: IUsuario) => {
+        this.userSesion = usuario;
+      },
+      error: (err: HttpErrorResponse) => {
+        console.log(err);
+      }
+    });
+  }
+
+  isUserNormal(): boolean {
+    return this.userSesion != null && this.userSesion.tipo === false;
+  }
+  
   
 
 }

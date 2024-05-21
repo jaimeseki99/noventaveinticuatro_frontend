@@ -35,19 +35,19 @@
         <ng-container *ngIf="username && userSesion?.tipo==false">
           <!-- Menú para usuario regular -->
           <li>
-            <a href="#" class="block py-2 px-3 text-white hover:bg-tradewind-600 md:hover:bg-tradewind-600 md:border-0 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent {{ url.startsWith('/usuario/camiseta') ? 'bg-tradewind-700' : '' }}" [routerLink]="['/usuario', 'camiseta', 'plist']">Camisetas</a>
+            <a class="block py-2 px-3 text-white hover:bg-tradewind-600 md:hover:bg-tradewind-600 md:border-0 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent {{ url.startsWith('/usuario/camiseta') ? 'bg-tradewind-700' : '' }}" [routerLink]="['/usuario', 'camiseta', 'plist']">Camisetas</a>
           </li>
           <li>
-            <a href="#" class="block py-2 px-3 text-white hover:bg-tradewind-600 md:hover:bg-tradewind-600 md:border-0 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent {{ url.startsWith('/usuario/equipo') ? 'bg-tradewind-700' : '' }}" [routerLink]="['/usuario', 'equipo', 'plist']">Equipos</a>
+            <a class="block py-2 px-3 text-white hover:bg-tradewind-600 md:hover:bg-tradewind-600 md:border-0 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent {{ url.startsWith('/usuario/equipo') ? 'bg-tradewind-700' : '' }}" [routerLink]="['/usuario', 'equipo', 'plist']">Equipos</a>
           </li>
           <li>
-            <a href="#" class="block py-2 px-3 text-white hover:bg-tradewind-600 md:hover:bg-tradewind-600 md:border-0 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent {{ url.startsWith('/usuario/modalidad') ? 'bg-tradewind-700' : '' }}" [routerLink]="['/usuario', 'modalidad', 'plist']">Modalidades</a>
+            <a class="block py-2 px-3 text-white hover:bg-tradewind-600 md:hover:bg-tradewind-600 md:border-0 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent {{ url.startsWith('/usuario/modalidad') ? 'bg-tradewind-700' : '' }}" [routerLink]="['/usuario', 'modalidad', 'plist']">Modalidades</a>
           </li>
           <li>
-            <a href="#" class="block py-2 px-3 text-white hover:bg-tradewind-600 md:hover:bg-tradewind-600 md:border-0 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent {{ url.startsWith('/usuario/liga') ? 'bg-tradewind-700' : '' }}" [routerLink]="['/usuario', 'liga', 'plist']">Ligas</a>
+            <a class="block py-2 px-3 text-white hover:bg-tradewind-600 md:hover:bg-tradewind-600 md:border-0 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent {{ url.startsWith('/usuario/liga') ? 'bg-tradewind-700' : '' }}" [routerLink]="['/usuario', 'liga', 'plist']">Ligas</a>
           </li>
           <li>
-            <a href="#" class="block py-2 px-3 text-white hover:bg-tradewind-600 md:hover:bg-tradewind-600 md:border-0 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent {{ url.startsWith('/usuario/compra') ? 'bg-tradewind-700' : '' }}" [routerLink]="['/usuario', 'compra', 'plist', userSesion?.id]">Mis compras</a>
+            <a class="block py-2 px-3 text-white hover:bg-tradewind-600 md:hover:bg-tradewind-600 md:border-0 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent {{ url.startsWith('/usuario/compra') ? 'bg-tradewind-700' : '' }}" [routerLink]="['/usuario', 'compra', 'plist', userSesion?.id]">Mis compras</a>
           </li>
         </ng-container>
         
@@ -62,7 +62,7 @@
             </a>
           </li>
           <li *ngIf="userSesion?.tipo==false">
-            <a class="button is-light text-black {{ url.startsWith('/usuario/carrito') ? 'bg-tradewind-700' : '' }}" [routerLink]="['/usuario', 'carrito', 'plist']">
+            <a class="block py-2 px-3 text-white hover:bg-tradewind-600 md:hover:bg-tradewind-600 md:border-0 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent {{ url.startsWith('/usuario/carrito') ? 'bg-tradewind-700' : '' }}" [routerLink]="['/usuario', 'carrito', 'plist']">
               <span class="icon">
                 <i class="pi pi-shopping-cart"></i>
               </span>
@@ -72,7 +72,7 @@
 
         <!-- Contenido para usuarios no logueados -->
         <li *ngIf="!username">
-          <a class="button is-light text-black" routerLink="/login">Iniciar sesión</a>
+          <a class="block py-2 px-3 text-white hover:bg-tradewind-600 md:hover:bg-tradewind-600 md:border-0 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent" routerLink="/login">Iniciar sesión</a>
         </li>
       </ul>
     </div>

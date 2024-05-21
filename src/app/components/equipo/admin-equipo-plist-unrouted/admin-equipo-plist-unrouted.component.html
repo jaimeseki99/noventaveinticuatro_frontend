@@ -38,13 +38,26 @@
           <div class="card-content flex-grow">
             <div class="content">
               <p class="title text-xl cursor-pointer" (click)="doView(equipo)"> {{equipo.nombre}} </p>
-              <p>Liga: <a [routerLink]="['/admin', 'equipo', 'plist', 'byliga', equipo.liga.id]" class="text-blue-500"> {{ equipo.liga.nombre }}</a></p>
-              <p>Número de camisetas: <a [routerLink]="['/admin', 'camiseta', 'plist', 'byequipo', equipo.id]" class="text-blue-500"> {{ equipo.camisetas }}</a></p>
+              <p><strong>Liga</strong> <a [routerLink]="['/admin', 'equipo', 'plist', 'byliga', equipo.liga.id]" class="text-blue-500"> {{ equipo.liga.nombre }}</a></p>
+              <p><strong>Número de camisetas:</strong> 
+                  <ng-container *ngIf="equipo.camisetas > 0; else noCamisetas">
+                    <a [routerLink]="['/admin', 'camiseta', 'plist', 'byequipo', equipo.id]" class="text-blue-500"> {{ equipo.camisetas }}</a>
+                  </ng-container>
+                  <ng-template #noCamisetas>
+                    {{equipo.camisetas}}
+                  </ng-template>
+              </p>
             </div>
           </div>
           <footer class="card-footer">
-            <button class="card-footer-item text-white bg-tradewind-500 hover:bg-tradewind-700" [routerLink]="['/admin', 'equipo', 'edit', equipo.id]">Actualizar</button>
-            <button class="card-footer-item text-white bg-stiletto-500 hover:bg-stiletto-700" (click)="doRemove(equipo)" [class.invisible]="equipo.camisetas > 0">Eliminar</button>
+            <button class="card-footer-item text-white bg-tradewind-500 hover:bg-tradewind-700" [routerLink]="['/admin', 'equipo', 'edit', equipo.id]">
+              <i class="pi pi-pencil mr-2"></i>
+              Actualizar
+            </button>
+            <button class="card-footer-item text-white bg-stiletto-500 hover:bg-stiletto-700" (click)="doRemove(equipo)" [class.invisible]="equipo.camisetas > 0">
+              <i class="pi pi-trash mr-2"></i>
+              Eliminar
+            </button>
           </footer>
         </div>
       </div>

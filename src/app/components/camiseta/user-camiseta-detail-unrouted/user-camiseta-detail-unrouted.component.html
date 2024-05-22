@@ -26,9 +26,18 @@
         <input class="w-full mt-1 form-input" type="number" min="1" max="{{ camiseta.stock }}" [(ngModel)]="cantidadSeleccionada" (keydown)="handleKeyDown($event)">
       </div>
       <div class="mt-6 space-y-4">
-        <button class="w-full px-4 py-2 bg-tradewind-500 hover:bg-tradewind-600 text-white rounded-md" (click)="agregarAlCarrito()" [disabled]="camiseta.stock == 0">Agregar al carrito</button>
-        <button class="w-full px-4 py-2 bg-tradewind-700 hover:bg-tradewind-800 text-white rounded-md" (click)="comprarDirectamente()" [disabled]="camiseta.stock == 0">Comprar directamente</button>
-        <button *ngIf="usuarioHaComprado && !usuarioHaValorado" class="w-full px-4 py-2 bg-governor-bay-600 hover:bg-governor-bay-700 text-white rounded-md" (click)="realizarValoracion(camiseta)">Escribir valoración</button>
+        <button class="w-full px-4 py-2 bg-tradewind-500 hover:bg-tradewind-600 text-white rounded-md" (click)="agregarAlCarrito()" [disabled]="camiseta.stock == 0">
+          <i class="pi pi-shopping-cart mr-2"></i>
+          Agregar al carrito
+        </button>
+        <button class="w-full px-4 py-2 bg-tradewind-700 hover:bg-tradewind-800 text-white rounded-md" (click)="comprarDirectamente()" [disabled]="camiseta.stock == 0">
+          <i class="pi pi-euro mr-2"></i>
+          Comprar directamente
+        </button>
+        <button *ngIf="usuarioHaComprado && !usuarioHaValorado" class="w-full px-4 py-2 bg-governor-bay-600 hover:bg-governor-bay-700 text-white rounded-md" (click)="realizarValoracion(camiseta)">
+          <i class="pi pi-pencil mr-2"></i>
+          Escribir valoración
+        </button>
       </div>
     </div>
   </div>

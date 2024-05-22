@@ -12,6 +12,11 @@
           Valoraciones: {{ usuario.valoraciones }} <br>
           Compras: {{ usuario.compras }} <br>
           </p>
+          <div class="flex justify-center items-center">
+            <button class="font-bold text-white bg-tradewind-500 hover:bg-tradewind-700 px-4 py-2 rounded focus:outline-none focus:shadow-outline" [routerLink]="['/usuario', 'usuario', 'edit', usuario.id]">
+              <i class="pi pi-pencil mr-2"></i>
+              Editar mis datos</button>
+          </div>
         </div>
       </div>
     </div>

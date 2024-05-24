@@ -234,6 +234,7 @@ export class UserCamisetaPlistUnroutedComponent implements OnInit {
         this.carritoAjaxService.createCarrito(this.carrito).subscribe({
           next: (data: ICarrito) => {
             this.matSnackBar.open('Camiseta añadida al carrito', 'Aceptar', {duration: 3000});
+            this.getCamisetas();
           },
           error: (err: HttpErrorResponse) => {
             this.status = err;

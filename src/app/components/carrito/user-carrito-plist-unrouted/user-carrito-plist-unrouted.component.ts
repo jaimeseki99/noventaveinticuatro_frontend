@@ -271,7 +271,7 @@ export class UserCarritoPlistUnroutedComponent implements OnInit {
   
 
   eliminarDelCarrito(id_carrito: number): void {
-        this.carritoAjaxService.deleteCarrito(id_carrito).subscribe({
+        this.carritoAjaxService.eliminarCamisetaCarrito(id_carrito).subscribe({
           next: () => {
             this.matSnackBar.open('Carrito eliminado', 'Aceptar', { duration: 3000 });
             this.getCarritos();
@@ -298,7 +298,7 @@ export class UserCarritoPlistUnroutedComponent implements OnInit {
       baseZIndex: 10000
     }).onClose.subscribe((confirmed: boolean) => {
       if (confirmed) {
-        this.carritoAjaxService.deleteCarritoByUsuario(id_usuario).subscribe({
+        this.carritoAjaxService.eliminarTodasCamisetasCarrito(id_usuario).subscribe({
           next: () => {
             this.matSnackBar.open('Carrito vaciado con éxito', 'Aceptar', { duration: 3000 });
             this.getCarritos();

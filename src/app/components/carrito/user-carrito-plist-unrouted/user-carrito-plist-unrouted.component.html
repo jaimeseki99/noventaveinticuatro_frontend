@@ -1,6 +1,6 @@
-<div class="container mx-auto font-sans">
-  <div *ngIf="page && page.content.length > 0" class="overflow-x-auto min-h-screen overflow-auto">
-    <table class="table-auto w-full border-collapse border bg-white overflow-x-auto">
+<div class="container mx-auto font-sans min-h-screen">
+  <div *ngIf="page && page.content.length > 0" class="overflow-x-auto">
+    <table class="table-auto w-full border-collapse border bg-white">
       <thead>
         <tr class="bg-gray-200 text-center">
           <th class="px-4 py-2">Imagen</th>
@@ -15,7 +15,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let carrito of page?.content">
+        <tr *ngFor="let carrito of page?.content" class="text-center">
           <td class="border px-4 py-2"><img [src]="carrito.camiseta.imagen" alt="Imagen de la camiseta" class="w-16 h-16"></td>
           <td class="border px-4 py-2">{{carrito.camiseta.titulo}}</td>
           <td class="border px-4 py-2">{{carrito.camiseta.talla}}</td>
@@ -29,7 +29,7 @@
           </td>
           <td class="border px-4 py-2">{{ precioIndividualMap.get(carrito.id)?.toFixed(2) }}€ </td>
           <td class="border px-4 py-2">
-            <div class="flex flex-col gap-3 sm:flex-row sm:space-x-4">
+            <div class="flex flex-col gap-3 sm:flex-row sm:space-x-4 justify-center">
               <button class="bg-stiletto-500 hover:bg-stiletto-700 text-white font-bold py-1 px-2 rounded focus:outline-none focus:shadow-outline" (click)="eliminarDelCarrito(carrito.id)">Eliminar</button>
               <button class="bg-tradewind-600 hover:bg-tradewind-800 text-white font-bold py-1 px-2 rounded focus:outline-none focus:shadow-outline" (click)="comprarUnicoCarrito(carrito.id)">Comprar</button>
             </div>
@@ -37,7 +37,7 @@
         </tr>
       </tbody>
     </table>
- 
+  </div>
 
   <div class="flex items-center justify-center mt-8">
     <div class="box w-full md:w-1/2">
@@ -51,7 +51,7 @@
   </div>
 
   <div class="flex items-center justify-center mt-4">
-    <a class="bg-governor-bay-400 hover:bg-governor-bay-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" [routerLink]="['/usuario', 'camiseta', 'plist']">Seguir comprando</a>
+    <a class="bg-governor-bay-400 hover:bg-governor-bay-600 text-white font-bold py-2 px-4 mb-5 rounded focus:outline-none focus:shadow-outline" [routerLink]="['/usuario', 'camiseta', 'plist']">Seguir comprando</a>
   </div>
 
 </div>
@@ -60,11 +60,7 @@
   <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
     <p class="text-lg mb-4">Todavía no has añadido nada a tu carrito.</p>
     <div class="text-center">
-      <a class="bg-governor-bay-400 hover:bg-governor-bay-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline inline-block" [routerLink]="['/usuario', 'camiseta', 'plist']">Seguir comprando</a>
+      <a class="bg-governor-bay-400 hover:bg-governor-bay-600 text-white font-bold py-2 px-4 mb-5 rounded focus:outline-none focus:shadow-outline inline-block" [routerLink]="['/usuario', 'camiseta', 'plist']">Seguir comprando</a>
     </div>
   </div>
 </div>
-
-
-</div>
-

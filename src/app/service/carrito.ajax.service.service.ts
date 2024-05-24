@@ -58,6 +58,14 @@ export class CarritoAjaxService {
         return this.http.delete<number>(this.url + '/usuario/' + usuarioId);
     }
 
+    eliminarCamisetaCarrito(id: number | undefined): Observable<number> {
+        return this.http.delete<number>(this.url + '/eliminarCamisetaCarrito/' + id);
+    }
+
+    eliminarTodasCamisetasCarrito(usuarioId: number): Observable<number> {
+        return this.http.delete<number>(this.url + '/eliminarCarritoUsuario/' + usuarioId);
+    }
+
     deleteAllCarritos(): Observable<number> {
         return this.http.delete<number>(this.url + '/empty');
     }

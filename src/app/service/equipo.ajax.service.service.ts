@@ -1,3 +1,4 @@
+import { AdminLigaNewRoutedComponent } from './../components/liga/admin-liga-new-routed/admin-liga-new-routed.component';
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { API_URL } from "src/environment/environment";
@@ -22,12 +23,18 @@ export class EquipoAjaxService {
         return this.http.get<IEquipo>(this.url + '/random');
     }
 
-    getEquiposPage(size: number, page: number, sort: string, direction: string, id_liga: number): Observable<IEquipoPage> {
+    getEquiposPage(size: number, page: number, sort: string, direction: string, id_liga: number, filtro_string?: string): Observable<IEquipoPage> {
         let liga = "";
         if (id_liga > 0) {
             liga = "&liga=" + id_liga;
         }
-        return this.http.get<IEquipoPage>(this.url + '?size=' + size + '&page=' + page + '&sort=' + sort + ',' + direction + liga);
+        let filtro: string;
+        if (filtro_string && filtro_string.trim().length > 0) {
+            filtro = `&filtro=${filtro_string}`;
+        } else {
+            filtro = ""
+        }
+        return this.http.get<IEquipoPage>(this.url + '?size=' + size + '&page=' + page + '&sort=' + sort + ',' + direction + liga + filtro);
     }
 
     getEquiposByLiga(ligaId: number, page: number, size: number, sort: string, direction: string): Observable<IEquipoPage> {

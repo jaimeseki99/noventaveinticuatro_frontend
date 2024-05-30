@@ -23,8 +23,14 @@ export class LigaAjaxService {
         return this.http.get<ILiga>(this.url + '/random');
     }
 
-    getLigaPage(size: number, page: number, sort: string, direction: string): Observable<ILigaPage> {
-        return this.http.get<ILigaPage>(this.url + '?size=' + size + '&page=' + page + '&sort=' + sort + ',' + direction);
+    getLigaPage(size: number, page: number, sort: string, direction: string, filtro_string?: string): Observable<ILigaPage> {
+        let filtro: string;
+        if (filtro_string && filtro_string.trim().length > 0) {
+            filtro = `&filtro=${filtro_string}`;
+        } else {
+            filtro = "";
+        }
+        return this.http.get<ILigaPage>(this.url + '?size=' + size + '&page=' + page + '&sort=' + sort + ',' + direction + filtro);
     }
 
     createLiga(liga: ILiga): Observable<ILiga> {

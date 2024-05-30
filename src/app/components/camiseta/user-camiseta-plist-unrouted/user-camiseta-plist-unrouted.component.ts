@@ -15,7 +15,7 @@ import { LigaAjaxService } from 'src/app/service/liga.ajax.service.service';
 import { ModalidadAjaxService } from 'src/app/service/modalidad.ajax.service.service';
 import { SesionAjaxService } from 'src/app/service/sesion.ajax.service.service';
 import { ConfirmationUnroutedComponent } from '../../shared/confirmation-unrouted/confirmation-unrouted.component';
-import { data } from 'autoprefixer';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-user-camiseta-plist-unrouted',
@@ -233,7 +233,14 @@ export class UserCamisetaPlistUnroutedComponent implements OnInit {
         this.carrito.cantidad = 1;
         this.carritoAjaxService.createCarrito(this.carrito).subscribe({
           next: (data: ICarrito) => {
-            this.matSnackBar.open('Camiseta añadida al carrito', 'Aceptar', {duration: 3000});
+            Swal.fire({
+              position: "center",
+              icon: "success",
+              title: "Camiseta añadida al carrito",
+              showConfirmButton: false,
+              timer: 2000,
+              width: 700,
+            });
             this.getCamisetas();
           },
           error: (err: HttpErrorResponse) => {
@@ -263,7 +270,15 @@ export class UserCamisetaPlistUnroutedComponent implements OnInit {
               const cantidad = 1;
               this.compraAjaxService.createCompraCamiseta(camiseta.id, usuario.id, cantidad).subscribe({
                 next: (compra: ICompra) => {
-                  this.matSnackBar.open('Camiseta comprada con éxito', 'Aceptar', { duration: 3000 });
+                  Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "Compra realizada con éxito",
+                    showConfirmButton: false,
+                    timer: 2000,
+                    width: 700,
+                  });
+                  this.getCamisetas();
                   this.router.navigate(['/usuario', 'compra', 'view', compra.id]);
                 },
                 error: (err: HttpErrorResponse) => {

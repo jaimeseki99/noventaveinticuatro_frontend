@@ -22,8 +22,14 @@ export class ModalidadAjaxService {
         return this.http.get<IModalidad>(this.url + '/random');
     }
 
-    getModalidadPage(size: number, page: number, sort: string, direction: string): Observable<IModalidadPage> {
-        return this.http.get<IModalidadPage>(this.url + '?size=' + size + '&page=' + page + '&sort=' + sort + ',' + direction);
+    getModalidadPage(size: number, page: number, sort: string, direction: string, filtro_string?: string): Observable<IModalidadPage> {
+        let filtro: string;
+        if (filtro_string && filtro_string.trim().length > 0) {
+            filtro = `&filtro=${filtro_string}`;
+        } else {
+            filtro = "";
+        }
+        return this.http.get<IModalidadPage>(this.url + '?size=' + size + '&page=' + page + '&sort=' + sort + ',' + direction + filtro);
     } 
 
     createModalidad(modalidad: IModalidad): Observable<IModalidad> {

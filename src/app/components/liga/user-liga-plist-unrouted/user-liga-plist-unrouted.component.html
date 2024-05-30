@@ -1,4 +1,10 @@
 <div class="container mx-auto px-4 font-sans">
+
+  <div class="mt-4 mb-3 flex justify-center">
+    <input type="text" class="border brder-gray-300 px-4 py-2 rounded-lg w-full sm:w-auto md:w-96" [(ngModel)]="filtro"
+      (ngModelChange)="onInputChange($event)" placeholder="Busca la liga que quieras que quieras...">
+  </div>
+
   <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-4">
     <ng-container *ngFor="let liga of page?.content">
       <div class="bg-white shadow-lg rounded-lg overflow-hidden transition-transform transform hover:scale-105 sm:hover:scale-105 lg:hover:scale-105 w-full h-full flex flex-col">

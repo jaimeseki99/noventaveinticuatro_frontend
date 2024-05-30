@@ -4,7 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
 import { DialogService, DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { ICamiseta, ICamisetaPage, ICarrito, IUsuario, IValoracion, IValoracionPage } from 'src/app/model/model.interfaces';
+import { ICamiseta, ICamisetaPage, ICarrito, ICompra, IUsuario, IValoracion, IValoracionPage } from 'src/app/model/model.interfaces';
 import { CamisetaAjaxService } from 'src/app/service/camiseta.ajax.service.service';
 import { CarritoAjaxService } from 'src/app/service/carrito.ajax.service.service';
 import { CompraAjaxService } from 'src/app/service/compra.ajax.service.service';
@@ -15,6 +15,7 @@ import { PaginatorState } from 'primeng/paginator';
 import { ValoracionAjaxService } from 'src/app/service/valoracion.ajax.service.service';
 import { ConfirmationUnroutedComponent } from '../../shared/confirmation-unrouted/confirmation-unrouted.component';
 import { data } from 'autoprefixer';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-user-camiseta-detail-unrouted',
@@ -157,9 +158,14 @@ export class UserCamisetaDetailUnroutedComponent implements OnInit {
       this.carrito.cantidad = this.cantidadSeleccionada;
       this.carritoAjaxService.createCarrito(this.carrito).subscribe({
         next: (data: ICarrito) => {
-          this.carrito = data;
-          this.matSnackBar.open('Camiseta añadida al carrito', 'Aceptar', {duration: 3000});
-          this.router.navigate(['/usuario', 'carrito', 'plist']);
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: `Has añadido ${this.cantidadSeleccionada} camisetas al carrito`,
+            showConfirmButton: false,
+            timer: 2000,
+            width: 700,
+          });
         },
         error: (err: HttpErrorResponse) => {
           this.status = err;
@@ -186,9 +192,16 @@ export class UserCamisetaDetailUnroutedComponent implements OnInit {
       }).onClose.subscribe((confirmed: boolean) => {
         if (confirmed) {
           this.compraAjaxService.createCompraCamiseta(this.camiseta.id, usuarioid, this.cantidadSeleccionada).subscribe({
-            next: () => {
-              this.matSnackBar.open(`Has comprado ${this.cantidadSeleccionada} camiseta(s)`, 'Aceptar', { duration: 3000 });
-              this.router.navigate(['/usuario', 'compra', 'plist', usuarioid]);
+            next: (compra: ICompra) => {
+              Swal.fire({
+                position: "center",
+                icon: "success",
+                title: `Has comprado ${this.cantidadSeleccionada} unidades de la camiseta ${this.camiseta.titulo}`,
+                showConfirmButton: false,
+                timer: 2000,
+                width: 700,
+              });
+              this.router.navigate(['/usuario', 'compra', 'view', compra.id]);
             }
           });
         } else {

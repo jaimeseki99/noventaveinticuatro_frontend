@@ -163,7 +163,8 @@ export class UserCamisetaDetailUnroutedComponent implements OnInit {
             icon: "success",
             title: `Has añadido ${this.cantidadSeleccionada} camisetas al carrito`,
             showConfirmButton: false,
-            timer: 2000,
+            timer: 1000,
+            timerProgressBar: true,
             width: 700,
           });
         },
@@ -205,7 +206,16 @@ export class UserCamisetaDetailUnroutedComponent implements OnInit {
             }
           });
         } else {
-          this.matSnackBar.open('Compra cancelada', 'Aceptar', { duration: 3000 });
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Compra cancelada",
+            showConfirmButton: true,
+            confirmButtonText: "Aceptar",
+            timer: 2000,
+            timerProgressBar: true,
+            width: 700,
+          });
         }
       });
     } else {
@@ -257,7 +267,15 @@ export class UserCamisetaDetailUnroutedComponent implements OnInit {
         if (confirmed) {
           this.valoracionAjaxService.deleteValoracion(id_valoracion).subscribe({
             next: () => {
-              this.matSnackBar.open('Valoración borrada', 'Aceptar', {duration: 3000});
+              Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Valoración borrada con éxito",
+                showConfirmButton: false,
+                timer: 1000,
+                timerProgressBar: true,
+                width: 700,
+              });
               this.getValoraciones();
               this.verificarCompraYValoracion();
             },

@@ -239,13 +239,23 @@ export class UserCamisetaPlistUnroutedComponent implements OnInit {
               title: "Camiseta añadida al carrito",
               showConfirmButton: false,
               timer: 2000,
+              timerProgressBar: true,
               width: 700,
             });
             this.getCamisetas();
           },
           error: (err: HttpErrorResponse) => {
             this.status = err;
-            this.matSnackBar.open('Error al añadir la camiseta al carrito', 'Aceptar', {duration: 3000});
+            Swal.fire({
+              position: "center",
+              icon: "error",
+              title: "Error al añadir la camiseta al carrito",
+              showConfirmButton: true,
+              confirmButtonText: "Aceptar",
+              timer: 3000,
+              width: 700,
+              timerProgressBar: true
+            })
           }
         });
     }
@@ -276,6 +286,7 @@ export class UserCamisetaPlistUnroutedComponent implements OnInit {
                     title: "Compra realizada con éxito",
                     showConfirmButton: false,
                     timer: 2000,
+                    timerProgressBar: true,
                     width: 700,
                   });
                   this.getCamisetas();

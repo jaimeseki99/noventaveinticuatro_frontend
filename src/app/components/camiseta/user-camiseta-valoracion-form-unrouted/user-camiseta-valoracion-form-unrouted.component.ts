@@ -7,6 +7,7 @@ import { ICamiseta, IUsuario, IValoracion } from 'src/app/model/model.interfaces
 import { CamisetaAjaxService } from 'src/app/service/camiseta.ajax.service.service';
 import { UsuarioAjaxService } from 'src/app/service/usuario.ajax.service.service';
 import { ValoracionAjaxService } from 'src/app/service/valoracion.ajax.service.service';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -86,7 +87,15 @@ export class UserCamisetaValoracionFormUnroutedComponent implements OnInit {
         const valoracion = this.valoracionForm.value;
         this.valoracionAjaxService.createValoracion(valoracion).subscribe({
           next: (data: IValoracion) => {
-            this.matSnackBar.open('Valoración creada', 'Aceptar', { duration: 3000 });
+            Swal.fire({
+              position: "center",
+                icon: "success",
+                title: "Valoración creada con éxito",
+                showConfirmButton: false,
+                timer: 1000,
+                timerProgressBar: true,
+                width: 700,
+            })
             this.dynamicDialogRef.close(data);
             this.valoracionAgregada.emit();
           },

@@ -18,6 +18,7 @@ import { ConfirmationUnroutedComponent } from '../../shared/confirmation-unroute
 export class AdminLigaPlistUnroutedComponent implements OnInit {
 
   @Input() forceReload: Subject<boolean> = new Subject<boolean>();
+  filtro: string = '';
 
   page: ILigaPage | undefined;
   orderField: string = "id";
@@ -41,7 +42,7 @@ export class AdminLigaPlistUnroutedComponent implements OnInit {
   getPage(): void {
     const rows = this.paginatorState.rows ?? 0;
     const page = this.paginatorState.page ?? 0;
-    this.ligaAjaxService.getLigaPage(rows, page, this.orderField, this.orderDirection).subscribe({
+    this.ligaAjaxService.getLigaPage(rows, page, this.orderField, this.orderDirection, this.filtro).subscribe({
       next: (data: ILigaPage) => {
         this.page = data;
         this.paginatorState.pageCount = data.totalPages;
@@ -56,6 +57,24 @@ export class AdminLigaPlistUnroutedComponent implements OnInit {
     this.paginatorState.rows = event.rows;
     this.paginatorState.page = event.page;
     this.getPage();
+  }
+
+  onInputChange(query: string): void {
+    const rows = this.paginatorState.rows || 0;
+    const page = this.paginatorState.page || 0;
+    if (query.length > 2) {
+      this.ligaAjaxService.getLigaPage(rows, page, this.orderField, this.orderDirection, query).subscribe({
+        next: (data: ILigaPage) => {
+          this.page = data;
+          this.paginatorState.pageCount = data.totalPages;
+        },
+        error: (err: HttpErrorResponse) => {
+          this.status = err;
+        }
+      })
+    } else {
+      this.getPage();
+    }
   }
 
   doOrder(fieldorder: string) {

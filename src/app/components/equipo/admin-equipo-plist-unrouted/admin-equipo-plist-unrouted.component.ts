@@ -10,6 +10,7 @@ import { EquipoAjaxService } from 'src/app/service/equipo.ajax.service.service';
 import { LigaAjaxService } from 'src/app/service/liga.ajax.service.service';
 import { AdminEquipoDetailUnroutedComponent } from '../admin-equipo-detail-unrouted/admin-equipo-detail-unrouted.component';
 import { ConfirmationUnroutedComponent } from '../../shared/confirmation-unrouted/confirmation-unrouted.component';
+import { data } from 'autoprefixer';
 
 @Component({
   selector: 'app-admin-equipo-plist-unrouted',
@@ -20,6 +21,7 @@ export class AdminEquipoPlistUnroutedComponent implements OnInit {
 
   @Input() forceReload: Subject<boolean> = new Subject<boolean>();
   @Input() id_liga: number = 0;
+  filtro: string = '';
 
   page: IEquipoPage | undefined;
   liga: ILiga | null = null;
@@ -55,7 +57,7 @@ export class AdminEquipoPlistUnroutedComponent implements OnInit {
   getPage(): void {
     const rows = this.paginatorState.rows ?? 0;
     const page = this.paginatorState.page ?? 0;
-    this.equipoAjaxService.getEquiposPage(rows, page, this.orderField, this.orderDirection, this.id_liga).subscribe({
+    this.equipoAjaxService.getEquiposPage(rows, page, this.orderField, this.orderDirection, this.id_liga, this.filtro).subscribe({
       next: (data: IEquipoPage) => {
         this.page = data;
         this.paginatorState.pageCount = data.totalPages;
@@ -70,6 +72,24 @@ export class AdminEquipoPlistUnroutedComponent implements OnInit {
     this.paginatorState.rows = event.rows;
     this.paginatorState.page = event.page;
     this.getPage();
+  }
+
+  onInputChange(query: string): void {
+    const rows = this.paginatorState.rows || 0;
+    const page = this.paginatorState.page || 0;
+    if (query.length > 2) {
+      this.equipoAjaxService.getEquiposPage(rows, page, this.orderField, this.orderDirection, this.id_liga, query).subscribe({
+        next: (data: IEquipoPage) => {
+          this.page = data;
+          this.paginatorState.pageCount = data.totalPages;
+        },
+        error: (err: HttpErrorResponse) => {
+          this.status = err;
+        }
+      })
+    } else {
+      this.getPage();
+    }
   }
 
   doOrder(fieldorder: string) {

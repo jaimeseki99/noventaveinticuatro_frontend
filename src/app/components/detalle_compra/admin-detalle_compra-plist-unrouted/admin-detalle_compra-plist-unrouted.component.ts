@@ -21,14 +21,14 @@ export class AdminDetalle_compraPlistUnroutedComponent implements OnInit {
 
   @Input() forceReload: Subject<boolean> = new Subject<boolean>();
   @Input() id_compra: number = 0;
-  @Input() id_camiseta: number = 0;
+ 
 
   page: IDetalleCompraPage | undefined;
   compra: ICompra | null = null;
   camiseta: ICamiseta | null = null;
   orderField: string = "id";
   orderDirection: string = "asc";
-  paginatorState: PaginatorState = { first: 0, rows: 10, page: 0, pageCount: 0};
+  paginatorState: PaginatorState = { first: 0, rows: 50, page: 0, pageCount: 0};
   status: HttpErrorResponse | null = null;
   detalle_compraABorrar: IDetalleCompra | null = null;
   
@@ -47,9 +47,6 @@ export class AdminDetalle_compraPlistUnroutedComponent implements OnInit {
     if (this.id_compra > 0) {
       this.getCompra();
     }
-    if (this.id_camiseta > 0) {
-      this.getCamiseta();
-    }
     this.forceReload.subscribe({
       next: (v) => {
         if (v) {
@@ -62,7 +59,7 @@ export class AdminDetalle_compraPlistUnroutedComponent implements OnInit {
   getPage(): void {
     const rows = this.paginatorState.rows ?? 0;
     const page = this.paginatorState.page ?? 0;
-    this.detalleCompraAjaxService.getDetalleCompraPage(page, rows, this.orderField, this.orderDirection, this.id_compra, this.id_camiseta).subscribe({
+    this.detalleCompraAjaxService.getDetalleCompraPageByCompraId(this.id_compra, rows, page, this.orderField, this.orderDirection).subscribe({
       next: (data: IDetalleCompraPage) => {
         this.page = data;
         this.paginatorState.pageCount = data.totalPages;
@@ -70,56 +67,13 @@ export class AdminDetalle_compraPlistUnroutedComponent implements OnInit {
       error: (err: HttpErrorResponse) => {
         this.status = err;
       }
-    });
+    })
   }
 
   onPageChange(event: PaginatorState) {
     this.paginatorState.rows = event.rows;
     this.paginatorState.page = event.page;
     this.getPage();
-  }
-
-  doOrder(fieldorder: string) {
-    this.orderField = fieldorder;
-    if (this.orderDirection == "asc") {
-      this.orderDirection = "desc";
-    } else {
-      this.orderDirection = "asc";
-    }
-    this.getPage();
-  }
-
-  doView(detalleCompra: IDetalleCompra) {
-    let ref: DynamicDialogRef | undefined;
-    ref = this.dialogService.open(AdminDetalle_compraDetailUnroutedComponent, {
-      data: {
-        id: detalleCompra.id
-      },
-      header: "Detalle Compra",
-      width: "70%",
-      maximizable: false
-    });
-  }
-
-  doRemove(detalleCompra: IDetalleCompra) {
-    this.detalle_compraABorrar = detalleCompra;
-    this.confirmationService.confirm({
-      accept: () => {
-        this.matSnackBar.open("Se ha eliminado el producto el producto de la comopra", "Aceptar", { duration: 3000 });
-        this.detalleCompraAjaxService.deleteDetalleCompra(detalleCompra.id).subscribe({
-          next: () => {
-            this.getPage();
-          },
-          error: (err: HttpErrorResponse) => {
-            this.status = err;
-            this.matSnackBar.open("No se ha podido eliminar el producto de la compra", "Aceptar", { duration: 3000 });
-          }
-        });
-      },
-      reject: (type: ConfirmEventType) => {
-        this.matSnackBar.open("Se ha anulado la eliminación del producto de la compra", "Aceptar", { duration: 3000 });
-      }
-    });
   }
 
   getCompra(): void {
@@ -133,15 +87,14 @@ export class AdminDetalle_compraPlistUnroutedComponent implements OnInit {
     });
   }
 
-  getCamiseta(): void {
-    this.camisetaAjaxService.getCamisetaById(this.id_camiseta).subscribe({
-      next: (data: ICamiseta) => {
-        this.camiseta = data;
-      },
-      error: (err: HttpErrorResponse) => {
-        this.status = err;
-      }
-    });
+  calcularTotal(): string {
+    let total = 0;
+    if (this.page && this.page.content) {
+      this.page.content.forEach((dc) => {
+        total += dc.cantidad * (dc.precio + (dc.precio * dc.iva / 100));
+      })
+    }
+    return total.toFixed(2);
   }
 
 }

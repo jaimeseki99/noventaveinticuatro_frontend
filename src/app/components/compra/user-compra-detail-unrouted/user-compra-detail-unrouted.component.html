@@ -1,7 +1,10 @@
 <div class="container mx-auto p-4 min-h-screen font-sans">
+  <!-- Header -->
   <div class="bg-gray-200 rounded-lg p-4 mb-4">
     <h1 class="text-xl font-bold">Compra #{{compra.codigoPedido}}</h1>
   </div>
+
+  <!-- Información del cliente -->
   <div class="bg-white rounded-lg p-4 mb-4">
     <p class="mb-2"><strong>Cliente: </strong>{{compra.usuario.nombre}} {{compra.usuario.apellido}}</p>
     <p class="mb-2"><strong>Fecha: </strong>{{compra.fecha | date: 'dd/MM/yyyy'}}</p>
@@ -11,12 +14,20 @@
       <p class="mb-2"><strong>Fecha de factura: </strong>{{compra.fecha_factura | date: 'dd/MM/yyyy'}}</p>
     </ng-container>
   </div>
-  <div class="bg-gray-200 rounded-lg p-4">
+
+  <!-- Detalles de la compra -->
+  <div class="bg-gray-200 rounded-lg p-4 mb-4">
     <h2 class="text-lg font-bold mb-4">Detalles de la compra</h2>
     <app-user-detalle_compra-plist-unrouted [id_compra]="id"></app-user-detalle_compra-plist-unrouted>
   </div>
-  <div class="text-center mb-4 mt-8">
-    <a class="bg-governor-bay-500 hover:bg-governor-bay-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" [routerLink]="['/usuario', 'compra', 'plist', compra.usuario.id]">Volver al listado de compras</a>
-    <a class="bg-tradewind-500 hover:bg-tradewind-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ml-4" (click)="generatePDF()">Generar Factura en PDF</a>
+
+  <!-- Botones -->
+  <div class="text-center mb-4 mt-8 flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+    <a class="bg-governor-bay-500 hover:bg-governor-bay-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" [routerLink]="['/usuario', 'compra', 'plist', compra.usuario.id]">
+      <i class="pi pi-list mr-2"></i>
+      Volver al listado de compras</a>
+    <a class="bg-tradewind-500 hover:bg-tradewind-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" (click)="generatePDF()">
+      <i class="pi pi-file-pdf mr-2"></i>
+      Generar Factura en PDF</a>
   </div>
 </div>

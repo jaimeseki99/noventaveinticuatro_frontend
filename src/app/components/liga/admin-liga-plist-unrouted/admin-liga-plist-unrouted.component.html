@@ -1,4 +1,10 @@
 <div class="container mx-auto font-sans">
+
+  <div class="mt-4 mb-3 flex justify-center">
+    <input type="text" class="border brder-gray-300 px-4 py-2 rounded-lg w-full sm:w-auto md:w-96" [(ngModel)]="filtro"
+      (ngModelChange)="onInputChange($event)" placeholder="Busca la liga que quieras que quieras...">
+  </div>
+  
   <!-- Menú desplegable para ordenar -->
   <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
     <div class="field">

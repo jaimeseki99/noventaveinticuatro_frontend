@@ -247,6 +247,34 @@ export class UserCamisetaDetailUnroutedComponent implements OnInit {
       };
     }
 
+    mostrarAdvertenciaCompra(): void {
+      Swal.fire({
+        position: 'center',
+        icon: "warning",
+        title: 'Advertencia',
+        text: 'Para valorar esta camiseta primero has de comprarla',
+        showConfirmButton: true,
+        confirmButtonText: "Aceptar",
+        timerProgressBar: true,
+        timer: 2000,
+        width: 700,
+      });
+    }
+
+    mostrarAdvertenciaValoracion(): void {
+      Swal.fire({
+        position: 'center',
+        icon: "warning",
+        title: 'Advertencia',
+        text: 'Ya has valorado esta camiseta, por lo que no puedes volver a valorarla',
+        showConfirmButton: true,
+        confirmButtonText: "Aceptar",
+        timerProgressBar: true,
+        timer: 2000,
+        width: 700,
+      })
+    }
+
     isUsuarioValoracion(valoracion: IValoracion): boolean {
       return this.usuario !== null && valoracion.usuario.id === this.usuario.id;
     }

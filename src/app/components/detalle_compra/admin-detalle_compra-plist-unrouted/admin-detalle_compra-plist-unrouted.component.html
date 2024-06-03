@@ -1,57 +1,18 @@
-<div class="container">
-
-<div class="filters">
-  <div class="notification" *ngIf="id_compra>0">
-    Filtrando por compra: {{ compra?.id}}
-    <button class="delete" *ngIf="id_compra>0" [routerLink]="['/admin', 'detalle_compra', 'plist']">Quitar filtro</button>
-  </div>
-  <div class="notification" *ngIf="id_camiseta>0">
-    Filtrando por camiseta: {{ camiseta?.titulo}}
-    <button class="delete" *ngIf="id_camiseta>0" [routerLink]="['/admin', 'detalle_compra', 'plist']">Quitar filtro</button>
-  </div>
-</div>
-
-<div class="field">
-  <label class="label">Ordenar por:</label>
-  <div class="control">
-    <div class="select">
-      <select #selectElement (change)="doOrder(selectElement.value)">
-        <option value="compra.id">Compra</option>
-        <option value="camiseta.titulo">Camiseta</option>
-        <option value="cantidad">Cantidad</option>
-        <option value="precio">Precio</option>
-        <option value="iva">IVA</option>
-        <option value="descuento">Descuento</option>
-        <option value="porcentajeDescuento">Porcentaje Descuento</option>
-      </select>
-    </div>
-  </div>
-
-  <div class="columns is-multiline">
-    <div class="column is-one-third" *ngFor="let detalleCompra of page?.content">
-      <div class="card">
-        <header class="card-header">
-          <p class="card-header-title" (click)="doView(detalleCompra)">Detalle de Compra #{{detalleCompra.id}}</p>
-          <a class="card-header-icon" aria-label="more options" (click)="doOrder('precio')">
-            <i class="fas fa-angle-down" aria-hidden="true"></i>
-          </a>
-        </header>
-        <div class="card-content">
-          <div class="content">
-            <p>Camiseta: {{ detalleCompra.camiseta.titulo }}</p>
-            <p>Precio: {{ detalleCompra.precio }}</p>
-            <p>Cantidad: {{ detalleCompra.cantidad }}</p>
-            <p>IVA: {{ detalleCompra.iva }}</p>
-            <p *ngIf="detalleCompra.descuento">Descuento: Sí</p>
-            <p *ngIf="detalleCompra.descuento">Porcentaje de descuento: {{ detalleCompra.porcentajeDescuento }}</p>
-          </div>
-        </div>
-        <footer class="card-footer">
-          <a href="#" class="card-footer-item" [routerLink]="['/admin', 'detalle_compra', 'edit', detalleCompra.id]">Actualizar</a>
-          <a href="#" class="card-footer-item" (click)="doRemove(detalleCompra)">Eliminar</a>
-        </footer>
+<div class="container mx-auto p-4 font-sans">
+  <div class="overflow-x-auto">
+    <div class="w-full">
+      <!-- Encabezado -->
+      <div *ngFor="let detalleCompra of page?.content" >
+        <p class="px-4 py-2">ID: {{detalleCompra.id}}</p>
+        <p class="px-4 py-2">Camiseta: {{detalleCompra.camiseta.titulo}}</p>
+        <p class="px-4 py-2">Precio: {{detalleCompra.precio}}</p>
+        <p class="px-4 py-2">Cantidad: {{detalleCompra.cantidad}}</p>
+        <p class="px-4 py-2">IVA: {{detalleCompra.iva}}</p>
+        <p class="px-4 py-2">Descuento: {{detalleCompra.descuento ? 'Con descuento' : 'Sin descuento'}}</p>
+        <p class="px-4 py-2">Porcentaje de Descuento: {{detalleCompra.porcentajeDescuento}}%</p>
+        <p class="px-4 py-2">Precio final camiseta: {{ (detalleCompra.cantidad * (detalleCompra.precio + ((detalleCompra.precio * detalleCompra.iva)/100))).toFixed(2)}}€</p>
       </div>
+      <p class="px-4 py-2 bg-gray-200">Coste total: {{ calcularTotal() + " €"}}</p>
     </div>
   </div>
-
 </div>

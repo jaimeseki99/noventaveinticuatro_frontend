@@ -38,6 +38,14 @@
           <i class="pi pi-pencil mr-2"></i>
           Escribir valoración
         </button>
+        <button *ngIf="!usuarioHaComprado" class="w-full px-4 py-2 bg-governor-bay-600 hover:bg-governor-bay-700 text-white rounded-md" (click)="mostrarAdvertenciaCompra()">
+          <i class="pi pi-times-circle"></i>
+          No puedes valorar esta camiseta
+        </button>
+        <button *ngIf="usuarioHaValorado" class="w-full px-4 py-2 bg-governor-bay-600 hover:bg-governor-bay-700 text-white rounded-md" (click)="mostrarAdvertenciaValoracion()">
+          <i class="pi pi-times-circle"></i>
+          No puedes valorar esta camiseta
+        </button>
       </div>
     </div>
   </div>

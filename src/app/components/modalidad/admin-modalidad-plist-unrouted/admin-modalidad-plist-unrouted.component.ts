@@ -18,6 +18,7 @@ import { ConfirmationUnroutedComponent } from '../../shared/confirmation-unroute
 export class AdminModalidadPlistUnroutedComponent implements OnInit {
 
   @Input() forceReload: Subject<boolean> = new Subject<boolean>();
+  filtro: string = '';
   
   page: IModalidadPage | undefined;
   orderField: string = "id";
@@ -48,7 +49,7 @@ export class AdminModalidadPlistUnroutedComponent implements OnInit {
   getPage(): void {
     const rows = this.paginatorState.rows ?? 0;
     const page = this.paginatorState.page ?? 0;
-    this.modalidadAjaxService.getModalidadPage(rows, page, this.orderField, this.orderDirection).subscribe({
+    this.modalidadAjaxService.getModalidadPage(rows, page, this.orderField, this.orderDirection, this.filtro).subscribe({
       next: (data: IModalidadPage) => {
         this.page = data;
         this.paginatorState.pageCount = data.totalPages;
@@ -63,6 +64,24 @@ export class AdminModalidadPlistUnroutedComponent implements OnInit {
     this.paginatorState.rows = event.rows;
     this.paginatorState.page = event.page;
     this.getPage();
+  }
+
+  onInputChange(query: string): void {
+    const rows = this.paginatorState.rows ?? 0;
+    const page = this.paginatorState.page ?? 0;
+    if (query.length > 2) {
+      this.modalidadAjaxService.getModalidadPage(rows, page, this.orderField, this.orderDirection, query).subscribe({
+        next: (data: IModalidadPage) => {
+          this.page = data;
+          this.paginatorState.pageCount = data.totalPages;
+        },
+        error: (err: HttpErrorResponse) => {
+          this.status = err;
+        }
+      })
+    } else {
+      this.getPage();
+    }
   }
 
   doOrder(fieldorder: string) {

@@ -12,6 +12,7 @@ import { LigaAjaxService } from 'src/app/service/liga.ajax.service.service';
 import { ConfirmEventType, ConfirmationService } from 'primeng/api';
 import { AdminCamisetaDetailUnroutedComponent } from '../admin-camiseta-detail-unrouted/admin-camiseta-detail-unrouted.component';
 import { ConfirmationUnroutedComponent } from '../../shared/confirmation-unrouted/confirmation-unrouted.component';
+import { data } from 'autoprefixer';
 
 @Component({
   selector: 'app-admin-camiseta-plist-unrouted',
@@ -86,6 +87,24 @@ export class AdminCamisetaPlistUnroutedComponent implements OnInit {
     this.paginatorState.rows = event.rows;
     this.paginatorState.page = event.page;
     this.getPage();
+  }
+
+  onInputChange(query: string): void {
+    const rows = this.paginatorState.rows || 0;
+    const page = this.paginatorState.page || 0;
+    if (query.length > 2) {
+      this.camisetaAjaxService.getPageCamisetas(rows, page, this.orderField, this.orderDirection, this.id_equipo, this.id_modalidad, this.id_liga, query).subscribe({
+        next: (data: ICamisetaPage) => {
+          this.page = data;
+          this.paginatorState.pageCount = data.totalPages;
+        },
+        error: (err: HttpErrorResponse) => {
+          this.status = err;
+        }
+      })
+    } else {
+      this.getPage();
+    }
   }
 
   doOrder(field: string) {

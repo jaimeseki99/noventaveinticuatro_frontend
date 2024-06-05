@@ -39,12 +39,14 @@ import { UserCarritoPlistRoutedComponent } from './components/carrito/user-carri
 import { AdminCompraPlistRoutedComponent } from './components/compra/admin-compra-plist-routed/admin-compra-plist-routed.component';
 import { AdminCompraViewRoutedComponent } from './components/compra/admin-compra-view-routed/admin-compra-view-routed.component';
 import { UserUsuarioEditRoutedComponent } from './components/usuario/user-usuario-edit-routed/user-usuario-edit-routed.component';
+import { RegisterRoutedComponent } from './components/shared/register-routed/register-routed.component';
 
 const routes: Routes = [
   { path: '', component: HomeRoutedComponent},
   { path: 'home', component: HomeRoutedComponent},
   { path: 'login', component: LoginRoutedComponent},
   { path: 'logout', component: LogoutRoutedComponent},
+  { path: 'register', component: RegisterRoutedComponent},
 
   { path: 'admin/camiseta/plist', component: AdminCamisetaPlistRoutedComponent},
   { path: 'admin/camiseta/plist/byequipo/:idequipo', component: AdminCamisetaPlistRoutedComponent},

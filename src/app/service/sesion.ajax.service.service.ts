@@ -39,6 +39,10 @@ export class SesionAjaxService {
         return this.http.post(this.url + '/login', {username: username, contrasenya: contrasenya}, {responseType: 'text'});
     }
 
+    register(usuario: IUsuario): Observable<IUsuario> {
+        return this.http.post<IUsuario>(this.url + '/register', usuario);
+    }
+
     setToken(token: string): void {
         localStorage.setItem('token', token); 
     }

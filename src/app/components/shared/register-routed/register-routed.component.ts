@@ -37,7 +37,7 @@ export class RegisterRoutedComponent implements OnInit {
       username: [usuario.username, [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
       email: [usuario.email, [Validators.required, Validators.email]],
       direccion: [usuario.direccion, [Validators.required, Validators.minLength(3), Validators.maxLength(1000)]],
-      telefono: [usuario.telefono, [Validators.required, Validators.minLength(9), Validators.maxLength(20)]],
+      telefono: [usuario.telefono, [Validators.required, Validators.minLength(9), Validators.maxLength(15)]],
       contrasenya: [usuario.contrasenya, [Validators.required, Validators.minLength(8)]],
       confirmContrasenya: ['', Validators.required]
     }, {
@@ -79,10 +79,7 @@ export class RegisterRoutedComponent implements OnInit {
           icon: "success",
           title: "Registro completado con éxito",
           timerProgressBar: true,
-          timer: 1500,
-          showConfirmButton: true,
-          confirmButtonText: "Aceptar",
-          confirmButtonColor: "tradewind-400"
+          timer: 1000,
         });
         this.router.navigate(['/login']);
       },
@@ -91,7 +88,8 @@ export class RegisterRoutedComponent implements OnInit {
         Swal.fire({
           position: "center",
           icon: "error",
-          title: `Ha habido un fallo al intentar registrate`,
+          title: "Error al registrarte",
+          text: "El username o el email ya están en uso",
           timerProgressBar: true,
           timer: 1500,
         });

@@ -116,6 +116,9 @@ import { AdminCompraViewRoutedComponent } from './components/compra/admin-compra
 import { UserUsuarioFormUnroutedComponent } from './components/usuario/user-usuario-form-unrouted/user-usuario-form-unrouted.component';
 import { UserUsuarioEditRoutedComponent } from './components/usuario/user-usuario-edit-routed/user-usuario-edit-routed.component';
 import { RegisterRoutedComponent } from './components/shared/register-routed/register-routed.component';
+import { SendEmailComponent } from './components/send-email/send-email.component';
+import { EmailAjaxService } from './service/email.ajax.service.service';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
 
 registerLocaleData(localEs);
 
@@ -130,6 +133,8 @@ registerLocaleData(localEs);
     LogoutRoutedComponent,
     RegisterRoutedComponent,
     ConfirmationUnroutedComponent,
+    SendEmailComponent,
+    ChangePasswordComponent,
 
     AdminCamisetaDetailUnroutedComponent,
     AdminCamisetaPlistUnroutedComponent,
@@ -249,7 +254,8 @@ registerLocaleData(localEs);
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
     DialogService,
     ConfirmationService,
-    CompraPrintService
+    CompraPrintService,
+    EmailAjaxService
   ],
   bootstrap: [AppComponent]
 })

@@ -4,6 +4,7 @@ import { API_URL } from 'src/environment/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { ChangePasswordDto } from '../model/model.changePasswordDto';
 
 @Injectable({
   providedIn: 'root'
@@ -17,11 +18,11 @@ constructor(
 private url = API_URL + '/email';
 
 public sendEmail(emailValuesDTO: EmailValuesDto): Observable<any> {
-  return this.httpClient.post<any>(this.url + 'recover-password', emailValuesDTO);
+  return this.httpClient.post<any>(this.url + '/recover-password', emailValuesDTO);
 }
 
-public changePassword(emailValuesDTO: EmailValuesDto): Observable<any> {
-  return this.httpClient.post<any>(this.url + 'change-password', emailValuesDTO);
+public changePassword(emailValuesDTO: ChangePasswordDto): Observable<any> {
+  return this.httpClient.post<any>(this.url + '/change-password', emailValuesDTO);
 }
 
 }

@@ -40,6 +40,8 @@ import { AdminCompraPlistRoutedComponent } from './components/compra/admin-compr
 import { AdminCompraViewRoutedComponent } from './components/compra/admin-compra-view-routed/admin-compra-view-routed.component';
 import { UserUsuarioEditRoutedComponent } from './components/usuario/user-usuario-edit-routed/user-usuario-edit-routed.component';
 import { RegisterRoutedComponent } from './components/shared/register-routed/register-routed.component';
+import { SendEmailComponent } from './components/send-email/send-email.component';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
 
 const routes: Routes = [
   { path: '', component: HomeRoutedComponent},
@@ -47,6 +49,8 @@ const routes: Routes = [
   { path: 'login', component: LoginRoutedComponent},
   { path: 'logout', component: LogoutRoutedComponent},
   { path: 'register', component: RegisterRoutedComponent},
+  { path: 'sendemail', component: SendEmailComponent},
+  { path: 'changepassword/:tokenContrasenya', component: ChangePasswordComponent},
 
   { path: 'admin/camiseta/plist', component: AdminCamisetaPlistRoutedComponent},
   { path: 'admin/camiseta/plist/byequipo/:idequipo', component: AdminCamisetaPlistRoutedComponent},

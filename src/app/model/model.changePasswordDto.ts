@@ -1,11 +1,11 @@
 export class ChangePasswordDto {
-    password: string;
-    confirmPassword: string;
-    tokenPassword: string | null;
+    contrasenya: string;
+    confirmarContrasenya: string;
+    tokenContrasenya: string | null;
   
-      constructor(password: string, confirmPassword: string, tokenPassword: string | null) {
-          this.password = password;
-          this.confirmPassword = confirmPassword;
-          this.tokenPassword = tokenPassword;
+      constructor(contrasenya: string, confirmarContrasenya: string, tokenContrasenya: string | null) {
+          this.contrasenya = contrasenya;
+          this.confirmarContrasenya = confirmarContrasenya;
+          this.tokenContrasenya = tokenContrasenya;
       }
   }

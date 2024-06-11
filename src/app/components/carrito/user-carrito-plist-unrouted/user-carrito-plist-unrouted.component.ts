@@ -83,8 +83,18 @@ export class UserCarritoPlistUnroutedComponent implements OnInit {
   getCosteCarrito(carrito: ICarrito): void {
     const precioCamiseta = carrito.camiseta.precio;
     const cantidad = carrito.cantidad;
-    const precioIndividual = precioCamiseta * cantidad;
-    this.precioIndividualMap.set(carrito.id, precioIndividual);
+    const descuento = carrito.camiseta.porcentajeDescuento || undefined;
+
+    if (descuento != undefined) {
+      const precioConDescuento = precioCamiseta - (precioCamiseta * (descuento / 100));
+      const precioIndividual = precioConDescuento * cantidad;
+      this.precioIndividualMap.set(carrito.id, precioIndividual);
+    } else {
+      const precioIndividual = precioCamiseta * cantidad;
+      this.precioIndividualMap.set(carrito.id, precioIndividual);
+    }
+    
+   
   }
 
   updateCantidad(carrito: ICarrito, nuevaCantidad: number): void {

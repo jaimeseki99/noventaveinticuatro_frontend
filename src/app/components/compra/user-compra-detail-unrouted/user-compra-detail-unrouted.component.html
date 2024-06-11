@@ -9,10 +9,6 @@
     <p class="mb-2"><strong>Cliente: </strong>{{compra.usuario.nombre}} {{compra.usuario.apellido}}</p>
     <p class="mb-2"><strong>Fecha: </strong>{{compra.fecha | date: 'dd/MM/yyyy'}}</p>
     <p class="mb-2"><strong>Dirección de entrega: </strong>{{compra.usuario.direccion}}</p>
-    <ng-container *ngIf="compra.factura_id">
-      <p class="mb-2"><strong>Número de factura: </strong>{{compra.factura_id}}</p>
-      <p class="mb-2"><strong>Fecha de factura: </strong>{{compra.fecha_factura | date: 'dd/MM/yyyy'}}</p>
-    </ng-container>
   </div>
 
   <!-- Detalles de la compra -->

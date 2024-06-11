@@ -86,7 +86,9 @@ export interface ICamisetaPage extends IPage<ICamiseta> {
 export interface ICarrito extends IEntity {
     usuario: IUsuario,
     camiseta: ICamiseta,
-    cantidad: number
+    cantidad: number,
+    nombre?: string,
+    dorsal?: number
 }
 
 export interface ICarritoPage extends IPage<ICarrito> {
@@ -109,8 +111,6 @@ export interface ICompra extends IEntity {
     usuario: IUsuario,
     fecha: Date,
     codigoPedido: string,
-    factura_id?: number,
-    fecha_factura?: Date,
     detalleCompras: number
 }
 
@@ -125,7 +125,9 @@ export interface IDetalleCompra extends IEntity {
     cantidad: number,
     iva: number,
     descuento?: boolean,
-    porcentajeDescuento?: number
+    porcentajeDescuento?: number,
+    nombre?: string,
+    dorsal?: string
 }
 
 export interface IDetalleCompraPage extends IPage<IDetalleCompra> {

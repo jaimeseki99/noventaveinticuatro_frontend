@@ -13,7 +13,7 @@
     <div class="mb-4">
       <label class="block text-sm font-bold mb-2">Comentario</label>
         <textarea class="w-full border boder-governor-bay-400 rounded p-2" formControlName="comentario" placeholder="Ingrese un comentario"></textarea>
-        <div class="text-stiletto-700" *ngIf="hasError('comentario', 'required')">Escribe el comentario</div>
+        <div class="text-stiletto-700" *ngIf="hasError('comentario', 'required') && valoracionForm.get('comentario')?.touched">Escribe el comentario</div>
         <div class="text-stiletto-700" *ngIf="hasError('comentario', 'minlength')">El comentario debe tener al menos 2 caracteres</div>
         <div class="text-stiletto-700" *ngIf="hasError('comentario', 'maxlength')">El comentario no puede tener más de 255 caracteres</div>
     </div>

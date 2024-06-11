@@ -55,9 +55,6 @@
             <option value="liga.nombre">Liga</option>
             <option value="precio">Precio</option>
             <option value="stock">Stock</option>
-            <option value="carritos">En carritos</option>
-            <option value="valoraciones">Valoraciones</option>
-            <option value="detalleCompras">Compras</option>
           </select>
         </div>
       </div>
@@ -78,6 +75,8 @@
             <p><strong>Modalidad:</strong><a [routerLink]="['/admin', 'camiseta', 'plist', 'bymodalidad', camiseta.modalidad.id]" class="text-blue-500"> {{camiseta.modalidad.nombre}}</a></p>
             <p><strong>Liga:</strong><a [routerLink]="['/admin', 'camiseta', 'plist', 'byliga', camiseta.liga.id]" class="text-blue-500"> {{camiseta.liga.nombre}}</a></p>
             <p><strong>Precio:</strong> {{camiseta.precio}} €</p>
+            <P><strong>Descuento: {{camiseta.descuento ? 'Con descuento' : 'Sin descuento'}}  </strong></P>
+            <p *ngIf="camiseta.descuento"><strong>Porcentaje de descuento:</strong> {{ camiseta.porcentajeDescuento }}%</p>
             <p><strong>Stock:</strong> {{camiseta.stock}}</p>
             <p><strong>En carritos:</strong> {{camiseta.carritos}}</p>
             <p><strong>Valoraciones</strong>: 

@@ -30,6 +30,8 @@ export class UserCamisetaDetailUnroutedComponent implements OnInit {
   usuario: IUsuario | null = null;
   carrito: ICarrito = { usuario: {}, camiseta: {}, cantidad: 0 } as ICarrito;
   cantidadSeleccionada: number = 1;
+  nombre: string = '';
+  dorsal: number = 0;
   page: IValoracionPage | null = null;
   orderField: string = 'id';
   orderDirection: string = 'asc';
@@ -156,6 +158,9 @@ export class UserCamisetaDetailUnroutedComponent implements OnInit {
       this.carrito.usuario = {username: this.sesionAjaxService.getUsername()} as IUsuario; 
       this.carrito.camiseta = {id: this.camiseta.id} as ICamiseta;
       this.carrito.cantidad = this.cantidadSeleccionada;
+      this.carrito.nombre = this.nombre;
+      this.carrito.dorsal = this.dorsal;
+
       this.carritoAjaxService.createCarrito(this.carrito).subscribe({
         next: (data: ICarrito) => {
           Swal.fire({

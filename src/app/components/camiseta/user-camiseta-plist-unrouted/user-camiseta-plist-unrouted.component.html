@@ -67,7 +67,7 @@
               <p class="text-gray-700 text-base min-h-8">Talla: {{ camiseta.talla }}</p>
               <p class="text-gray-700 text-base min-h-8" *ngIf="camiseta.stock > 0">Camiseta disponible</p>
               <p class="text-gray-700 text-base min-h-8" *ngIf="camiseta.stock == 0">Camiseta no disponible</p>
-              <p class="text-gray-700 text-base min-h-8" *ngIf="camiseta.descuento">Descuento: {{ camiseta.porcentajeDescuento }}</p>
+              <p class="text-gray-700 text-base min-h-8" *ngIf="camiseta.descuento">¡Camiseta con un descuento del {{ camiseta.porcentajeDescuento }}%!</p>
             <div class="flex gap-3 flex-col sm:flex-row justify-between mt-4 sm:mt-0" *ngIf="camiseta.stock > 0">
               
               <a class="bg-tradewind-500 hover:bg-tradewind-700 text-white font-bold py-2 px-4 rounded"

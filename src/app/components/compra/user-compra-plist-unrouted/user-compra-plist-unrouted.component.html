@@ -5,8 +5,6 @@
         <div class="card-content p-4">
           <p class="text-xl font-bold mb-2">Compra #{{compra.codigoPedido}}</p>
           <p class="text-sm mb-2">Fecha: {{compra.fecha | date: 'dd/MM/yyyy'}}</p>
-          <p *ngIf="compra.factura_id" class="text-sm mb-2">Número de factura: {{compra.factura_id}}</p>
-          <p *ngIf="compra.factura_id" class="text-sm mb-2">Fecha de factura: {{compra.fecha_factura | date: 'dd/MM/yyyy'}}</p>
           <a [routerLink]="['/usuario', 'compra', 'view', compra.id]" class="text-blue-500">Ver detalles de la compra</a>
         </div>
       </div>

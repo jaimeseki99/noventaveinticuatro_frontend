@@ -9,6 +9,9 @@
           <th class="px-4 py-2">Manga</th>
           <th class="px-4 py-2">Precio</th>
           <th class="px-4 py-2">IVA</th>
+          <th class="px-4 py-2">Descuento</th>
+          <th class="px-4 py-2">Nombre</th>
+          <th class="px-4 py-2">Dorsal</th>
           <th class="px-4 py-2">Cantidad</th>
           <th class="px-4 py-2">Coste Total</th>
           <th class="px-4 py-2">Acciones</th>
@@ -22,6 +25,9 @@
           <td class="border px-4 py-2">{{carrito.camiseta.manga}}</td>
           <td class="border px-4 py-2">{{carrito.camiseta.precio.toFixed(2) }}€</td>
           <td class="border px-4 py-2">{{carrito.camiseta.iva}}%</td>
+          <td class="border px-4 py-2">{{carrito.camiseta.porcentajeDescuento}}%</td>
+          <td class="border px-4 py-2">{{carrito.nombre ? carrito.nombre : 'Sin nombre'}}</td>
+          <td class="border px-4 py-2">{{carrito.dorsal ? carrito.dorsal : 'Sin dorsal'}}</td>
           <td class="border px-4 py-2">
             <button class="bg-governor-bay-500 hover:bg-governor-bay-700 text-white font-bold py-1 px-2 rounded focus:outline-none focus:shadow-outline" (click)="updateCantidad(carrito, carrito.cantidad - 1)">-</button>
             <span class="mx-2">{{carrito.cantidad}}</span>
@@ -44,21 +50,30 @@
       <h3 class="text-lg font-bold">Total</h3>
       <p class="mb-4">Coste total (incluyendo IVA): {{ costeTotal.toFixed(2) }}€</p>
       <div class="flex justify-center">
-        <button class="bg-stiletto-500 hover:bg-stiletto-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-4" (click)="usuario && eliminarTodosCarritos(usuario.id)">Vaciar el carrito</button>
-        <button class="bg-tradewind-700 hover:bg-tradewind-900 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" (click)="comprarTodosCarritos()">Comprar</button>
+        <button class="bg-stiletto-500 hover:bg-stiletto-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-4" (click)="usuario && eliminarTodosCarritos(usuario.id)">
+          <i class="pi pi-fast-backward mr-2"></i>
+          Vaciar el carrito</button>
+        <button class="bg-tradewind-700 hover:bg-tradewind-900 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" (click)="comprarTodosCarritos()">
+          <i class="pi pi-euro mr-2"></i>
+          Comprar
+        </button>
       </div>
     </div>
   </div>
 
   <div class="flex items-center justify-center mt-4" *ngIf="page && page.content.length > 0">
-    <a class="bg-governor-bay-400 hover:bg-governor-bay-600 text-white font-bold py-2 px-4 mb-5 rounded focus:outline-none focus:shadow-outline" [routerLink]="['/usuario', 'camiseta', 'plist']">Seguir comprando</a>
+    <a class="bg-governor-bay-400 hover:bg-governor-bay-600 text-white font-bold py-2 px-4 mb-5 rounded focus:outline-none focus:shadow-outline" [routerLink]="['/usuario', 'camiseta', 'plist']">
+      <i class="pi pi-shopping-bag mr-2"></i>
+      Seguir comprando</a>
   </div>
 
   <div class="container mx-auto h-screen flex justify-center items-center" *ngIf="!page?.content || page?.content?.length == 0">
     <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
       <p class="text-lg mb-4">Todavía no has añadido nada a tu carrito.</p>
       <div class="text-center">
-        <a class="bg-governor-bay-400 hover:bg-governor-bay-600 text-white font-bold py-2 px-4 mb-5 rounded focus:outline-none focus:shadow-outline inline-block" [routerLink]="['/usuario', 'camiseta', 'plist']">Seguir comprando</a>
+        <a class="bg-governor-bay-400 hover:bg-governor-bay-600 text-white font-bold py-2 px-4 mb-5 rounded focus:outline-none focus:shadow-outline inline-block" [routerLink]="['/usuario', 'camiseta', 'plist']">
+          <i class="pi pi-shopping-bag mr-2"></i>
+          Seguir comprando</a>
       </div>
     </div>
   </div>

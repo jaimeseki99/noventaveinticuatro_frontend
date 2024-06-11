@@ -5,12 +5,12 @@
     </div>
     <div class="lg:order-1">
       <h1 class="text-3xl font-bold mb-4">{{ camiseta.titulo }}</h1>
-      <p><strong>Equipo:</strong> {{ camiseta.equipo.nombre }}</p>
-      <p><strong>Tipo de camiseta:</strong>{{ camiseta.modalidad.nombre }}</p>
+      <p><strong>Equipo: {{ camiseta.equipo.nombre }}</strong></p>
+      <p><strong>Tipo de camiseta:{{ camiseta.modalidad.nombre }}</strong></p>
       <p><strong>Precio:</strong> {{ camiseta.precio }}€</p>
       <p><strong>Talla {{ camiseta.talla }}</strong></p>
       <p><strong>Longitud de la manga: {{ camiseta.manga }}</strong></p>
-      <p><strong>IVA: {{ camiseta.iva }}</strong></p>
+      <p><strong>IVA: {{ camiseta.iva }}%</strong></p>
       <ng-container *ngIf="camiseta.stock > 25">
         <p><strong>Stock:</strong> Camiseta disponible en tienda</p>
       </ng-container>
@@ -20,11 +20,30 @@
       <ng-container *ngIf="camiseta.stock <= 10">
         <p><strong>Stock:</strong> ¡Últimas unidades disponibles!</p>
       </ng-container>
+      <ng-container *ngIf="camiseta.descuento">
+        <p><strong>¡Llevate esta camiseta con un descuento del {{camiseta.porcentajeDescuento}}%!</strong></p>
+      </ng-container>
+      <ng-container *ngIf="!camiseta.descuento">
+        <p><strong>Esta camiseta no se encuentra actualmente en promoción</strong></p>
+      </ng-container>
+      <p>Envío rápido, fiable y seguro <strong><i class="pi pi-truck ml-2"></i></strong> </p>
+      <p>Entrega en un plazo de 48-72 horas desde la realización del pedido <strong><i class="pi pi-calendar ml-2"></i></strong></p>
 
       <div class="mt-6">
         <label class="block text-sm font-medium">Cantidad:</label>
-        <input class="w-full mt-1 form-input" type="number" min="1" max="{{ camiseta.stock }}" [(ngModel)]="cantidadSeleccionada" (keydown)="handleKeyDown($event)">
+        <input class="w-full form-input" type="number" min="1" max="{{ camiseta.stock }}" [(ngModel)]="cantidadSeleccionada" (keydown)="handleKeyDown($event)">
       </div>
+      <div class="mt-6">
+        <h4 class="font-bold">Siéntete como un auténtico jugador y personaliza tu camiseta (opcional)</h4>
+      </div>
+      <div class="mt-2">
+        <label class="block text-sm font-medium">Nombre Personalizado:</label>
+        <input class="w-full form-input" type="text" [(ngModel)]="nombre">
+    </div>
+    <div class="mt-2">
+        <label class="block text-sm font-medium">Dorsal Personalizado:</label>
+        <input class="w-full form-input" type="number" [(ngModel)]="dorsal">
+    </div>
       <div class="mt-6 space-y-4">
         <button class="w-full px-4 py-2 bg-tradewind-500 hover:bg-tradewind-600 text-white rounded-md" (click)="agregarAlCarrito()" [disabled]="camiseta.stock == 0">
           <i class="pi pi-shopping-cart mr-2"></i>

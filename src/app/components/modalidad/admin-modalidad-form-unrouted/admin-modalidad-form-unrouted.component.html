@@ -6,7 +6,7 @@
       <label class="block text-gray-700 text-sm font-bold mb-2">Nombre</label>
       <div class="control">
         <input class="appearance-none border rounded w-full border border-governor-bay-400 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" formControlName="nombre" placeholder="Nombre de la modalidad">
-        <div class="text-stiletto-700" *ngIf="hasError('nombre', 'required')">No has introducido el nombre</div>
+        <div class="text-stiletto-700" *ngIf="hasError('nombre', 'required') && modalidadForm.get('nombre')?.touched">No has introducido el nombre</div>
         <div class="text-stiletto-700" *ngIf="hasError('nombre', 'minlength')">El nombre es demasiado corto, debe tener al menos 3 carácteres</div>
         <div class="text-stiletto-700" *ngIf="hasError('nombre', 'maxlength')">El nombre es demasiado largo</div>
       </div>
@@ -16,7 +16,7 @@
         <input class="appearance-none border rounded w-full  border border-governor-bay-400 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="file" (change)="onFileSelected($event)">
     </div>
     <div class="flex items-center justify-between">
-        <button class="bg-governor-bay-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-2" type="submit">Guardar</button>
+        <button class="bg-governor-bay-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-2" type="submit">Guardar</button>
         <button class="bg-stiletto-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" [routerLink]="['/admin', 'modalidad', 'plist']">Cancelar</button>
     </div>
   </form>

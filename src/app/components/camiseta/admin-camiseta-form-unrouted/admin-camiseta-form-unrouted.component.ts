@@ -54,7 +54,7 @@ export class AdminCamisetaFormUnroutedComponent implements OnInit {
       precio: [this.camiseta.precio, [Validators.required]],
       iva: [this.camiseta.iva, [Validators.required]],
       descuento: [this.camiseta.descuento],
-      porcentajeDescuento: [this.camiseta.porcentajeDescuento],
+      porcentajeDescuento: [{value: this.camiseta.porcentajeDescuento, disabled: !this.camiseta.descuento}],
       stock: [this.camiseta.stock, [Validators.required]],
       equipo: this.formBuilder.group({
         id: [this.camiseta.equipo.id, [Validators.required]],
@@ -66,6 +66,15 @@ export class AdminCamisetaFormUnroutedComponent implements OnInit {
         id: [this.camiseta.liga.id, [Validators.required]],
       })
     });
+
+    this.camisetaForm.get('descuento')?.valueChanges.subscribe(value => {
+      const porcentajeDescuentoControl = this.camisetaForm.get('porcentajeDescuento');
+      if (value) {
+        porcentajeDescuentoControl?.enable();
+      } else {
+        porcentajeDescuentoControl?.disable();
+      }
+    })
   }
 
   ngOnInit() {

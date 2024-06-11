@@ -5,41 +5,41 @@
     <div class="mb-4">
       <label class="block text-sm font-bold mb-2">Nombre</label>
         <input type="text" class="w-full border boder-governor-bay-400 rounded p-2" id="nombre" formControlName="nombre" placeholder="Ingrese el nombre">
-        <div class="text-stiletto-700" *ngIf="hasError('nombre', 'required')">No has introducido el nombre</div>
+        <div class="text-stiletto-700" *ngIf="hasError('nombre', 'required') && usuarioForm.get('nombre')?.touched">No has introducido el nombre</div>
         <div class="text-stiletto-700" *ngIf="hasError('nombre', 'minlength')">El nombre debe tener al menos 3 caracteres</div>
         <div class="text-stiletto-700" *ngIf="hasError('nombre', 'maxlength')">El nombre no puede tener más de 50 caracteres</div>
     </div>
     <div class="mb-4">
       <label class="block text-sm font-bold mb-2">Apellido</label>
         <input type="text" class="w-full border border-governor-bay-400 rounded p-2" id="apellido" formControlName="apellido" placeholder="Ingrese el apellido">
-        <div class="text-stiletto-700" *ngIf="hasError('apellido', 'required')">No has introducido el apellido</div>
+        <div class="text-stiletto-700" *ngIf="hasError('apellido', 'required') && usuarioForm.get('apellido')?.touched">No has introducido el apellido</div>
         <div class="text-stiletto-700" *ngIf="hasError('apellido', 'minlength')">El apellido debe tener al menos 3 caracteres</div>
         <div class="text-stiletto-700" *ngIf="hasError('apellido', 'maxlength')">El apellido no puede tener más de 50 caracteres</div>
     </div>
     <div class="mb-4">
       <label class="block text-sm font-bold mb-2">Username</label>
         <input type="text" class="w-full border border-governor-bay-400 rounded p-2" id="username" formControlName="username" placeholder="Ingrese el username">
-        <div class="text-stiletto-700" *ngIf="hasError('username', 'required')">No has introducido el username</div>
+        <div class="text-stiletto-700" *ngIf="hasError('username', 'required') && usuarioForm.get('username')?.touched">No has introducido el username</div>
         <div class="text-stiletto-700" *ngIf="hasError('username', 'minlength')">El username debe tener al menos 3 caracteres</div>
         <div class="text-stiletto-700" *ngIf="hasError('username', 'maxlength')">El username no puede tener más de 50 caracteres</div>
     </div>
     <div class="mb-4">
       <label class="block text-sm font-bold mb-2">Email</label>
         <input type="email" class="w-full border border-governor-bay-400 rounded p-2" id="email" formControlName="email" placeholder="Ingrese el email">
-        <div class="text-stiletto-700" *ngIf="hasError('email', 'required')">No has introducido el email</div>
+        <div class="text-stiletto-700" *ngIf="hasError('email', 'required') && usuarioForm.get('email')?.touched">No has introducido el email</div>
         <div class="text-stiletto-700" *ngIf="hasError('email', 'email')">El email no es válido</div>
     </div>
     <div class="mb-4">
       <label class="block text-sm font-bold mb-2">Dirección</label>
         <input type="text" class="w-full border border-governor-bay-400 rounded p-2" id="direccion" formControlName="direccion" placeholder="Ingrese la dirección">
-        <div class="text-stiletto-700" *ngIf="hasError('direccion', 'required')">No has introducido la dirección</div>
+        <div class="text-stiletto-700" *ngIf="hasError('direccion', 'required') && usuarioForm.get('direccion')?.touched">No has introducido la dirección</div>
         <div class="text-stiletto-700" *ngIf="hasError('direccion', 'minlength')">La dirección debe tener al menos 3 caracteres</div>
         <div class="text-stiletto-700" *ngIf="hasError('direccion', 'maxlength')">La dirección no puede tener más de 1000 caracteres</div> 
     </div>
     <div class="mb-4">
       <label class="block text-sm font-bold">Teléfono</label>
         <input type="text" class="w-full border border-governor-bay-400 rounded p-2" id="telefono" formControlName="telefono" placeholder="Ingrese el teléfono">
-        <div class="text-stiletto-700" *ngIf="hasError('telefono', 'required')">No has introducido el teléfono</div>
+        <div class="text-stiletto-700" *ngIf="hasError('telefono', 'required') && usuarioForm.get('telefono')?.touched">No has introducido el teléfono</div>
         <div class="text-stiletto-700" *ngIf="hasError('telefono', 'minlength')">El teléfono debe tener al menos 9 caracteres</div>
         <div class="text-stiletto-700" *ngIf="hasError('telefono', 'maxlength')">El teléfono no puede tener más de 15 caracteres</div>
     </div>
@@ -49,10 +49,10 @@
             <option [ngValue]="false">Usuario Normal</option>
             <option [ngValue]="true">Administrador</option>
           </select>
-        <div class="text-stiletto-700" *ngIf="hasError('tipo', 'required')">Especifica si eres Administrador o Usuario</div>
+        <div class="text-stiletto-700" *ngIf="hasError('tipo', 'required') && usuarioForm.get('tipo')?.touched">Especifica si eres Administrador o Usuario</div>
     </div>
     <div class="flex items-center justify-between">
-        <button type="submit" class="bg-governor-bay-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-2">Guardar</button>
+        <button type="submit" class="bg-governor-bay-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-2">Guardar</button>
         <button [routerLink]="['/admin', 'usuario', 'plist']" class="bg-stiletto-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Cancelar</button>
     </div>
   </form>

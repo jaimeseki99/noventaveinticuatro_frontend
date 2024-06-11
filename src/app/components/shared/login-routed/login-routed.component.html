@@ -29,7 +29,7 @@
             <input type="checkbox" name="checkbox" id="checkbox" class="mr-2">
             <span class="text-md">Recuérdame</span>
           </div>
-          <span class="font-bold text-md" [routerLink]="['/sendemail']">¿Te has olvidado de la contraseña</span>
+          <span class="font-bold text-md underline" [routerLink]="['/sendemail']">¿Te has olvidado de la contraseña?</span>
         </div>
         <button class="w-full bg-black text-white p-2 rounded-lg mb-6 hover:bg-white hover:text-black hover:border hover:border-gray-300">Login</button>
         <button type="button" class="w-full bg-black text-white p-2 rounded-lg mb-6 hover:bg-white hover:text-black hover:border hover:border-gray-300" (click)="loginAdmin()">Soy Admin</button>
@@ -37,7 +37,7 @@
       </form>
       <div class="text-center text-gray-400">
         ¿No tienes cuenta?
-        <span class="font-bold text-black" [routerLink]="['/register']">Regístrate</span>
+        <span class="font-bold text-black underline" [routerLink]="['/register']">Regístrate</span>
       </div>
     </div>
     <div class="relative hidden md:block w-[400px]">

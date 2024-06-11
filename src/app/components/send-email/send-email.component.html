@@ -9,12 +9,12 @@
                class="w-full px-3 py-2 border border-governor-bay-400 rounded focus:outline-none focus:ring-2 focus:ring-governor-bay-400 
                focus:border-transparent" placeholder="Introduce el correo electrónico" required>
         <div *ngIf="sendEmailForm.get('mailTo')?.invalid && sendEmailForm.get('mailTo')?.touched"
-             class="text-stiletto-500 text-sm mt-1">
+             class="text-stiletto-700 text-sm mt-1">
           El email es requerido.
         </div>
       </div>
       <button type="submit" 
-              class="w-full bg-tradewind-500 hover:bg-tradewind-700 text-white py-2 rounded-lg hover:bg-blue-600 transition duration-200 
+              class="w-full bg-tradewind-500 hover:bg-tradewind-700 text-white py-2 rounded-lg transition duration-200 
               ease-in-out">
         Enviar Email
       </button>

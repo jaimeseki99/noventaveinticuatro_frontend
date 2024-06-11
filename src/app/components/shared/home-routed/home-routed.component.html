@@ -56,7 +56,7 @@
         <h2 class="text-3xl font-sans font-bold mb-4">Camisetas Versión Jugador</h2>
         <p class="font-sans">¿Quieres sentirte como uno de tus ídolos?</p>
         <p class="font-sans">Échale un vistazo a nuestra colección de camisetas de fútbol y baloncesto Player Version y viste como los mejores jugadores del momento.</p>
-        <p class="font-sans"><a *ngIf="isLogged() && isUserNormal()" [routerLink]="['/usuario', 'camiseta', 'plist', 'bymodalidad', 2]" class="text-blue-500">Ver colección</a></p>
+        <p class="font-sans"><a *ngIf="isLogged() && isUserNormal()" [routerLink]="['/usuario', 'camiseta', 'plist', 'bymodalidad', 2]" class="text-blue-500 underline">Ver colección</a></p>
       </div>
       <div class="w-full md:w-1/2 px-4 mb-8">
         <img src="http://localhost:8085/media/f.elconfidencial.com_original_9ef_43c_97e_9ef43c97e95f47883dc33eea68b1d7a7.jpg" alt="Player Version" class="rounded-lg shadow-md">
@@ -74,7 +74,7 @@
       <div class="w-full md:w-1/2 px-4 mb-8">
         <h2 class="text-3xl font-sans font-bold">Camisetas Versión Fan</h2>
         <p class="font-sans">En 90:24 encontrarás las mejores camisetas para animar a tu equipo al estadio</p>
-        <p class="font-sans"><a *ngIf="isLogged() && isUserNormal()" [routerLink]="['/usuario', 'camiseta', 'plist', 'bymodalidad', 3]" class="text-blue-500">Ver colección</a></p>
+        <p class="font-sans"><a *ngIf="isLogged() && isUserNormal()" [routerLink]="['/usuario', 'camiseta', 'plist', 'bymodalidad', 3]" class="text-blue-500 underline">Ver colección</a></p>
       </div>
     </div>
   </div>
@@ -87,7 +87,7 @@
         <h2 class="text-3xl font-sans font-bold mb-4">Camisetas Versión Retro</h2>
         <p class="font-sans">¿Eres un nostálgico de aquellos viejos buenos tiempos?</p>
         <p class="font-sans">Viaja en el tiempo con nuestra colección de camisetas Retro.</p>
-        <p><a *ngIf="isLogged() && isUserNormal()" [routerLink]="['/usuario', 'camiseta', 'plist', 'bymodalidad', 1]" class="text-blue-500">Ver colección</a></p>
+        <p class="font-sans"><a *ngIf="isLogged() && isUserNormal()" [routerLink]="['/usuario', 'camiseta', 'plist', 'bymodalidad', 1]" class="text-blue-500 underline">Ver colección</a></p>
       </div>
       <div class="w-full md:w-1/2 px-4 mb-8">
         <img src="http://localhost:8085/media/850697_71e242d2371549a7baf5e299d7a336eb~mv2.webp" alt="Retro Version" class="rounded-lg shadow-md">
@@ -105,7 +105,7 @@
       <div class="w-full md:w-1/2 px-4 mb-8 font-sans">
         <h2 class="text-3xl font-sans font-bold">Visita nuestra colección de ligas</h2>
         <p class="font-sans">Contamos con las camisetas de las mejores ligas de fútbol y baloncesto</p>
-        <p class="font-sans"><a *ngIf="isLogged() && isUserNormal()" [routerLink]="['/usuario', 'liga', 'plist']" class="text-blue-500">Ver ligas disponibles</a></p>
+        <p class="font-sans"><a *ngIf="isLogged() && isUserNormal()" [routerLink]="['/usuario', 'liga', 'plist']" class="text-blue-500 underline">Ver ligas disponibles</a></p>
       </div>
     </div>
   </div>

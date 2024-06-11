@@ -14,6 +14,8 @@
           <th class="px-4 py-2">IVA</th>
           <th class="px-4 py-2">Descuento</th>
           <th class="px-4 py-2">Porcentaje de Descuento</th>
+          <th class="px-4 py-2">Nombre</th>
+          <th class="px-4 py-2">Dorsal</th>
           <th class="px-4 py-2">Coste final</th>
         </tr>
       </thead>
@@ -26,6 +28,8 @@
           <td class="border px-4 py-2">{{detalleCompra.iva}}%</td>
           <td class="border px-4 py-2">{{detalleCompra.descuento ? 'Con descuento' : 'Sin descuento'}}</td>
           <td class="border px-4 py-2">{{detalleCompra.porcentajeDescuento}}%</td>
+          <td class="border px-4 py-2">{{detalleCompra.nombre ? detalleCompra.nombre : 'Sin nombre'}}</td>
+          <td class="border px-4 py-2">{{detalleCompra.dorsal ? detalleCompra.dorsal : 'Sin dorsal'}}</td>
           <td class="border px-4 py-2">{{ (detalleCompra.cantidad * (detalleCompra.precio + ((detalleCompra.precio * detalleCompra.iva)/100))).toFixed(2)}}€</td>
         </tr>
       </tbody>

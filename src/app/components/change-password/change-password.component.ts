@@ -25,7 +25,7 @@ export class ChangePasswordComponent implements OnInit {
     private formBuilder: FormBuilder,
   ) { 
     this.updatePasswordForm = this.formBuilder.group({
-      contrasenya: ['', [Validators.required]],
+      contrasenya: ['', [Validators.required, Validators.minLength(8)]],
       confirmarContrasenya: ['', [Validators.required]],
     });
   }

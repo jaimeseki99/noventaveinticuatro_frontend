@@ -111,9 +111,6 @@ export interface ICompra extends IEntity {
     usuario: IUsuario,
     fecha: Date,
     codigoPedido: string,
-    primeraFechaEntrega: Date,
-    segundaFechaEntrega: Date,
-    direccion: string,
     detalleCompras: number
 }
 

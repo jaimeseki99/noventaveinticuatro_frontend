@@ -41,6 +41,7 @@ export class UserCamisetaPlistUnroutedComponent implements OnInit {
   orderDirection: string = "asc";
   paginatorState: PaginatorState = { first: 0, rows: 12, page: 0, pageCount: 0 };
   status: HttpErrorResponse | null = null;
+  isUserLogged: boolean = false;
   
   constructor(
     private camisetaAjaxService: CamisetaAjaxService,
@@ -75,6 +76,7 @@ export class UserCamisetaPlistUnroutedComponent implements OnInit {
         }
       }
     });
+    this.isUserLogged = this.sesionAjaxService.isSessionActive();
   }
 
   getCamisetas(): void {

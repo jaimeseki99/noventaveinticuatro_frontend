@@ -29,22 +29,22 @@
       <p>Envío rápido, fiable y seguro <strong><i class="pi pi-truck ml-2"></i></strong> </p>
       <p>Entrega en un plazo de 48-72 horas desde la realización del pedido <strong><i class="pi pi-calendar ml-2"></i></strong></p>
 
-      <div class="mt-6">
+      <div class="mt-6" *ngIf="usuario">
         <label class="block text-sm font-medium">Cantidad:</label>
         <input class="w-full form-input" type="number" min="1" max="{{ camiseta.stock }}" [(ngModel)]="cantidadSeleccionada" (keydown)="handleKeyDown($event)">
       </div>
-      <div class="mt-6">
+      <div class="mt-6" *ngIf="usuario">
         <h4 class="font-bold">Siéntete como un auténtico jugador y personaliza tu camiseta (opcional)</h4>
       </div>
-      <div class="mt-2">
+      <div class="mt-2" *ngIf="usuario">
         <label class="block text-sm font-medium">Nombre Personalizado:</label>
         <input class="w-full form-input" type="text" [(ngModel)]="nombre">
     </div>
-    <div class="mt-2">
+    <div class="mt-2" *ngIf="usuario">
         <label class="block text-sm font-medium">Dorsal Personalizado:</label>
         <input class="w-full form-input" type="number" [(ngModel)]="dorsal">
     </div>
-      <div class="mt-6 space-y-4">
+      <div class="mt-6 space-y-4" *ngIf="usuario">
         <button class="w-full px-4 py-2 bg-tradewind-500 hover:bg-tradewind-600 text-white rounded-md" (click)="agregarAlCarrito()" [disabled]="camiseta.stock == 0">
           <i class="pi pi-shopping-cart mr-2"></i>
           Agregar al carrito

@@ -10,38 +10,57 @@
 
 <section class="py-16">
   <div class="container mx-auto font-sans">
-    <div class="relative overflow-hidden rounded-lg">
-      <!-- Slides Container -->
-      <div #carouselWrapper class="carousel-wrapper flex transition-transform duration-700 ease-in-out">
-        <!-- Slide 1 -->
-        <div class="carousel-slide min-w-full h-64 bg-cover bg-center" style="background-image: url('http://localhost:8085/media/f.elconfidencial.com_original_9ef_43c_97e_9ef43c97e95f47883dc33eea68b1d7a7.jpg');">
-          <div class="bg-black bg-opacity-50 h-full flex items-center justify-center">
+    <div id="carouselExample" class="relative w-full carousel-container" data-carousel="static">
+      <!-- Carousel wrapper -->
+      <div class="relative h-full overflow-hidden rounded-lg">
+        <!-- Item 1 -->
+        <div class="hidden duration-700 ease-in-out h-full" data-carousel-item>
+          <img src="http://localhost:8085/media/f.elconfidencial.com_original_9ef_43c_97e_9ef43c97e95f47883dc33eea68b1d7a7.jpg" class="block w-full h-full object-cover" alt="Slide 1">
+          <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
             <span class="text-white font-bold text-lg text-center">Bienvenid@ a la tienda de camisetas de fútbol y baloncesto del momento</span>
           </div>
         </div>
-        <!-- Slide 2 -->
-        <div class="carousel-slide min-w-full h-64 bg-cover bg-center" style="background-image: url('http://localhost:8085/media/futbolpasiones.jpg');">
-          <div class="bg-black bg-opacity-50 h-full flex items-center justify-center">
+        <!-- Item 2 -->
+        <div class="hidden duration-700 ease-in-out h-full" data-carousel-item>
+          <img src="http://localhost:8085/media/futbolpasiones.jpg" class="block w-full h-full object-cover" alt="Slide 2">
+          <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
             <span class="text-white font-bold text-lg text-center">Camisetas originales y de gran calidad</span>
           </div>
         </div>
-        <!-- Slide 3 -->
-        <div class="carousel-slide min-w-full h-64 bg-cover bg-center" style="background-image: url('http://localhost:8085/media/850697_71e242d2371549a7baf5e299d7a336eb~mv2.webp');">
-          <div class="bg-black bg-opacity-50 h-full flex items-center justify-center">
+        <!-- Item 3 -->
+        <div class="hidden duration-700 ease-in-out h-full" data-carousel-item>
+          <img src="http://localhost:8085/media/850697_71e242d2371549a7baf5e299d7a336eb~mv2.webp" class="block w-full h-full object-cover" alt="Slide 3">
+          <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
             <span class="text-white font-bold text-lg text-center">Contamos con una gran colección de ligas, equipos y modalidades</span>
           </div>
         </div>
-        <!-- Slide 4 -->
-        <div class="carousel-slide min-w-full h-64 bg-cover bg-center" style="background-image: url('http://localhost:8085/media/5grandesligas.jpeg');">
-          <div class="bg-black bg-opacity-50 h-full flex items-center justify-center">
+        <!-- Item 4 -->
+        <div class="hidden duration-700 ease-in-out h-full" data-carousel-item>
+          <img src="http://localhost:8085/media/5grandesligas.jpeg" class="block w-full h-full object-cover" alt="Slide 4">
+          <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
             <span class="text-white font-bold text-lg text-center">Envíos rápidos y seguros con un plazo máximo de 48h</span>
           </div>
         </div>
       </div>
-      <!-- Navigation -->
-      <div class="absolute inset-0 flex items-center justify-between">
-        <button id="prev" class="p-2 bg-white bg-opacity-50 rounded-full hover:bg-opacity-75">‹</button>
-        <button id="next" class="p-2 bg-white bg-opacity-50 rounded-full hover:bg-opacity-75">›</button>
+      <!-- Slider controls -->
+      <button type="button" class="carousel-button carousel-button-prev" data-carousel-prev>
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+        </svg>
+        <span class="sr-only">Previous</span>
+      </button>
+      <button type="button" class="carousel-button carousel-button-next" data-carousel-next>
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+        <span class="sr-only">Next</span>
+      </button>
+      <!-- Indicators -->
+      <div class="carousel-indicators">
+        <button type="button" class="w-3 h-3 rounded-full bg-gray-400" aria-current="true" aria-label="Slide 1" data-carousel-slide-to="0"></button>
+        <button type="button" class="w-3 h-3 rounded-full bg-gray-400" aria-current="false" aria-label="Slide 2" data-carousel-slide-to="1"></button>
+        <button type="button" class="w-3 h-3 rounded-full bg-gray-400" aria-current="false" aria-label="Slide 3" data-carousel-slide-to="2"></button>
+        <button type="button" class="w-3 h-3 rounded-full bg-gray-400" aria-current="false" aria-label="Slide 4" data-carousel-slide-to="3"></button>
       </div>
     </div>
   </div>
@@ -56,7 +75,7 @@
         <h2 class="text-3xl font-sans font-bold mb-4">Camisetas Versión Jugador</h2>
         <p class="font-sans">¿Quieres sentirte como uno de tus ídolos?</p>
         <p class="font-sans">Échale un vistazo a nuestra colección de camisetas de fútbol y baloncesto Player Version y viste como los mejores jugadores del momento.</p>
-        <p class="font-sans"><a *ngIf="isLogged() && isUserNormal()" [routerLink]="['/usuario', 'camiseta', 'plist', 'bymodalidad', 2]" class="text-blue-500 underline">Ver colección</a></p>
+        <p class="font-sans"><a *ngIf="(isLogged() && isUserNormal()) || !isLogged()" [routerLink]="['/usuario', 'camiseta', 'plist', 'bymodalidad', 2]" class="text-blue-500 underline">Ver colección</a></p>
       </div>
       <div class="w-full md:w-1/2 px-4 mb-8">
         <img src="http://localhost:8085/media/f.elconfidencial.com_original_9ef_43c_97e_9ef43c97e95f47883dc33eea68b1d7a7.jpg" alt="Player Version" class="rounded-lg shadow-md">
@@ -74,7 +93,7 @@
       <div class="w-full md:w-1/2 px-4 mb-8">
         <h2 class="text-3xl font-sans font-bold">Camisetas Versión Fan</h2>
         <p class="font-sans">En 90:24 encontrarás las mejores camisetas para animar a tu equipo al estadio</p>
-        <p class="font-sans"><a *ngIf="isLogged() && isUserNormal()" [routerLink]="['/usuario', 'camiseta', 'plist', 'bymodalidad', 3]" class="text-blue-500 underline">Ver colección</a></p>
+        <p class="font-sans"><a *ngIf="(isLogged() && isUserNormal()) || !isLogged()" [routerLink]="['/usuario', 'camiseta', 'plist', 'bymodalidad', 3]" class="text-blue-500 underline">Ver colección</a></p>
       </div>
     </div>
   </div>
@@ -87,7 +106,7 @@
         <h2 class="text-3xl font-sans font-bold mb-4">Camisetas Versión Retro</h2>
         <p class="font-sans">¿Eres un nostálgico de aquellos viejos buenos tiempos?</p>
         <p class="font-sans">Viaja en el tiempo con nuestra colección de camisetas Retro.</p>
-        <p class="font-sans"><a *ngIf="isLogged() && isUserNormal()" [routerLink]="['/usuario', 'camiseta', 'plist', 'bymodalidad', 1]" class="text-blue-500 underline">Ver colección</a></p>
+        <p class="font-sans"><a *ngIf="(isLogged() && isUserNormal()) || !isLogged()" [routerLink]="['/usuario', 'camiseta', 'plist', 'bymodalidad', 1]" class="text-blue-500 underline">Ver colección</a></p>
       </div>
       <div class="w-full md:w-1/2 px-4 mb-8">
         <img src="http://localhost:8085/media/850697_71e242d2371549a7baf5e299d7a336eb~mv2.webp" alt="Retro Version" class="rounded-lg shadow-md">
@@ -105,7 +124,7 @@
       <div class="w-full md:w-1/2 px-4 mb-8 font-sans">
         <h2 class="text-3xl font-sans font-bold">Visita nuestra colección de ligas</h2>
         <p class="font-sans">Contamos con las camisetas de las mejores ligas de fútbol y baloncesto</p>
-        <p class="font-sans"><a *ngIf="isLogged() && isUserNormal()" [routerLink]="['/usuario', 'liga', 'plist']" class="text-blue-500 underline">Ver ligas disponibles</a></p>
+        <p class="font-sans"><a *ngIf="(isLogged() && isUserNormal()) || !isLogged()" [routerLink]="['/usuario', 'liga', 'plist']" class="text-blue-500 underline">Ver ligas disponibles</a></p>
       </div>
     </div>
   </div>

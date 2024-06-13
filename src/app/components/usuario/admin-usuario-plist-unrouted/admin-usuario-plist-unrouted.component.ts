@@ -10,6 +10,7 @@ import { UsuarioAjaxService } from 'src/app/service/usuario.ajax.service.service
 import { AdminUsuarioDetailUnroutedComponent } from '../admin-usuario-detail-unrouted/admin-usuario-detail-unrouted.component';
 import { ConfirmationUnroutedComponent } from '../../shared/confirmation-unrouted/confirmation-unrouted.component';
 import * as Masonry from 'masonry-layout';
+import Swal from 'sweetalert2';
 
 @Component({
   providers: [DialogService, ConfirmationService],
@@ -99,7 +100,12 @@ export class AdminUsuarioPlistUnroutedComponent implements OnInit {
           if (confirmed) {
             this.usuarioAjaxService.deleteUsuario(usuario.id).subscribe({
               next: () => {
-                this.matSnackBar.open('Usuario eliminado', 'Aceptar', { duration: 3000 });
+                Swal.fire({
+                  title: 'Usuario eliminado con éxito',
+                  icon: 'success',
+                  timer: 1000,
+                  timerProgressBar: true
+                });
                 this.forceReload.next(true);
                 this.getPage();
               },

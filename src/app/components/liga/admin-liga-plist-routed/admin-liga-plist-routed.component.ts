@@ -7,6 +7,7 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { Subject } from 'rxjs';
 import { LigaAjaxService } from 'src/app/service/liga.ajax.service.service';
 import { ConfirmationUnroutedComponent } from '../../shared/confirmation-unrouted/confirmation-unrouted.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-admin-liga-plist-routed',
@@ -33,7 +34,12 @@ export class AdminLigaPlistRoutedComponent implements OnInit {
     this.bLoading = true;
     this.ligaAjaxService.generateLigas(amount).subscribe({
       next: (response: number) => {
-        this.matSnackBar.open(`Se han generado ${response} ligas`, "Aceptar", { duration: 3000 });
+        Swal.fire({
+          icon: 'success',
+          title: `Se han generado ${response} ligas`,
+          timer: 1000,
+          timerProgressBar: true
+        });
         this.bLoading = false;
       },
       error: (err: HttpErrorResponse) => {
@@ -59,7 +65,12 @@ export class AdminLigaPlistRoutedComponent implements OnInit {
       if (confirmed) {
         this.ligaAjaxService.deleteAllLigas().subscribe({
           next: () => {
-            this.matSnackBar.open('Ligas eliminadas', 'Aceptar', { duration: 3000 });
+            Swal.fire({
+              icon: 'success',
+              title: 'Ligas eliminadas con éxito',
+              timer: 1000,
+              timerProgressBar: true
+            });
             this.forceReload.next(true);
           },
           error: (err: HttpErrorResponse) => {

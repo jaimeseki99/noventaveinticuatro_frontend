@@ -31,7 +31,9 @@ export class UserCamisetaDetailUnroutedComponent implements OnInit {
   carrito: ICarrito = { usuario: {}, camiseta: {}, cantidad: 0 } as ICarrito;
   cantidadSeleccionada: number = 1;
   nombre: string = '';
+  nombreTocado: boolean = false;
   dorsal: number = 0;
+  dorsalTocado: boolean = false;
   page: IValoracionPage | null = null;
   orderField: string = 'id';
   orderDirection: string = 'asc';
@@ -211,16 +213,7 @@ export class UserCamisetaDetailUnroutedComponent implements OnInit {
             }
           });
         } else {
-          Swal.fire({
-            position: "center",
-            icon: "success",
-            title: "Compra cancelada",
-            showConfirmButton: true,
-            confirmButtonText: "Aceptar",
-            timer: 2000,
-            timerProgressBar: true,
-            width: 700,
-          });
+          this.matSnackBar.open('Compra cancelada', 'Aceptar', {duration: 3000});
         }
       });
     } else {

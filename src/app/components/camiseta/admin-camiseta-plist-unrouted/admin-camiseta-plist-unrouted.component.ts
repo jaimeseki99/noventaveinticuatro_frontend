@@ -13,6 +13,7 @@ import { ConfirmEventType, ConfirmationService } from 'primeng/api';
 import { AdminCamisetaDetailUnroutedComponent } from '../admin-camiseta-detail-unrouted/admin-camiseta-detail-unrouted.component';
 import { ConfirmationUnroutedComponent } from '../../shared/confirmation-unrouted/confirmation-unrouted.component';
 import { data } from 'autoprefixer';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-admin-camiseta-plist-unrouted',
@@ -147,7 +148,13 @@ export class AdminCamisetaPlistUnroutedComponent implements OnInit {
       if (confirmed) {
         this.camisetaAjaxService.deleteCamiseta(camiseta.id).subscribe({
           next: () => {
-            this.matSnackBar.open('Camiseta eliminada correctamente', 'Aceptar', { duration: 3000 });
+            Swal.fire({
+              title: 'Camiseta eliminada',
+              text: 'Se ha eliminado la camiseta',
+              icon: 'success',
+              timer: 1000,
+              timerProgressBar: true
+            });
             this.getPage();
           },
           error: (err: HttpErrorResponse) => {

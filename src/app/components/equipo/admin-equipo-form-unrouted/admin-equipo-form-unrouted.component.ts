@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AdminLigaSelectionUnroutedComponent } from '../../liga/admin-liga-selection-unrouted/admin-liga-selection-unrouted.component';
 import { MediaService } from 'src/app/service/media.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-admin-equipo-form-unrouted',
@@ -93,7 +94,12 @@ export class AdminEquipoFormUnroutedComponent implements OnInit {
           next: (data: IEquipo) => {
             this.equipo = { "liga": {} } as IEquipo;
             this.initializeForm(this.equipo);
-            this.matSnackBar.open('Registro creado', 'Aceptar', {duration: 3000});
+            Swal.fire({
+              title: 'Equipo registrado',
+              icon: 'success',
+              timer: 1000,
+              timerProgressBar: true
+            })
             this.router.navigate(['/admin', 'equipo', 'plist']);
           },
           error: (err: HttpErrorResponse) => {
@@ -106,7 +112,12 @@ export class AdminEquipoFormUnroutedComponent implements OnInit {
             next: (data: IEquipo) => {
               this.equipo = data;
               this.initializeForm(this.equipo);
-              this.matSnackBar.open('Registro actualizado', 'Aceptar', {duration: 3000});
+              Swal.fire({
+                title: 'Datos del equipo actualizado',
+                icon: 'success',
+                timer: 1000,
+                timerProgressBar: true
+              })
               this.router.navigate(['/admin', 'equipo', 'plist']);
             },
             error: (err: HttpErrorResponse) => {

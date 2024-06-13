@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { IModalidad, formOperation } from 'src/app/model/model.interfaces';
 import { MediaService } from 'src/app/service/media.service';
 import { ModalidadAjaxService } from 'src/app/service/modalidad.ajax.service.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-admin-modalidad-form-unrouted',
@@ -85,7 +86,12 @@ export class AdminModalidadFormUnroutedComponent implements OnInit {
             this.modalidad = data;
             this.initializeForm(this.modalidad);
             this.router.navigate(['/admin', 'modalidad', 'plist']);
-            this.matSnackBar.open("Registro creado", 'Aceptar', { duration: 3000});
+            Swal.fire({
+              title: 'Modalidad creada con éxito',
+              icon: 'success',
+              timer: 1000,
+              timerProgressBar: true
+            });
           },
           error: (err: HttpErrorResponse) => {
             this.status = err;
@@ -98,7 +104,12 @@ export class AdminModalidadFormUnroutedComponent implements OnInit {
             this.modalidad = data;
             this.initializeForm(this.modalidad);
             this.router.navigate(['/admin', 'modalidad', 'plist']);
-            this.matSnackBar.open("Registro actualizado", 'Aceptar', { duration: 3000});
+            Swal.fire({
+              icon: 'success',
+              title: 'Datos de la modalidad actualizados con éxito',
+              timer: 1000,
+              timerProgressBar: true
+            })
           },
           error: (err: HttpErrorResponse) => {
             this.status = err;

@@ -35,21 +35,22 @@
       </div>
       <div class="mt-6" *ngIf="usuario">
         <h4 class="font-bold">Siéntete como un auténtico jugador y personaliza tu camiseta (opcional)</h4>
+        <h6 class="font-bold">AVISO: Si personalizas una camiseta, no puedes comprarla directamente, debes añadirla al carrito</h6>
       </div>
       <div class="mt-2" *ngIf="usuario">
         <label class="block text-sm font-medium">Nombre Personalizado:</label>
-        <input class="w-full form-input" type="text" [(ngModel)]="nombre">
+        <input class="w-full form-input" type="text" [(ngModel)]="nombre" (blur)="nombreTocado = true">
     </div>
     <div class="mt-2" *ngIf="usuario">
         <label class="block text-sm font-medium">Dorsal Personalizado:</label>
-        <input class="w-full form-input" type="number" [(ngModel)]="dorsal">
+        <input class="w-full form-input" type="number" [(ngModel)]="dorsal" (blur)="dorsalTocado = true">
     </div>
       <div class="mt-6 space-y-4" *ngIf="usuario">
         <button class="w-full px-4 py-2 bg-tradewind-500 hover:bg-tradewind-600 text-white rounded-md" (click)="agregarAlCarrito()" [disabled]="camiseta.stock == 0">
           <i class="pi pi-shopping-cart mr-2"></i>
           Agregar al carrito
         </button>
-        <button class="w-full px-4 py-2 bg-tradewind-700 hover:bg-tradewind-800 text-white rounded-md" (click)="comprarDirectamente()" [disabled]="camiseta.stock == 0">
+        <button class="w-full px-4 py-2 bg-tradewind-700 hover:bg-tradewind-800 text-white rounded-md" (click)="comprarDirectamente()" [disabled]="camiseta.stock == 0 || (nombre && nombreTocado && dorsal && dorsalTocado)">
           <i class="pi pi-euro mr-2"></i>
           Comprar directamente
         </button>

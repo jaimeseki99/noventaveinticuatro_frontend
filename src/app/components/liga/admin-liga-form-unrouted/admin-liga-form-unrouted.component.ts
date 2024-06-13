@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { ILiga, formOperation } from 'src/app/model/model.interfaces';
 import { LigaAjaxService } from 'src/app/service/liga.ajax.service.service';
 import { MediaService } from 'src/app/service/media.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-admin-liga-form-unrouted',
@@ -90,7 +91,12 @@ export class AdminLigaFormUnroutedComponent implements OnInit {
           next: (data: ILiga) => {
             this.liga = data;
             this.initializeForm(this.liga);
-            this.matSnackBar.open("Registro creado", 'Aceptar', { duration: 3000});
+            Swal.fire({
+              title: 'Liga creada con éxito',
+              icon: 'success',
+              timer: 1000,
+              timerProgressBar: true
+            })
             this.router.navigate(['/admin', 'liga', 'plist']);
           },
           error: (err: HttpErrorResponse) => {
@@ -103,7 +109,12 @@ export class AdminLigaFormUnroutedComponent implements OnInit {
           next: (data: ILiga) => {
             this.liga = data;
             this.initializeForm(this.liga);
-            this.matSnackBar.open("Registro actualizado", 'Aceptar', { duration: 3000});
+            Swal.fire({
+              title: 'Datos de la liga actualizados con éxito',
+              icon: 'success',
+              timer: 1000,
+              timerProgressBar: true
+            })
             this.router.navigate(['/admin', 'liga', 'plist']);
           },
           error: (err: HttpErrorResponse) => {

@@ -9,6 +9,7 @@ import { ILiga, ILigaPage } from 'src/app/model/model.interfaces';
 import { LigaAjaxService } from 'src/app/service/liga.ajax.service.service';
 import { AdminLigaDetailUnroutedComponent } from '../admin-liga-detail-unrouted/admin-liga-detail-unrouted.component';
 import { ConfirmationUnroutedComponent } from '../../shared/confirmation-unrouted/confirmation-unrouted.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-admin-liga-plist-unrouted',
@@ -116,6 +117,12 @@ export class AdminLigaPlistUnroutedComponent implements OnInit {
       if (confirmed) {
         this.ligaAjaxService.deleteLiga(liga.id).subscribe({
           next: () => {
+            Swal.fire({
+              title: 'Liga borrada con éxito',
+              icon: 'success',
+              timer: 1000,
+              timerProgressBar: true
+            })
             this.matSnackBar.open('Liga borrada', 'Aceptar', { duration: 3000 });
             this.getPage();
           },

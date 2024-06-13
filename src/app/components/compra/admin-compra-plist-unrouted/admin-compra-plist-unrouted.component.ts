@@ -10,6 +10,7 @@ import { ICompra, ICompraPage, IUsuario } from 'src/app/model/model.interfaces';
 import { CompraAjaxService } from 'src/app/service/compra.ajax.service.service';
 import { UsuarioAjaxService } from 'src/app/service/usuario.ajax.service.service';
 import { AdminCompraDetailUnroutedComponent } from '../admin-compra-detail-unrouted/admin-compra-detail-unrouted.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-admin-compra-plist-unrouted',
@@ -111,7 +112,13 @@ export class AdminCompraPlistUnroutedComponent implements OnInit {
         this.matSnackBar.open('Cancelando la compra', 'Cancelando', { duration: 3000 });
         this.compraAjaxService.deleteCompra(compra.id).subscribe({
           next: () => {
-            this.matSnackBar.open(`La compra ${compra.codigoPedido} ha sido cancelada con éxito`, 'Aceptar', { duration: 3000 });
+            Swal.fire({
+              title: 'Compra cancelada',
+              text: `La compra ${compra.codigoPedido} ha sido cancelada con éxito`,
+              icon: 'success',
+              timer: 1000,
+              timerProgressBar: true
+            });
             this.getPage();
           },
           error: (err: HttpErrorResponse) => {

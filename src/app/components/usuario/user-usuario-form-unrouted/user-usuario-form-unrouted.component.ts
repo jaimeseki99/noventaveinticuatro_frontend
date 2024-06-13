@@ -5,6 +5,7 @@ import { FormGroup, FormBuilder, Form, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IUsuario, formOperation } from 'src/app/model/model.interfaces';
 import { UsuarioAjaxService } from 'src/app/service/usuario.ajax.service.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-user-usuario-form-unrouted',
@@ -83,7 +84,12 @@ export class UserUsuarioFormUnroutedComponent implements OnInit {
           next: (data: IUsuario) => {
             this.usuario = data;
             this.initializeForm(this.usuario);
-            this.matSnackBar.open("Usuario actualizado correctamente", 'Aceptar', {duration: 3000});
+            Swal.fire({
+              title: 'Datos actualizados correctamente',
+              icon: 'success',
+              timer: 1000,
+              timerProgressBar: true,
+            });
             this.router.navigate(['/usuario', 'usuario', 'view', this.usuario.id]);
           },
           error: (err: HttpErrorResponse) => {

@@ -9,6 +9,7 @@ import { ValoracionAjaxService } from 'src/app/service/valoracion.ajax.service.s
 import { AdminUsuarioPlistUnroutedComponent } from '../../usuario/admin-usuario-plist-unrouted/admin-usuario-plist-unrouted.component';
 import { AdminUsuarioSelectionUnroutedComponent } from '../../usuario/admin-usuario-selection-unrouted/admin-usuario-selection-unrouted.component';
 import { AdminCamisetaSelectionUnroutedComponent } from '../../camiseta/admin-camiseta-selection-unrouted/admin-camiseta-selection-unrouted.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-admin-valoracion-form-unrouted',
@@ -75,7 +76,12 @@ export class AdminValoracionFormUnroutedComponent implements OnInit {
           next: (data: IValoracion) => {
             this.valoracion = { "usuario": {}, "camiseta": {} } as IValoracion;
             this.initializeForm(this.valoracion);
-            this.matSnackBar.open('Valoración creada correctamente', 'Aceptar', { duration: 3000 });
+            Swal.fire({
+              title: 'Valoración creada con éxito',
+              icon: 'success',
+              timer: 1000,
+              timerProgressBar: true            
+            });
             this.router.navigate(['/admin', 'valoracion', 'plist']);
           }, 
           error: (err: HttpErrorResponse) => {
@@ -88,7 +94,12 @@ export class AdminValoracionFormUnroutedComponent implements OnInit {
           next: (data: IValoracion) => {
             this.valoracion = data;
             this.initializeForm(this.valoracion);
-            this.matSnackBar.open('Valoración actualizada correctamente', 'Aceptar', { duration: 3000 });
+            Swal.fire({
+              title: 'Valoración actualizada con éxito',
+              icon: 'success',
+              timer: 1000,
+              timerProgressBar: true            
+            });
             this.router.navigate(['/admin', 'valoracion', 'plist']);
           },
           error: (err: HttpErrorResponse) => {

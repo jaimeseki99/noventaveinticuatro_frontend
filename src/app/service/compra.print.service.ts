@@ -91,7 +91,7 @@ export class CompraPrintService {
         const cliente = compra2Print?.usuario?.nombre + ' ' + compra2Print?.usuario?.apellido + ' ' + `${compra2Print?.usuario?.username}`;
         doc.text(cliente, 25, 95)
         doc.setFontSize(14)
-        doc.text(compra2Print?.usuario?.direccion, 25, 105)
+        doc.text(compra2Print?.direccion, 25, 105)
         doc.text(compra2Print?.usuario?.email, 25, 115)
 
         // Issuer information

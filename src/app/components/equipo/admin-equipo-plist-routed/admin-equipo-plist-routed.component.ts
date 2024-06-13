@@ -7,6 +7,7 @@ import { Subject } from 'rxjs';
 import { EquipoAjaxService } from 'src/app/service/equipo.ajax.service.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ConfirmationUnroutedComponent } from '../../shared/confirmation-unrouted/confirmation-unrouted.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-admin-equipo-plist-routed',
@@ -36,7 +37,12 @@ export class AdminEquipoPlistRoutedComponent implements OnInit {
     this.bLoading = true;
     this.equipoAjaxService.generateEquipos(amount).subscribe({
       next: (response: number) => {
-        this.matSnackBar.open(`Generados ${response} equipos`, 'Aceptar', {duration: 3000});
+        Swal.fire({
+          icon: 'success',
+          title: `Se han generado ${response} equipos nuevos`,
+          timer: 1000,
+          timerProgressBar: true
+        });
         this.bLoading = false;
       },
       error: (err: HttpErrorResponse) => {
@@ -62,7 +68,12 @@ doEmpty($event: Event) {
     if (confirmed) {
       this.equipoAjaxService.deleteAllEquipos().subscribe({
         next: () => {
-          this.matSnackBar.open('Se han eliminado todos los equipos de la lista', 'Aceptar', { duration: 3000 });
+          Swal.fire({
+            icon: 'success',
+            title: `Se han eliminado todos los equipos de la lista`,
+            timer: 1000,
+            timerProgressBar: true
+          });
           this.forceReload.next(true);
         },
         error: (err: HttpErrorResponse) => {

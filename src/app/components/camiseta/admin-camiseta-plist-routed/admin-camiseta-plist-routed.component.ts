@@ -7,6 +7,7 @@ import { ConfirmationService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { Subject } from 'rxjs';
 import { CamisetaAjaxService } from 'src/app/service/camiseta.ajax.service.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-admin-camiseta-plist-routed',
@@ -41,7 +42,13 @@ export class AdminCamisetaPlistRoutedComponent implements OnInit {
     this.bLoading = true;
     this.camisetaAjaxService.generateCamisetas(amount).subscribe({
       next: (Response: number) => {
-        this.matSnackBar.open('Se han generado ' + Response + ' camisetas', 'Aceptar', { duration: 3000 });
+        Swal.fire({
+          title: 'Camisetas generadas',
+          text: 'Se han generado ' + Response + ' camisetas',
+          icon: 'success',
+          timer: 1000,
+          timerProgressBar: true
+        });
         this.bLoading = false;
       },
       error: (err: HttpErrorResponse) => {
@@ -68,7 +75,12 @@ export class AdminCamisetaPlistRoutedComponent implements OnInit {
       if (confirmed) {
         this.camisetaAjaxService.deleteAllCamisetas().subscribe({
           next: (response: number) => {
-            this.matSnackBar.open('Se han eliminado ' + response + ' camisetas', 'Aceptar', { duration: 3000 });
+            Swal.fire({
+              title: 'Camisetas eliminadas',
+              icon: 'success',
+              timer: 1000,
+              timerProgressBar: true
+            })
             this.forceReload.next(true);
             this.bLoading = false;
           },

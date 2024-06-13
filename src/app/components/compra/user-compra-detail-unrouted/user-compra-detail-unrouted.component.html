@@ -8,7 +8,8 @@
   <div class="bg-white rounded-lg p-4 mb-4">
     <p class="mb-2"><strong>Cliente: </strong>{{compra.usuario.nombre}} {{compra.usuario.apellido}}</p>
     <p class="mb-2"><strong>Fecha de la compra: </strong>{{compra.fecha | date: 'dd/MM/yyyy'}}</p>
-    <p class="mb-2"><strong>Dirección de entrega: </strong> {{compra.usuario.direccion}}</p>
+    <p class="mb-2"><strong>Fecha de entrega: </strong>{{compra.fechaEntrega | date: 'dd/MM/yyyy'}}</p>
+    <p class="mb-2"><strong>Dirección de entrega: </strong> {{compra.direccion}}</p>
   </div>
 
   <!-- Detalles de la compra -->

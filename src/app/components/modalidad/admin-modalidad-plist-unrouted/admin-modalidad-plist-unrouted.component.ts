@@ -9,6 +9,7 @@ import { IModalidad, IModalidadPage } from 'src/app/model/model.interfaces';
 import { ModalidadAjaxService } from 'src/app/service/modalidad.ajax.service.service';
 import { AdminModalidadDetailUnroutedComponent } from '../admin-modalidad-detail-unrouted/admin-modalidad-detail-unrouted.component';
 import { ConfirmationUnroutedComponent } from '../../shared/confirmation-unrouted/confirmation-unrouted.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-admin-modalidad-plist-unrouted',
@@ -123,7 +124,12 @@ export class AdminModalidadPlistUnroutedComponent implements OnInit {
       if (confirmed) {
         this.modalidadAjaxService.deleteModalidad(modalidad.id).subscribe({
           next: () => {
-            this.matSnackBar.open('Modalidad eliminada', 'Aceptar', { duration: 3000 });
+            Swal.fire({
+              title: 'Modalidad eliminada con éxito',
+              icon: 'success',
+              timer: 1000,
+              timerProgressBar: true
+            })
             this.forceReload.next(true);
           },
           error: (err: HttpErrorResponse) => {

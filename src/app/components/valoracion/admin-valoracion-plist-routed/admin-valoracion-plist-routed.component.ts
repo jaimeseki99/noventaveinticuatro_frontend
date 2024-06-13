@@ -7,6 +7,7 @@ import { ValoracionAjaxService } from 'src/app/service/valoracion.ajax.service.s
 import { HttpErrorResponse } from '@angular/common/http';
 import { DialogService } from 'primeng/dynamicdialog';
 import { ConfirmationUnroutedComponent } from '../../shared/confirmation-unrouted/confirmation-unrouted.component';
+import Swal from 'sweetalert2';
 
 @Component({
   providers: [ConfirmationService],
@@ -38,7 +39,12 @@ export class AdminValoracionPlistRoutedComponent implements OnInit {
     this.bLoading = true;
     this.valoracionAjaxService.generateValoraciones(amount).subscribe({
       next: (response: number) => {
-        this.matSnackBar.open(`Se han generado ${response} valoraciones`, 'Aceptar', { duration: 3000 });
+        Swal.fire({
+          title: 'Valoraciones generadas con éxito',
+          icon: 'success',
+          timer: 1000,
+          timerProgressBar: true
+        });
         this.bLoading = false;
       },
       error: (err: HttpErrorResponse) => {
@@ -65,7 +71,12 @@ export class AdminValoracionPlistRoutedComponent implements OnInit {
       if (confirmed) {
         this.valoracionAjaxService.deleteAllValoraciones().subscribe({
           next: (response: number) => {
-            this.matSnackBar.open(`Todas las valoraciones han sido eliminadas, ahora hay ${response} valoraciones`, 'Aceptar', { duration: 3000 });
+            Swal.fire({
+              title: 'Valoraciones eliminadas con éxito',
+              icon: 'success',
+              timer: 1000,
+              timerProgressBar: true
+            });
             this.forceReload.next(true);
             this.bLoading = false;
           },

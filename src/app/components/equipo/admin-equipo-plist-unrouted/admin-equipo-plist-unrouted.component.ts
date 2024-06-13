@@ -11,6 +11,7 @@ import { LigaAjaxService } from 'src/app/service/liga.ajax.service.service';
 import { AdminEquipoDetailUnroutedComponent } from '../admin-equipo-detail-unrouted/admin-equipo-detail-unrouted.component';
 import { ConfirmationUnroutedComponent } from '../../shared/confirmation-unrouted/confirmation-unrouted.component';
 import { data } from 'autoprefixer';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-admin-equipo-plist-unrouted',
@@ -132,7 +133,12 @@ export class AdminEquipoPlistUnroutedComponent implements OnInit {
         this.matSnackBar.open('Eliminando equipo de la lista. Por favor, espere...', 'Aceptar', { duration: 3000 });
         this.equipoAjaxService.deleteEquipo(equipo.id).subscribe({
           next: () => {
-            this.matSnackBar.open('Equipo eliminado de la base de datos con éxito', 'Aceptar', { duration: 3000 });
+            Swal.fire({
+              title: 'Equipo eliminado con éxito',
+              icon: 'success',
+              timer: 1000,
+              timerProgressBar: true
+            });
             this.getPage();
           }
         });

@@ -13,6 +13,7 @@ import { AdminLigaPlistUnroutedComponent } from '../../liga/admin-liga-plist-unr
 import { AdminEquipoSelectionUnroutedComponent } from '../../equipo/admin-equipo-selection-unrouted/admin-equipo-selection-unrouted.component';
 import { AdminModalidadSelectionUnroutedComponent } from '../../modalidad/admin-modalidad-selection-unrouted/admin-modalidad-selection-unrouted.component';
 import { AdminLigaSelectionUnroutedComponent } from '../../liga/admin-liga-selection-unrouted/admin-liga-selection-unrouted.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-admin-camiseta-form-unrouted',
@@ -140,7 +141,13 @@ export class AdminCamisetaFormUnroutedComponent implements OnInit {
             this.camiseta = { "imagen": '', "equipo": {}, "modalidad": {}, "liga": {} } as ICamiseta; 
             this.camiseta.id = data.id;
             this.initializeForm(this.camiseta);
-            this.matSnackBar.open('Registro creado correctamente', 'Aceptar', {duration: 3000});
+            Swal.fire({
+              title: 'Registro creado',
+              text: 'Se ha añadido la camiseta al catálogo',
+              icon: 'success',
+              timer: 1000,
+              timerProgressBar: true
+            })
             this.router.navigate(['/admin', 'camiseta', 'plist']);
           },
           error: (err: HttpErrorResponse) => {
@@ -153,7 +160,13 @@ export class AdminCamisetaFormUnroutedComponent implements OnInit {
           next: (data: ICamiseta) => {
             this.camiseta = data;
             this.initializeForm(this.camiseta);
-            this.matSnackBar.open('Registro actualizado correctamente', 'Aceptar', {duration: 3000});
+            Swal.fire({
+              title: 'Registro actualizado',
+              text: 'Se ha actualizado la camiseta en el catálogo',
+              icon: 'success',
+              timer: 1000,
+              timerProgressBar: true
+            });
             this.router.navigate(['/admin', 'camiseta', 'plist']);
           },
           error: (err: HttpErrorResponse) => {

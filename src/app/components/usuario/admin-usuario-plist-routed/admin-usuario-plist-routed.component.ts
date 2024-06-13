@@ -6,6 +6,7 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { Subject } from 'rxjs';
 import { UsuarioAjaxService } from 'src/app/service/usuario.ajax.service.service';
 import { ConfirmationUnroutedComponent } from '../../shared/confirmation-unrouted/confirmation-unrouted.component';
+import Swal from 'sweetalert2';
 
 @Component({
   providers: [ConfirmationService],
@@ -33,6 +34,12 @@ export class AdminUsuarioPlistRoutedComponent implements OnInit {
     this.usuarioAjaxService.generateUsuarios(amount).subscribe({
       next: (response: number) => {
         this.matSnackBar.open(`Se han generado ${response} usuarios`, 'Aceptar', { duration: 3000 });
+        Swal.fire({
+          title: `Se han generado ${response} usuarios`,
+          icon: 'success',
+          timer: 1000,
+          timerProgressBar: true
+        })
         this.bLoading = false;
       },
       error: (err: HttpErrorResponse) => {
@@ -58,7 +65,12 @@ export class AdminUsuarioPlistRoutedComponent implements OnInit {
       if (confirmed) {
         this.usuarioAjaxService.deleteAllUsuarios().subscribe({
           next: (response: number) => {
-            this.matSnackBar.open(`Todos los usuarios han sido eliminados`, 'Aceptar', { duration: 3000 });
+            Swal.fire({
+              title: 'Todos los usuarios han sido eliminados',
+              icon: 'success',
+              timer: 1000,
+              timerProgressBar: true
+            })
             this.forceReload.next(true);
             this.bLoading = false;
           },

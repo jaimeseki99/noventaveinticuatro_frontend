@@ -9,6 +9,8 @@
             <p>Usuario: {{compra.usuario.nombre}} {{compra.usuario.apellido}}</p>
             <p>Fecha: {{compra.fecha | date: 'dd/MM/yyyy'}}</p>
             <p>Código pedido: {{compra.codigoPedido}}</p>
+            <p>Fecha de entrega: {{compra.fechaEntrega | date: 'dd/MM/yyyy'}}</p>
+            <p>Dirección de entrega: {{compra.direccion}}</p>
           </div>
           <div class="border-t mt-4 pt-4">
             <app-admin-detalle_compra-plist-unrouted [id_compra]="id"></app-admin-detalle_compra-plist-unrouted>

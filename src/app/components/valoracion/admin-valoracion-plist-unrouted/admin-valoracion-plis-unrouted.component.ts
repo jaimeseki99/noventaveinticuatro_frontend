@@ -11,6 +11,7 @@ import { UsuarioAjaxService } from 'src/app/service/usuario.ajax.service.service
 import { ValoracionAjaxService } from 'src/app/service/valoracion.ajax.service.service';
 import { AdminValoracionDetailUnroutedComponent } from '../admin-valoracion-detail-unrouted/admin-valoracion-detail-unrouted.component';
 import { ConfirmationUnroutedComponent } from '../../shared/confirmation-unrouted/confirmation-unrouted.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-admin-valoracion-plis-unrouted',
@@ -111,7 +112,12 @@ export class AdminValoracionPlisUnroutedComponent implements OnInit {
         if (confirmed) {
           this.valoracionAjaxService.deleteValoracion(valoracion.id).subscribe({
             next: () => {
-              this.matSnackBar.open('Valoración eliminada con éxito', 'Aceptar', { duration: 3000 });
+              Swal.fire({
+                title: 'Valoración eliminada con éxito',
+                icon: 'success',
+                timer: 1000,
+                timerProgressBar: true
+              })
               this.getPage();
             },
             error: (err: HttpErrorResponse) => {

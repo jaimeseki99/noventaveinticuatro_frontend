@@ -11,6 +11,7 @@ import { CompraAjaxService } from 'src/app/service/compra.ajax.service.service';
 import { SesionAjaxService } from 'src/app/service/sesion.ajax.service.service';
 import { DialogService, DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ConfirmationUnroutedComponent } from '../../shared/confirmation-unrouted/confirmation-unrouted.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-user-carrito-plist-unrouted',
@@ -164,7 +165,12 @@ export class UserCarritoPlistUnroutedComponent implements OnInit {
           if (confirmed) {
             this.compraAjaxService.createCompraUnicoCarrito(usuario.id, id_carrito).subscribe({
               next: (compra: ICompra) => {
-                this.matSnackBar.open('Compra realizada con éxito', 'Aceptar', { duration: 3000 });
+                Swal.fire({
+                  title: 'Compra de la camiseta realizada',
+                  icon: 'success',
+                  timer: 1500,
+                  timerProgressBar: true
+                });
                 this.router.navigate(['/usuario', 'compra', 'view', compra.id]);
               },
               error: (err: HttpErrorResponse) => {
@@ -232,7 +238,13 @@ export class UserCarritoPlistUnroutedComponent implements OnInit {
           if (confirmed) {
             this.compraAjaxService.createCompraTodosCarritos(usuario.id).subscribe({
               next: (compra: ICompra) => {
-                this.matSnackBar.open('Compra realizada', 'Aceptar', { duration: 3000 });
+                Swal.fire({
+                  title: 'Compra del carrito realizada con éxito',
+                  icon: 'success',
+                  timer: 1500,
+                  timerProgressBar: true
+                  
+                })
                 this.router.navigate(['/usuario', 'compra', 'view', compra.id]);
               },
               error: (err: HttpErrorResponse) => {
